@@ -1,0 +1,93 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:             jnt_rantanplan
+# Required-Start:       $remote_fs $syslog $network
+# Required-Stop:        $remote_fs $syslog $network
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Janitoo rantanplan
+# Description:          Janitoo rantanplan appliance server
+#
+### END INIT INFO
+
+NAME="jnt_rantanplan"
+
+# Internal script
+# You should not update lines below
+# Version 0.0.7
+set -e
+
+DAEMON="/usr/bin/${NAME}"
+test -x "${DAEMON}" || DAEMON="/usr/sbin/${NAME}"
+test -x "${DAEMON}" || DAEMON="/usr/local/bin/${NAME}"
+
+CONFFILE="/etc/janitoo/${NAME}.conf"
+test -f "${CONFFILE}" || CONFFILE="/opt/janitoo/etc/${NAME}.conf"
+
+test -x "${DAEMON}" || echo "Can't find ${DAEMON}" && exit 0
+test -f "${CONFFILE}" || echo "Can't find ${CONFFILE}" && exit 0
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin"
+
+PIDFILE="/opt/janitoo/run/${NAME}.pid"
+test -d "/run/janitoo" && PIDFILE="/run/janitoo/${NAME}.pid"
+test -d "/var/run/janitoo" && PIDFILE="/var/run/janitoo/${NAME}.pid"
+
+case "${1}" in
+    start)
+        echo -n "Starting ${NAME} server: "
+        ${DAEMON} -c ${CONFFILE} start
+        echo "${NAME}."
+        ;;
+
+    stop)
+        echo -n "Stopping ${NAME} server: "
+        ${DAEMON} -c ${CONFFILE} stop
+        echo "${NAME}."
+        ;;
+
+    restart)
+        echo -n "Restarting ${NAME} server: "
+        ${DAEMON} -c ${CONFFILE} restart
+        echo "${NAME}."
+        ;;
+
+    reload|force-reload)
+        echo -n "Reloading ${NAME} server: "
+        ${DAEMON} -c ${CONFFILE} reload
+        echo "${NAME}."
+        ;;
+
+    kill)
+        echo -n "Kill Janitoo fishtank server: "
+        ${DAEMON} -c ${CONFFILE} kill
+        echo "${NAME}."
+        ;;
+
+    status)
+        PID="$(cat ${PIDFILE} 2>/dev/null)" || true
+
+        if [ ! -f ${PIDFILE} ] || [ -z "${PID}" ]
+        then
+            echo "${NAME} is not running"
+            exit 3
+        fi
+
+        if ps "${PID}" >/dev/null 2>&1
+        then
+            echo "${NAME} is running"
+            exit 0
+        else
+            echo "${NAME} is not running"
+            exit 1
+        fi
+        ;;
+
+    *)
+        echo "Usage: /etc/init.d/${NAME} {start|stop|restart|reload|status|kill}"
+        exit 1
+        ;;
+esac
+
+exit 0
