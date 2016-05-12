@@ -30,8 +30,6 @@ import os, sys
 import threading
 import datetime
 
-from transitions.extensions import HierarchicalMachine as Machine
-
 from janitoo.thread import JNTBusThread, BaseThread
 from janitoo.options import get_option_autostart
 from janitoo.utils import HADD
@@ -41,7 +39,7 @@ from janitoo.component import JNTComponent
 from janitoo.bus import JNTBus
 
 from janitoo_raspberry_dht.dht import DHTComponent
-from janitoo_raspberry_gpio.gpio import GpioBus, OutputComponent, PirComponent as GPIOPir, LedComponent as GPIOLed, SonicComponent
+from janitoo_raspberry_gpio.gpio import GpioBus, LedComponent as GPIOLed
 from janitoo_raspberry_1wire.bus_1wire import OnewireBus
 from janitoo_raspberry_1wire.components import DS18B20
 from janitoo_hostsensor_raspberry.component import HardwareCpu
@@ -88,7 +86,7 @@ class TutorialBus(JNTBus):
         uuid="{:s}_temperature".format(OID)
         self.values[uuid] = self.value_factory['sensor_temperature'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
-            get_data_cb=get_temperature_cb,
+            get_data_cb=self.get_temperature_cb,
             help='The average temperature of tutorial. Can be use as a good quality source for a thermostat.',
             label='Temp',
         )

@@ -43,7 +43,6 @@ For the DHT component, it's looks like :
             DHTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
                     **kwargs)
 
-
 The bus
 =======
 
@@ -92,9 +91,9 @@ You're ready to test your components. Create a test :
 
 .. code:: bash
 
-    vim tests/test_component_v2.py
+    vim tests/test_components_v2.py
 
-.. code:: bash
+.. code:: python
 
     class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
         """Test the component
@@ -105,15 +104,37 @@ And launch it :
 
 .. code:: bash
 
-    sudo nosetests tests/test_component_v2.py -v
+    sudo nosetests -v tests/test_components_v2.py
 
-Same for the tread (bus) :
+The result should be :
+
+.. code:: bash
+
+    test_001_component_entry_point (tests.test_components_v2.TestAmbianceComponent) ... ok
+    test_002_component_oid (tests.test_components_v2.TestAmbianceComponent) ... ok
+    test_002_component_properties (tests.test_components_v2.TestAmbianceComponent) ... ok
+    test_001_component_entry_point (tests.test_components_v2.TestCpuComponent) ... ok
+    test_002_component_oid (tests.test_components_v2.TestCpuComponent) ... ok
+    test_002_component_properties (tests.test_components_v2.TestCpuComponent) ... ok
+    test_001_component_entry_point (tests.test_components_v2.TestLedComponent) ... ok
+    test_002_component_oid (tests.test_components_v2.TestLedComponent) ... ok
+    test_002_component_properties (tests.test_components_v2.TestLedComponent) ... ok
+    test_001_component_entry_point (tests.test_components_v2.TestTemperatureComponent) ... ok
+    test_002_component_oid (tests.test_components_v2.TestTemperatureComponent) ... ok
+    test_002_component_properties (tests.test_components_v2.TestTemperatureComponent) ... ok
+
+    ----------------------------------------------------------------------
+    Ran 12 tests in 6.772s
+
+    OK
+
+Test for the tread :
 
 .. code:: bash
 
-    vim tests/test_thread_v2.py
+    vim tests/tests/test_thread_v2.py
 
-.. code:: bash
+.. code:: python
 
     class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
         """Test the thread
@@ -125,11 +146,59 @@ And launch it :
 
 .. code:: bash
 
-    sudo nosetests tests/test_thread_v2.py -v
+    sudo nosetests -v tests/test_thread_v2.py
+
+The result should be :
+
+.. code:: bash
+
+    test_001_thread_entry_point (tests.test_thread_v2.TestTutorialThread) ... ok
+    test_011_thread_start_wait_stop (tests.test_thread_v2.TestTutorialThread) ... ok
+    test_031_cron_hourly (tests.test_thread_v2.TestTutorialThread) ... SKIP: Hourly timer not used for this thread
+
+    ----------------------------------------------------------------------
+    Ran 3 tests in 27.107s
+
+    OK (SKIP=1)
+
+And the test for the bus :
+
+.. code:: bash
+
+    vim tests/tests/test_bus_v2.py
+
+.. code:: python
+
+    from janitoo_tutorial.tutorial1 import TutorialBus
+
+    class TestTutorialBus(JNTTBus, JNTTBusCommon):
+        """Test the Bus
+        """
+        oid = 'tutorial1'
+        bus = TutorialBus
+
+And launch it :
+
+.. code:: bash
+
+    sudo nosetests -v tests/test_bus_v2.py
+
+The result should be :
+
+.. code:: bash
+
+    test_001_thread_entry_point (tests.test_thread_v2.TestTutorialThread) ... ok
+    test_011_thread_start_wait_stop (tests.test_thread_v2.TestTutorialThread) ... ok
+    test_031_cron_hourly (tests.test_thread_v2.TestTutorialThread) ... SKIP: Hourly timer not used for this thread
+
+    ----------------------------------------------------------------------
+    Ran 3 tests in 27.107s
+
+    OK (SKIP=1)
 
 And for the server :
 
-.. code:: bash
+.. code:: python
 
     vim tests/test_server_v2.py
 
@@ -147,9 +216,9 @@ And launch it :
 
 .. code:: bash
 
-    sudo nosetests tests/test_server_v1.py -v -m test_040_server_start_no_error_in_log
+    sudo nosetests -v tests/test_server_v2.py
 
-If everything is ok, the screen output should be something like this :
+The result should be :
 
 .. code:: bash
 

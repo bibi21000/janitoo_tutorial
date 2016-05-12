@@ -26,6 +26,8 @@ __copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi2100
 import warnings
 warnings.filterwarnings("ignore")
 
+import time
+
 from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
 from janitoo.utils import HADD_SEP, HADD
 from janitoo_raspberry.server import PiServer

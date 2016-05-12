@@ -196,7 +196,7 @@ You're ready to test your server. Janitoo has a lot of built in tests.
 
     vim tests/test_server_v1.py
 
-.. code:: bash
+.. code:: python
 
     class TestTutorialServer(JNTTServer, JNTTServerCommon):
         """Test the tutorial server

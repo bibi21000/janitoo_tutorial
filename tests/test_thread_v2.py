@@ -59,4 +59,4 @@ class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
     """Test the thread
     """
     thread_name = "tutorial1"
-    conf_file = "tests/data/janitoo_tutorial2.conf"
+    conf_file = "tests/data/helloworldv2.conf"
