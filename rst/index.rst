@@ -14,7 +14,8 @@ Contents:
     Installation of Janitoo<INSTALL>
     Hello World : connect everything<HELLOWORLDV0>
     Hello World 1 : a simple server<HELLOWORLDV1>
-    Hello World 2 : a more advanced server<HELLOWORLDV2>
+    Hello World 2 : an advanced server<HELLOWORLDV2>
+    Hello World 3 : a more advanced server<HELLOWORLDV3>
     Create and share<CREATEANDSHARE>
 
 
