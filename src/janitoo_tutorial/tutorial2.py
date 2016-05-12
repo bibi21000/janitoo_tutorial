@@ -91,12 +91,16 @@ class TutorialBus(JNTBus):
             'source': '*',
             'dest': 'reporting',
         },
+        { 'trigger': 'report',
+            'source': '*',
+            'dest': 'reporting',
+        },
         { 'trigger': 'sleep',
             'source': '*',
             'dest': 'sleeping',
         },
         { 'trigger': 'ring',
-            'source': '*',
+            'source': 'reporting',
             'dest': 'ringing',
         },
     ]
@@ -131,16 +135,10 @@ class TutorialBus(JNTBus):
         self.values[uuid] = self.value_factory['sensor_temperature'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
             help='The average temperature of tutorial. Can be use as a good quality source for a thermostat.',
-            get_data_cb=self.get_temperature_cb,
             label='Temp',
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
-
-
-    def get_temperature_cb(self, node_uuid=None, index=None):
-        """Callback for blink"""
-        pass
 
     @property
     def polled_sensors(self):
@@ -165,11 +163,13 @@ class TutorialBus(JNTBus):
             logger.exception("[%s] - Error in on_enter_reporting", self.__class__.__name__)
         finally:
             self.bus_release()
+        self.on_check()
 
     def on_enter_sleeping(self):
         """
         """
         logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
+        self.stop_check()
         self.bus_acquire()
         try:
             self.nodeman.remove_polls(self.polled_sensors)
@@ -186,7 +186,6 @@ class TutorialBus(JNTBus):
         self.bus_acquire()
         try:
             self.nodeman.find_value('led', 'blink').data = 'warning'
-            self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
         except:
             logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
         finally:
@@ -243,19 +242,13 @@ class TutorialBus(JNTBus):
                         criticals += 1
                     if maxi is None or data > maxi:
                         maxi = data
-                    if min is None or data < mini:
-                        min = data
+                    if mini is None or data < mini:
+                        mini = data
             if criticals > 1:
                 #We should notify a security problem : fire ?
-                pass
-            if maxi - mini > 10:
-                #We should notify a sensor problem here
-                pass
+                self.ring()
             if nums != 0:
                 self.get_bus_value('temperature').data = total / nums
-            #Check the proximity sensors
-            critical_proxi = self.get_bus_value('proximity_critical').data
-
         except:
             logger.exception("[%s] - Error in on_check", self.__class__.__name__)
         finally:
