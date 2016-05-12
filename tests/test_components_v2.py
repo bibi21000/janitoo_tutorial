@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Unittests for Janitoo-Raspberry Pi Server.
+"""Unittests for Janitoo Server.
 """
 __license__ = """
     This file is part of Janitoo.
@@ -35,16 +35,14 @@ from pkg_resources import iter_entry_points
 
 from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
 from janitoo_nosetests.thread import JNTTThread, JNTTThreadCommon
+from janitoo_nosetests.component import JNTTComponent, JNTTComponentCommon
 
 from janitoo.utils import json_dumps, json_loads
 from janitoo.utils import HADD_SEP, HADD
-from janitoo.utils import TOPIC_HEARTBEAT, NETWORK_REQUESTS
+from janitoo.utils import TOPIC_HEARTBEAT
 from janitoo.utils import TOPIC_NODES, TOPIC_NODES_REPLY, TOPIC_NODES_REQUEST
 from janitoo.utils import TOPIC_BROADCAST_REPLY, TOPIC_BROADCAST_REQUEST
 from janitoo.utils import TOPIC_VALUES_USER, TOPIC_VALUES_CONFIG, TOPIC_VALUES_SYSTEM, TOPIC_VALUES_BASIC
-from janitoo.thread import JNTBusThread
-
-from janitoo_rantanplan.server import RantanplanServer
 
 ##############################################################
 #Check that we are in sync with the official command classes
@@ -56,52 +54,23 @@ COMMAND_DISCOVERY = 0x5000
 assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
-class TestRantanplanServer(JNTTServer, JNTTServerCommon):
-    """Test the pi server
+
+class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
+    """Test the component
     """
-    loglevel = logging.DEBUG
-    path = '/tmp/janitoo_test'
-    broker_user = 'toto'
-    broker_password = 'toto'
-    server_class = RantanplanServer
-    server_conf = "tests/data/janitoo_rantanplan.conf"
-    server_section = "rantanplan"
+    component_name = "tutorial1.ambiance"
 
-    hadds = [HADD%(222,0), HADD%(222,1), HADD%(222,2), HADD%(222,3), HADD%(222,4), HADD%(222,5), HADD%(222,6)]
+class TestLedComponent(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "tutorial1.led"
 
-    def test_011_start_reload_stop(self):
-        self.skipRasperryTest()
-        JNTTServerCommon.test_011_start_reload_stop(self)
+class TestTemperatureComponent(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "tutorial1.temperature"
 
-    def test_012_start_reload_threads_stop(self):
-        self.skipRasperryTest()
-        JNTTServerCommon.test_012_start_reload_threads_stop(self)
-
-    def test_030_wait_for_all_nodes(self):
-        self.skipRasperryTest()
-        JNTTServerCommon.test_030_wait_for_all_nodes(self)
-
-    def test_100_server_start_machine_state(self):
-        self.start()
-        time.sleep(10)
-        thread = self.server.find_thread(self.server_section)
-        self.assertNotEqual(thread, None)
-        self.assertIsInstance(thread, JNTBusThread)
-        bus = thread.bus
-        self.assertNotEqual(bus, None)
-        self.waitHeartbeatNodes(hadds=self.hadds)
-        bus.guard()
-        time.sleep(5)
-        bus.report()
-        time.sleep(5)
-        bus.guard()
-        time.sleep(5)
-        bus.bark()
-        time.sleep(5)
-        bus.guard()
-        time.sleep(5)
-        bus.bark()
-        time.sleep(5)
-        bus.bite()
-        time.sleep(5)
-        bus.sleep()
+class TestCpuComponent(JNTTComponent, JNTTComponentCommon):
+    """Test the component
+    """
+    component_name = "tutorial1.cpu"

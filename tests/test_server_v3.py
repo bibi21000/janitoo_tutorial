@@ -37,3 +37,28 @@ class TestTutorialServer(JNTTServer, JNTTServerCommon):
     server_conf = "tests/data/helloworldv2.conf"
 
     hadds = [HADD%(225,0), HADD%(225,1), HADD%(225,2), HADD%(225,3)]
+
+    def test_100_server_start_machine_state(self):
+        self.start()
+        time.sleep(10)
+        thread = self.server.find_thread(self.server_section)
+        self.assertNotEqual(thread, None)
+        self.assertIsInstance(thread, JNTBusThread)
+        bus = thread.bus
+        self.assertNotEqual(bus, None)
+        self.waitHeartbeatNodes(hadds=self.hadds)
+        bus.guard()
+        time.sleep(5)
+        bus.report()
+        time.sleep(5)
+        bus.guard()
+        time.sleep(5)
+        bus.bark()
+        time.sleep(5)
+        bus.guard()
+        time.sleep(5)
+        bus.bark()
+        time.sleep(5)
+        bus.bite()
+        time.sleep(5)
+        bus.sleep()

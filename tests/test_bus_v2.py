@@ -44,10 +44,10 @@ from janitoo.utils import TOPIC_NODES, TOPIC_NODES_REPLY, TOPIC_NODES_REQUEST
 from janitoo.utils import TOPIC_BROADCAST_REPLY, TOPIC_BROADCAST_REQUEST
 from janitoo.utils import TOPIC_VALUES_USER, TOPIC_VALUES_CONFIG, TOPIC_VALUES_SYSTEM, TOPIC_VALUES_BASIC
 
-from janitoo_rantanplan.rantanplan import RantanplanBus
+from janitoo_tutorial.tutorial1 import TutorialBus
 
-class TestRantanplanBus(JNTTBus, JNTTBusCommon):
+class TestTutorialBus(JNTTBus, JNTTBusCommon):
     """Test the Bus
     """
-    oid = 'rantanplan'
-    bus = RantanplanBus
+    oid = 'tutorial1'
+    bus = TutorialBus

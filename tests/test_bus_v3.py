@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Unittests for Janitoo Server.
+"""Unittests for Janitoo.
 """
 __license__ = """
     This file is part of Janitoo.
@@ -34,7 +34,7 @@ import logging
 from pkg_resources import iter_entry_points
 
 from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
-from janitoo_nosetests.thread import JNTTThread, JNTTThreadCommon
+from janitoo_nosetests.bus import JNTTBus, JNTTBusCommon
 from janitoo_nosetests.component import JNTTComponent, JNTTComponentCommon
 
 from janitoo.utils import json_dumps, json_loads
@@ -44,46 +44,10 @@ from janitoo.utils import TOPIC_NODES, TOPIC_NODES_REPLY, TOPIC_NODES_REQUEST
 from janitoo.utils import TOPIC_BROADCAST_REPLY, TOPIC_BROADCAST_REQUEST
 from janitoo.utils import TOPIC_VALUES_USER, TOPIC_VALUES_CONFIG, TOPIC_VALUES_SYSTEM, TOPIC_VALUES_BASIC
 
-import janitoo_rantanplan.thread_rantanplan
-import janitoo_rantanplan.rantanplan
+from janitoo_tutorial.tutorial2 import TutorialBus
 
-##############################################################
-#Check that we are in sync with the official command classes
-#Must be implemented for non-regression
-from janitoo.classes import COMMAND_DESC
-
-COMMAND_DISCOVERY = 0x5000
-
-assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
-##############################################################
-
-
-class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
-    """Test the component
+class TestTutorialBus(JNTTBus, JNTTBusCommon):
+    """Test the Bus
     """
-    component_name = "rantanplan.ambiance"
-
-class TestLedComponent(JNTTComponent, JNTTComponentCommon):
-    """Test the component
-    """
-    component_name = "rantanplan.led"
-
-class TestPirComponent(JNTTComponent, JNTTComponentCommon):
-    """Test the component
-    """
-    component_name = "rantanplan.pir"
-
-class TestProximityComponent(JNTTComponent, JNTTComponentCommon):
-    """Test the component
-    """
-    component_name = "rantanplan.proximity"
-
-class TestTemperatureComponent(JNTTComponent, JNTTComponentCommon):
-    """Test the component
-    """
-    component_name = "rantanplan.temperature"
-
-class TestCpuComponent(JNTTComponent, JNTTComponentCommon):
-    """Test the component
-    """
-    component_name = "rantanplan.cpu"
+    oid = 'tutorial2'
+    bus = TutorialBus
