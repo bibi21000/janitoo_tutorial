@@ -118,7 +118,6 @@ setup(
             "tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance",
             "tutorial1.cpu = janitoo_tutorial.tutorial1:make_cpu",
             "tutorial1.temperature = janitoo_tutorial.tutorial1:make_temperature",
-            "tutorial1.led = janitoo_tutorial.tutorial1:make_led",
             "tutorial2.ambiance = janitoo_tutorial.tutorial12:make_ambiance",
             "tutorial2.cpu = janitoo_tutorial.tutorial2:make_cpu",
             "tutorial2.temperature = janitoo_tutorial.tutorial2:make_temperature",

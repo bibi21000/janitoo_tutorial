@@ -37,3 +37,7 @@ class TestTutorialServer(JNTTServer, JNTTServerCommon):
     server_conf = "tests/data/helloworldv1.conf"
 
     hadds = [HADD%(220,0), HADD%(220,1), HADD%(221,0), HADD%(221,1), HADD%(222,0), HADD%(222,1)]
+
+    def test_040_server_start_no_error_in_log(self):
+        self.onlyRasperryTest()
+        JNTTServerCommon.test_040_server_start_no_error_in_log(self)

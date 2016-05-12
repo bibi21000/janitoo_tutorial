@@ -59,11 +59,6 @@ class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
     """
     component_name = "tutorial1.ambiance"
 
-class TestLedComponent(JNTTComponent, JNTTComponentCommon):
-    """Test the component
-    """
-    component_name = "tutorial1.led"
-
 class TestTemperatureComponent(JNTTComponent, JNTTComponentCommon):
     """Test the component
     """

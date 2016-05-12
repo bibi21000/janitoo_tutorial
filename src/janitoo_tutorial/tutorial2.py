@@ -81,22 +81,9 @@ class TutorialBus(JNTBus):
     states = [
        'sleeping',
        'reporting',
-       { 'name': 'guarding',
-         'children': ['barking', 'bitting'],
-       },
-       { 'name': 'obeying',
-         'children': ['barking', 'bitting'],
-       },
+       'ringing',
     ]
     """The tutorial states :
-        - sleeping : bbzzzzzz...
-        - reporting : only reports events as normal values ... what a good job
-        - guarding : guard the zone, musts reports events as alarm values. Show I'm up by blinking my led.
-            - barking : a presence have been detected, must bark to identify this guy
-            - bitting : a bad guy is here, must bite it
-        - obeying : Someone, somebody, something send me an order ... just obeying :
-            - barking : a presence have been detected, must bark to identify this guy
-            - bitting : a bad guy is here, must bite it
     """
 
     transitions = [
@@ -104,37 +91,13 @@ class TutorialBus(JNTBus):
             'source': '*',
             'dest': 'reporting',
         },
-        { 'trigger': 'report',
-            'source': '*',
-            'dest': 'reporting',
-        },
         { 'trigger': 'sleep',
             'source': '*',
             'dest': 'sleeping',
         },
-        { 'trigger': 'guard',
+        { 'trigger': 'ring',
             'source': '*',
-            'dest': 'guarding',
-        },
-        { 'trigger': 'bark',
-            'source': 'guarding',
-            'dest': 'guarding_barking',
-        },
-        { 'trigger': 'bite',
-            'source': 'guarding',
-            'dest': 'guarding_bitting',
-        },
-        { 'trigger': 'obey',
-            'source': 'guarding',
-            'dest': 'obeying',
-        },
-        { 'trigger': 'bark',
-            'source': 'obeying',
-            'dest': 'obeying_barking',
-        },
-        { 'trigger': 'bite',
-            'source': 'obeying',
-            'dest': 'obeying_bitting',
+            'dest': 'ringing',
         },
     ]
 
@@ -168,10 +131,16 @@ class TutorialBus(JNTBus):
         self.values[uuid] = self.value_factory['sensor_temperature'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
             help='The average temperature of tutorial. Can be use as a good quality source for a thermostat.',
+            get_data_cb=self.get_temperature_cb,
             label='Temp',
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
+
+
+    def get_temperature_cb(self, node_uuid=None, index=None):
+        """Callback for blink"""
+        pass
 
     @property
     def polled_sensors(self):
@@ -210,16 +179,16 @@ class TutorialBus(JNTBus):
         finally:
             self.bus_release()
 
-    def on_enter_guarding(self):
+    def on_enter_ringing(self):
         """
         """
-        logger.debug("[%s] - on_enter_guarding", self.__class__.__name__)
+        logger.debug("[%s] - on_enter_ringing", self.__class__.__name__)
         self.bus_acquire()
         try:
-            self.nodeman.find_value('led', 'blink').data = 'info'
+            self.nodeman.find_value('led', 'blink').data = 'warning'
             self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
         except:
-            logger.exception("[%s] - Error in on_enter_guarding", self.__class__.__name__)
+            logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
         finally:
             self.bus_release()
 
@@ -307,7 +276,6 @@ class TutorialBus(JNTBus):
         """Stop the bus
         """
         self.stop_check()
-        self.sleep()
         for bus in self.buses:
             self.buses[bus].stop()
         JNTBus.stop(self)

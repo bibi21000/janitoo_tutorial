@@ -46,6 +46,97 @@ For the DHT component, it's looks like :
 The bus
 =======
 
+At first, we will aggregate the needed bus.
+We don't need to aggregate the rpibasic bus (which hold the dht component) as it holds no special features.
+Of course, we would add it without problem.
+
+.. code:: python
+
+    def __init__(self, **kwargs):
+        """
+        """
+        JNTBus.__init__(self, **kwargs)
+        self.buses = {}
+        self.buses['gpiobus'] = GpioBus(masters=[self], **kwargs)
+        self.buses['1wire'] = OnewireBus(masters=[self], **kwargs)
+
+After, we will a new value to propagate the average tempetature :
+
+.. code:: python
+
+        uuid="{:s}_temperature".format(OID)
+        self.values[uuid] = self.value_factory['sensor_temperature'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            get_data_cb=self.get_temperature_cb,
+            help='The average temperature of tutorial. Can be use as a good quality source for a thermostat.',
+            label='Temp',
+        )
+
+        poll_value = self.values[uuid].create_poll_value(default=300)
+        self.values[poll_value.uuid] = poll_value
+
+We also define a poll value to this value.
+
+The thread
+==========
+
+The thread hold the bus :
+
+.. code:: bash
+
+    vim src/janitoo_tutorial/thread_tutorial1.py
+
+We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
+For the DHT component, it's looks like :
+
+.. code:: python
+
+    class TutorialThread(JNTBusThread):
+        """The basic thread
+
+        """
+        def init_bus(self):
+            """Build the bus
+            """
+            from janitoo_tutorial.tutorial1 import TutorialBus
+            self.section = OID
+            self.bus = TutorialBus(options=self.options, oid=self.section, product_name="Raspberry tutorial controller")
+
+Entry-points
+============
+
+Janitoo uses entry-points for defining threads (bus) and components :
+
+.. code:: python
+
+    entry_points = {
+        "janitoo.threads": [
+            "tutorial1 = janitoo_tutorial.thread_tutorial1:make_thread",
+        ],
+        "janitoo.components": [
+            "tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance",
+            "tutorial1.cpu = janitoo_tutorial.tutorial1:make_cpu",
+            "tutorial1.temperature = janitoo_tutorial.tutorial1:make_temperature",
+            "tutorial1.led = janitoo_tutorial.tutorial1:make_led",
+        ],
+    },
+
+The entry-point reference a function in the thread :
+
+.. code:: python
+
+    def make_thread(options, force=False):
+        if get_option_autostart(options, OID) == True or force:
+            return TutorialThread(options)
+        else:
+            return None
+
+Or for the component :
+
+.. code:: python
+
+    def make_ambiance(**kwargs):
+        return AmbianceComponent(**kwargs)
 
 Configuration
 =============
@@ -187,14 +278,13 @@ The result should be :
 
 .. code:: bash
 
-    test_001_thread_entry_point (tests.test_thread_v2.TestTutorialThread) ... ok
-    test_011_thread_start_wait_stop (tests.test_thread_v2.TestTutorialThread) ... ok
-    test_031_cron_hourly (tests.test_thread_v2.TestTutorialThread) ... SKIP: Hourly timer not used for this thread
+    test_001_bus_oid (tests.test_bus_v2.TestTutorialBus) ... ok
+    test_002_bus_values (tests.test_bus_v2.TestTutorialBus) ... ok
 
     ----------------------------------------------------------------------
-    Ran 3 tests in 27.107s
+    Ran 2 tests in 0.784s
 
-    OK (SKIP=1)
+    OK
 
 And for the server :
 
@@ -222,9 +312,14 @@ The result should be :
 
 .. code:: bash
 
-    test_040_server_start_no_error_in_log (tests.test_server_v1.TestTutorialServer) ... ok
+    test_010_start_heartbeat_stop (tests.test_server_v2.TestTutorialServer) ... ok
+    test_011_start_reload_stop (tests.test_server_v2.TestTutorialServer) ... ok
+    test_012_start_reload_threads_stop (tests.test_server_v2.TestTutorialServer) ... ok
+    test_020_request_broadcast (tests.test_server_v2.TestTutorialServer) ... ok
+    test_030_wait_for_all_nodes (tests.test_server_v2.TestTutorialServer) ... ok
+    test_040_server_start_no_error_in_log (tests.test_server_v2.TestTutorialServer) ... ok
     ----------------------------------------------------------------------
-    Ran 1 test in 128.712s
+    Ran 6 tests in 828.932s
 
     OK
 
@@ -244,57 +339,9 @@ You can now copy the config file to the config directory:
 .. code:: bash
 
     cd /opt/janitoo/etc
-    cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
+    cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 
-And launch the server :
-
-.. code:: bash
-
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf front
-
-This will launch the server in foreground.
-
-You can type ctrl + c to stop it.
-
-If everything is ok, you can launch the server in background :
-
-.. code:: bash
-
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
-
-You can stop it using :
-
-.. code:: bash
-
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf stop
-
-Checking its status :
-
-.. code:: bash
-
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf status
-
-Or killing it if needed :
-
-.. code:: bash
-
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf kill
-
-
-Spy it
-======
-
-Open a new shell and launch
-
-.. code:: bash
-
-    jnt_spy
-
-This will launch a spyer for the mqtt protocol :
-
-.. code:: bash
-
-Go to the first terminal and launch ther server if needed :
+Launch the server :
 
 .. code:: bash
 
@@ -306,7 +353,7 @@ You can also look at logs. In a new terminal :
 
 .. code:: bash
 
-    tail -n 100 -f /opt/janitoo/log/helloworldv1.log
+    tail -n 100 -f /opt/janitoo/log/helloworldv2.log
 
 Its time to query ther server. Go to the first terminal and query the network :
 

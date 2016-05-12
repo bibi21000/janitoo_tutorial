@@ -63,9 +63,6 @@ OID = 'tutorial1'
 def make_ambiance(**kwargs):
     return AmbianceComponent(**kwargs)
 
-def make_led(**kwargs):
-    return LedComponent(**kwargs)
-
 def make_temperature(**kwargs):
     return TemperatureComponent(**kwargs)
 
@@ -103,8 +100,6 @@ class TutorialBus(JNTBus):
     def stop(self):
         """Stop the bus
         """
-        self.stop_check()
-        self.sleep()
         for bus in self.buses:
             self.buses[bus].stop()
         JNTBus.stop(self)
@@ -130,18 +125,6 @@ class AmbianceComponent(DHTComponent):
         oid = kwargs.pop('oid', 'tutorial1.ambiance')
         name = kwargs.pop('name', "Ambiance sensor")
         DHTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
-                **kwargs)
-        logger.debug("[%s] - __init__ node uuid:%s", self.__class__.__name__, self.uuid)
-
-class LedComponent(GPIOLed):
-    """ A component for a Led (on/off) """
-
-    def __init__(self, bus=None, addr=None, **kwargs):
-        """
-        """
-        oid = kwargs.pop('oid', 'tutorial1.led')
-        name = kwargs.pop('name', "Led")
-        GPIOLed.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
                 **kwargs)
         logger.debug("[%s] - __init__ node uuid:%s", self.__class__.__name__, self.uuid)
 
