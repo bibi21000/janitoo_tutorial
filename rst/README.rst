@@ -5,21 +5,6 @@ Tutorial
 Your first raspberry appliance server developped with Janitoo
 
 
-Needs
-=====
-
-- temperature / humidity
-- cpu
-
-Hardware
-========
-
-dht : temperature and humidity
-1wire : temperature
-cpu : temperature
-...
-
-
 Development status
 ==================
 
@@ -30,6 +15,36 @@ janitoo_tutorial :
 
     .. image:: https://coveralls.io/repos/bibi21000/janitoo_tutorial/badge.svg?branch=master&service=github
         :target: https://coveralls.io/github/bibi21000/janitoo_tutorial?branch=master
+        :alt: Coveralls results
+
+
+janitoo :
+    .. image:: https://travis-ci.org/bibi21000/janitoo.svg?branch=master
+        :target: https://travis-ci.org/bibi21000/janitoo
+        :alt: Travis status
+
+    .. image:: https://coveralls.io/repos/bibi21000/janitoo/badge.svg?branch=master&service=github
+        :target: https://coveralls.io/github/bibi21000/janitoo?branch=master
+        :alt: Coveralls results
+
+
+janitoo_factory :
+    .. image:: https://travis-ci.org/bibi21000/janitoo_factory.svg?branch=master
+        :target: https://travis-ci.org/bibi21000/janitoo_factory
+        :alt: Travis status
+
+    .. image:: https://coveralls.io/repos/bibi21000/janitoo_factory/badge.svg?branch=master&service=github
+        :target: https://coveralls.io/github/bibi21000/janitoo_factory?branch=master
+        :alt: Coveralls results
+
+
+janitoo_factory_exts :
+    .. image:: https://travis-ci.org/bibi21000/janitoo_factory_exts.svg?branch=master
+        :target: https://travis-ci.org/bibi21000/janitoo_factory_exts
+        :alt: Travis status
+
+    .. image:: https://coveralls.io/repos/bibi21000/janitoo_factory_exts/badge.svg?branch=master&service=github
+        :target: https://coveralls.io/github/bibi21000/janitoo_factory_exts?branch=master
         :alt: Coveralls results
 
 
