@@ -2,8 +2,7 @@
 Tutorial
 ========
 
-Your first raspberry appliance server developped with Janitoo
-
+A tutorial for creating your first Raspberry Appliance Server using Janitoo. Look at the rst directory.
 
 Development status
 ==================
@@ -55,6 +54,16 @@ janitoo_raspberry :
 
     .. image:: https://coveralls.io/repos/bibi21000/janitoo_raspberry/badge.svg?branch=master&service=github
         :target: https://coveralls.io/github/bibi21000/janitoo_raspberry?branch=master
+        :alt: Coveralls results
+
+
+janitoo_hostsensor :
+    .. image:: https://travis-ci.org/bibi21000/janitoo_hostsensor.svg?branch=master
+        :target: https://travis-ci.org/bibi21000/janitoo_hostsensor
+        :alt: Travis status
+
+    .. image:: https://coveralls.io/repos/bibi21000/janitoo_hostsensor/badge.svg?branch=master&service=github
+        :target: https://coveralls.io/github/bibi21000/janitoo_hostsensor?branch=master
         :alt: Coveralls results
 
 

@@ -114,6 +114,7 @@ doc: janidoc apidoc
 	- [ -f transitions_graph.py ] && python transitions_graph.py
 	-cp -Rf rst/* ${BUILDDIR}/janidoc/source
 	make -C ${BUILDDIR}/janidoc html
+	#~ make -C ${BUILDDIR}/janidoc latexpdf
 	cp ${BUILDDIR}/janidoc/source/README.rst README.rst
 	-ln -s $(BUILDDIR)/docs/html generated_doc
 	@echo
