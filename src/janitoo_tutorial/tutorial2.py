@@ -269,6 +269,7 @@ class TutorialBus(JNTBus):
         """Stop the bus
         """
         self.stop_check()
+        self.sleep()
         for bus in self.buses:
             self.buses[bus].stop()
         JNTBus.stop(self)
