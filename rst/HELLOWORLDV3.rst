@@ -24,7 +24,7 @@ And open the test configuration file in your favorite editor :
 
 .. code:: bash
 
-    vim tests/data/helloworldv2.conf
+    vim tests/data/helloworldv3.conf
 
 The DHT component
 -----------------

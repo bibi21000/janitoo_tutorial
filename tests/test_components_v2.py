@@ -54,7 +54,6 @@ COMMAND_DISCOVERY = 0x5000
 assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 ##############################################################
 
-
 class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
     """Test the component
     """

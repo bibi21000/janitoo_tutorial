@@ -58,41 +58,5 @@ assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
     """Test the thread
     """
-    thread_name = "tutorial2"
-    conf_file = "tests/data/janitoo_tutorial3.conf"
-
-
-    def test_102_check_values(self):
-        self.wait_for_nodeman()
-        time.sleep(5)
-        self.assertValueOnBus('cpu','temperature')
-        self.assertValueOnBus('temperature','temperature')
-        self.assertValueOnBus('ambiance','temperature')
-        self.assertValueOnBus('ambiance','humidity')
-        self.assertValueOnBus('led','switch')
-        self.assertValueOnBus('led','blink')
-
-    def test_103_state_machine(self):
-        self.wait_for_nodeman()
-        time.sleep(5)
-        self.thread.bus.report()
-        time.sleep(5)
-        self.thread.bus.guard()
-        time.sleep(5)
-        self.thread.bus.bark()
-        time.sleep(5)
-        self.thread.bus.bite()
-        time.sleep(5)
-        self.thread.bus.obey()
-        time.sleep(5)
-        self.thread.bus.bark()
-        time.sleep(5)
-        self.thread.bus.bite()
-        time.sleep(5)
-        self.thread.bus.sleep()
-        time.sleep(5)
-
-    def test_104_on_check(self):
-        self.wait_for_nodeman()
-        self.thread.bus.on_check()
-        time.sleep(5)
+    thread_name = "tutorial1"
+    conf_file = "tests/data/janitoo_tutorial2.conf"

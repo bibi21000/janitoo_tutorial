@@ -74,7 +74,6 @@ def make_temperature(**kwargs):
 def make_cpu(**kwargs):
     return CpuComponent(**kwargs)
 
-
 class TutorialBus(JNTBus):
     """A bus to manage Tutorial
     """
@@ -89,6 +88,7 @@ class TutorialBus(JNTBus):
         uuid="{:s}_temperature".format(OID)
         self.values[uuid] = self.value_factory['sensor_temperature'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
+            get_data_cb=get_temperature_cb,
             help='The average temperature of tutorial. Can be use as a good quality source for a thermostat.',
             label='Temp',
         )
@@ -118,6 +118,10 @@ class TutorialBus(JNTBus):
         """
         for bus in self.buses:
             self.buses[bus].loop(stopevent)
+
+    def get_temperature_cb(self, node_uuid=None, index=None):
+        """Callback for blink"""
+        pass
 
 class AmbianceComponent(DHTComponent):
     """ A component for ambiance """

@@ -8,8 +8,8 @@ Explanations
 
 For this second example, we will create a more sophisticated server : it will calculate the average temperature and send it.
 
-Configuration
-=============
+The components
+==============
 
 Change to the tutorial directory :
 
@@ -17,184 +17,121 @@ Change to the tutorial directory :
 
     cd /opt/janitoo/src/janitoo_tutorial
 
-And open the test configuration file in your favorite editor :
+Open the tutorial1 implementation :
+
+.. code:: bash
+
+    vim src/janitoo_tutorial/tutorial1.py
+
+We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
+For the DHT component, it's looks like :
+
+.. code:: python
+
+    from janitoo_raspberry_dht.dht import DHTComponent
+
+    ...
+
+    class AmbianceComponent(DHTComponent):
+        """ A component for ambiance """
+
+        def __init__(self, bus=None, addr=None, **kwargs):
+            """
+            """
+            oid = kwargs.pop('oid', 'tutorial1.ambiance')
+            name = kwargs.pop('name', "Ambiance sensor")
+            DHTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
+                    **kwargs)
+
+
+The bus
+=======
+
+
+Configuration
+=============
+
+Open the test configuration file in your favorite editor :
 
 .. code:: bash
 
     vim tests/data/helloworldv2.conf
 
-The DHT component
------------------
-
-At first, we will add the DHT component.
-
-You can see the following section :
+Like seen in the first tutorial, there is a section for the new bus (thread) :
 
 .. code:: bash
 
-    [rpibasic]
+    [tutorial1]
     auto_start = True
     name = Hello world
-    location = DHT
-    components.ambiance = rpibasic.dht
-    hadd = 0220/0000
+    location = Rapsberry
+    components.ambiance = tutorial1.dht
+    components.temperature = tutorial1.ds18b20
+    components.cpu = tutorial1.picpu
+    hadd = 0225/0000
 
 It defines a new bus with a name and a location.
-We must define the HADD of the controller node associated to the bus (0220/0000).
-This bus hold one component (ambiance) of type rpibasic.dht.
+We must define the HADD of the controller node associated to the bus (0225/0000).
+But this bus now holds the 3 components.
 
-Look at the following section :
+Look at the DHT section, it's similar to the one seen in first tutorial :
 
 .. code:: bash
 
-    [rpibasic__ambiance]
+    [tutorial1__ambiance]
     name = Ambiance 1
     location = DHT
-    hadd = 0220/0001
+    hadd = 0225/0001
     pin_0 = 6
     sensor_0 = 11
-
-We add the ambiance component of the rpibasic bus ([rpibasic__ambiance]) and define a location and a name.
-Like for the bus, we should set an HADD for the associated node (0220/0001).
-
-There is 2 other parameters which allows to define the pin used (pin_0) to connect the sensor and its type (sensor_0).
-
-You can get more informations on config values using jnt_collect :
-
-.. code:: bash
-
-    jnt_collect -c rpibasic.dht
-
-.. code:: bash
-
-    -------------------------------------------------------------------------------
-    Component : rpibasic.dht
-     temperature_poll : Config : Int - The poll delay of the value (None)
-     temperature : User : Decimal - The temperature (None)
-     pin : Config : Int - The pin number on the board (1)
-     humidity_poll : Config : Int - The poll delay of the value (None)
-     humidity : User : Decimal - The humidity (None)
-     sensor : Config : Int - The sensor type : 11,22,2302 (11)
-
-You can see that sensor config value can be : 11, 22 or 2302.
-That's why there is sensor_0 = 11 in the config values. Of course, update it to your needs.
-
-Config values in configuration files always ended with a _0. In the future, we will support multi-instances using (_1,_2, ...)
-
-You can also use jnt_collect to get values from a bus :
-
-.. code:: bash
-
-    jnt_collect -b rpibasic
-
-.. code:: bash
-
-    -------------------------------------------------------------------------------
-    Bus (thread) : rpibasic
-
-No values for this bus ;)
-
-
-The DS18B20 component
----------------------
-
-At first, we will add the DS18B20 Onewire component.
-
-You can see the following section :
-
-.. code:: bash
-
-    [rpi1wire]
-    auto_start = True
-    name = Hello world
-    location = Onewire
-    components.temperature = rpi1wire.ds18b20
-    hadd = 0221/0000
-
-It defines a new bus with a name and a location.
-We must define the HADD of the controller node associated to the bus (0221/0000).
-This bus hold one component (temperature) of type rpi1wire.ds18b20.
-
-.. code:: bash
-
-    jnt_collect -b rpi1wire
-
-.. code:: bash
-
-    -------------------------------------------------------------------------------
-    Bus (thread) : rpi1wire
-     rpi1wire_sensors_dir : Config : String - The sensor directory (/sys/bus/w1/devices/)
-
-Using jnt_collect you can see that there is a config value available for this bus.
-The default value is whown between () : /sys/bus/w1/devices/
-
-Values for bus always start with the bus oid (for avoiding conflict when aggragating bus).
-
-If you need to set this config value, add a line like :
-
-.. code:: bash
-
-    rpi1wire_sensors_dir_0 = /sys/bus/w1/devices/
-
-.. code:: bash
-
-    [rpi1wire__temperature]
-    name = Temperature
-    location = Onewire
-    hadd = 0221/0001
-    hexadd_0 = 28-00000463b745
-
-We add the temperature component of the rpi1wire bus ([rpi1wire__temperature]) and define a location and a name.
-Like for the bus, we should set an HADD for the associated node (0221/0001).
-
-You can get more informations on config values using jnt_collect :
-
-.. code:: bash
-
-    jnt_collect -c rpi1wire.ds18b20
-
-.. code:: bash
-
-    -------------------------------------------------------------------------------
-    Component : rpi1wire.ds18b20
-     hexadd : Config : String - The hexadecimal address of the DS18B20 (28-000005e2fdc3)
-     temperature_poll : Config : Int - The poll delay of the value (None)
-     temperature : User : Decimal - The temperature (None)
-
-You can see that hexadd config value is the address of your DS18B20. You can find it using :
-
-.. code:: bash
-
-    ls /sys/bus/w1/devices/
-
-The CPU component
------------------
-
-And finally the configuration for the CPU monitoring :
-
-.. code:: bash
-
-    [hostsensor]
-    auto_start = True
-    components.picpu = hostsensor.picpu
-    name = Hello world
-    location = Hostsensor
-    hadd = 0222/0000
-
-    [hostsensor__picpu]
-    name = CPU
-    location = Hostsensor
-    hadd = 0222/0001
-
 
 Test it
 =======
 
-You're ready to test your server. Janitoo has a lot of built in tests.
+You're ready to test your components. Create a test :
 
 .. code:: bash
 
-    vim tests/test_server_v1.py
+    vim tests/test_component_v2.py
+
+.. code:: bash
+
+    class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
+        """Test the component
+        """
+        component_name = "tutorial1.ambiance"
+
+And launch it :
+
+.. code:: bash
+
+    sudo nosetests tests/test_component_v2.py -v
+
+Same for the tread (bus) :
+
+.. code:: bash
+
+    vim tests/test_thread_v2.py
+
+.. code:: bash
+
+    class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
+        """Test the thread
+        """
+        thread_name = "tutorial1"
+        conf_file = "tests/data/janitoo_tutorial2.conf"
+
+And launch it :
+
+.. code:: bash
+
+    sudo nosetests tests/test_thread_v2.py -v
+
+And for the server :
+
+.. code:: bash
+
+    vim tests/test_server_v2.py
 
 .. code:: bash
 
@@ -202,11 +139,11 @@ You're ready to test your server. Janitoo has a lot of built in tests.
         """Test the tutorial server
         """
         server_class = PiServer
-        server_conf = "tests/data/helloworldv1.conf"
+        server_conf = "tests/data/helloworldv3.conf"
 
-        hadds = [HADD%(220,0), HADD%(220,1), HADD%(221,0), HADD%(221,1), HADD%(222,0), HADD%(222,1)]
+        hadds = [HADD%(225,0), HADD%(225,1), HADD%(225,2), HADD%(225,3)]
 
-For the impatient :
+And launch it :
 
 .. code:: bash
 
@@ -229,7 +166,6 @@ You can also the whole tests, which whould help you to fix problems :
 .. code:: bash
 
     sudo make tests
-
 
 Launch it
 =========
