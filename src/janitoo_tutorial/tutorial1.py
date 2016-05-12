@@ -113,8 +113,17 @@ class TutorialBus(JNTBus):
             self.buses[bus].loop(stopevent)
 
     def get_temperature_cb(self, node_uuid=None, index=None):
-        """Callback for blink"""
-        pass
+        """Callback for average temperature"""
+        nums = 0
+        total = 0
+        for value in [('temperature', 'temperature'), ('ambiance', 'temperature'), ('cpu', 'temperature')]:
+            data = self.nodeman.find_value(*value).data
+            if data is not None:
+                nums += 1
+                total += data
+        if nums > 0:
+            return 1.0 * total / nums
+        return None
 
 class AmbianceComponent(DHTComponent):
     """ A component for ambiance """

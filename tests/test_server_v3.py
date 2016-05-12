@@ -37,6 +37,7 @@ class TestTutorialServer(JNTTServer, JNTTServerCommon):
     """
     server_class = PiServer
     server_conf = "tests/data/helloworldv3.conf"
+    server_section = "tutorial2"
 
     hadds = [HADD%(225,0), HADD%(225,1), HADD%(225,2), HADD%(225,3), HADD%(225,4)]
 
@@ -53,18 +54,14 @@ class TestTutorialServer(JNTTServer, JNTTServerCommon):
         bus = thread.bus
         self.assertNotEqual(bus, None)
         self.waitHeartbeatNodes(hadds=self.hadds)
-        bus.guard()
+        bus.wakeup()
+        time.sleep(5)
+        bus.sleep()
         time.sleep(5)
         bus.report()
         time.sleep(5)
-        bus.guard()
+        bus.ring()
         time.sleep(5)
-        bus.bark()
-        time.sleep(5)
-        bus.guard()
-        time.sleep(5)
-        bus.bark()
-        time.sleep(5)
-        bus.bite()
+        bus.report()
         time.sleep(5)
         bus.sleep()
