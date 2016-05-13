@@ -113,6 +113,7 @@ apidoc:
 doc: janidoc apidoc
 	- [ -f transitions_graph.py ] && python transitions_graph.py
 	-cp -Rf rst/* ${BUILDDIR}/janidoc/source
+	sed -i -e "s/MODULE_NAME/${MODULENAME}/g" ${BUILDDIR}/janidoc/source/tools/index.rst
 	make -C ${BUILDDIR}/janidoc html
 	#~ make -C ${BUILDDIR}/janidoc latexpdf
 	cp ${BUILDDIR}/janidoc/source/README.rst README.rst
@@ -123,6 +124,7 @@ doc: janidoc apidoc
 doc-commit: doc
 	git checkout gh-pages
 	cp -Rf build/docs/html/* .
+	git add -r *.html
 	git commit -m "Auto-commit documentation" -a
 	git push origin gh-pages
 	git checkout master
