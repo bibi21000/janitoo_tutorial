@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>janitoo_tutorial package &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sphinxcontrib-images/LightBox2/lightbox2/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/sphinxcontrib-images/LightBox2/lightbox2/js/lightbox.min.js"></script>
+    <script type="text/javascript" src="../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          janitoo_tutorial</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.7</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../tools/index.html">Tools</a></li>
+                <li><a href="#">Reference</a></li>
+                <li><a href="../extensions/index.html">Janitoo extensions</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html"> Installation of Janitoo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../INSTALL.html#needed-tools">Needed tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../INSTALL.html#initial-clone">Initial clone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../HELLOWORLDV0.html"> Hello World : connect everything</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV0.html#what">What ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV0.html#needed-parts">Needed parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV0.html#fritzing">Fritzing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../HELLOWORLDV1.html"> Hello World 1 : a simple server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV1.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV1.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV1.html#test-it">Test it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV1.html#launch-it">Launch it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV1.html#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV1.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../HELLOWORLDV2.html"> Hello World 2 : an advanced server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#the-components">The components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#the-bus">The bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#the-thread">The thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#entry-points">Entry-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#test-it">Test it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#launch-it">Launch it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV2.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../HELLOWORLDV3.html"> Hello World 3 : a more advanced server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV3.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV3.html#the-bus">The bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV3.html#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HELLOWORLDV3.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CREATEANDSHARE.html"> Create and share</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../CREATEANDSHARE.html#why">Why</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CREATEANDSHARE.html#how">How</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CREATEANDSHARE.html#bus-aggregation-vs-bus-extension">Bus aggregation vs bus extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CREATEANDSHARE.html#remote-development">Remote development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CREATEANDSHARE.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CREATEANDSHARE.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="janitoo-tutorial-package">
+<h1>janitoo_tutorial package<a class="headerlink" href="#janitoo-tutorial-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-janitoo_tutorial.server">
+<span id="janitoo-tutorial-server-module"></span><h2>janitoo_tutorial.server module<a class="headerlink" href="#module-janitoo_tutorial.server" title="Permalink to this headline">¶</a></h2>
+<p>The Raspberry server</p>
+<dl class="class">
+<dt id="janitoo_tutorial.server.RantanplanServer">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.server.</tt><tt class="descname">RantanplanServer</tt><big>(</big><em>options</em>, <em>check_plateform=False</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/server.html#RantanplanServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.server.RantanplanServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_raspberry.server.PiServer</span></tt></p>
+<p>The Raspberry pi Server</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-janitoo_tutorial.thread_tutorial1">
+<span id="janitoo-tutorial-thread-tutorial1-module"></span><h2>janitoo_tutorial.thread_tutorial1 module<a class="headerlink" href="#module-janitoo_tutorial.thread_tutorial1" title="Permalink to this headline">¶</a></h2>
+<p>The Raspberry rantanplan</p>
+<dl class="class">
+<dt id="janitoo_tutorial.thread_tutorial1.TutorialThread">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.thread_tutorial1.</tt><tt class="descname">TutorialThread</tt><big>(</big><em>options={}</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial1.html#TutorialThread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial1.TutorialThread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo.thread.JNTBusThread</span></tt></p>
+<p>The basic thread</p>
+<dl class="method">
+<dt id="janitoo_tutorial.thread_tutorial1.TutorialThread.init_bus">
+<tt class="descname">init_bus</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial1.html#TutorialThread.init_bus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial1.TutorialThread.init_bus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the bus</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.thread_tutorial1.make_thread">
+<tt class="descclassname">janitoo_tutorial.thread_tutorial1.</tt><tt class="descname">make_thread</tt><big>(</big><em>options</em>, <em>force=False</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial1.html#make_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial1.make_thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-janitoo_tutorial.thread_tutorial2">
+<span id="janitoo-tutorial-thread-tutorial2-module"></span><h2>janitoo_tutorial.thread_tutorial2 module<a class="headerlink" href="#module-janitoo_tutorial.thread_tutorial2" title="Permalink to this headline">¶</a></h2>
+<p>The Raspberry rantanplan</p>
+<dl class="class">
+<dt id="janitoo_tutorial.thread_tutorial2.TutorialThread">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.thread_tutorial2.</tt><tt class="descname">TutorialThread</tt><big>(</big><em>options={}</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial2.html#TutorialThread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial2.TutorialThread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo.thread.JNTBusThread</span></tt></p>
+<p>The basic thread</p>
+<dl class="method">
+<dt id="janitoo_tutorial.thread_tutorial2.TutorialThread.init_bus">
+<tt class="descname">init_bus</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial2.html#TutorialThread.init_bus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial2.TutorialThread.init_bus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the bus</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.thread_tutorial2.make_thread">
+<tt class="descclassname">janitoo_tutorial.thread_tutorial2.</tt><tt class="descname">make_thread</tt><big>(</big><em>options</em>, <em>force=False</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial2.html#make_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial2.make_thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-janitoo_tutorial.tutorial1">
+<span id="janitoo-tutorial-tutorial1-module"></span><h2>janitoo_tutorial.tutorial1 module<a class="headerlink" href="#module-janitoo_tutorial.tutorial1" title="Permalink to this headline">¶</a></h2>
+<p>The Raspberry tutorial</p>
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial1.AmbianceComponent">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial1.</tt><tt class="descname">AmbianceComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#AmbianceComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.AmbianceComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_raspberry_dht.dht.DHTComponent</span></tt></p>
+<p>A component for ambiance</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial1.CpuComponent">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial1.</tt><tt class="descname">CpuComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#CpuComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.CpuComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_hostsensor_raspberry.component.HardwareCpu</span></tt></p>
+<p>A water temperature component</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial1.TemperatureComponent">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial1.</tt><tt class="descname">TemperatureComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#TemperatureComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.TemperatureComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_raspberry_1wire.components.DS18B20</span></tt></p>
+<p>A water temperature component</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial1.TutorialBus">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial1.</tt><tt class="descname">TutorialBus</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#TutorialBus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.TutorialBus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo.bus.JNTBus</span></tt></p>
+<p>A bus to manage Tutorial</p>
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial1.TutorialBus.get_temperature_cb">
+<tt class="descname">get_temperature_cb</tt><big>(</big><em>node_uuid=None</em>, <em>index=None</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#TutorialBus.get_temperature_cb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.TutorialBus.get_temperature_cb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback for average temperature</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial1.TutorialBus.loop">
+<tt class="descname">loop</tt><big>(</big><em>stopevent</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#TutorialBus.loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.TutorialBus.loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve data
+Don&#8217;t do long task in loop. Use a separated thread to not perturbate the nodeman</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial1.TutorialBus.start">
+<tt class="descname">start</tt><big>(</big><em>mqttc</em>, <em>trigger_thread_reload_cb=None</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#TutorialBus.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.TutorialBus.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the bus</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial1.TutorialBus.stop">
+<tt class="descname">stop</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#TutorialBus.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.TutorialBus.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the bus</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.tutorial1.make_ambiance">
+<tt class="descclassname">janitoo_tutorial.tutorial1.</tt><tt class="descname">make_ambiance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#make_ambiance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.make_ambiance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.tutorial1.make_cpu">
+<tt class="descclassname">janitoo_tutorial.tutorial1.</tt><tt class="descname">make_cpu</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#make_cpu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.make_cpu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.tutorial1.make_temperature">
+<tt class="descclassname">janitoo_tutorial.tutorial1.</tt><tt class="descname">make_temperature</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial1.html#make_temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial1.make_temperature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-janitoo_tutorial.tutorial2">
+<span id="janitoo-tutorial-tutorial2-module"></span><h2>janitoo_tutorial.tutorial2 module<a class="headerlink" href="#module-janitoo_tutorial.tutorial2" title="Permalink to this headline">¶</a></h2>
+<p>The Raspberry tutorial</p>
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial2.AmbianceComponent">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">AmbianceComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#AmbianceComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.AmbianceComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_raspberry_dht.dht.DHTComponent</span></tt></p>
+<p>A component for ambiance</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial2.CpuComponent">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">CpuComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#CpuComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.CpuComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_hostsensor_raspberry.component.HardwareCpu</span></tt></p>
+<p>A water temperature component</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial2.LedComponent">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">LedComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#LedComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.LedComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_raspberry_gpio.gpio.LedComponent</span></tt></p>
+<p>A component for a Led (on/off)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial2.TemperatureComponent">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">TemperatureComponent</tt><big>(</big><em>bus=None</em>, <em>addr=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TemperatureComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TemperatureComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo_raspberry_1wire.components.DS18B20</span></tt></p>
+<p>A water temperature component</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus">
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">TutorialBus</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo.bus.JNTBus</span></tt></p>
+<p>A bus to manage Tutorial</p>
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.bus_acquire">
+<tt class="descname">bus_acquire</tt><big>(</big><em>blocking=True</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.bus_acquire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.bus_acquire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a lock on the bus</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.bus_locked">
+<tt class="descname">bus_locked</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.bus_locked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.bus_locked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get status of the lock</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.bus_release">
+<tt class="descname">bus_release</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.bus_release"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.bus_release" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release a lock on the bus</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.check_heartbeat">
+<tt class="descname">check_heartbeat</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.check_heartbeat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.check_heartbeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the component is &#8216;available&#8217;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.loop">
+<tt class="descname">loop</tt><big>(</big><em>stopevent</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve data
+Don&#8217;t do long task in loop. Use a separated thread to not perturbate the nodeman</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.on_check">
+<tt class="descname">on_check</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.on_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.on_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a check using a timer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.on_enter_reporting">
+<tt class="descname">on_enter_reporting</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.on_enter_reporting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.on_enter_reporting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.on_enter_ringing">
+<tt class="descname">on_enter_ringing</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.on_enter_ringing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.on_enter_ringing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.on_enter_sleeping">
+<tt class="descname">on_enter_sleeping</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.on_enter_sleeping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.on_enter_sleeping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.polled_sensors">
+<tt class="descname">polled_sensors</tt><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.polled_sensors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.polled_sensors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.start">
+<tt class="descname">start</tt><big>(</big><em>mqttc</em>, <em>trigger_thread_reload_cb=None</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the bus</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.states">
+<tt class="descname">states</tt><em class="property"> = ['sleeping', 'reporting', 'ringing']</em><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.states" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tutorial states :</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.stop">
+<tt class="descname">stop</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the bus</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.stop_check">
+<tt class="descname">stop_check</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.stop_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.stop_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the component is &#8216;available&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.transitions">
+<tt class="descname">transitions</tt><em class="property"> = [{'dest': 'reporting', 'source': '*', 'trigger': 'wakeup'}, {'dest': 'reporting', 'source': '*', 'trigger': 'report'}, {'dest': 'sleeping', 'source': '*', 'trigger': 'sleep'}, {'dest': 'ringing', 'source': 'reporting', 'trigger': 'ring'}]</em><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.transitions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.tutorial2.make_ambiance">
+<tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">make_ambiance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#make_ambiance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.make_ambiance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.tutorial2.make_cpu">
+<tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">make_cpu</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#make_cpu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.make_cpu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.tutorial2.make_led">
+<tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">make_led</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#make_led"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.make_led" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="janitoo_tutorial.tutorial2.make_temperature">
+<tt class="descclassname">janitoo_tutorial.tutorial2.</tt><tt class="descname">make_temperature</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#make_temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.make_temperature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-janitoo_tutorial">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-janitoo_tutorial" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

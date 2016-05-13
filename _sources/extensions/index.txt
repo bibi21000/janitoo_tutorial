@@ -1,0 +1,25 @@
+janitoo_tutorial package
+========================
+
+Show janitoo's extensions.
+
+Core extensions
+---------------
+
+Threads
+^^^^^^^
+
+ - tutorial2 (janitoo_tutorial.thread_tutorial2:make_thread)
+ - tutorial1 (janitoo_tutorial.thread_tutorial1:make_thread)
+
+Components
+^^^^^^^^^^
+
+ - tutorial2.temperature (janitoo_tutorial.tutorial2:make_temperature)
+ - tutorial2.cpu (janitoo_tutorial.tutorial2:make_cpu)
+ - tutorial2.ambiance (janitoo_tutorial.tutorial2:make_ambiance)
+ - tutorial1.temperature (janitoo_tutorial.tutorial1:make_temperature)
+ - tutorial1.ambiance (janitoo_tutorial.tutorial1:make_ambiance)
+ - tutorial2.led (janitoo_tutorial.tutorial2:make_led)
+ - tutorial1.cpu (janitoo_tutorial.tutorial1:make_cpu)
+

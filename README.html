@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sphinxcontrib-images/LightBox2/lightbox2/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/sphinxcontrib-images/LightBox2/lightbox2/js/lightbox.min.js"></script>
+    <script type="text/javascript" src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          janitoo_tutorial</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.7</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="tools/index.html">Tools</a></li>
+                <li><a href="api/index.html">Reference</a></li>
+                <li><a href="extensions/index.html">Janitoo extensions</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="INSTALL.html"> Installation of Janitoo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="INSTALL.html#needed-tools">Needed tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="INSTALL.html#initial-clone">Initial clone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HELLOWORLDV0.html"> Hello World : connect everything</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV0.html#what">What ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV0.html#needed-parts">Needed parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV0.html#fritzing">Fritzing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HELLOWORLDV1.html"> Hello World 1 : a simple server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV1.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV1.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV1.html#test-it">Test it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV1.html#launch-it">Launch it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV1.html#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV1.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HELLOWORLDV2.html"> Hello World 2 : an advanced server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#the-components">The components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#the-bus">The bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#the-thread">The thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#entry-points">Entry-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#test-it">Test it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#launch-it">Launch it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV2.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HELLOWORLDV3.html"> Hello World 3 : a more advanced server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV3.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV3.html#the-bus">The bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV3.html#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HELLOWORLDV3.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CREATEANDSHARE.html"> Create and share</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CREATEANDSHARE.html#why">Why</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CREATEANDSHARE.html#how">How</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CREATEANDSHARE.html#bus-aggregation-vs-bus-extension">Bus aggregation vs bus extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CREATEANDSHARE.html#remote-development">Remote development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CREATEANDSHARE.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CREATEANDSHARE.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>A tutorial for creating your first Raspberry Appliance Server using Janitoo. Look at the rst directory.</p>
+<div class="section" id="development-status">
+<h2>Development status<a class="headerlink" href="#development-status" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>janitoo_tutorial :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_tutorial"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_tutorial.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_tutorial?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_tutorial/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_factory :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_factory"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_factory.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_factory?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_factory/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_factory_exts :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_factory_exts"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_factory_exts.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_factory_exts?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_factory_exts/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_raspberry :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_raspberry"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_raspberry.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_raspberry?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_raspberry/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_hostsensor :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_hostsensor"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_hostsensor.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_hostsensor?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_hostsensor/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_hostsensor_raspberry :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_hostsensor_raspberry"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_hostsensor_raspberry.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_hostsensor_raspberry?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_hostsensor_raspberry/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_raspberry_1wire :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_raspberry_1wire"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_raspberry_1wire.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_raspberry_1wire?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_raspberry_1wire/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_raspberry_dht :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_raspberry_dht"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_raspberry_dht.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_raspberry_dht?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_raspberry_dht/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+<dt>janitoo_raspberry_gpio :</dt>
+<dd><a class="first reference external image-reference" href="https://travis-ci.org/bibi21000/janitoo_raspberry_gpio"><img alt="Travis status" src="https://travis-ci.org/bibi21000/janitoo_raspberry_gpio.svg?branch=master" /></a>
+<a class="last reference external image-reference" href="https://coveralls.io/github/bibi21000/janitoo_raspberry_gpio?branch=master"><img alt="Coveralls results" src="https://coveralls.io/repos/bibi21000/janitoo_raspberry_gpio/badge.svg?branch=master&amp;service=github" /></a>
+</dd>
+</dl>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
