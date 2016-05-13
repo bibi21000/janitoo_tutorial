@@ -60,3 +60,12 @@ class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
     """
     thread_name = "tutorial1"
     conf_file = "tests/data/helloworldv2.conf"
+
+    def test_102_check_values(self):
+        self.wait_for_nodeman()
+        time.sleep(5)
+        self.assertValueOnBus('cpu','temperature')
+        self.assertValueOnBus('temperature','temperature')
+        self.assertValueOnBus('ambiance','temperature')
+        self.assertValueOnBus('ambiance','humidity')
+
