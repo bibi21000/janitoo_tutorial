@@ -259,7 +259,6 @@ For the DHT component, it&#8217;s looks like :</p>
         <span class="s">&quot;tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance&quot;</span><span class="p">,</span>
         <span class="s">&quot;tutorial1.cpu = janitoo_tutorial.tutorial1:make_cpu&quot;</span><span class="p">,</span>
         <span class="s">&quot;tutorial1.temperature = janitoo_tutorial.tutorial1:make_temperature&quot;</span><span class="p">,</span>
-        <span class="s">&quot;tutorial1.led = janitoo_tutorial.tutorial1:make_led&quot;</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">},</span>
 </pre></div>
@@ -289,9 +288,9 @@ For the DHT component, it&#8217;s looks like :</p>
 auto_start = True
 name = Hello world
 location = Rapsberry
-components.ambiance = tutorial1.dht
-components.temperature = tutorial1.ds18b20
-components.cpu = tutorial1.picpu
+components.ambiance = tutorial1.ambiance
+components.temperature = tutorial1.temperature
+components.cpu = tutorial1.cpu
 hadd = 0225/0000
 </pre></div>
 </div>

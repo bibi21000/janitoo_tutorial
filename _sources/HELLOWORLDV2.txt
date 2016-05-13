@@ -117,7 +117,6 @@ Janitoo uses entry-points for defining threads (bus) and components :
             "tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance",
             "tutorial1.cpu = janitoo_tutorial.tutorial1:make_cpu",
             "tutorial1.temperature = janitoo_tutorial.tutorial1:make_temperature",
-            "tutorial1.led = janitoo_tutorial.tutorial1:make_led",
         ],
     },
 
@@ -155,9 +154,9 @@ Like seen in the first tutorial, there is a section for the new bus (thread) :
     auto_start = True
     name = Hello world
     location = Rapsberry
-    components.ambiance = tutorial1.dht
-    components.temperature = tutorial1.ds18b20
-    components.cpu = tutorial1.picpu
+    components.ambiance = tutorial1.ambiance
+    components.temperature = tutorial1.temperature
+    components.cpu = tutorial1.cpu
     hadd = 0225/0000
 
 It defines a new bus with a name and a location.
