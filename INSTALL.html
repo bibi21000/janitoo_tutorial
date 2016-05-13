@@ -77,6 +77,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href=""> Installation of Janitoo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#needed-tools">Needed tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initial-clone">Initial clone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update-your-clone">Update your clone</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="HELLOWORLDV0.html"> Hello World : connect everything</a><ul>
@@ -168,7 +169,15 @@
 <h1>Installation for tutorial<a class="headerlink" href="#installation-for-tutorial" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="needed-tools">
 <h2>Needed tools<a class="headerlink" href="#needed-tools" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo apt-get install mosquitto
+<p>Janitoo uses mosquitto as a MQTT server. On Debian or Ubuntu, install it using :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo apt-get install mosquitto netcat-openbsd
+</pre></div>
+</div>
+<p>We install netcat too. So that we can verify that mosquitto is listen on port 1883 on your local interface :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>netcat -zv 127.0.0.1 1-9999 2&gt;&amp;1|grep succeeded
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>Connection to 127.0.0.1 1883 port [tcp/*] succeeded!
 </pre></div>
 </div>
 </div>
@@ -185,11 +194,11 @@ It is recommended to use the default one (/opt/janitoo), unless you&#8217;re rea
 git clone https://github.com/bibi21000/janitoo.git
 </pre></div>
 </div>
-<p>Janitoo has a makefile</p>
+<p>Janitoo has a makefile for semi-automated installations. Let&#8217;s link it :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>ln -s /opt/janitoo/src/janitoo/Makefile.all Makefile
 </pre></div>
 </div>
-<p>Create the directories for Janitoo:</p>
+<p>And use it. Create the needed directories for Janitoo:</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>sudo make directories
 </pre></div>
 </div>
@@ -198,11 +207,11 @@ git clone https://github.com/bibi21000/janitoo.git
 sudo make module=janitoo develop
 </pre></div>
 </div>
-<p>Create the list of packages in /opt/janitoo/src using your favorite editor ... or vim ;) :
-Order is important</p>
+<p>Create the list of packages in /opt/janitoo/src using your favorite editor ... or vim ;) :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>vim Makefile.local
 </pre></div>
 </div>
+<p>Order is important. If some package appears in eggs dependencies before they&#8217;ve been downloaded, you&#8217;ll run a &#8216;binary&#8217; version of the package, not the one installed in src.</p>
 <div class="code bash highlight-python"><div class="highlight"><pre># Makefile for local
 #
 
@@ -217,7 +226,27 @@ SUBMODULES = janitoo_nosetests janitoo janitoo_factory janitoo_factory_exts\
 </pre></div>
 </div>
 <p>Wait, wait and wait, specially on a raspberry.</p>
-<p>After that, all the depencies are installed.</p>
+<p>After that, all the depencies are installed. You can jump to the first tutorial.</p>
+</div>
+<div class="section" id="update-your-clone">
+<h2>Update your clone<a class="headerlink" href="#update-your-clone" title="Permalink to this headline">¶</a></h2>
+<p>You can update all modules using :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>make pull-all
+</pre></div>
+</div>
+<p>Some packages may have update their entry-point, you need to develop all :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo make develop-all
+</pre></div>
+</div>
+<p>To uninstall :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo make uninstall-all
+</pre></div>
+</div>
+<p>If you encounter strange errors, missing modules, ..., uninstall (maybe twice) and develop again :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo make uninstall-all
+sudo make develop-all
+</pre></div>
+</div>
 </div>
 </div>
 
