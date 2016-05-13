@@ -5,9 +5,13 @@
 # For circle.yml explanation, see: https://circleci.com/docs/manually
 # Python specific configuration, see: https://circleci.com/docs/language-python
 #####
+general:
+  branches:
+    ignore:
+      - gh-pages # list of branches to ignore
 
 dependencies:
-    pre:
-        - make directories
-        - make deps
-        - make travis-deps
+  pre:
+    - make directories
+    - make deps
+    - make travis-deps

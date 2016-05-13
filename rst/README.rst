@@ -2,7 +2,11 @@
 Tutorial
 ========
 
-A tutorial for creating your first Raspberry Appliance Server using Janitoo. Look at https://bibi21000.github.io/janitoo_tutorial/.
+A tutorial for creating your first Raspberry Appliance Server using Janitoo.
+
+Documentation
+=============
+You can browse online documentation here : https://bibi21000.github.io/janitoo_tutorial/.
 
 Development status
 ==================

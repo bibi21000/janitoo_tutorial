@@ -94,11 +94,12 @@ endif
 clean-doc:
 	-rm -Rf ${BUILDDIR}/docs
 	-rm -Rf ${BUILDDIR}/janidoc
+	-rm -f objects.inv
 	-rm -f generated_doc
 	-rm -f janidoc
 
 janidoc:
-	ln -s /opt/janitoo/src/janitoo_sphinx janidoc
+	-ln -s /opt/janitoo/src/janitoo_sphinx janidoc
 
 apidoc:
 	-rm -rf ${BUILDDIR}/janidoc/source/api
@@ -121,6 +122,19 @@ doc: janidoc apidoc
 	@echo
 	@echo "Documentation finished."
 
+github.io:
+	git checkout --orphan gh-pages
+	git rm -rf .
+	touch .nojekyll
+	git add .nojekyll
+	git commit -m "Initial import" -a
+	git push origin gh-pages
+	git checkout master
+	@echo
+	@echo "github.io branch initialised."
+
+doc-full: tests pylint doc-commit
+
 doc-commit: doc
 	git checkout gh-pages
 	cp -Rf build/docs/html/* .
@@ -129,10 +143,10 @@ doc-commit: doc
 	git add tools/
 	git add api/
 	git add extensions/
-	git add _images/
-	git add _modules/
-	git add _sources/
-	git add _static/
+	-git add _images/
+	-git add _modules/
+	-git add _sources/
+	-git add _static/
 	git commit -m "Auto-commit documentation" -a
 	git push origin gh-pages
 	git checkout master

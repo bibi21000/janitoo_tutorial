@@ -30,8 +30,7 @@ import os, sys
 import threading
 import datetime
 
-from transitions.extensions import HierarchicalMachine as Machine
-
+from janitoo.fsm import HierarchicalMachine as Machine
 from janitoo.thread import JNTBusThread, BaseThread
 from janitoo.options import get_option_autostart
 from janitoo.utils import HADD
@@ -112,7 +111,7 @@ class TutorialBus(JNTBus):
         self.buses = {}
         self.buses['gpiobus'] = GpioBus(masters=[self], **kwargs)
         self.buses['1wire'] = OnewireBus(masters=[self], **kwargs)
-        self._tutorial_statemachine =  None
+        self._statemachine =  None
         self.check_timer = None
         uuid="{:s}_timer_delay".format(OID)
         self.values[uuid] = self.value_factory['config_integer'](options=self.options, uuid=uuid,
@@ -260,7 +259,12 @@ class TutorialBus(JNTBus):
         for bus in self.buses:
             self.buses[bus].start(mqttc, trigger_thread_reload_cb=None)
         JNTBus.start(self, mqttc, trigger_thread_reload_cb)
-        self._tutorial_statemachine =  Machine(self,
+        self._statemachine = self.create_fsm()
+
+    def create_fsm(self):
+        """Create the fsm
+        """
+        return Machine(self,
             states=self.states,
             transitions=self.transitions,
             initial='sleeping')
