@@ -30,6 +30,7 @@ import time
 
 from janitoo_nosetests.server import JNTTServer, JNTTServerCommon
 from janitoo.utils import HADD_SEP, HADD
+from janitoo.thread import JNTBusThread
 from janitoo_raspberry.server import PiServer
 
 class TestTutorialServer(JNTTServer, JNTTServerCommon):
