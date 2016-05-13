@@ -2,6 +2,18 @@
 Developpers Tools
 =================
 
- - `Nosetests report <file:nosetests/index.html>`_
- - `Coverage report <file:coverage/index.html>`_
- - `Pylint report <file:pylint/index.html>`_
+|
+
+.. image:: https://travis-ci.org/bibi21000/janitoo_tutorial.svg?branch=master
+  :target: https://travis-ci.org/bibi21000/janitoo_tutorial
+  :alt: Travis status
+
+.. image:: https://coveralls.io/repos/bibi21000/janitoo_tutorial/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/bibi21000/janitoo_tutorial?branch=master
+  :alt: Coveralls results
+
+|
+
+- `Nosetests report <nosetests/index.html>`_
+- `Coverage report <coverage/index.html>`_
+- `Pylint report <pylint/index.html>`_
