@@ -267,6 +267,7 @@ class TutorialBus(JNTBus):
         return Machine(self,
             states=self.states,
             transitions=self.transitions,
+            title='Bus',
             initial='sleeping')
 
     def stop(self):
