@@ -107,6 +107,12 @@ We should now define actions when entering states :
 
     ...
 
+The finish state machine
+========================
+
+FSM
+
+.. image:: images/fsm_bus.png
 
 
 Spy it

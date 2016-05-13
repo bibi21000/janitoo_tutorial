@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../HELLOWORLDV3.html"> Hello World 3 : a more advanced server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../HELLOWORLDV3.html#explanations">Explanations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../HELLOWORLDV3.html#the-bus">The bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HELLOWORLDV3.html#the-finish-state-machine">The finish state machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../HELLOWORLDV3.html#spy-it">Spy it</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../HELLOWORLDV3.html#performances">Performances</a></li>
 </ul>
@@ -187,8 +188,7 @@
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
-<span class="kn">from</span> <span class="nn">transitions.extensions</span> <span class="kn">import</span> <span class="n">HierarchicalMachine</span> <span class="k">as</span> <span class="n">Machine</span>
-
+<span class="kn">from</span> <span class="nn">janitoo.fsm</span> <span class="kn">import</span> <span class="n">HierarchicalMachine</span> <span class="k">as</span> <span class="n">Machine</span>
 <span class="kn">from</span> <span class="nn">janitoo.thread</span> <span class="kn">import</span> <span class="n">JNTBusThread</span><span class="p">,</span> <span class="n">BaseThread</span>
 <span class="kn">from</span> <span class="nn">janitoo.options</span> <span class="kn">import</span> <span class="n">get_option_autostart</span>
 <span class="kn">from</span> <span class="nn">janitoo.utils</span> <span class="kn">import</span> <span class="n">HADD</span>
@@ -269,7 +269,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">buses</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s">&#39;gpiobus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GpioBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s">&#39;1wire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OnewireBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tutorial_statemachine</span> <span class="o">=</span>  <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_statemachine</span> <span class="o">=</span>  <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_timer_delay&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;config_integer&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
@@ -417,7 +417,12 @@
         <span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="n">bus</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
         <span class="n">JNTBus</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tutorial_statemachine</span> <span class="o">=</span>  <span class="n">Machine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_statemachine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_fsm</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.create_fsm"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial2.TutorialBus.create_fsm">[docs]</a>    <span class="k">def</span> <span class="nf">create_fsm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create the fsm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Machine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">states</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">,</span>
             <span class="n">transitions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">,</span>
             <span class="n">initial</span><span class="o">=</span><span class="s">&#39;sleeping&#39;</span><span class="p">)</span>
