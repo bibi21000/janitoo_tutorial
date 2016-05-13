@@ -125,6 +125,7 @@ doc-commit: doc
 	git checkout gh-pages
 	cp -Rf build/docs/html/* .
 	git add ./*.html
+	git add tools/
 	git commit -m "Auto-commit documentation" -a
 	git push origin gh-pages
 	git checkout master
