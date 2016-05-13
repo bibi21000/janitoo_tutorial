@@ -54,8 +54,8 @@ Remote development
 
 If you try to develop on raspberry, you surely seen how it is ... slow.
 
-With Janitoo and tests, you can simply create your server and tests on your personal computer.
-On travis, this tutorial has a coverage greater than 70%, this also means that more than 70% of the code is tested out of the box (out of the Raspberry).
+With Janitoo and and its tests, you can simply create your server and tests on your personal computer.
+On travis, this tutorial has a coverage greater than 80%, this also means that more than 80% of the code is tested out of the box (out of the Raspberry).
 
 Tests
 =====
