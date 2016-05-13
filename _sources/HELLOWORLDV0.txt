@@ -27,10 +27,13 @@ Fritzing
 
 Connect everything using the following schema :
 
-.. image:: tutorial_bb.png
+.. image:: images/tutorial_bb.png
     :width: 800px
     :alt: Fritzing
 
-DHT : GPIO 6
-LED : GPIO 19
-ONEWIRE : GPIO 4
+Pins
+----
+
+- DHT : GPIO 6
+- LED : GPIO 19
+- ONEWIRE : GPIO 4
