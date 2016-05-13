@@ -91,4 +91,5 @@ class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
     def test_104_on_check(self):
         self.wait_for_nodeman()
         self.thread.bus.on_check()
-        time.sleep(5)
+        time.sleep(10)
+        self.thread.bus.on_check()
