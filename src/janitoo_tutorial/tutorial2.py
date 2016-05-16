@@ -129,15 +129,52 @@ class TutorialBus(JNTBus):
         )
         self._bus_lock = threading.Lock()
         self.presence_events = {}
-
         uuid="{:s}_temperature".format(OID)
         self.values[uuid] = self.value_factory['sensor_temperature'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
-            help='The average temperature of tutorial. Can be use as a good quality source for a thermostat.',
+            help='The average temperature of tutorial.',
             label='Temp',
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
+        uuid="{:s}_state".format(OID)
+        self.values[uuid] = self.value_factory['sensor_string'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            get_data_cb=self.get_state,
+            help='The state of the machine.',
+            label='State',
+        )
+        poll_value = self.values[uuid].create_poll_value(default=300)
+        self.values[poll_value.uuid] = poll_value
+        uuid="{:s}_change".format(OID)
+        self.values[uuid] = self.value_factory['action_string'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            set_data_cb=self.set_state,
+            list_items=['wakeup', 'report', 'sleep', 'ring'],
+            help='Change the state of the machine.',
+            label='Change',
+        )
+        poll_value = self.values[uuid].create_poll_value(default=300)
+        self.values[poll_value.uuid] = poll_value
+        self.state = "sleeping"
+
+    def get_state(self, node_uuid, index):
+        """Get the state of the machine
+        """
+        return self.state
+
+    def set_state(self, node_uuid, index, data):
+        """Act on the server
+        """
+        params = {}
+        if data == "sleep":
+            self.sleep()
+        elif data == "wakeup":
+            self.wakeup()
+        elif data == "report":
+            self.report()
+        elif data == "ring":
+            self.ring()
 
     @property
     def polled_sensors(self):

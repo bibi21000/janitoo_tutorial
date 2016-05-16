@@ -132,7 +132,7 @@ Go to the first terminal and launch ther server if needed :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
+    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv3.conf start
 
 You can look at the protocol during startup on the spyer terminal.
 
@@ -140,7 +140,7 @@ You can also look at logs. In a new terminal :
 
 .. code:: bash
 
-    tail -n 100 -f /opt/janitoo/log/helloworldv1.log
+    tail -n 100 -f /opt/janitoo/log/helloworldv3.log
 
 Its time to query ther server. Go to the first terminal and query the network :
 
@@ -153,16 +153,55 @@ You should receive the list of nodes availables on your server :
 .. code:: bash
 
     hadd       uuid                 name                      location                  product_type
-    1111/0000  939477c767b8         testname                  testlocation              RGB LED and Temperature (v 0.06)
+    hadd       uuid                 name                      location                  product_type
+    0225/0000  tutorial2            Hello world               Rapsberry                 Default product type
+    0225/0002  tutorial2__temperature Temperature               Onewire                   Temperature sensor
+    0225/0004  tutorial2__led       Led                       GPIO                      Software
+    0225/0003  tutorial2__cpu       CPU                       Hostsensor                Software component
+    0225/0001  tutorial2__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
 
 You can also query a node :
 
 .. code:: bash
 
-    jnt_query node --hadd 0222/0000
+    jnt_query node --hadd 0225/0000
 
 .. code:: bash
 
+Check the config values :
+
+.. code:: bash
+
+    jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+
+.. code:: bash
+
+    hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+    0225/0004  tutorial2__led            switch_poll                    0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0004  tutorial2__led            blink_poll                     0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0004  tutorial2__led            location                       0    GPIO                      None       8     3     112      The location of the node
+    0225/0004  tutorial2__led            pin                            0    1                         None       4     3     112      The pin number on the board
+    0225/0004  tutorial2__led            name                           0    Led                       None       8     3     112      The name of the node
+    0225/0001  tutorial2__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0001  tutorial2__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
+    0225/0001  tutorial2__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
+    0225/0001  tutorial2__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0001  tutorial2__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
+    0225/0001  tutorial2__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
+    0225/0000  tutorial2                 tutorial2_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0000  tutorial2                 tutorial2_temperature_critical 0    50                        None       4     3     112      The critical temperature. If 2 of the 3 temperature sensors are up to this value, a security notification is sent.
+    0225/0000  tutorial2                 location                       0    Rapsberry                 None       8     3     112      The location of the node
+    0225/0000  tutorial2                 name                           0    Hello world               None       8     3     112      The name of the node
+    0225/0000  tutorial2                 tutorial2_timer_delay          0    45                        None       4     3     112      The delay between 2 checks
+    0225/0003  tutorial2__cpu            frequency_poll                 0    30                        seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial2__cpu            temperature_poll               0    30                        seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial2__cpu            voltage_poll                   0    30                        seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial2__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
+    0225/0003  tutorial2__cpu            name                           0    CPU                       None       8     3     112      The name of the node
+    0225/0002  tutorial2__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0002  tutorial2__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
+    0225/0002  tutorial2__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
+    0225/0002  tutorial2__temperature    name                           0    Temperature               None       8     3     112      The name of the node
 
 Performances
 ============

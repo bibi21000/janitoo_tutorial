@@ -314,7 +314,12 @@ You should receive the list of nodes availables on your server :
 .. code:: bash
 
     hadd       uuid                 name                      location                  product_type
-    1111/0000  939477c767b8         testname                  testlocation              RGB LED and Temperature (v 0.06)
+    0222/0001  hostsensor__picpu    CPU                       Hostsensor                Software component
+    0222/0000  hostsensor           Hello world               Hostsensor                Default product type
+    0220/0000  rpibasic             Hello world               DHT                       Default product type
+    0220/0001  rpibasic__ambiance   Ambiance 1                DHT                       Temperature/humidity sensor
+    0221/0001  rpi1wire__temperature Temperature               Onewire                   Temperature sensor
+    0221/0000  rpi1wire             Hello world               Onewire                   Default product type
 
 You can also query a node :
 
@@ -323,6 +328,44 @@ You can also query a node :
     jnt_query node --hadd 0222/0000
 
 .. code:: bash
+
+    hadd       uuid                           name                      location             product_type
+    0222/0001  hostsensor__picpu              CPU                       Hostsensor           Software component
+    0222/0000  hostsensor                     Hello world               Hostsensor           Default product type
+
+.. code:: bash
+
+    jnt_query node --hadd 0220/0000
+
+.. code:: bash
+    hadd       uuid                           name                      location             product_type
+    0220/0000  rpibasic                       Hello world               DHT                  Default product type
+    0220/0001  rpibasic__ambiance             Ambiance 1                DHT                  Temperature/humidity sensor
+
+.. code:: bash
+
+    jnt_query node --hadd 0221/0000
+
+.. code:: bash
+
+    hadd       uuid                           name                      location             product_type
+    0221/0001  rpi1wire__temperature          Temperature               Onewire              Temperature sensor
+    0221/0000  rpi1wire                       Hello world               Onewire              Default product type
+
+You can also query a node to request its users values :
+
+.. code:: bash
+
+    jnt_query node --hadd 0222/0000 --vuuid request_info_users
+
+.. code:: bash
+
+    hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+    0222/0001  hostsensor__picpu         frequency                      0    999                       MHz        3     2     49       The frequency of the CPU
+    0222/0001  hostsensor__picpu         voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
+    0222/0001  hostsensor__picpu         temperature                    0    39.5                      °C         3     2     49       The temperature of the CPU
+
+To get help for jnt_query :
 
 
 Performances
