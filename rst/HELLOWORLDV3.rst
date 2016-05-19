@@ -203,6 +203,25 @@ Check the config values :
     0225/0002  tutorial2__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
     0225/0002  tutorial2__temperature    name                           0    Temperature               None       8     3     112      The name of the node
 
+Get the user values :
+
+.. code:: bash
+
+    jnt_query node --hadd 0225/0000 --vuuid request_info_users
+
+.. code:: bash
+
+    hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+    0225/0001  tutorial2__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
+    0225/0001  tutorial2__ambiance       humidity                       0    24.0                      %          3     2     49       The humidity
+    0225/0000  tutorial2                 tutorial2_temperature          0    None                      °C         3     2     49       The average temperature of tutorial.
+    0225/0000  tutorial2                 tutorial2_state                0    sleeping                  None       8     2     49       The state of the machine.
+    0225/0000  tutorial2                 tutorial2_change               0    None                      None       8     2     0        Change the state of the machine.
+    0225/0003  tutorial2__cpu            frequency                      0    1000                      MHz        3     2     49       The frequency of the CPU
+    0225/0003  tutorial2__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
+    0225/0003  tutorial2__cpu            temperature                    0    37.9                      °C         3     2     49       The temperature of the CPU
+    0225/0002  tutorial2__temperature    temperature                    0    19.5                      °C         3     2     49       The temperature
+
 Performances
 ============
 
@@ -213,5 +232,4 @@ Performances
 .. code:: bash
 
     PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
-    275   root      20   0     0    0    0 S  24,9  0,0 137:12.31 [w1_bus_master1]
-    10016 root      20   0 94388  20m 7240 S   1,6  4,2  10:23.43 /usr/bin/python /usr/local/bin/jnt_fishtank -c /opt/janitoo/etc/jnt_fishtank.conf restart
+    24126 root      20   0 59352  13m 4292 S   5,9  2,7   0:38.28 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv
