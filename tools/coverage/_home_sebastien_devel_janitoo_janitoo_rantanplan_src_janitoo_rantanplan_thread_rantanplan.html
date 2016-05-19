@@ -5,7 +5,7 @@
     
     
     <meta http-equiv='X-UA-Compatible' content='IE=emulateIE7' />
-    <title>Coverage for janitoo_tutorial.thread_tutorial1: 100%</title>
+    <title>Coverage for /home/sebastien/devel/janitoo/janitoo_rantanplan/src/janitoo_rantanplan/thread_rantanplan: 97%</title>
     <link rel='stylesheet' href='style.css' type='text/css'>
     
     <script type='text/javascript' src='jquery.min.js'></script>
@@ -20,14 +20,14 @@
 
 <div id='header'>
     <div class='content'>
-        <h1>Coverage for <b>janitoo_tutorial.thread_tutorial1</b> :
-            <span class='pc_cov'>100%</span>
+        <h1>Coverage for <b>/home/sebastien/devel/janitoo/janitoo_rantanplan/src/janitoo_rantanplan/thread_rantanplan</b> :
+            <span class='pc_cov'>97%</span>
         </h1>
         <img id='keyboard_icon' src='keybd_closed.png'>
         <h2 class='stats'>
             30 statements &nbsp;
-            <span class='run hide_run shortkey_r button_toggle_run'>30 run</span>
-            <span class='mis shortkey_m button_toggle_mis'>0 missing</span>
+            <span class='run hide_run shortkey_r button_toggle_run'>29 run</span>
+            <span class='mis shortkey_m button_toggle_mis'>1 missing</span>
             <span class='exc shortkey_x button_toggle_exc'>0 excluded</span>
             
         </h2>
@@ -117,7 +117,7 @@
 <p id='n54' class='stm run hide_run'><a href='#n54'>54</a></p>
 <p id='n55' class='stm run hide_run'><a href='#n55'>55</a></p>
 <p id='n56' class='pln'><a href='#n56'>56</a></p>
-<p id='n57' class='stm run hide_run'><a href='#n57'>57</a></p>
+<p id='n57' class='stm mis'><a href='#n57'>57</a></p>
 <p id='n58' class='pln'><a href='#n58'>58</a></p>
 <p id='n59' class='stm run hide_run'><a href='#n59'>59</a></p>
 <p id='n60' class='pln'><a href='#n60'>60</a></p>
@@ -129,6 +129,7 @@
 <p id='n66' class='stm run hide_run'><a href='#n66'>66</a></p>
 <p id='n67' class='stm run hide_run'><a href='#n67'>67</a></p>
 <p id='n68' class='stm run hide_run'><a href='#n68'>68</a></p>
+<p id='n69' class='pln'><a href='#n69'>69</a></p>
                 
             </td>
             <td class='text' valign='top'>
@@ -182,24 +183,25 @@
 <p id='t48' class='stm run hide_run'><span class='key'>assert</span><span class='op'>(</span><span class='nam'>COMMAND_DESC</span><span class='op'>[</span><span class='nam'>COMMAND_CONTROLLER</span><span class='op'>]</span> <span class='op'>==</span> <span class='str'>&#39;COMMAND_CONTROLLER&#39;</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
 <p id='t49' class='pln'><span class='com'>##############################################################</span><span class='strut'>&nbsp;</span></p>
 <p id='t50' class='pln'><span class='strut'>&nbsp;</span></p>
-<p id='t51' class='stm run hide_run'><span class='nam'>OID</span><span class='op'>=</span><span class='str'>&#39;tutorial1&#39;</span><span class='strut'>&nbsp;</span></p>
+<p id='t51' class='stm run hide_run'><span class='nam'>OID</span><span class='op'>=</span><span class='str'>&#39;rantanplan&#39;</span><span class='strut'>&nbsp;</span></p>
 <p id='t52' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t53' class='stm run hide_run'><span class='key'>def</span> <span class='nam'>make_thread</span><span class='op'>(</span><span class='nam'>options</span><span class='op'>,</span> <span class='nam'>force</span><span class='op'>=</span><span class='nam'>False</span><span class='op'>)</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
-<p id='t54' class='stm run hide_run'>&nbsp; &nbsp; <span class='key'>if</span> <span class='nam'>get_option_autostart</span><span class='op'>(</span><span class='nam'>options</span><span class='op'>,</span> <span class='nam'>OID</span><span class='op'>)</span> <span class='key'>or</span> <span class='nam'>force</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
-<p id='t55' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>TutorialThread</span><span class='op'>(</span><span class='nam'>options</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t54' class='stm run hide_run'>&nbsp; &nbsp; <span class='key'>if</span> <span class='nam'>get_option_autostart</span><span class='op'>(</span><span class='nam'>options</span><span class='op'>,</span> <span class='nam'>OID</span><span class='op'>)</span> <span class='op'>==</span> <span class='nam'>True</span> <span class='key'>or</span> <span class='nam'>force</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
+<p id='t55' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>RantanplanThread</span><span class='op'>(</span><span class='nam'>options</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
 <p id='t56' class='pln'>&nbsp; &nbsp; <span class='key'>else</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
-<p id='t57' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>None</span><span class='strut'>&nbsp;</span></p>
+<p id='t57' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>None</span><span class='strut'>&nbsp;</span></p>
 <p id='t58' class='pln'><span class='strut'>&nbsp;</span></p>
-<p id='t59' class='stm run hide_run'><span class='key'>class</span> <span class='nam'>TutorialThread</span><span class='op'>(</span><span class='nam'>JNTBusThread</span><span class='op'>)</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
+<p id='t59' class='stm run hide_run'><span class='key'>class</span> <span class='nam'>RantanplanThread</span><span class='op'>(</span><span class='nam'>JNTBusThread</span><span class='op'>)</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
 <p id='t60' class='pln'>&nbsp; &nbsp; <span class='str'>&quot;&quot;&quot;The basic thread</span><span class='strut'>&nbsp;</span></p>
 <p id='t61' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t62' class='pln'><span class='str'>&nbsp; &nbsp; &quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
 <p id='t63' class='stm run hide_run'>&nbsp; &nbsp; <span class='key'>def</span> <span class='nam'>init_bus</span><span class='op'>(</span><span class='nam'>self</span><span class='op'>)</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
 <p id='t64' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&quot;&quot;&quot;Build the bus</span><span class='strut'>&nbsp;</span></p>
 <p id='t65' class='pln'><span class='str'>&nbsp; &nbsp; &nbsp; &nbsp; &quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
-<p id='t66' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>from</span> <span class='nam'>janitoo_tutorial</span><span class='op'>.</span><span class='nam'>tutorial1</span> <span class='key'>import</span> <span class='nam'>TutorialBus</span><span class='strut'>&nbsp;</span></p>
+<p id='t66' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>from</span> <span class='nam'>janitoo_rantanplan</span><span class='op'>.</span><span class='nam'>rantanplan</span> <span class='key'>import</span> <span class='nam'>RantanplanBus</span><span class='strut'>&nbsp;</span></p>
 <p id='t67' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>section</span> <span class='op'>=</span> <span class='nam'>OID</span><span class='strut'>&nbsp;</span></p>
-<p id='t68' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>bus</span> <span class='op'>=</span> <span class='nam'>TutorialBus</span><span class='op'>(</span><span class='nam'>options</span><span class='op'>=</span><span class='nam'>self</span><span class='op'>.</span><span class='nam'>options</span><span class='op'>,</span> <span class='nam'>oid</span><span class='op'>=</span><span class='nam'>self</span><span class='op'>.</span><span class='nam'>section</span><span class='op'>,</span> <span class='nam'>product_name</span><span class='op'>=</span><span class='str'>&quot;Raspberry tutorial controller&quot;</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t68' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>bus</span> <span class='op'>=</span> <span class='nam'>RantanplanBus</span><span class='op'>(</span><span class='nam'>options</span><span class='op'>=</span><span class='nam'>self</span><span class='op'>.</span><span class='nam'>options</span><span class='op'>,</span> <span class='nam'>oid</span><span class='op'>=</span><span class='nam'>self</span><span class='op'>.</span><span class='nam'>section</span><span class='op'>,</span> <span class='nam'>product_name</span><span class='op'>=</span><span class='str'>&quot;Raspberry rantanplan controller&quot;</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t69' class='pln'><span class='strut'>&nbsp;</span></p>
                 
             </td>
         </tr>

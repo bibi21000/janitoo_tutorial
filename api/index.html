@@ -176,7 +176,7 @@
 <p>The Raspberry rantanplan</p>
 <dl class="class">
 <dt id="janitoo_tutorial.thread_tutorial1.TutorialThread">
-<em class="property">class </em><tt class="descclassname">janitoo_tutorial.thread_tutorial1.</tt><tt class="descname">TutorialThread</tt><big>(</big><em>options={}</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial1.html#TutorialThread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial1.TutorialThread" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.thread_tutorial1.</tt><tt class="descname">TutorialThread</tt><big>(</big><em>options=None</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial1.html#TutorialThread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial1.TutorialThread" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo.thread.JNTBusThread</span></tt></p>
 <p>The basic thread</p>
 <dl class="method">
@@ -198,7 +198,7 @@
 <p>The Raspberry rantanplan</p>
 <dl class="class">
 <dt id="janitoo_tutorial.thread_tutorial2.TutorialThread">
-<em class="property">class </em><tt class="descclassname">janitoo_tutorial.thread_tutorial2.</tt><tt class="descname">TutorialThread</tt><big>(</big><em>options={}</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial2.html#TutorialThread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial2.TutorialThread" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">janitoo_tutorial.thread_tutorial2.</tt><tt class="descname">TutorialThread</tt><big>(</big><em>options=None</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/thread_tutorial2.html#TutorialThread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.thread_tutorial2.TutorialThread" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">janitoo.thread.JNTBusThread</span></tt></p>
 <p>The basic thread</p>
 <dl class="method">
@@ -354,6 +354,12 @@ Don&#8217;t do long task in loop. Use a separated thread to not perturbate the n
 </dd></dl>
 
 <dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.get_state">
+<tt class="descname">get_state</tt><big>(</big><em>node_uuid</em>, <em>index</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.get_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the state of the machine</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="janitoo_tutorial.tutorial2.TutorialBus.loop">
 <tt class="descname">loop</tt><big>(</big><em>stopevent</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.loop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve data
@@ -385,6 +391,12 @@ Don&#8217;t do long task in loop. Use a separated thread to not perturbate the n
 <dt id="janitoo_tutorial.tutorial2.TutorialBus.polled_sensors">
 <tt class="descname">polled_sensors</tt><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.polled_sensors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.polled_sensors" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="janitoo_tutorial.tutorial2.TutorialBus.set_state">
+<tt class="descname">set_state</tt><big>(</big><em>node_uuid</em>, <em>index</em>, <em>data</em><big>)</big><a class="reference internal" href="../_modules/janitoo_tutorial/tutorial2.html#TutorialBus.set_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#janitoo_tutorial.tutorial2.TutorialBus.set_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Act on the server</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="janitoo_tutorial.tutorial2.TutorialBus.start">
@@ -455,7 +467,7 @@ Don&#8217;t do long task in loop. Use a separated thread to not perturbate the n
       
     </p>
     <p>
-        &copy; Copyright 2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
+        &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

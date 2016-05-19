@@ -393,13 +393,45 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                 name                      location                  product_type
-1111/0000  939477c767b8         testname                  testlocation              RGB LED and Temperature (v 0.06)
+0222/0001  hostsensor__picpu    CPU                       Hostsensor                Software component
+0222/0000  hostsensor           Hello world               Hostsensor                Default product type
+0220/0000  rpibasic             Hello world               DHT                       Default product type
+0220/0001  rpibasic__ambiance   Ambiance 1                DHT                       Temperature/humidity sensor
+0221/0001  rpi1wire__temperature Temperature               Onewire                   Temperature sensor
+0221/0000  rpi1wire             Hello world               Onewire                   Default product type
 </pre></div>
 </div>
 <p>You can also query a node :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0222/0000
 </pre></div>
 </div>
+<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
+0222/0001  hostsensor__picpu              CPU                       Hostsensor           Software component
+0222/0000  hostsensor                     Hello world               Hostsensor           Default product type
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0220/0000
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0221/0000
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
+0221/0001  rpi1wire__temperature          Temperature               Onewire              Temperature sensor
+0221/0000  rpi1wire                       Hello world               Onewire              Default product type
+</pre></div>
+</div>
+<p>You can also query a node to request its users values :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0222/0000 --vuuid request_info_users
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+0222/0001  hostsensor__picpu         frequency                      0    999                       MHz        3     2     49       The frequency of the CPU
+0222/0001  hostsensor__picpu         voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
+0222/0001  hostsensor__picpu         temperature                    0    39.5                      °C         3     2     49       The temperature of the CPU
+</pre></div>
+</div>
+<p>To get help for jnt_query :</p>
 </div>
 <div class="section" id="performances">
 <h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
@@ -426,7 +458,7 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
       
     </p>
     <p>
-        &copy; Copyright 2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
+        &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

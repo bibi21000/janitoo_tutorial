@@ -288,16 +288,53 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_bus_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">presence_events</span> <span class="o">=</span> <span class="p">{}</span>
-
         <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_temperature&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;sensor_temperature&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
             <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
-            <span class="n">help</span><span class="o">=</span><span class="s">&#39;The average temperature of tutorial. Can be use as a good quality source for a thermostat.&#39;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s">&#39;The average temperature of tutorial.&#39;</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s">&#39;Temp&#39;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">poll_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">create_poll_value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">poll_value</span><span class="o">.</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="n">poll_value</span>
+        <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_state&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;sensor_string&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">get_data_cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s">&#39;The state of the machine.&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;State&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">poll_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">create_poll_value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">poll_value</span><span class="o">.</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="n">poll_value</span>
+        <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_change&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;action_string&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">set_data_cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">,</span>
+            <span class="n">list_items</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;wakeup&#39;</span><span class="p">,</span> <span class="s">&#39;report&#39;</span><span class="p">,</span> <span class="s">&#39;sleep&#39;</span><span class="p">,</span> <span class="s">&#39;ring&#39;</span><span class="p">],</span>
+            <span class="n">help</span><span class="o">=</span><span class="s">&#39;Change the state of the machine.&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Change&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">poll_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">create_poll_value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">poll_value</span><span class="o">.</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="n">poll_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s">&quot;sleeping&quot;</span>
 
+<div class="viewcode-block" id="TutorialBus.get_state"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial2.TutorialBus.get_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_uuid</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the state of the machine</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.set_state"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial2.TutorialBus.set_state">[docs]</a>    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_uuid</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Act on the server</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">&quot;sleep&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">data</span> <span class="o">==</span> <span class="s">&quot;wakeup&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wakeup</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">data</span> <span class="o">==</span> <span class="s">&quot;report&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">data</span> <span class="o">==</span> <span class="s">&quot;ring&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">()</span>
+</div>
     <span class="nd">@property</span>
 <div class="viewcode-block" id="TutorialBus.polled_sensors"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial2.TutorialBus.polled_sensors">[docs]</a>    <span class="k">def</span> <span class="nf">polled_sensors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -515,7 +552,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
+        &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
