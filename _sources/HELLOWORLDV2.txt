@@ -365,16 +365,71 @@ You should receive the list of nodes availables on your server :
 .. code:: bash
 
     hadd       uuid                 name                      location                  product_type
-    1111/0000  939477c767b8         testname                  testlocation              RGB LED and Temperature (v 0.06)
+    0225/0000  tutorial1            Hello world               Rapsberry                 Default product type
+    0225/0002  tutorial1__temperature Temperature               Onewire                   Temperature sensor
+    0225/0001  tutorial1__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
+    0225/0003  tutorial1__cpu       CPU                       Hostsensor                Software component
 
 You can also query a node :
 
 .. code:: bash
 
-    jnt_query node --hadd 0222/0000
+    jnt_query node --hadd 0225/0000
 
 .. code:: bash
 
+    hadd       uuid                           name                      location             product_type
+    0225/0000  tutorial1                      Hello world               Rapsberry            Default product type
+    0225/0002  tutorial1__temperature         Temperature               Onewire              Temperature sensor
+    0225/0001  tutorial1__ambiance            Ambiance 1                DHT                  Temperature/humidity sensor
+    0225/0003  tutorial1__cpu                 CPU                       Hostsensor           Software component
+
+.. code:: bash
+
+Check the config values :
+
+.. code:: bash
+
+    jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+
+.. code:: bash
+
+    hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+    0225/0001  tutorial1__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0001  tutorial1__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
+    0225/0001  tutorial1__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
+    0225/0001  tutorial1__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0001  tutorial1__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
+    0225/0001  tutorial1__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
+    0225/0000  tutorial1                 tutorial1_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0000  tutorial1                 name                           0    Hello world               None       8     3     112      The name of the node
+    0225/0000  tutorial1                 location                       0    Rapsberry                 None       8     3     112      The location of the node
+    0225/0003  tutorial1__cpu            frequency_poll                 0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial1__cpu            temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial1__cpu            voltage_poll                   0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial1__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
+    0225/0003  tutorial1__cpu            name                           0    CPU                       None       8     3     112      The name of the node
+    0225/0002  tutorial1__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0002  tutorial1__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
+    0225/0002  tutorial1__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
+    0225/0002  tutorial1__temperature    name                           0    Temperature               None       8     3     112      The name of the node
+
+Get the user values :
+
+.. code:: bash
+
+    jnt_query node --hadd 0225/0000 --vuuid request_info_users
+
+.. code:: bash
+
+    hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+    0225/0001  tutorial1__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
+    0225/0001  tutorial1__ambiance       humidity                       0    30.0                      %          3     2     49       The humidity
+    0225/0000  tutorial1                 tutorial1_temperature          0    25.6                      °C         3     2     49       The average temperature of tutorial. Can be use as a good quality source for a thermostat.
+    0225/0003  tutorial1__cpu            frequency                      0    1000                      MHz        3     2     49       The frequency of the CPU
+    0225/0003  tutorial1__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
+    0225/0003  tutorial1__cpu            temperature                    0    38.5                      °C         3     2     49       The temperature of the CPU
+    0225/0002  tutorial1__temperature    temperature                    0    19.2                      °C         3     2     49       The temperature
 
 Performances
 ============
@@ -386,5 +441,4 @@ Performances
 .. code:: bash
 
     PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
-    275   root      20   0     0    0    0 S  24,9  0,0 137:12.31 [w1_bus_master1]
-    10016 root      20   0 94388  20m 7240 S   1,6  4,2  10:23.43 /usr/bin/python /usr/local/bin/jnt_fishtank -c /opt/janitoo/etc/jnt_fishtank.conf restart
+    3050 root      20   0 59340  13m 4288 S   2,3  2,7   1:30.00 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv
