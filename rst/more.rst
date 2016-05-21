@@ -76,7 +76,7 @@ After your server is fully functionnal, you can launch the full test suite :
 
 .. code:: bash
 
-    sudo make tests >tests.log 2>&1
+    sudo make tests >tests.log 2>&1; sudo coverage report >>tests.log 2>&1
 
 On a another screen/terminal, you can take a look at the tests logs :
 
@@ -86,24 +86,24 @@ On a another screen/terminal, you can take a look at the tests logs :
 
 You can now safely watch your favorite episode of Game of Thrones :D
 
-After that, take a look at the coverage of your tests :
-
 .. code:: bash
 
-    coverage report
+    Name                                Stmts   Miss  Cover   Missing
+    -----------------------------------------------------------------
+    janitoo_tutorial                        4      0   100%
+    janitoo_tutorial.thread_tutorial1      30      0   100%
+    janitoo_tutorial.thread_tutorial2      30      0   100%
+    janitoo_tutorial.tutorial1             86      1    99%   126
+    janitoo_tutorial.tutorial2            197     20    90%   169, 176-177, 198, 213-214, 225-226, 234, 242, 249-250, 265-266, 275, 281, 283-287
+    -----------------------------------------------------------------
+    TOTAL                                 347     21    94%
+    ----------------------------------------------------------------------
+    Ran 54 tests in 3635.988s
 
-.. code:: bash
+    OK (SKIP=2)
 
-    Name                                    Stmts   Miss  Cover
-    -----------------------------------------------------------
-    src/janitoo_tutorial/__init__               4      0   100%
-    src/janitoo_tutorial/server                24     24     0%
-    src/janitoo_tutorial/thread_tutorial1      30      0   100%
-    src/janitoo_tutorial/thread_tutorial2      30      0   100%
-    src/janitoo_tutorial/tutorial1             86      1    99%
-    src/janitoo_tutorial/tutorial2            197     20    90%
-    -----------------------------------------------------------
-    TOTAL                                     371     45    88%
+    Tests for janitoo_tutorial finished.
+
 
 Testing tools
 -------------
@@ -192,3 +192,15 @@ I want to help
  - protocol : dhcp server, ...
 
  - components, values, ...
+
+Documentation
+=============
+
+Documentation is managed using Sphinx and it is generated automatically. So please update pages in rst directories or in src.
+
+There is an extension too :
+
+setup.py
+--------
+
+.. jnt-extensions::

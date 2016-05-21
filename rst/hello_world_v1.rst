@@ -331,6 +331,7 @@ You can also query a node :
     jnt_query node --hadd 0220/0000
 
 .. code:: bash
+
     hadd       uuid                           name                      location             product_type
     0220/0000  rpibasic                       Hello world               DHT                  Default product type
     0220/0001  rpibasic__ambiance             Ambiance 1                DHT                  Temperature/humidity sensor
