@@ -11,12 +11,13 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-    Installation of Janitoo<INSTALL>
-    Hello World : connect everything<HELLOWORLDV0>
-    Hello World 1 : a simple server<HELLOWORLDV1>
-    Hello World 2 : an advanced server<HELLOWORLDV2>
-    Hello World 3 : a more advanced server<HELLOWORLDV3>
-    Create and share<CREATEANDSHARE>
+    What is Janitoo<preface>
+    Installation<install>
+    Hello World : connect everything<hello_world_v0>
+    Hello World 1 : a simple server<hello_world_v1>
+    Hello World 2 : an advanced server<hello_world_v2>
+    Hello World 3 : a more advanced server<hello_world_v3>
+    Create and share<more>
 
 
 Indices and tables

@@ -224,13 +224,6 @@ If everything is ok, the screen output should be something like this :
 
 Otherwise you should have a log capture with surely some errors inside.
 
-You can also the whole tests, which whould help you to fix problems :
-
-.. code:: bash
-
-    sudo make tests
-
-
 Launch it
 =========
 
@@ -365,8 +358,6 @@ You can also query a node to request its users values :
     0222/0001  hostsensor__picpu         voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
     0222/0001  hostsensor__picpu         temperature                    0    39.5                      °C         3     2     49       The temperature of the CPU
 
-To get help for jnt_query :
-
 
 Performances
 ============
@@ -378,5 +369,4 @@ Performances
 .. code:: bash
 
     PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
-    275   root      20   0     0    0    0 S  24,9  0,0 137:12.31 [w1_bus_master1]
-    10016 root      20   0 94388  20m 7240 S   1,6  4,2  10:23.43 /usr/bin/python /usr/local/bin/jnt_fishtank -c /opt/janitoo/etc/jnt_fishtank.conf restart
+    10793 root      20   0  131m  14m 4268 S   5,6  2,9   0:46.98 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/jani

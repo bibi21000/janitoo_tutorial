@@ -8,6 +8,10 @@ Explanations
 
 For this second example, we will create a more sophisticated server : it will calculate the average temperature and send it.
 
+In the previous, we define many bus in the configuration. This have some limits, in particular if we want to do some operations (like calculating the average temperature) on the values.
+
+So in this example, we will create a new bus which will hold all the sensors and define a new value.
+
 The components
 ==============
 
@@ -442,3 +446,5 @@ Performances
 
     PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
     3050 root      20   0 59340  13m 4288 S   2,3  2,7   1:30.00 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv
+
+We devide the virutal memory by 2. Reserved memory is also less.

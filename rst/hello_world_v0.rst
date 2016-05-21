@@ -5,11 +5,12 @@ HelloWord V0
 
 What ?
 ======
-
 Create a raspberry applicance server which will report :
+
  - the temperature of the CPU
  - the temperature of a onewire sensor
  - the temperature of a DHT sensor
+
 
 Needed parts
 ============
@@ -21,6 +22,7 @@ Needed parts
 - 1 x 330 Ohm resistor (for the LED)
 - a breadboard
 - a raspberry
+
 
 Fritzing
 ========

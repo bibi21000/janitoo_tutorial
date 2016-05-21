@@ -66,9 +66,44 @@ Janitoo has 2 tests modules (janitoo_nosetests and janitoo_nosetests_flask).
 They define framework for testing servers, threads, buses, compenents, values, ...
 
 They also define tests that will check that your component is valid with the janitoo protocol.
-When the protocol will be updated, these tess will too.
+When the protocol will be updated, these tests will be too.
 
 Ideally, when a new bug is reported, the workflow should be : bug -> test to reproduce the bug -> fix for the bug.
+
+When starting developping with Janitoo, you'll surely find that creating tests is wasting time.
+
+After your server is fully functionnal, you can launch the full test suite :
+
+.. code:: bash
+
+    sudo make tests >tests.log 2>&1
+
+On a another screen/terminal, you can take a look at the tests logs :
+
+.. code:: bash
+
+    tail -f tests.log
+
+You can now safely watch your favorite episode of Game of Thrones :D
+
+After that, take a look at the coverage of your tests :
+
+.. code:: bash
+
+    coverage report
+
+.. code:: bash
+
+    Name                                    Stmts   Miss  Cover
+    -----------------------------------------------------------
+    src/janitoo_tutorial/__init__               4      0   100%
+    src/janitoo_tutorial/server                24     24     0%
+    src/janitoo_tutorial/thread_tutorial1      30      0   100%
+    src/janitoo_tutorial/thread_tutorial2      30      0   100%
+    src/janitoo_tutorial/tutorial1             86      1    99%
+    src/janitoo_tutorial/tutorial2            197     20    90%
+    -----------------------------------------------------------
+    TOTAL                                     371     45    88%
 
 Testing tools
 -------------
@@ -114,5 +149,46 @@ Components and bus
 
 Look at rasperry i2c :
 
+ - https://github.com/bibi21000/janitoo_raspberry_i2c
  - https://github.com/bibi21000/janitoo_raspberry_i2c_bmp
  - https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685
+
+
+I want more
+===========
+
+Protocol
+--------
+
+    - https://github.com/bibi21000/janitoo/blob/master/src/janitoo/dhcp.py
+    - https://github.com/bibi21000/janitoo_dhcp
+    - https://github.com/bibi21000/janitoo_flask/blob/master/src/janitoo_flask/network.py
+    - https://github.com/bibi21000/janitoo_flask_socketio/blob/master/src/janitoo_flask_socketio/network.py
+    - https://github.com/bibi21000/janitoo_manager/blob/master/src/janitoo_manager/network.py
+    - https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py
+
+RRD
+---
+
+The RRD thread allow to store and graph data using RRD tools : http://oss.oetiker.ch/rrdtool/
+
+The rrd thread is developped an old version of Janitoo. But it should work (not in install mode but in develop mode, need to be checked).
+It is need a lot of ressorces and it should be updated.
+
+It will be the test server for the new remote values.
+
+
+I want to help
+==============
+
+ - documentation : as you surely read, english is not my native language :) ...
+
+ - web development : socketio vs websockets, common layout presentation (fisthank, thermostat) for android, html, ...
+
+ - android : minimal implementation of protocol and client
+
+ - arduino, esp8266, ... : minimal implementation of protocol and client
+
+ - protocol : dhcp server, ...
+
+ - components, values, ...
