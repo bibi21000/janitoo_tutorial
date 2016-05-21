@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to documentation! &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    <title>HelloWord V0 &mdash; janitoo_tutorial 0.0.7 documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -32,8 +32,9 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="#" />
-    <link rel="next" title="Janitoo" href="preface.html" />
+    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
+    <link rel="next" title="HelloWord V1" href="hello_world_v1.html" />
+    <link rel="prev" title="Installation for tutorial" href="install.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -51,7 +52,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
           janitoo_tutorial</a>
         <span class="navbar-text navbar-version pull-left"><b>0.0.7</b></span>
       </div>
@@ -69,10 +70,10 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="#">Site <b class="caret"></b></a>
+     href="index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul>
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="preface.html"> What is Janitoo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="preface.html#preface">Preface</a></li>
 </ul>
@@ -83,10 +84,10 @@
 <li class="toctree-l2"><a class="reference internal" href="install.html#update-your-clone">Update your clone</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world_v0.html"> Hello World : connect everything</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v0.html#what">What ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v0.html#needed-parts">Needed parts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v0.html#fritzing">Fritzing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href=""> Hello World : connect everything</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what">What ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#needed-parts">Needed parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fritzing">Fritzing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hello_world_v1.html"> Hello World 1 : a simple server</a><ul>
@@ -139,7 +140,11 @@
               
                 
   <li>
-    <a href="preface.html" title="Next Chapter: Janitoo"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Janitoo &raquo;</span>
+    <a href="install.html" title="Previous Chapter: Installation for tutorial"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Installation for...</span>
+    </a>
+  </li>
+  <li>
+    <a href="hello_world_v1.html" title="Next Chapter: HelloWord V1"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">HelloWord V1 &raquo;</span>
     </a>
   </li>
               
@@ -167,78 +172,44 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <div class="section" id="welcome-to-documentation">
-<h1>Welcome to documentation!<a class="headerlink" href="#welcome-to-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="preface.html"> What is Janitoo</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="preface.html#preface">Preface</a></li>
+  <div class="section" id="helloword-v0">
+<h1>HelloWord V0<a class="headerlink" href="#helloword-v0" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what">
+<h2>What ?<a class="headerlink" href="#what" title="Permalink to this headline">¶</a></h2>
+<p>Create a raspberry applicance server which will report :</p>
+<blockquote>
+<div><ul class="simple">
+<li>the temperature of the CPU</li>
+<li>the temperature of a onewire sensor</li>
+<li>the temperature of a DHT sensor</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="install.html"> Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#needed-tools">Needed tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#initial-clone">Initial clone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#update-your-clone">Update your clone</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world_v0.html"> Hello World : connect everything</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v0.html#what">What ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v0.html#needed-parts">Needed parts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v0.html#fritzing">Fritzing</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world_v1.html"> Hello World 1 : a simple server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v1.html#explanations">Explanations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v1.html#configuration">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v1.html#test-it">Test it</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v1.html#launch-it">Launch it</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v1.html#spy-it">Spy it</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v1.html#performances">Performances</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world_v2.html"> Hello World 2 : an advanced server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#explanations">Explanations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#the-components">The components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#the-bus">The bus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#the-thread">The thread</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#entry-points">Entry-points</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#configuration">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#test-it">Test it</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#launch-it">Launch it</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#performances">Performances</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world_v3.html"> Hello World 3 : a more advanced server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#explanations">Explanations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#the-bus">The bus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#the-finish-state-machine">The finish state machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#spy-it">Spy it</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#performances">Performances</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="more.html"> Create and share</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="more.html#why">Why</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#how">How</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#bus-aggregation-vs-bus-extension">Bus aggregation vs bus extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#remote-development">Remote development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#tests">Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#examples">Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#i-want-more">I want more</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#i-want-to-help">I want to help</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more.html#documentation">Documentation</a></li>
-</ul>
-</li>
-</ul>
+</div></blockquote>
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="needed-parts">
+<h2>Needed parts<a class="headerlink" href="#needed-parts" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+<li>1 x DHT sensor</li>
+<li>1 x DS18B20 onewire sensor</li>
+<li>1 x red led</li>
+<li>2 x 4.7 kOhm resistor</li>
+<li>1 x 330 Ohm resistor (for the LED)</li>
+<li>a breadboard</li>
+<li>a raspberry</li>
 </ul>
+</div>
+<div class="section" id="fritzing">
+<h2>Fritzing<a class="headerlink" href="#fritzing" title="Permalink to this headline">¶</a></h2>
+<p>Connect everything using the following schema :</p>
+<a class="reference internal image-reference" href="_images/tutorial_bb.png"><img alt="Fritzing" src="_images/tutorial_bb.png" style="width: 800px;" /></a>
+<div class="section" id="pins">
+<h3>Pins<a class="headerlink" href="#pins" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>DHT : GPIO 6</li>
+<li>LED : GPIO 19</li>
+<li>ONEWIRE : GPIO 4</li>
+</ul>
+</div>
+</div>
 </div>
 
 
