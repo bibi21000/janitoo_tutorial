@@ -4,11 +4,13 @@ Create and share
 
 With Janitoo you can easely share your components, threads and values.
 
+
 Why
 ===
 
  - Re-use of code
  - Tests
+
 
 How
 ===
@@ -18,6 +20,7 @@ How
  - Submit pull requests to janitoo_factory or janitoo_factory_exts repositories.
 
 For more complex developments, you can also ask to add your github directory to : https://github.com/bibi21000/janitoo_docker.
+
 
 Bus aggregation vs bus extension
 ================================
@@ -48,6 +51,7 @@ And load extension in your configuration file :
     hadd = 0159/0000
     heartbeat = 30
     extensions = hardware
+
 
 Remote development
 ==================
@@ -117,6 +121,7 @@ Docker : there is a docker image to launch but it should not be launched on Dock
 You can launch it locally, look at https://github.com/bibi21000/janitoo_docker
 
 Raspberry : you can launch tests on your raspberry using : sudo make tests-all (from the /opt/janitoo/src direcotry)
+
 
 Examples
 ========
@@ -205,6 +210,7 @@ I want to help
  - database : actually, database is optionnal (but mandatory for full protocol). Alembic configuration is done but database schema is broken.
 
  - components, values, ...
+
 
 Documentation
 =============
