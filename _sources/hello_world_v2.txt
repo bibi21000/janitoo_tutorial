@@ -301,7 +301,7 @@ And for the server :
         """Test the tutorial server
         """
         server_class = PiServer
-        server_conf = "tests/data/helloworldv3.conf"
+        server_conf = "tests/data/helloworldv2.conf"
 
         hadds = [HADD%(225,0), HADD%(225,1), HADD%(225,2), HADD%(225,3)]
 
@@ -348,7 +348,7 @@ Launch the server :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
+    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
 
 You can look at the protocol during startup on the spyer terminal.
 
@@ -447,4 +447,4 @@ Performances
     PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
     3050 root      20   0 59340  13m 4288 S   2,3  2,7   1:30.00 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv
 
-We devide the virutal memory by 2. Reserved memory is also less.
+We divide the virtual memory by 2. Reserved memory is also less.

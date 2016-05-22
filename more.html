@@ -33,7 +33,7 @@
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
-    <link rel="prev" title="HelloWord V3" href="hello_world_v3.html" />
+    <link rel="prev" title="HelloWord V4" href="hello_world_v4.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -114,8 +114,16 @@
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#explanations">Explanations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#the-bus">The bus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#the-finish-state-machine">The finish state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#create-a-server">Create a server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#start-it-at-boot">Start it at boot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hello_world_v4.html"> Hello World 4 : more advanced servers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#mosquitto">Mosquitto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#the-pure-client">The pure client</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href=""> Create and share</a><ul>
@@ -139,7 +147,7 @@
               
                 
   <li>
-    <a href="hello_world_v3.html" title="Previous Chapter: HelloWord V3"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; HelloWord V3</span>
+    <a href="hello_world_v4.html" title="Previous Chapter: HelloWord V4"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; HelloWord V4</span>
     </a>
   </li>
               
@@ -309,6 +317,20 @@ You can launch it locally, look at <a class="reference external" href="https://g
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="database">
+<h3>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_db">https://github.com/bibi21000/janitoo_db</a></li>
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_db/blob/master/src/scripts/jnt_dbman">https://github.com/bibi21000/janitoo_db/blob/master/src/scripts/jnt_dbman</a></li>
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_db_full">https://github.com/bibi21000/janitoo_db_full</a></li>
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_dhcp">https://github.com/bibi21000/janitoo_dhcp</a></li>
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/models.py">https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/models.py</a></li>
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_layouts">https://github.com/bibi21000/janitoo_layouts</a></li>
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_layouts/blob/master/src/janitoo_layouts/models.py">https://github.com/bibi21000/janitoo_layouts/blob/master/src/janitoo_layouts/models.py</a></li>
+</ul>
+</div></blockquote>
+</div>
 <div class="section" id="rrd">
 <h3>RRD<a class="headerlink" href="#rrd" title="Permalink to this headline">¶</a></h3>
 <p>The RRD thread allow to store and graph data using RRD tools : <a class="reference external" href="http://oss.oetiker.ch/rrdtool/">http://oss.oetiker.ch/rrdtool/</a></p>
@@ -326,6 +348,7 @@ It is need a lot of ressorces and it should be updated.</p>
 <li>android : minimal implementation of protocol and client</li>
 <li>arduino, esp8266, ... : minimal implementation of protocol and client</li>
 <li>protocol : dhcp server, ...</li>
+<li>database : actually, database is optionnal (but mandatory for full protocol). Alembic configuration is done but database schema is broken.</li>
 <li>components, values, ...</li>
 </ul>
 </div></blockquote>

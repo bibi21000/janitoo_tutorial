@@ -107,6 +107,7 @@ We should now define actions when entering states :
 
     ...
 
+
 The finish state machine
 ========================
 
@@ -114,6 +115,71 @@ FSM
 
 .. image:: images/fsm_bus.png
 
+
+Create a server
+===============
+
+We will now create a server script, this will allow to start our server on startup:
+
+.. code:: bash
+
+    vim src/scripts/jnt_tutorial
+
+.. code:: python
+
+    import logging
+    logger = logging.getLogger(__name__)
+    import sys, os, re, shutil, datetime
+    from janitoo.runner import Runner, jnt_parse_args
+    from janitoo_raspberry.server import PiServer
+
+    class MyPiServer(Runner):
+
+        def __init__(self):
+            Runner.__init__(self)
+            self.server = None
+            #print self.options
+
+        def app_run(self):
+            self.server = PiServer(self.options)
+            self.server.start()
+            self.server.run()
+
+        def app_shutdown(self):
+            self.server.stop()
+            self.server = None
+
+    daemon_runner = MyPiServer()
+    #This ensures that the logger file handle does not get closed during daemonization
+    #daemon_runner.daemon_context.files_preserve=[handler.stream]
+    daemon_runner.do_action()
+
+Open the init script and update the provides, descriptions and NAME:
+
+.. code:: bash
+
+    vim src/scripts/jnt_tutorial.init
+
+.. code:: bash
+
+    ### BEGIN INIT INFO
+    # Provides:             jnt_tutorial
+    # Required-Start:       $remote_fs $syslog $network
+    # Required-Stop:        $remote_fs $syslog $network
+    # Default-Start:        2 3 4 5
+    # Default-Stop:         0 1 6
+    # Short-Description:    Janitoo tutorial
+    # Description:          Janitoo tutorial appliance server
+    #
+    ### END INIT INFO
+
+    NAME="jnt_tutorial"
+
+And copy it to the right directory :
+
+.. code:: bash
+
+    sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
 
 Spy it
 ======
@@ -124,15 +190,53 @@ Open a new shell and launch
 
     jnt_spy
 
-This will launch a spyer for the mqtt protocol :
+This will launch a spyer for the mqtt protocol
+
+Go to the first terminal and copy the config file to the config directory.
+The filename must be the same as the one using for the service name (jnt_tutorial) :
 
 .. code:: bash
 
-Go to the first terminal and launch ther server if needed :
+    cd /opt/janitoo/etc
+    cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv3.conf jnt_tutorial.conf
+
+Open the configuration file and update the needed parts :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv3.conf start
+    vim /opt/janitoo/etc/jnt_tutorial.conf
+
+.. code:: bash
+
+    [system]
+    service = jnt_tutorial
+    log_dir = /opt/janitoo/log
+    home_dir = /opt/janitoo/home
+    pid_dir = /opt/janitoo/run
+    conf_dir = /opt/janitoo/etc
+    broker_ip = 127.0.0.1
+    broker_port = 1883
+    broker_keepalive = 60
+    heartbeat_timeout = 10
+    heartbeat_count = 3
+    slow_start = 0.5
+
+    ...
+
+    [handler_file]
+    class = FileHandler
+    level = DEBUG
+    formatter = generic
+    args = ('/opt/janitoo/log/jnt_tutorial.log', 'w')
+
+There are many options startup like slow_start (a dedicated options for slow machines to sleep between startup steps).
+Look at source for list :(.
+
+You can now starts the service :
+
+.. code:: bash
+
+    sudo service jnt_tutorial start
 
 You can look at the protocol during startup on the spyer terminal.
 
@@ -140,7 +244,7 @@ You can also look at logs. In a new terminal :
 
 .. code:: bash
 
-    tail -n 100 -f /opt/janitoo/log/helloworldv3.log
+    tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
 
 Its time to query ther server. Go to the first terminal and query the network :
 
@@ -221,6 +325,25 @@ Get the user values :
     0225/0003  tutorial2__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
     0225/0003  tutorial2__cpu            temperature                    0    37.9                      °C         3     2     49       The temperature of the CPU
     0225/0002  tutorial2__temperature    temperature                    0    19.5                      °C         3     2     49       The temperature
+
+Start it at boot
+================
+
+To start your server on boot, use :
+
+.. code:: bash
+
+    sudo update-rc.d jnt_tutorial defaults
+
+You can also stop, restart, kill, ... your server using :
+
+.. code:: bash
+
+    sudo service jnt_tutorial
+
+.. code:: bash
+
+    Usage: /etc/init.d/jnt_tutorial {start|stop|restart|reload|status|kill}
 
 Performances
 ============

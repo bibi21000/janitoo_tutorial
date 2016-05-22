@@ -33,7 +33,7 @@
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
-    <link rel="next" title="Create and share" href="more.html" />
+    <link rel="next" title="HelloWord V4" href="hello_world_v4.html" />
     <link rel="prev" title="HelloWord V2" href="hello_world_v2.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -115,8 +115,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#explanations">Explanations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-bus">The bus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-finish-state-machine">The finish state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-server">Create a server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-it-at-boot">Start it at boot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hello_world_v4.html"> Hello World 4 : more advanced servers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#mosquitto">Mosquitto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#the-pure-client">The pure client</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="more.html"> Create and share</a><ul>
@@ -144,7 +152,7 @@
     </a>
   </li>
   <li>
-    <a href="more.html" title="Next Chapter: Create and share"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Create and share &raquo;</span>
+    <a href="hello_world_v4.html" title="Next Chapter: HelloWord V4"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">HelloWord V4 &raquo;</span>
     </a>
   </li>
               
@@ -276,20 +284,111 @@
 <p>FSM</p>
 <img alt="_images/fsm_bus.png" src="_images/fsm_bus.png" />
 </div>
+<div class="section" id="create-a-server">
+<h2>Create a server<a class="headerlink" href="#create-a-server" title="Permalink to this headline">¶</a></h2>
+<p>We will now create a server script, this will allow to start our server on startup:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>vim src/scripts/jnt_tutorial
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">janitoo.runner</span> <span class="kn">import</span> <span class="n">Runner</span><span class="p">,</span> <span class="n">jnt_parse_args</span>
+<span class="kn">from</span> <span class="nn">janitoo_raspberry.server</span> <span class="kn">import</span> <span class="n">PiServer</span>
+
+<span class="k">class</span> <span class="nc">MyPiServer</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Runner</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="c">#print self.options</span>
+
+    <span class="k">def</span> <span class="nf">app_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">PiServer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">app_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="n">daemon_runner</span> <span class="o">=</span> <span class="n">MyPiServer</span><span class="p">()</span>
+<span class="c">#This ensures that the logger file handle does not get closed during daemonization</span>
+<span class="c">#daemon_runner.daemon_context.files_preserve=[handler.stream]</span>
+<span class="n">daemon_runner</span><span class="o">.</span><span class="n">do_action</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Open the init script and update the provides, descriptions and NAME:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>vim src/scripts/jnt_tutorial.init
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre><span class="c">### BEGIN INIT INFO</span>
+<span class="c"># Provides:             jnt_tutorial</span>
+<span class="c"># Required-Start:       $remote_fs $syslog $network</span>
+<span class="c"># Required-Stop:        $remote_fs $syslog $network</span>
+<span class="c"># Default-Start:        2 3 4 5</span>
+<span class="c"># Default-Stop:         0 1 6</span>
+<span class="c"># Short-Description:    Janitoo tutorial</span>
+<span class="c"># Description:          Janitoo tutorial appliance server</span>
+<span class="c">#</span>
+<span class="c">### END INIT INFO</span>
+
+<span class="n">NAME</span><span class="o">=</span><span class="s">&quot;jnt_tutorial&quot;</span>
+</pre></div>
+</div>
+<p>And copy it to the right directory :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
+</pre></div>
+</div>
+</div>
 <div class="section" id="spy-it">
 <h2>Spy it<a class="headerlink" href="#spy-it" title="Permalink to this headline">¶</a></h2>
 <p>Open a new shell and launch</p>
 <div class="code bash highlight-python"><div class="highlight"><pre><span class="n">jnt_spy</span>
 </pre></div>
 </div>
-<p>This will launch a spyer for the mqtt protocol :</p>
-<p>Go to the first terminal and launch ther server if needed :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv3.conf start
+<p>This will launch a spyer for the mqtt protocol</p>
+<p>Go to the first terminal and copy the config file to the config directory.
+The filename must be the same as the one using for the service name (jnt_tutorial) :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>cd /opt/janitoo/etc
+cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv3.conf jnt_tutorial.conf
+</pre></div>
+</div>
+<p>Open the configuration file and update the needed parts :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">vim</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">janitoo</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">jnt_tutorial</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>[system]
+service = jnt_tutorial
+log_dir = /opt/janitoo/log
+home_dir = /opt/janitoo/home
+pid_dir = /opt/janitoo/run
+conf_dir = /opt/janitoo/etc
+broker_ip = 127.0.0.1
+broker_port = 1883
+broker_keepalive = 60
+heartbeat_timeout = 10
+heartbeat_count = 3
+slow_start = 0.5
+
+...
+
+[handler_file]
+class = FileHandler
+level = DEBUG
+formatter = generic
+args = (&#39;/opt/janitoo/log/jnt_tutorial.log&#39;, &#39;w&#39;)
+</pre></div>
+</div>
+<p>There are many options startup like slow_start (a dedicated options for slow machines to sleep between startup steps).
+Look at source for list :(.</p>
+<p>You can now starts the service :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo service jnt_tutorial start
 </pre></div>
 </div>
 <p>You can look at the protocol during startup on the spyer terminal.</p>
 <p>You can also look at logs. In a new terminal :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>tail -n 100 -f /opt/janitoo/log/helloworldv3.log
+<div class="code bash highlight-python"><div class="highlight"><pre>tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
 </pre></div>
 </div>
 <p>Its time to query ther server. Go to the first terminal and query the network :</p>
@@ -356,6 +455,20 @@ hadd       uuid                 name                      location              
 0225/0003  tutorial2__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
 0225/0003  tutorial2__cpu            temperature                    0    37.9                      °C         3     2     49       The temperature of the CPU
 0225/0002  tutorial2__temperature    temperature                    0    19.5                      °C         3     2     49       The temperature
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-it-at-boot">
+<h2>Start it at boot<a class="headerlink" href="#start-it-at-boot" title="Permalink to this headline">¶</a></h2>
+<p>To start your server on boot, use :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo update-rc.d jnt_tutorial defaults
+</pre></div>
+</div>
+<p>You can also stop, restart, kill, ... your server using :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo service jnt_tutorial
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>Usage: /etc/init.d/jnt_tutorial {start|stop|restart|reload|status|kill}
 </pre></div>
 </div>
 </div>

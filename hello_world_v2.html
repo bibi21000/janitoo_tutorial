@@ -115,8 +115,16 @@
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#explanations">Explanations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#the-bus">The bus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#the-finish-state-machine">The finish state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#create-a-server">Create a server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#start-it-at-boot">Start it at boot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hello_world_v4.html"> Hello World 4 : more advanced servers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#explanations">Explanations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#mosquitto">Mosquitto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#the-pure-client">The pure client</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="more.html"> Create and share</a><ul>
@@ -415,7 +423,7 @@ OK
     <span class="sd">&quot;&quot;&quot;Test the tutorial server</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">server_class</span> <span class="o">=</span> <span class="n">PiServer</span>
-    <span class="n">server_conf</span> <span class="o">=</span> <span class="s">&quot;tests/data/helloworldv3.conf&quot;</span>
+    <span class="n">server_conf</span> <span class="o">=</span> <span class="s">&quot;tests/data/helloworldv2.conf&quot;</span>
 
     <span class="n">hadds</span> <span class="o">=</span> <span class="p">[</span><span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
 </pre></div>
@@ -451,7 +459,7 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <p>Launch the server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
 </pre></div>
 </div>
 <p>You can look at the protocol during startup on the spyer terminal.</p>
@@ -531,7 +539,7 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 3050 root      20   0 59340  13m 4288 S   2,3  2,7   1:30.00 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv
 </pre></div>
 </div>
-<p>We devide the virutal memory by 2. Reserved memory is also less.</p>
+<p>We divide the virtual memory by 2. Reserved memory is also less.</p>
 </div>
 </div>
 
