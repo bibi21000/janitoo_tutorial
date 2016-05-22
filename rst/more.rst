@@ -167,6 +167,17 @@ Protocol
     - https://github.com/bibi21000/janitoo_manager/blob/master/src/janitoo_manager/network.py
     - https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py
 
+Database
+--------
+
+    - https://github.com/bibi21000/janitoo_db
+    - https://github.com/bibi21000/janitoo_db/blob/master/src/scripts/jnt_dbman
+    - https://github.com/bibi21000/janitoo_db_full
+    - https://github.com/bibi21000/janitoo_dhcp
+    - https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/models.py
+    - https://github.com/bibi21000/janitoo_layouts
+    - https://github.com/bibi21000/janitoo_layouts/blob/master/src/janitoo_layouts/models.py
+
 RRD
 ---
 
@@ -190,6 +201,8 @@ I want to help
  - arduino, esp8266, ... : minimal implementation of protocol and client
 
  - protocol : dhcp server, ...
+
+ - database : actually, database is optionnal (but mandatory for full protocol). Alembic configuration is done but database schema is broken.
 
  - components, values, ...
 
