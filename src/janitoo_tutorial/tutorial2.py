@@ -195,7 +195,7 @@ class TutorialBus(JNTBus):
         try:
             self.nodeman.find_value('led', 'blink').data = 'heartbeat'
             self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
-        except:
+        except Exception:
             logger.exception("[%s] - Error in on_enter_reporting", self.__class__.__name__)
         finally:
             self.bus_release()
@@ -210,7 +210,7 @@ class TutorialBus(JNTBus):
         try:
             self.nodeman.remove_polls(self.polled_sensors)
             self.nodeman.find_value('led', 'blink').data = 'off'
-        except:
+        except Exception:
             logger.exception("[%s] - Error in on_enter_sleeping", self.__class__.__name__)
         finally:
             self.bus_release()
@@ -222,7 +222,7 @@ class TutorialBus(JNTBus):
         self.bus_acquire()
         try:
             self.nodeman.find_value('led', 'blink').data = 'warning'
-        except:
+        except Exception:
             logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
         finally:
             self.bus_release()
@@ -285,7 +285,7 @@ class TutorialBus(JNTBus):
                 self.ring()
             if nums != 0:
                 self.get_bus_value('temperature').data = total / nums
-        except:
+        except Exception:
             logger.exception("[%s] - Error in on_check", self.__class__.__name__)
         finally:
             self.bus_release()
