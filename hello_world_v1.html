@@ -95,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#test-it">Test it</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#launch-it">Launch it</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#query-it">Query it</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#performances">Performances</a></li>
 </ul>
 </li>
@@ -382,18 +382,43 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
 </pre></div>
 </div>
 </div>
-<div class="section" id="spy-it">
-<h2>Spy it<a class="headerlink" href="#spy-it" title="Permalink to this headline">¶</a></h2>
-<p>Open a new shell and launch</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">jnt_spy</span>
-</pre></div>
-</div>
-<p>This will launch a spyer for the mqtt protocol :</p>
-<p>Go to the first terminal and launch ther server if needed :</p>
+<div class="section" id="query-it">
+<h2>Query it<a class="headerlink" href="#query-it" title="Permalink to this headline">¶</a></h2>
+<p>Launch the server :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
 </pre></div>
 </div>
-<p>You can look at the protocol during startup on the spyer terminal.</p>
+<p>Open a new shell (or screen) and launch the spyer. It will report all activity on mqtt :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">jnt_spy</span>
+</pre></div>
+</div>
+<p>You can look at the protocol during startup. You&#8217;ll see something like this :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre><span class="go">&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /#</span>
+<span class="go">!!!!!! Connect rc : 0</span>
+<span class="go">!!!!!! Subscribed to None : 1 (0,)</span>
+<span class="go">!!!!!! Type Ctrl+C 2 times to exit !!!!!!</span>
+<span class="gp">...</span>
+<span class="go">/values/user/0222/0001/voltage 0 {&quot;help&quot;: &quot;The voltage of the CPU&quot;, &quot;voice_uuid&quot;: null, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;node_uuid&quot;: &quot;hostsensor__picpu&quot;, &quot;entry_name&quot;: &quot;sensor_voltage&quot;, &quot;genre&quot;: 2, &quot;poll_delay&quot;: 300, &quot;data&quot;: 1.35, &quot;is_polled&quot;: true, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 0, &quot;uuid&quot;: &quot;voltage&quot;, &quot;is_readonly&quot;: true, &quot;min&quot;: null, &quot;default&quot;: null, &quot;type&quot;: 3, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0222/0001&quot;, &quot;label&quot;: &quot;CPUVolt&quot;, &quot;units&quot;: &quot;V&quot;}</span>
+<span class="go">/dhcp/heartbeat/0222/0001 0 OFFLINE</span>
+<span class="go">/dhcp/heartbeat/0221/0001 0 ONLINE</span>
+<span class="go">/values/user/0220/0001/humidity 0 {&quot;help&quot;: &quot;The humidity&quot;, &quot;voice_uuid&quot;: null, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;node_uuid&quot;: &quot;rpibasic__ambiance&quot;, &quot;entry_name&quot;: &quot;sensor_humidity&quot;, &quot;genre&quot;: 2, &quot;poll_delay&quot;: 300, &quot;data&quot;: 34.0, &quot;is_polled&quot;: true, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 0, &quot;uuid&quot;: &quot;humidity&quot;, &quot;is_readonly&quot;: true, &quot;min&quot;: null, &quot;default&quot;: null, &quot;type&quot;: 3, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0220/0001&quot;, &quot;label&quot;: &quot;Hum&quot;, &quot;units&quot;: &quot;%&quot;}</span>
+<span class="go">/dhcp/heartbeat/0220/0001 0 ONLINE</span>
+<span class="go">/values/user/0222/0001/frequency 0 {&quot;help&quot;: &quot;The frequency of the CPU&quot;, &quot;voice_uuid&quot;: null, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;node_uuid&quot;: &quot;hostsensor__picpu&quot;, &quot;entry_name&quot;: &quot;sensor_frequency&quot;, &quot;genre&quot;: 2, &quot;poll_delay&quot;: 300, &quot;data&quot;: 1000, &quot;is_polled&quot;: true, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 0, &quot;uuid&quot;: &quot;frequency&quot;, &quot;is_readonly&quot;: true, &quot;min&quot;: null, &quot;default&quot;: null, &quot;type&quot;: 3, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0222/0001&quot;, &quot;label&quot;: &quot;CPUFreq&quot;, &quot;units&quot;: &quot;MHz&quot;}</span>
+<span class="go">/values/user/0222/0001/temperature 0 {&quot;help&quot;: &quot;The temperature of the CPU&quot;, &quot;voice_uuid&quot;: null, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;node_uuid&quot;: &quot;hostsensor__picpu&quot;, &quot;entry_name&quot;: &quot;sensor_temperature&quot;, &quot;genre&quot;: 2, &quot;poll_delay&quot;: 300, &quot;data&quot;: 40.1, &quot;is_polled&quot;: true, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 0, &quot;uuid&quot;: &quot;temperature&quot;, &quot;is_readonly&quot;: true, &quot;min&quot;: null, &quot;default&quot;: null, &quot;type&quot;: 3, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0222/0001&quot;, &quot;label&quot;: &quot;CPUTemp&quot;, &quot;units&quot;: &quot;\u00b0C&quot;}</span>
+<span class="go">/values/user/0220/0001/temperature 0 {&quot;help&quot;: &quot;The temperature&quot;, &quot;voice_uuid&quot;: null, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;node_uuid&quot;: &quot;rpibasic__ambiance&quot;, &quot;entry_name&quot;: &quot;sensor_temperature&quot;, &quot;genre&quot;: 2, &quot;poll_delay&quot;: 300, &quot;data&quot;: 21.0, &quot;is_polled&quot;: true, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 0, &quot;uuid&quot;: &quot;temperature&quot;, &quot;is_readonly&quot;: true, &quot;min&quot;: null, &quot;default&quot;: null, &quot;type&quot;: 3, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0220/0001&quot;, &quot;label&quot;: &quot;Temp&quot;, &quot;units&quot;: &quot;\u00b0C&quot;}</span>
+<span class="go">/values/user/0221/0001/temperature 0 {&quot;help&quot;: &quot;The temperature&quot;, &quot;voice_uuid&quot;: null, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;node_uuid&quot;: &quot;rpi1wire__temperature&quot;, &quot;entry_name&quot;: &quot;sensor_temperature&quot;, &quot;genre&quot;: 2, &quot;poll_delay&quot;: 300, &quot;data&quot;: 85.0, &quot;is_polled&quot;: true, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 0, &quot;uuid&quot;: &quot;temperature&quot;, &quot;is_readonly&quot;: true, &quot;min&quot;: null, &quot;default&quot;: null, &quot;type&quot;: 3, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0221/0001&quot;, &quot;label&quot;: &quot;Temp&quot;, &quot;units&quot;: &quot;\u00b0C&quot;}</span>
+<span class="go">/dhcp/heartbeat/0222/0000 0 ONLINE</span>
+<span class="go">/dhcp/heartbeat/0222/0001 0 OFFLINE</span>
+<span class="go">/dhcp/heartbeat/0221/0000 0 ONLINE</span>
+<span class="go">/dhcp/heartbeat/0220/0000 0 ONLINE</span>
+<span class="go">/dhcp/heartbeat/0221/0001 0 ONLINE</span>
+<span class="go">/dhcp/heartbeat/0220/0001 0 ONLINE</span>
+<span class="go">/dhcp/heartbeat/0221/0001 0 OFFLINE</span>
+<span class="go">/dhcp/heartbeat/0222/0001 0 OFFLINE</span>
+<span class="go">/dhcp/heartbeat/0220/0000 0 OFFLINE</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
 <p>You can also look at logs. In a new terminal :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>tail -n 100 -f /opt/janitoo/log/helloworldv1.log
 </pre></div>
