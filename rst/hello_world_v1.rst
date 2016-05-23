@@ -224,6 +224,7 @@ If everything is ok, the screen output should be something like this :
 
 Otherwise you should have a log capture with surely some errors inside.
 
+
 Launch it
 =========
 
@@ -269,26 +270,49 @@ Or killing it if needed :
     sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf kill
 
 
-Spy it
-======
+Query it
+========
 
-Open a new shell and launch
-
-.. code:: bash
-
-    jnt_spy
-
-This will launch a spyer for the mqtt protocol :
-
-.. code:: bash
-
-Go to the first terminal and launch ther server if needed :
+Launch the server :
 
 .. code:: bash
 
     sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
 
-You can look at the protocol during startup on the spyer terminal.
+Open a new shell (or screen) and launch the spyer. It will report all activity on mqtt :
+
+.. code:: bash
+
+    jnt_spy
+
+You can look at the protocol during startup. You'll see something like this :
+
+.. code:: bash
+
+    >>>>>> Subscribe to /#
+    !!!!!! Connect rc : 0
+    !!!!!! Subscribed to None : 1 (0,)
+    !!!!!! Type Ctrl+C 2 times to exit !!!!!!
+    ...
+    /values/user/0222/0001/voltage 0 {"help": "The voltage of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "hostsensor__picpu", "entry_name": "sensor_voltage", "genre": 2, "poll_delay": 300, "data": 1.35, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "voltage", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0222/0001", "label": "CPUVolt", "units": "V"}
+    /dhcp/heartbeat/0222/0001 0 OFFLINE
+    /dhcp/heartbeat/0221/0001 0 ONLINE
+    /values/user/0220/0001/humidity 0 {"help": "The humidity", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "rpibasic__ambiance", "entry_name": "sensor_humidity", "genre": 2, "poll_delay": 300, "data": 34.0, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "humidity", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0220/0001", "label": "Hum", "units": "%"}
+    /dhcp/heartbeat/0220/0001 0 ONLINE
+    /values/user/0222/0001/frequency 0 {"help": "The frequency of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "hostsensor__picpu", "entry_name": "sensor_frequency", "genre": 2, "poll_delay": 300, "data": 1000, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "frequency", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0222/0001", "label": "CPUFreq", "units": "MHz"}
+    /values/user/0222/0001/temperature 0 {"help": "The temperature of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "hostsensor__picpu", "entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": 40.1, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0222/0001", "label": "CPUTemp", "units": "\u00b0C"}
+    /values/user/0220/0001/temperature 0 {"help": "The temperature", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "rpibasic__ambiance", "entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": 21.0, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0220/0001", "label": "Temp", "units": "\u00b0C"}
+    /values/user/0221/0001/temperature 0 {"help": "The temperature", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "rpi1wire__temperature", "entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": 85.0, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0221/0001", "label": "Temp", "units": "\u00b0C"}
+    /dhcp/heartbeat/0222/0000 0 ONLINE
+    /dhcp/heartbeat/0222/0001 0 OFFLINE
+    /dhcp/heartbeat/0221/0000 0 ONLINE
+    /dhcp/heartbeat/0220/0000 0 ONLINE
+    /dhcp/heartbeat/0221/0001 0 ONLINE
+    /dhcp/heartbeat/0220/0001 0 ONLINE
+    /dhcp/heartbeat/0221/0001 0 OFFLINE
+    /dhcp/heartbeat/0222/0001 0 OFFLINE
+    /dhcp/heartbeat/0220/0000 0 OFFLINE
+    ...
 
 You can also look at logs. In a new terminal :
 
