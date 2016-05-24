@@ -296,13 +296,12 @@ Here, that is : 192.168.14.65.</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>broker_ip = 192.168.14.65
 </pre></div>
 </div>
-<p>Save and exit from ssh :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>root@8eafc45f6d09:~# exit
+<p>Save your updates and restart jnt_hostsensor :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>root@8eafc45f6d09:~# killall jnt_hostsensor
 </pre></div>
 </div>
-<p>Restart the docker appliance container:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>docker stop mycontainer
-docker start mycontainer
+<p>Exit from ssh :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>root@8eafc45f6d09:~# exit
 </pre></div>
 </div>
 <p>For a complete tutorial about the janitoo_hostsensor docker appliance, loook at <a class="reference external" href="https://bibi21000.github.io/janitoo_hostsensor/">https://bibi21000.github.io/janitoo_hostsensor/</a>.</p>
