@@ -127,6 +127,7 @@ Raspberry : you can launch tests on your raspberry using : sudo make tests-all (
 Examples
 ========
 
+
 Values
 ------
 
@@ -146,6 +147,7 @@ A value to blink ... everything. Use callback to perform the action
 - Example : https://github.com/bibi21000/janitoo_raspberry_gpio/blob/master/src/janitoo_raspberry_gpio/gpio.py#L764
 - Test : https://github.com/bibi21000/janitoo_factory_exts/blob/master/tests/test_values.py
 
+
 Components and bus
 ------------------
 
@@ -159,6 +161,7 @@ Look at rasperry i2c :
 I want more
 ===========
 
+
 Protocol
 --------
 
@@ -168,6 +171,7 @@ Protocol
 - https://github.com/bibi21000/janitoo_flask_socketio/blob/master/src/janitoo_flask_socketio/network.py
 - https://github.com/bibi21000/janitoo_manager/blob/master/src/janitoo_manager/network.py
 - https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py
+
 
 Database
 --------
@@ -179,6 +183,7 @@ Database
 - https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/models.py
 - https://github.com/bibi21000/janitoo_layouts
 - https://github.com/bibi21000/janitoo_layouts/blob/master/src/janitoo_layouts/models.py
+
 
 RRD
 ---
@@ -209,6 +214,7 @@ Documentation
 Documentation is managed using Sphinx and it is generated automatically. So please update pages in rst directories or in src.
 
 There is an extension too :
+
 
 setup.py
 --------

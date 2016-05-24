@@ -12,6 +12,7 @@ In the previous, we define many bus in the configuration. This have some limits,
 
 So in this example, we will create a new bus which will hold all the sensors and define a new value.
 
+
 The components
 ==============
 
@@ -47,6 +48,7 @@ For the DHT component, it's looks like :
             DHTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
                     **kwargs)
 
+
 The bus
 =======
 
@@ -81,6 +83,7 @@ After, we will a new value to propagate the average tempetature :
 
 We also define a poll value to this value.
 
+
 The thread
 ==========
 
@@ -105,6 +108,7 @@ For the DHT component, it's looks like :
             from janitoo_tutorial.tutorial1 import TutorialBus
             self.section = OID
             self.bus = TutorialBus(options=self.options, oid=self.section, product_name="Raspberry tutorial controller")
+
 
 Entry-points
 ============
@@ -140,6 +144,7 @@ Or for the component :
 
     def make_ambiance(**kwargs):
         return AmbianceComponent(**kwargs)
+
 
 Configuration
 =============
@@ -177,6 +182,7 @@ Look at the DHT section, it's similar to the one seen in first tutorial :
     hadd = 0225/0001
     pin_0 = 6
     sensor_0 = 11
+
 
 Test it
 =======
@@ -334,6 +340,7 @@ You can also the whole tests, which whould help you to fix problems :
 
     sudo make tests
 
+
 Launch it
 =========
 
@@ -434,6 +441,7 @@ Get the user values :
     0225/0003  tutorial1__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
     0225/0003  tutorial1__cpu            temperature                    0    38.5                      °C         3     2     49       The temperature of the CPU
     0225/0002  tutorial1__temperature    temperature                    0    19.2                      °C         3     2     49       The temperature
+
 
 Performances
 ============
