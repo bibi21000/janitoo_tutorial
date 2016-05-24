@@ -119,7 +119,7 @@ This bus hold one component (temperature) of type rpi1wire.ds18b20.
 
 .. code:: bash
 
-    jnt_collect -b rpi1wire
+    $ jnt_collect -b rpi1wire
 
 .. code:: bash
 
