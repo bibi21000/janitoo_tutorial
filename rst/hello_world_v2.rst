@@ -181,7 +181,7 @@ Look at the DHT section, it's similar to the one seen in first tutorial :
 Test it
 =======
 
-You're ready to test your components. Create a test :
+You're ready to test your components. Create a test for each component. For example, for the DTH:
 
 .. code:: bash
 

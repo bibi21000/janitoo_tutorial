@@ -1,0 +1,7 @@
+# Makefile for local
+#
+SUBMODULES = janitoo_nosetests janitoo janitoo_factory janitoo_factory_exts \
+ janitoo_hostsensor janitoo_hostsensor_raspberry \
+ janitoo_raspberry janitoo_raspberry_gpio janitoo_raspberry_dht \
+ janitoo_raspberry_1wire \
+ janitoo_tutorial
