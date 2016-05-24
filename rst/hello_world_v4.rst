@@ -148,18 +148,17 @@ You must update the broker ip. It should match the ip address of your shared "mo
 
     broker_ip = 192.168.14.65
 
-Save and exit from ssh :
+Save your updates and restart jnt_hostsensor :
+
+.. code:: bash
+
+    root@8eafc45f6d09:~# killall jnt_hostsensor
+
+Exit from ssh :
 
 .. code:: bash
 
     root@8eafc45f6d09:~# exit
-
-Restart the docker appliance container:
-
-.. code:: bash
-
-    docker stop mycontainer
-    docker start mycontainer
 
 For a complete tutorial about the janitoo_hostsensor docker appliance, loook at https://bibi21000.github.io/janitoo_hostsensor/.
 
