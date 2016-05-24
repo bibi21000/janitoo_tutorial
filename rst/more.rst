@@ -8,16 +8,16 @@ With Janitoo you can easely share your components, threads and values.
 Why
 ===
 
- - Re-use of code
- - Tests
+- Re-use of code
+- Tests
 
 
 How
 ===
 
- - Create your components
- - Write tests (at least 80% coverage)
- - Submit pull requests to janitoo_factory or janitoo_factory_exts repositories.
+- Create your components
+- Write tests (at least 80% coverage)
+- Submit pull requests to janitoo_factory or janitoo_factory_exts repositories.
 
 For more complex developments, you can also ask to add your github directory to : https://github.com/bibi21000/janitoo_docker.
 
@@ -154,9 +154,9 @@ Components and bus
 
 Look at rasperry i2c :
 
- - https://github.com/bibi21000/janitoo_raspberry_i2c
- - https://github.com/bibi21000/janitoo_raspberry_i2c_bmp
- - https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685
+- https://github.com/bibi21000/janitoo_raspberry_i2c
+- https://github.com/bibi21000/janitoo_raspberry_i2c_bmp
+- https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685
 
 
 I want more
@@ -165,23 +165,23 @@ I want more
 Protocol
 --------
 
-    - https://github.com/bibi21000/janitoo/blob/master/src/janitoo/dhcp.py
-    - https://github.com/bibi21000/janitoo_dhcp
-    - https://github.com/bibi21000/janitoo_flask/blob/master/src/janitoo_flask/network.py
-    - https://github.com/bibi21000/janitoo_flask_socketio/blob/master/src/janitoo_flask_socketio/network.py
-    - https://github.com/bibi21000/janitoo_manager/blob/master/src/janitoo_manager/network.py
-    - https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py
+- https://github.com/bibi21000/janitoo/blob/master/src/janitoo/dhcp.py
+- https://github.com/bibi21000/janitoo_dhcp
+- https://github.com/bibi21000/janitoo_flask/blob/master/src/janitoo_flask/network.py
+- https://github.com/bibi21000/janitoo_flask_socketio/blob/master/src/janitoo_flask_socketio/network.py
+- https://github.com/bibi21000/janitoo_manager/blob/master/src/janitoo_manager/network.py
+- https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py
 
 Database
 --------
 
-    - https://github.com/bibi21000/janitoo_db
-    - https://github.com/bibi21000/janitoo_db/blob/master/src/scripts/jnt_dbman
-    - https://github.com/bibi21000/janitoo_db_full
-    - https://github.com/bibi21000/janitoo_dhcp
-    - https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/models.py
-    - https://github.com/bibi21000/janitoo_layouts
-    - https://github.com/bibi21000/janitoo_layouts/blob/master/src/janitoo_layouts/models.py
+- https://github.com/bibi21000/janitoo_db
+- https://github.com/bibi21000/janitoo_db/blob/master/src/scripts/jnt_dbman
+- https://github.com/bibi21000/janitoo_db_full
+- https://github.com/bibi21000/janitoo_dhcp
+- https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/models.py
+- https://github.com/bibi21000/janitoo_layouts
+- https://github.com/bibi21000/janitoo_layouts/blob/master/src/janitoo_layouts/models.py
 
 RRD
 ---
@@ -197,19 +197,13 @@ It will be the test server for the new remote values.
 I want to help
 ==============
 
- - documentation : as you surely read, english is not my native language :) ...
-
- - web development : socketio vs websockets, common layout presentation (fisthank, thermostat) for android, html, ...
-
- - android : minimal implementation of protocol and client
-
- - arduino, esp8266, ... : minimal implementation of protocol and client
-
- - protocol : dhcp server, ...
-
- - database : actually, database is optionnal (but mandatory for full protocol). Alembic configuration is done but database schema is broken.
-
- - components, values, ...
+- documentation : as you surely read, english is not my native language :) ...
+- web development : socketio vs websockets, common layout presentation (fisthank, thermostat) for android, html, ...
+- android : minimal implementation of protocol and client
+- arduino, esp8266, ... : minimal implementation of protocol and client
+- protocol : dhcp server, ...
+- database : actually, database is optionnal (but mandatory for full protocol). Alembic configuration is done but database schema is broken.
+- components, values, ...
 
 
 Documentation
