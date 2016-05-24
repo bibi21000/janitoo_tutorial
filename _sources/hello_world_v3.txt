@@ -8,9 +8,9 @@ Explanations
 
 For this last example, we will create a more sophisticated server : it will
 
- - calculate the average temperature
- - report its state via a led
- - use a finish state machine (fsm)
+- calculate the average temperature
+- report its state via a led
+- use a finish state machine (fsm)
 
 
 The bus

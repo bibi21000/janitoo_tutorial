@@ -9,9 +9,9 @@ Explanations
 In this part, we will connect many machines using Janitoo.
 Ideally you need another raspberry :D. But you can also use :
 
- - a computer with Ubuntu or Debian
- - install another server on the same raspberry
- - or using a docker image
+- a computer with Ubuntu or Debian
+- install another server on the same raspberry
+- or using a docker image
 
 Mosquitto
 =========
@@ -237,7 +237,7 @@ More servers
 
 You could find something usefull here :
 
-    - https://github.com/bibi21000/janitoo_nut
-    - https://github.com/bibi21000/janitoo_roomba
+- https://github.com/bibi21000/janitoo_nut
+- https://github.com/bibi21000/janitoo_roomba
 
 All this examples have configurations and tests which should help you to configure your server.

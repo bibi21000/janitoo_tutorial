@@ -7,9 +7,9 @@ What ?
 ======
 Create a raspberry applicance server which will report :
 
- - the temperature of the CPU
- - the temperature of a onewire sensor
- - the temperature of a DHT sensor
+- the temperature of the CPU
+- the temperature of a onewire sensor
+- the temperature of a DHT sensor
 
 
 Needed parts
