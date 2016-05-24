@@ -123,7 +123,7 @@ We will now create a server script, this will allow to start our server on start
 
 .. code:: bash
 
-    vim src/scripts/jnt_tutorial
+    $ vim src/scripts/jnt_tutorial
 
 .. code:: python
 
@@ -179,7 +179,7 @@ And copy it to the right directory :
 
 .. code:: bash
 
-    sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
+    $ sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
 
 
 Spy it
@@ -189,7 +189,7 @@ Open a new shell and launch
 
 .. code:: bash
 
-    jnt_spy
+    $ jnt_spy
 
 This will launch a spyer for the mqtt protocol
 
@@ -198,14 +198,14 @@ The filename must be the same as the one using for the service name (jnt_tutoria
 
 .. code:: bash
 
-    cd /opt/janitoo/etc
-    cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv3.conf jnt_tutorial.conf
+    $ cd /opt/janitoo/etc
+    $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv3.conf jnt_tutorial.conf
 
 Open the configuration file and update the needed parts :
 
 .. code:: bash
 
-    vim /opt/janitoo/etc/jnt_tutorial.conf
+    $ vim /opt/janitoo/etc/jnt_tutorial.conf
 
 .. code:: bash
 
@@ -237,7 +237,7 @@ You can now starts the service :
 
 .. code:: bash
 
-    sudo service jnt_tutorial start
+    $ sudo service jnt_tutorial start
 
 You can look at the protocol during startup on the spyer terminal.
 
@@ -245,13 +245,13 @@ You can also look at logs. In a new terminal :
 
 .. code:: bash
 
-    tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
+    $ tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
 
 Its time to query ther server. Go to the first terminal and query the network :
 
 .. code:: bash
 
-    jnt_query network
+    $ jnt_query network
 
 You should receive the list of nodes availables on your server :
 
@@ -269,7 +269,7 @@ You can also query a node :
 
 .. code:: bash
 
-    jnt_query node --hadd 0225/0000
+    $ jnt_query node --hadd 0225/0000
 
 .. code:: bash
 
@@ -277,7 +277,7 @@ Check the config values :
 
 .. code:: bash
 
-    jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+    $ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
 
 .. code:: bash
 
@@ -312,7 +312,7 @@ Get the user values :
 
 .. code:: bash
 
-    jnt_query node --hadd 0225/0000 --vuuid request_info_users
+    $ jnt_query node --hadd 0225/0000 --vuuid request_info_users
 
 .. code:: bash
 
@@ -335,13 +335,13 @@ To start your server on boot, use :
 
 .. code:: bash
 
-    sudo update-rc.d jnt_tutorial defaults
+    $ sudo update-rc.d jnt_tutorial defaults
 
 You can also stop, restart, kill, ... your server using :
 
 .. code:: bash
 
-    sudo service jnt_tutorial
+    $ sudo service jnt_tutorial
 
 .. code:: bash
 
@@ -353,7 +353,7 @@ Performances
 
 .. code:: bash
 
-    nice top
+    $ nice top
 
 .. code:: bash
 

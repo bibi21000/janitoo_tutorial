@@ -120,6 +120,7 @@ class TutorialBus(JNTBus):
             label='Timer.',
             default=45,
         )
+
         uuid="{:s}_temperature_critical".format(OID)
         self.values[uuid] = self.value_factory['config_integer'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
@@ -127,8 +128,7 @@ class TutorialBus(JNTBus):
             label='Critical',
             default=50,
         )
-        self._bus_lock = threading.Lock()
-        self.presence_events = {}
+
         uuid="{:s}_temperature".format(OID)
         self.values[uuid] = self.value_factory['sensor_temperature'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
@@ -137,6 +137,7 @@ class TutorialBus(JNTBus):
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
+
         uuid="{:s}_state".format(OID)
         self.values[uuid] = self.value_factory['sensor_string'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
@@ -146,6 +147,7 @@ class TutorialBus(JNTBus):
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
+
         uuid="{:s}_change".format(OID)
         self.values[uuid] = self.value_factory['action_string'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
@@ -156,6 +158,8 @@ class TutorialBus(JNTBus):
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
+        self._bus_lock = threading.Lock()
+        self.presence_events = {}
         self.state = "sleeping"
 
     def get_state(self, node_uuid, index):

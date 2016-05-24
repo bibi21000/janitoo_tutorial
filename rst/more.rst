@@ -81,13 +81,13 @@ After your server is fully functionnal, you can launch the full test suite :
 
 .. code:: bash
 
-    sudo make tests >tests.log 2>&1; sudo coverage report >>tests.log 2>&1
+    $ sudo make tests >tests.log 2>&1; sudo coverage report >>tests.log 2>&1
 
 On a another screen/terminal, you can take a look at the tests logs :
 
 .. code:: bash
 
-    tail -f tests.log
+    $ tail -f tests.log
 
 You can now safely watch your favorite episode of Game of Thrones :D
 

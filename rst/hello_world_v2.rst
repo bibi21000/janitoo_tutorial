@@ -20,13 +20,13 @@ Change to the tutorial directory :
 
 .. code:: bash
 
-    cd /opt/janitoo/src/janitoo_tutorial
+    $ cd /opt/janitoo/src/janitoo_tutorial
 
 Open the tutorial1 implementation :
 
 .. code:: bash
 
-    vim src/janitoo_tutorial/tutorial1.py
+    $ vim src/janitoo_tutorial/tutorial1.py
 
 We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
 For the DHT component, it's looks like :
@@ -91,7 +91,7 @@ The thread hold the bus :
 
 .. code:: bash
 
-    vim src/janitoo_tutorial/thread_tutorial1.py
+    $ vim src/janitoo_tutorial/thread_tutorial1.py
 
 We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
 For the DHT component, it's looks like :
@@ -153,7 +153,7 @@ Open the test configuration file in your favorite editor :
 
 .. code:: bash
 
-    vim tests/data/helloworldv2.conf
+    $ vim tests/data/helloworldv2.conf
 
 Like seen in the first tutorial, there is a section for the new bus (thread) :
 
@@ -191,7 +191,7 @@ You're ready to test your components. Create a test for each component. For exam
 
 .. code:: bash
 
-    vim tests/test_components_v2.py
+    $ vim tests/test_components_v2.py
 
 .. code:: python
 
@@ -204,7 +204,7 @@ And launch it :
 
 .. code:: bash
 
-    sudo nosetests -v tests/test_components_v2.py
+    $ sudo nosetests -v tests/test_components_v2.py
 
 The result should be :
 
@@ -232,7 +232,7 @@ Test for the tread :
 
 .. code:: bash
 
-    vim tests/tests/test_thread_v2.py
+    $ vim tests/tests/test_thread_v2.py
 
 .. code:: python
 
@@ -246,7 +246,7 @@ And launch it :
 
 .. code:: bash
 
-    sudo nosetests -v tests/test_thread_v2.py
+    $ sudo nosetests -v tests/test_thread_v2.py
 
 The result should be :
 
@@ -265,7 +265,7 @@ And the test for the bus :
 
 .. code:: bash
 
-    vim tests/tests/test_bus_v2.py
+    $ vim tests/tests/test_bus_v2.py
 
 .. code:: python
 
@@ -281,7 +281,7 @@ And launch it :
 
 .. code:: bash
 
-    sudo nosetests -v tests/test_bus_v2.py
+    $ sudo nosetests -v tests/test_bus_v2.py
 
 The result should be :
 
@@ -299,7 +299,7 @@ And for the server :
 
 .. code:: python
 
-    vim tests/test_server_v2.py
+    $ vim tests/test_server_v2.py
 
 .. code:: bash
 
@@ -315,7 +315,7 @@ And launch it :
 
 .. code:: bash
 
-    sudo nosetests -v tests/test_server_v2.py
+    $ sudo nosetests -v tests/test_server_v2.py
 
 The result should be :
 
@@ -338,7 +338,7 @@ You can also the whole tests, which whould help you to fix problems :
 
 .. code:: bash
 
-    sudo make tests
+    $ sudo make tests
 
 
 Launch it
@@ -348,14 +348,14 @@ You can now copy the config file to the config directory:
 
 .. code:: bash
 
-    cd /opt/janitoo/etc
-    cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
+    $ cd /opt/janitoo/etc
+    $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 
 Launch the server :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
+    $ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
 
 You can look at the protocol during startup on the spyer terminal.
 
@@ -363,13 +363,13 @@ You can also look at logs. In a new terminal :
 
 .. code:: bash
 
-    tail -n 100 -f /opt/janitoo/log/helloworldv2.log
+    $ tail -n 100 -f /opt/janitoo/log/helloworldv2.log
 
 Its time to query ther server. Go to the first terminal and query the network :
 
 .. code:: bash
 
-    jnt_query network
+    $ jnt_query network
 
 You should receive the list of nodes availables on your server :
 
@@ -385,7 +385,7 @@ You can also query a node :
 
 .. code:: bash
 
-    jnt_query node --hadd 0225/0000
+    $ jnt_query node --hadd 0225/0000
 
 .. code:: bash
 
@@ -401,7 +401,7 @@ Check the config values :
 
 .. code:: bash
 
-    jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+    $ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
 
 .. code:: bash
 
@@ -429,7 +429,7 @@ Get the user values :
 
 .. code:: bash
 
-    jnt_query node --hadd 0225/0000 --vuuid request_info_users
+    $ jnt_query node --hadd 0225/0000 --vuuid request_info_users
 
 .. code:: bash
 
@@ -448,7 +448,7 @@ Performances
 
 .. code:: bash
 
-    nice top
+    $ nice top
 
 .. code:: bash
 

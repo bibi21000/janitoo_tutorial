@@ -16,13 +16,13 @@ Change to the tutorial directory :
 
 .. code:: bash
 
-    cd /opt/janitoo/src/janitoo_tutorial
+    $ cd /opt/janitoo/src/janitoo_tutorial
 
 And open the test configuration file in your favorite editor :
 
 .. code:: bash
 
-    vim tests/data/helloworldv1.conf
+    $ vim tests/data/helloworldv1.conf
 
 
 The DHT component
@@ -65,7 +65,7 @@ You can get more informations on config values using jnt_collect :
 
 .. code:: bash
 
-    jnt_collect -c rpibasic.dht
+    $ jnt_collect -c rpibasic.dht
 
 .. code:: bash
 
@@ -87,7 +87,7 @@ You can also use jnt_collect to get values from a bus :
 
 .. code:: bash
 
-    jnt_collect -b rpibasic
+    $ jnt_collect -b rpibasic
 
 .. code:: bash
 
@@ -136,7 +136,7 @@ If you need to set this config value, add a line like :
 
 .. code:: bash
 
-    rpi1wire_sensors_dir_0 = /sys/bus/w1/devices/
+    $ rpi1wire_sensors_dir_0 = /sys/bus/w1/devices/
 
 .. code:: bash
 
@@ -153,7 +153,7 @@ You can get more informations on config values using jnt_collect :
 
 .. code:: bash
 
-    jnt_collect -c rpi1wire.ds18b20
+    $ jnt_collect -c rpi1wire.ds18b20
 
 .. code:: bash
 
@@ -167,7 +167,7 @@ You can see that hexadd config value is the address of your DS18B20. You can fin
 
 .. code:: bash
 
-    ls /sys/bus/w1/devices/
+    $ ls /sys/bus/w1/devices/
 
 
 The CPU component
@@ -197,7 +197,7 @@ You're ready to test your server. Janitoo has a lot of built in tests.
 
 .. code:: bash
 
-    vim tests/test_server_v1.py
+    $ vim tests/test_server_v1.py
 
 .. code:: python
 
@@ -213,7 +213,7 @@ For the impatient :
 
 .. code:: bash
 
-    sudo nosetests tests/test_server_v1.py -v -m test_040_server_start_no_error_in_log
+    $ sudo nosetests tests/test_server_v1.py -v -m test_040_server_start_no_error_in_log
 
 If everything is ok, the screen output should be something like this :
 
@@ -235,14 +235,14 @@ You can now copy the config file to the config directory:
 
 .. code:: bash
 
-    cd /opt/janitoo/etc
-    cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
+    $ cd /opt/janitoo/etc
+    $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
 
 And launch the server :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf front
+    $ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf front
 
 This will launch the server in foreground.
 
@@ -252,25 +252,25 @@ If everything is ok, you can launch the server in background :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
+    $ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
 
 You can stop it using :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf stop
+    $ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf stop
 
 Checking its status :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf status
+    $ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf status
 
 Or killing it if needed :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf kill
+    $ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf kill
 
 
 Query it
@@ -280,13 +280,13 @@ Launch the server :
 
 .. code:: bash
 
-    sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
+    $ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
 
 Open a new shell (or screen) and launch the spyer. It will report all activity on mqtt :
 
 .. code:: bash
 
-    jnt_spy
+    $ jnt_spy
 
 You can look at the protocol during startup. You'll see something like this :
 
@@ -321,13 +321,13 @@ You can also look at logs. In a new terminal :
 
 .. code:: bash
 
-    tail -n 100 -f /opt/janitoo/log/helloworldv1.log
+    $ tail -n 100 -f /opt/janitoo/log/helloworldv1.log
 
 Its time to query ther server. Go to the first terminal and query the network :
 
 .. code:: bash
 
-    jnt_query network
+    $ jnt_query network
 
 You should receive the list of nodes availables on your server :
 
@@ -345,7 +345,7 @@ You can also query a node :
 
 .. code:: bash
 
-    jnt_query node --hadd 0222/0000
+    $ jnt_query node --hadd 0222/0000
 
 .. code:: bash
 
@@ -355,7 +355,7 @@ You can also query a node :
 
 .. code:: bash
 
-    jnt_query node --hadd 0220/0000
+    $ jnt_query node --hadd 0220/0000
 
 .. code:: bash
 
@@ -365,7 +365,7 @@ You can also query a node :
 
 .. code:: bash
 
-    jnt_query node --hadd 0221/0000
+    $ jnt_query node --hadd 0221/0000
 
 .. code:: bash
 
@@ -377,7 +377,7 @@ You can also query a node to request its users values :
 
 .. code:: bash
 
-    jnt_query node --hadd 0222/0000 --vuuid request_info_users
+    $ jnt_query node --hadd 0222/0000 --vuuid request_info_users
 
 .. code:: bash
 
@@ -392,7 +392,7 @@ Performances
 
 .. code:: bash
 
-    nice top
+    $ nice top
 
 .. code:: bash
 
