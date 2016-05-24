@@ -121,10 +121,12 @@
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v3.html#performances">Performances</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world_v4.html"> Hello World 4 : more advanced servers</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="hello_world_v4.html"> Hello World 4 : many servers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#explanations">Explanations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#mosquitto">Mosquitto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#the-pure-client">The pure client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#the-docker-appliance">The docker appliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#the-network">The network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#more-servers">More servers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="more.html"> Create and share</a><ul>
@@ -227,12 +229,12 @@ sudo make module=janitoo develop
 </pre></div>
 </div>
 <p>Order is important. If some package appears in eggs dependencies before they&#8217;ve been downloaded, you&#8217;ll run a &#8216;binary&#8217; version of the package, not the one installed in src.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre># Makefile for local
-#
-
-SUBMODULES = janitoo_nosetests janitoo janitoo_factory janitoo_factory_exts\
- janitoo_hostsensor_raspberry janitoo_raspberry janitoo_raspberry_gpio janitoo_raspberry_dht \
- janitoo_raspberry_1wire \
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Makefile for local</span>
+<span class="c">#</span>
+<span class="nv">SUBMODULES</span> <span class="o">=</span> janitoo_nosetests janitoo janitoo_factory janitoo_factory_exts <span class="se">\</span>
+ janitoo_hostsensor janitoo_hostsensor_raspberry <span class="se">\</span>
+ janitoo_raspberry janitoo_raspberry_gpio janitoo_raspberry_dht <span class="se">\</span>
+ janitoo_raspberry_1wire <span class="se">\</span>
  janitoo_tutorial
 </pre></div>
 </div>

@@ -66,15 +66,9 @@ Create the list of packages in /opt/janitoo/src using your favorite editor ... o
 
 Order is important. If some package appears in eggs dependencies before they've been downloaded, you'll run a 'binary' version of the package, not the one installed in src.
 
-.. code:: bash
+.. literalinclude:: ../../../Makefile.janitoo
+   :language: bash
 
-    # Makefile for local
-    #
-
-    SUBMODULES = janitoo_nosetests janitoo janitoo_factory janitoo_factory_exts\
-     janitoo_hostsensor_raspberry janitoo_raspberry janitoo_raspberry_gpio janitoo_raspberry_dht \
-     janitoo_raspberry_1wire \
-     janitoo_tutorial
 
 You're now ready to clone the needed modules. sudo password may be asked during this phase :
 

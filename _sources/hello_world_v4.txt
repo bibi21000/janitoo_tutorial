@@ -6,20 +6,12 @@ HelloWord V4
 Explanations
 ============
 
-In this part, we will connect many raspberries using Janitoo.
-So ideally you need another one :D. But you can also use :
+In this part, we will connect many machines using Janitoo.
+Ideally you need another raspberry :D. But you can also use :
 
  - a computer with Ubuntu or Debian
  - install another server on the same raspberry
-
-You could find something usefull here :
-
-    - https://github.com/bibi21000/janitoo_nut
-    - https://github.com/bibi21000/janitoo_roomba
-    - https://github.com/bibi21000/janitoo_hostsensor_lmsensor
-    - https://github.com/bibi21000/janitoo_hostsensor_psutil
-
-All this examples have configurations and tests which should help you to configure your server.
+ - or using a docker image
 
 Mosquitto
 =========
@@ -109,64 +101,72 @@ You can now restart your server :
 
     sudo service jnt_tutorial restart
 
-The pure client
-===============
+The docker appliance
+====================
 
-On the other raspberry (or on your local pc), install Janitoo the same we do it in the past.
-Except that you don't need to install mosquitto anymore, as we will use the one installed on the fisrt raspberry.
-
-The only differnce is in the configuration file. Open it :
+On Janitoo, you can use a docker appliance. Pull the janitoo_hostsensor image :
 
 .. code:: bash
 
-    vim /opt/janitoo/etc/jnt_tutorial.conf
+    docker pull bibi21000/janitoo_hostsensor
+
+And create a container :
 
 .. code:: bash
 
-    [system]
-    service = jnt_tutorial
-    log_dir = /opt/janitoo/log
-    home_dir = /opt/janitoo/home
-    pid_dir = /opt/janitoo/run
-    conf_dir = /opt/janitoo/etc
+    docker create -p 8882:22 --name mycontainer bibi21000/janitoo_hostsensor
+
+Start it :
+
+.. code:: bash
+
+    docker start mycontainer
+
+Check that is it running :
+
+.. code:: bash
+
+    docker ps
+
+Connect to the docker image and update the hostsensor configuration file :
+
+.. code:: bash
+
+    ssh root@$127.0.0.1 -p 8882
+
+Default password is janitoo.
+
+Open the configuration file. The docker image contains a nano or vim for editing files :
+
+.. code:: bash
+
+    root@8eafc45f6d09:~# vim /opt/janitoo/etc/janitoo_hostsensor.conf
+
+You must update the broker ip. It should match the ip address of your shared "mosquitto" :
+
+.. code:: bash
+
     broker_ip = 192.168.14.65
-    broker_port = 1883
-    broker_keepalive = 60
-    heartbeat_timeout = 10
-    heartbeat_count = 3
-    slow_start = 0.5
 
-You need to change broker_ip = 127.0.0.1 to broker_ip = 192.168.14.65
-
-On the Janitoo protocol, all machines must have its own hadd, so you need to change :
+Save and exit from ssh :
 
 .. code:: bash
 
-    hadd = 0225/0000
+    root@8eafc45f6d09:~# exit
 
-to
-
-.. code:: bash
-
-    hadd = 0226/0000
-
-Do the same for all components on the bus : 0225/0001 -> 0226/0001, ...
-
-You can now starts the service :
+Restart the docker appliance container:
 
 .. code:: bash
 
-    sudo service jnt_tutorial start
+    docker stop mycontainer
+    docker start mycontainer
 
-You can look at the protocol during startup on the spyer terminal.
+For a complete tutorial about the janitoo_hostsensor docker appliance, loook at https://bibi21000.github.io/janitoo_hostsensor/.
 
-You can also look at logs. In a new terminal :
+The network
+===========
 
-.. code:: bash
-
-    tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
-
-Its time to query ther server. Go to the first terminal and query the network :
+Its time to query the network :
 
 .. code:: bash
 
@@ -178,17 +178,66 @@ You should receive the list of nodes availables on your server :
 
     hadd       uuid                 name                      location                  product_type
     hadd       uuid                 name                      location                  product_type
+    0121/0003  hostsensor__uptime   Uptime                    Docker                    Software component
+    0121/0001  hostsensor__load     Load                      Docker                    Software component
+    0121/0002  hostsensor__disks    Disks                     Dokcer                    Software component
+    0121/0000  hostsensor           Docker sensors            Docker                    Default product type
     0225/0000  tutorial2            Hello world               Rapsberry                 Default product type
     0225/0002  tutorial2__temperature Temperature               Onewire                   Temperature sensor
     0225/0004  tutorial2__led       Led                       GPIO                      Software
     0225/0003  tutorial2__cpu       CPU                       Hostsensor                Software component
     0225/0001  tutorial2__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
-    0226/0000  tutorial2            Hello world               Rapsberry                 Default product type
-    0226/0002  tutorial2__temperature Temperature               Onewire                   Temperature sensor
-    0226/0004  tutorial2__led       Led                       GPIO                      Software
-    0226/0003  tutorial2__cpu       CPU                       Hostsensor                Software component
-    0226/0001  tutorial2__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
 
-We need to specify a host to query as we use a remote one.
+We need to specify a host to query as we use a remote one. Query basics values using :
 
+.. code:: bash
 
+    jnt_query node --hadd 0121/0000 --vuuid request_info_basics --host 192.168.14.65
+
+.. code:: bash
+
+    hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+    0121/0001  hostsensor__load          load                           1    0.55                      None       3     1     49       The load average
+    0121/0001  hostsensor__load          load                           0    0.19                      None       3     1     49       The load average
+    0121/0001  hostsensor__load          load                           2    0.82                      None       3     1     49       The load average
+    0121/0002  hostsensor__disks         total                          1    98294312960               Bytes      4     1     49       The total size of partitions
+    0121/0002  hostsensor__disks         total                          0    98294312960               Bytes      4     1     49       The total size of partitions
+    0121/0002  hostsensor__disks         total                          3    98294312960               Bytes      4     1     49       The total size of partitions
+    0121/0002  hostsensor__disks         total                          2    98294312960               Bytes      4     1     49       The total size of partitions
+    0121/0002  hostsensor__disks         total                          5    98294312960               Bytes      4     1     49       The total size of partitions
+    0121/0002  hostsensor__disks         total                          4    98294312960               Bytes      4     1     49       The total size of partitions
+    0121/0002  hostsensor__disks         used                           1    28937203712               Bytes      4     1     49       The used size of partitions
+    0121/0002  hostsensor__disks         used                           0    28937203712               Bytes      4     1     49       The used size of partitions
+    0121/0002  hostsensor__disks         used                           3    28937203712               Bytes      4     1     49       The used size of partitions
+    0121/0002  hostsensor__disks         used                           2    28937203712               Bytes      4     1     49       The used size of partitions
+    0121/0002  hostsensor__disks         used                           5    28937203712               Bytes      4     1     49       The used size of partitions
+    0121/0002  hostsensor__disks         used                           4    28937203712               Bytes      4     1     49       The used size of partitions
+    0121/0002  hostsensor__disks         percent_use                    1    29.4                      %          3     1     49       The percent_use of partitions
+    0121/0002  hostsensor__disks         percent_use                    0    29.4                      %          3     1     49       The percent_use of partitions
+    0121/0002  hostsensor__disks         percent_use                    3    29.4                      %          3     1     49       The percent_use of partitions
+    0121/0002  hostsensor__disks         percent_use                    2    29.4                      %          3     1     49       The percent_use of partitions
+    0121/0002  hostsensor__disks         percent_use                    5    29.4                      %          3     1     49       The percent_use of partitions
+    0121/0002  hostsensor__disks         percent_use                    4    29.4                      %          3     1     49       The percent_use of partitions
+    0121/0002  hostsensor__disks         free                           1    64340357120               Bytes      4     1     49       The free size of partitions
+    0121/0002  hostsensor__disks         free                           0    64340357120               Bytes      4     1     49       The free size of partitions
+    0121/0002  hostsensor__disks         free                           3    64340357120               Bytes      4     1     49       The free size of partitions
+    0121/0002  hostsensor__disks         free                           2    64340357120               Bytes      4     1     49       The free size of partitions
+    0121/0002  hostsensor__disks         free                           5    64340357120               Bytes      4     1     49       The free size of partitions
+    0121/0002  hostsensor__disks         free                           4    64340357120               Bytes      4     1     49       The free size of partitions
+    0121/0002  hostsensor__disks         partition                      1    /root/.ssh                None       8     1     49       The partition list
+    0121/0002  hostsensor__disks         partition                      0    /etc/ssh                  None       8     1     49       The partition list
+    0121/0002  hostsensor__disks         partition                      3    /etc/resolv.conf          None       8     1     49       The partition list
+    0121/0002  hostsensor__disks         partition                      2    /opt/janitoo/etc          None       8     1     49       The partition list
+    0121/0002  hostsensor__disks         partition                      5    /etc/hosts                None       8     1     49       The partition list
+    0121/0002  hostsensor__disks         partition                      4    /etc/hostname             None       8     1     49       The partition list
+    0121/0003  hostsensor__uptime        uptime                         0    21003.93                  None       3     1     49       Uptime in seconds
+
+More servers
+============
+
+You could find something usefull here :
+
+    - https://github.com/bibi21000/janitoo_nut
+    - https://github.com/bibi21000/janitoo_roomba
+
+All this examples have configurations and tests which should help you to configure your server.
