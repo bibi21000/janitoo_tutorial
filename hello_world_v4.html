@@ -199,12 +199,12 @@ Ideally you need another raspberry :D. But you can also use :</p>
 <p>We need to check that mosquitto is accessible from the network. You can do it manually or install the janitoo package.
 It will also install a more recent version of mosquitto (from the developpers site).</p>
 <p>At first, remove the old package :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo apt-get purge -y mosquitto
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo apt-get purge -y mosquitto
 </pre></div>
 </div>
 <p>And install the new one :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>cd /opt/janitoo/src
-sudo make clone module=janitoo_mosquitto
+<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src
+$ sudo make clone module=janitoo_mosquitto
 </pre></div>
 </div>
 <p>After a while you should see something like :</p>
@@ -219,8 +219,8 @@ make[1]: Leaving directory &#39;/opt/janitoo/src/janitoo_mosquitto&#39;
 </pre></div>
 </div>
 <p>Launch the tests :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>cd janitoo_mosquitto
-sudo make tests
+<div class="code bash highlight-python"><div class="highlight"><pre>$ cd janitoo_mosquitto
+$ sudo make tests
 </pre></div>
 </div>
 <p>They should be like :</p>
@@ -245,7 +245,7 @@ Tests for janitoo_mosquitto finished.
 </pre></div>
 </div>
 <p>At last, we need to find the ip address on the network :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>ip addr
+<div class="code bash highlight-python"><div class="highlight"><pre>$ ip addr
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1
@@ -261,30 +261,30 @@ Tests for janitoo_mosquitto finished.
 <p>The interafec should be called eth0 or wlan0 or womething like that.
 Here, that is : 192.168.14.65.</p>
 <p>You can now restart your server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo service jnt_tutorial restart
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo service jnt_tutorial restart
 </pre></div>
 </div>
 </div>
 <div class="section" id="the-docker-appliance">
 <h2>The docker appliance<a class="headerlink" href="#the-docker-appliance" title="Permalink to this headline">¶</a></h2>
 <p>On Janitoo, you can use a docker appliance. Pull the janitoo_hostsensor image :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>docker pull bibi21000/janitoo_hostsensor
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker pull bibi21000/janitoo_hostsensor
 </pre></div>
 </div>
 <p>And create a container :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>docker create -p 8882:22 --name mycontainer bibi21000/janitoo_hostsensor
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker create -p 8882:22 --name mycontainer bibi21000/janitoo_hostsensor
 </pre></div>
 </div>
 <p>Start it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>docker start mycontainer
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker start mycontainer
 </pre></div>
 </div>
 <p>Check that is it running :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>docker ps
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker ps
 </pre></div>
 </div>
 <p>Connect to the docker image and update the hostsensor configuration file :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>ssh root@$127.0.0.1 -p 8882
+<div class="code bash highlight-python"><div class="highlight"><pre>$ ssh root@$127.0.0.1 -p 8882
 </pre></div>
 </div>
 <p>Default password is janitoo.</p>
@@ -309,7 +309,7 @@ Here, that is : 192.168.14.65.</p>
 <div class="section" id="the-network">
 <h2>The network<a class="headerlink" href="#the-network" title="Permalink to this headline">¶</a></h2>
 <p>Its time to query the network :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query network --host 192.168.14.65
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query network --host 192.168.14.65
 </pre></div>
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
@@ -327,7 +327,7 @@ hadd       uuid                 name                      location              
 </pre></div>
 </div>
 <p>We need to specify a host to query as we use a remote one. Query basics values using :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0121/0000 --vuuid request_info_basics --host 192.168.14.65
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0121/0000 --vuuid request_info_basics --host 192.168.14.65
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help

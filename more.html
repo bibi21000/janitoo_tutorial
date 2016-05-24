@@ -235,11 +235,11 @@ When the protocol will be updated, these tests will be too.</p>
 <p>Ideally, when a new bug is reported, the workflow should be : bug -&gt; test to reproduce the bug -&gt; fix for the bug.</p>
 <p>When starting developping with Janitoo, you&#8217;ll surely find that creating tests is wasting time.</p>
 <p>After your server is fully functionnal, you can launch the full test suite :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo make tests &gt;tests.log 2&gt;&amp;1; sudo coverage report &gt;&gt;tests.log 2&gt;&amp;1
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo make tests &gt;tests.log 2&gt;&amp;1; sudo coverage report &gt;&gt;tests.log 2&gt;&amp;1
 </pre></div>
 </div>
 <p>On a another screen/terminal, you can take a look at the tests logs :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>tail -f tests.log
+<div class="code bash highlight-python"><div class="highlight"><pre>$ tail -f tests.log
 </pre></div>
 </div>
 <p>You can now safely watch your favorite episode of Game of Thrones :D</p>

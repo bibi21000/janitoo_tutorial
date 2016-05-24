@@ -24,14 +24,14 @@ At first, remove the old package :
 
 .. code:: bash
 
-    sudo apt-get purge -y mosquitto
+    $ sudo apt-get purge -y mosquitto
 
 And install the new one :
 
 .. code:: bash
 
-    cd /opt/janitoo/src
-    sudo make clone module=janitoo_mosquitto
+    $ cd /opt/janitoo/src
+    $ sudo make clone module=janitoo_mosquitto
 
 After a while you should see something like :
 
@@ -50,8 +50,8 @@ Launch the tests :
 
 .. code:: bash
 
-    cd janitoo_mosquitto
-    sudo make tests
+    $ cd janitoo_mosquitto
+    $ sudo make tests
 
 They should be like :
 
@@ -80,7 +80,7 @@ At last, we need to find the ip address on the network :
 
 .. code:: bash
 
-    ip addr
+    $ ip addr
 
 .. code:: bash
 
@@ -100,7 +100,7 @@ You can now restart your server :
 
 .. code:: bash
 
-    sudo service jnt_tutorial restart
+    $ sudo service jnt_tutorial restart
 
 
 The docker appliance
@@ -110,31 +110,31 @@ On Janitoo, you can use a docker appliance. Pull the janitoo_hostsensor image :
 
 .. code:: bash
 
-    docker pull bibi21000/janitoo_hostsensor
+    $ docker pull bibi21000/janitoo_hostsensor
 
 And create a container :
 
 .. code:: bash
 
-    docker create -p 8882:22 --name mycontainer bibi21000/janitoo_hostsensor
+    $ docker create -p 8882:22 --name mycontainer bibi21000/janitoo_hostsensor
 
 Start it :
 
 .. code:: bash
 
-    docker start mycontainer
+    $ docker start mycontainer
 
 Check that is it running :
 
 .. code:: bash
 
-    docker ps
+    $ docker ps
 
 Connect to the docker image and update the hostsensor configuration file :
 
 .. code:: bash
 
-    ssh root@$127.0.0.1 -p 8882
+    $ ssh root@$127.0.0.1 -p 8882
 
 Default password is janitoo.
 
@@ -172,7 +172,7 @@ Its time to query the network :
 
 .. code:: bash
 
-    jnt_query network --host 192.168.14.65
+    $ jnt_query network --host 192.168.14.65
 
 You should receive the list of nodes availables on your server :
 
@@ -194,7 +194,7 @@ We need to specify a host to query as we use a remote one. Query basics values u
 
 .. code:: bash
 
-    jnt_query node --hadd 0121/0000 --vuuid request_info_basics --host 192.168.14.65
+    $ jnt_query node --hadd 0121/0000 --vuuid request_info_basics --host 192.168.14.65
 
 .. code:: bash
 

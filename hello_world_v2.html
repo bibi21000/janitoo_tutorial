@@ -193,11 +193,11 @@
 <div class="section" id="the-components">
 <h2>The components<a class="headerlink" href="#the-components" title="Permalink to this headline">¶</a></h2>
 <p>Change to the tutorial directory :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">janitoo</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">janitoo_tutorial</span>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src/janitoo_tutorial
 </pre></div>
 </div>
 <p>Open the tutorial1 implementation :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>vim src/janitoo_tutorial/tutorial1.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/tutorial1.py
 </pre></div>
 </div>
 <p>We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
@@ -251,7 +251,7 @@ Of course, we would add it without problem.</p>
 <div class="section" id="the-thread">
 <h2>The thread<a class="headerlink" href="#the-thread" title="Permalink to this headline">¶</a></h2>
 <p>The thread hold the bus :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>vim src/janitoo_tutorial/thread_tutorial1.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/thread_tutorial1.py
 </pre></div>
 </div>
 <p>We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
@@ -301,7 +301,7 @@ For the DHT component, it&#8217;s looks like :</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>Open the test configuration file in your favorite editor :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>vim tests/data/helloworldv2.conf
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/data/helloworldv2.conf
 </pre></div>
 </div>
 <p>Like seen in the first tutorial, there is a section for the new bus (thread) :</p>
@@ -331,7 +331,7 @@ sensor_0 = 11
 <div class="section" id="test-it">
 <h2>Test it<a class="headerlink" href="#test-it" title="Permalink to this headline">¶</a></h2>
 <p>You&#8217;re ready to test your components. Create a test for each component. For example, for the DTH:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>vim tests/test_components_v2.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/test_components_v2.py
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestAmbianceComponent</span><span class="p">(</span><span class="n">JNTTComponent</span><span class="p">,</span> <span class="n">JNTTComponentCommon</span><span class="p">):</span>
@@ -341,7 +341,7 @@ sensor_0 = 11
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo nosetests -v tests/test_components_v2.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_components_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
@@ -365,7 +365,7 @@ OK
 </pre></div>
 </div>
 <p>Test for the tread :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>vim tests/tests/test_thread_v2.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/tests/test_thread_v2.py
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestTutorialThread</span><span class="p">(</span><span class="n">JNTTThreadRun</span><span class="p">,</span> <span class="n">JNTTThreadRunCommon</span><span class="p">):</span>
@@ -376,7 +376,7 @@ OK
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo nosetests -v tests/test_thread_v2.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_thread_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
@@ -391,7 +391,7 @@ OK (SKIP=1)
 </pre></div>
 </div>
 <p>And the test for the bus :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>vim tests/tests/test_bus_v2.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/tests/test_bus_v2.py
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial1</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
@@ -404,7 +404,7 @@ OK (SKIP=1)
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo nosetests -v tests/test_bus_v2.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_bus_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
@@ -418,7 +418,7 @@ OK
 </pre></div>
 </div>
 <p>And for the server :</p>
-<div class="code python highlight-python"><div class="highlight"><pre>vim tests/test_server_v2.py
+<div class="code python highlight-python"><div class="highlight"><pre>$ vim tests/test_server_v2.py
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestTutorialServer</span><span class="p">(</span><span class="n">JNTTServer</span><span class="p">,</span> <span class="n">JNTTServerCommon</span><span class="p">):</span>
@@ -431,7 +431,7 @@ OK
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo nosetests -v tests/test_server_v2.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_server_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
@@ -449,28 +449,28 @@ OK
 </div>
 <p>Otherwise you should have a log capture with surely some errors inside.</p>
 <p>You can also the whole tests, which whould help you to fix problems :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo make tests
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo make tests
 </pre></div>
 </div>
 </div>
 <div class="section" id="launch-it">
 <h2>Launch it<a class="headerlink" href="#launch-it" title="Permalink to this headline">¶</a></h2>
 <p>You can now copy the config file to the config directory:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>cd /opt/janitoo/etc
-cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
+<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/etc
+$ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <p>Launch the server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
 </pre></div>
 </div>
 <p>You can look at the protocol during startup on the spyer terminal.</p>
 <p>You can also look at logs. In a new terminal :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>tail -n 100 -f /opt/janitoo/log/helloworldv2.log
+<div class="code bash highlight-python"><div class="highlight"><pre>$ tail -n 100 -f /opt/janitoo/log/helloworldv2.log
 </pre></div>
 </div>
 <p>Its time to query ther server. Go to the first terminal and query the network :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query network
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query network
 </pre></div>
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
@@ -482,7 +482,7 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <p>You can also query a node :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0225/0000
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
@@ -493,7 +493,7 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <p>Check the config values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
@@ -518,7 +518,7 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <p>Get the user values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0225/0000 --vuuid request_info_users
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_users
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
@@ -534,7 +534,7 @@ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </div>
 <div class="section" id="performances">
 <h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-python"><div class="highlight"><pre>nice top
+<div class="code bash highlight-python"><div class="highlight"><pre>$ nice top
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND

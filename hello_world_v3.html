@@ -287,7 +287,7 @@
 <div class="section" id="create-a-server">
 <h2>Create a server<a class="headerlink" href="#create-a-server" title="Permalink to this headline">¶</a></h2>
 <p>We will now create a server script, this will allow to start our server on startup:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>vim src/scripts/jnt_tutorial
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/scripts/jnt_tutorial
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
@@ -337,25 +337,25 @@
 </pre></div>
 </div>
 <p>And copy it to the right directory :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
 </pre></div>
 </div>
 </div>
 <div class="section" id="spy-it">
 <h2>Spy it<a class="headerlink" href="#spy-it" title="Permalink to this headline">¶</a></h2>
 <p>Open a new shell and launch</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">jnt_spy</span>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_spy
 </pre></div>
 </div>
 <p>This will launch a spyer for the mqtt protocol</p>
 <p>Go to the first terminal and copy the config file to the config directory.
 The filename must be the same as the one using for the service name (jnt_tutorial) :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>cd /opt/janitoo/etc
-cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv3.conf jnt_tutorial.conf
+<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/etc
+$ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv3.conf jnt_tutorial.conf
 </pre></div>
 </div>
 <p>Open the configuration file and update the needed parts :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">vim</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">janitoo</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">jnt_tutorial</span><span class="o">.</span><span class="n">conf</span>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim /opt/janitoo/etc/jnt_tutorial.conf
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>[system]
@@ -383,16 +383,16 @@ args = (&#39;/opt/janitoo/log/jnt_tutorial.log&#39;, &#39;w&#39;)
 <p>There are many options startup like slow_start (a dedicated options for slow machines to sleep between startup steps).
 Look at source for list :(.</p>
 <p>You can now starts the service :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo service jnt_tutorial start
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo service jnt_tutorial start
 </pre></div>
 </div>
 <p>You can look at the protocol during startup on the spyer terminal.</p>
 <p>You can also look at logs. In a new terminal :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
+<div class="code bash highlight-python"><div class="highlight"><pre>$ tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
 </pre></div>
 </div>
 <p>Its time to query ther server. Go to the first terminal and query the network :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query network
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query network
 </pre></div>
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
@@ -406,11 +406,11 @@ hadd       uuid                 name                      location              
 </pre></div>
 </div>
 <p>You can also query a node :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0225/0000
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000
 </pre></div>
 </div>
 <p>Check the config values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
@@ -442,7 +442,7 @@ hadd       uuid                 name                      location              
 </pre></div>
 </div>
 <p>Get the user values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>jnt_query node --hadd 0225/0000 --vuuid request_info_users
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_users
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
@@ -461,11 +461,11 @@ hadd       uuid                 name                      location              
 <div class="section" id="start-it-at-boot">
 <h2>Start it at boot<a class="headerlink" href="#start-it-at-boot" title="Permalink to this headline">¶</a></h2>
 <p>To start your server on boot, use :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo update-rc.d jnt_tutorial defaults
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo update-rc.d jnt_tutorial defaults
 </pre></div>
 </div>
 <p>You can also stop, restart, kill, ... your server using :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>sudo service jnt_tutorial
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo service jnt_tutorial
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>Usage: /etc/init.d/jnt_tutorial {start|stop|restart|reload|status|kill}
@@ -474,7 +474,7 @@ hadd       uuid                 name                      location              
 </div>
 <div class="section" id="performances">
 <h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-python"><div class="highlight"><pre>nice top
+<div class="code bash highlight-python"><div class="highlight"><pre>$ nice top
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
