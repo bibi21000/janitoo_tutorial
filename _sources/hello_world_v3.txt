@@ -181,6 +181,7 @@ And copy it to the right directory :
 
     sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
 
+
 Spy it
 ======
 
@@ -326,6 +327,7 @@ Get the user values :
     0225/0003  tutorial2__cpu            temperature                    0    37.9                      °C         3     2     49       The temperature of the CPU
     0225/0002  tutorial2__temperature    temperature                    0    19.5                      °C         3     2     49       The temperature
 
+
 Start it at boot
 ================
 
@@ -344,6 +346,7 @@ You can also stop, restart, kill, ... your server using :
 .. code:: bash
 
     Usage: /etc/init.d/jnt_tutorial {start|stop|restart|reload|status|kill}
+
 
 Performances
 ============

@@ -2,6 +2,7 @@
 Installation for tutorial
 =========================
 
+
 Needed tools
 ============
 
@@ -20,6 +21,7 @@ We install netcat too. So that we can verify that mosquitto is listen on port 18
 .. code:: bash
 
     Connection to 127.0.0.1 1883 port [tcp/*] succeeded!
+
 
 Initial clone
 =============
@@ -79,6 +81,7 @@ You're now ready to clone the needed modules. sudo password may be asked during 
 Wait, wait and wait, specially on a raspberry.
 
 After that, all the depencies are installed. You can jump to the first tutorial.
+
 
 Update your clone
 =================

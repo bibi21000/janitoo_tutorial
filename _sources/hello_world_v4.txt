@@ -13,6 +13,7 @@ Ideally you need another raspberry :D. But you can also use :
 - install another server on the same raspberry
 - or using a docker image
 
+
 Mosquitto
 =========
 
@@ -101,6 +102,7 @@ You can now restart your server :
 
     sudo service jnt_tutorial restart
 
+
 The docker appliance
 ====================
 
@@ -161,6 +163,7 @@ Exit from ssh :
     root@8eafc45f6d09:~# exit
 
 For a complete tutorial about the janitoo_hostsensor docker appliance, loook at https://bibi21000.github.io/janitoo_hostsensor/.
+
 
 The network
 ===========
@@ -230,6 +233,7 @@ We need to specify a host to query as we use a remote one. Query basics values u
     0121/0002  hostsensor__disks         partition                      5    /etc/hosts                None       8     1     49       The partition list
     0121/0002  hostsensor__disks         partition                      4    /etc/hostname             None       8     1     49       The partition list
     0121/0003  hostsensor__uptime        uptime                         0    21003.93                  None       3     1     49       Uptime in seconds
+
 
 More servers
 ============

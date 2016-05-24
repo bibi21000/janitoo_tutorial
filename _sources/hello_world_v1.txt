@@ -8,6 +8,7 @@ Explanations
 
 For this first example, we will create a server using a configuration file.
 
+
 Configuration
 =============
 
@@ -22,6 +23,7 @@ And open the test configuration file in your favorite editor :
 .. code:: bash
 
     vim tests/data/helloworldv1.conf
+
 
 The DHT component
 -----------------
@@ -166,6 +168,7 @@ You can see that hexadd config value is the address of your DS18B20. You can fin
 .. code:: bash
 
     ls /sys/bus/w1/devices/
+
 
 The CPU component
 -----------------
