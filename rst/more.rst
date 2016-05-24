@@ -61,6 +61,7 @@ If you try to develop on raspberry, you surely seen how it is ... slow.
 With Janitoo and and its tests, you can simply create your server and tests on your personal computer.
 On travis, this tutorial has a coverage greater than 80%, this also means that more than 80% of the code is tested out of the box (out of the Raspberry).
 
+
 Tests
 =====
 
@@ -133,21 +134,17 @@ Ip ping
 ^^^^^^^
 A value to ping an IP.
 
-Code : https://github.com/bibi21000/janitoo_factory_exts/blob/master/src/janitoo_factory_exts/values/ping.py
-
-Example : https://github.com/bibi21000/janitoo_nut/blob/master/src/janitoo_nut/nut.py#L89
-
-Test : https://github.com/bibi21000/janitoo_factory_exts/blob/master/tests/test_values.py
+- Code : https://github.com/bibi21000/janitoo_factory_exts/blob/master/src/janitoo_factory_exts/values/ping.py
+- Example : https://github.com/bibi21000/janitoo_nut/blob/master/src/janitoo_nut/nut.py#L89
+- Test : https://github.com/bibi21000/janitoo_factory_exts/blob/master/tests/test_values.py
 
 Blink
 ^^^^^
 A value to blink ... everything. Use callback to perform the action
 
-Code : https://github.com/bibi21000/janitoo_factory_exts/blob/master/src/janitoo_factory_exts/values/blink.py
-
-Example : https://github.com/bibi21000/janitoo_raspberry_gpio/blob/master/src/janitoo_raspberry_gpio/gpio.py#L764
-
-Test : https://github.com/bibi21000/janitoo_factory_exts/blob/master/tests/test_values.py
+- Code : https://github.com/bibi21000/janitoo_factory_exts/blob/master/src/janitoo_factory_exts/values/blink.py
+- Example : https://github.com/bibi21000/janitoo_raspberry_gpio/blob/master/src/janitoo_raspberry_gpio/gpio.py#L764
+- Test : https://github.com/bibi21000/janitoo_factory_exts/blob/master/tests/test_values.py
 
 Components and bus
 ------------------
