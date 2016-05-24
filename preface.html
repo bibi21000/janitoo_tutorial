@@ -189,31 +189,25 @@
 <p>In short words, Janitoo is a protocol based on mqtt. Its API allows rapid development of appliance server for Raspberry Pi ( mainly but not only).</p>
 <p>The protocol is approximatively 60% developped : fixed addresses, primary mode are functionnals.</p>
 <p>The protocol implements the concepts of network, nodes and values :</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>a network holds nodes</li>
 <li>a node holds values</li>
 <li>a value holds instances (not fully supported)</li>
 </ul>
-</div></blockquote>
 <p>If you&#8217;re famillar with Zwave (<a class="reference external" href="https://github.com/OpenZWave/open-zwave">https://github.com/OpenZWave/open-zwave</a>), Janitoo&#8217;s protocol is a kind of Zwave over mqtt</p>
 <p>The API implements the concepts of thread/bus, components and values :</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>a bus allows to share resources between its holded components. Each bus run in its own thread. A bus is mapped to a node in the protocol (in a controller node to be more precise)</li>
 <li>a component is mapped to a node</li>
 </ul>
-</div></blockquote>
 <p>You can see Janitoo in action here : <a class="reference external" href="https://www.youtube.com/watch?v=S3Gqj32sJ-Q">https://www.youtube.com/watch?v=S3Gqj32sJ-Q</a></p>
 <p>Look at the time line in description.</p>
 <p>Some notes :</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>the web manager is 20% functionnal : you can only browse values, no updates. There is a huge memory hole in it (with socketio)</li>
 <li>the flask socketio server and socketio server are under heavy development after a period of inactivity, so installation problems will occurs</li>
 <li>maybe we should use websockets instead</li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 
