@@ -17,7 +17,8 @@ Contents:
     Hello World 1 : a simple server<hello_world_v1>
     Hello World 2 : an advanced server<hello_world_v2>
     Hello World 3 : a more advanced server<hello_world_v3>
-    Hello World 4 : many servers<hello_world_v4>
+    Many servers<many_servers>
+    Discovering the network<discovering_network>
     Create and share<more>
 
 

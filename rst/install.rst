@@ -2,6 +2,11 @@
 Installation for tutorial
 =========================
 
+Goal
+====
+
+Install mosquitto (the messagging system) and clone Janitoo.
+
 
 Needed tools
 ============

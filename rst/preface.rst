@@ -8,11 +8,14 @@ Preface
 
 In short words, Janitoo is a protocol based on mqtt. Its API allows rapid development of appliance server for Raspberry Pi ( mainly but not only).
 
-The protocol is approximatively 60% developped : fixed addresses, primary mode are functionnals.
+The protocol is approximatively 60% developped : fixed addresses, primary nodes are functionnals.
 
 The protocol implements the concepts of network, nodes and values :
 
 - a network holds nodes
+- primary nodes and secondary nodes holds a map on the network
+- a secondary node can became primary if the primary fails
+- primary nodes (and maybe secondary ones) will send heartbeat for nodes in timeout
 - a node holds values
 - a value holds instances (not fully supported)
 

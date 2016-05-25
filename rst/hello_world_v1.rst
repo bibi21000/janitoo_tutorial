@@ -3,10 +3,10 @@ HelloWord V1
 ============
 
 
-Explanations
-============
+Goal
+====
 
-For this first example, we will create a server using a configuration file.
+For this first example, we will create a server using a simple configuration file.
 
 
 Configuration

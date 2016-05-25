@@ -1,11 +1,12 @@
-============
-HelloWord V0
-============
+=========
+HelloWord
+=========
 
 
-What ?
-======
-Create a raspberry applicance server which will report :
+Goal
+====
+
+Create a raspberry appliance server which will report :
 
 - the temperature of the CPU
 - the temperature of a onewire sensor

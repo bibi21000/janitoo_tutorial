@@ -1,11 +1,12 @@
 ============
-HelloWord V4
+Many servers
 ============
 
 
-Explanations
-============
+Goal
+====
 
+In the last parts, you've seen how to create server.
 In this part, we will connect many machines using Janitoo.
 Ideally you need another raspberry :D. But you can also use :
 
@@ -106,7 +107,9 @@ You can now restart your server :
 The docker appliance
 ====================
 
-On Janitoo, you can use a docker appliance. Pull the janitoo_hostsensor image :
+If you want to deploy janitoo on another computer ( small or not), use the same procedure we've used before.
+
+Or you can use a docker appliance. Pull the janitoo_hostsensor image :
 
 .. code:: bash
 
@@ -243,13 +246,3 @@ We need to specify a host to query as we use a remote one. Query basics values u
     hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
     0121/0004  hostsensor__lmsensor      voltage                        0    None                      V          3     2     49       The voltage from lm-sensors
     0121/0004  hostsensor__lmsensor      temperature                    0    47.0                      °C         3     2     49       The temperatures from lm-sensors
-
-More servers
-============
-
-You could find something usefull here :
-
-- https://github.com/bibi21000/janitoo_nut
-- https://github.com/bibi21000/janitoo_roomba
-
-All this examples have configurations and tests which should help you to configure your server.
