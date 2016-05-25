@@ -20,6 +20,7 @@ Contents:
     Many servers<many_servers>
     Discovering the network<discovering_network>
     Create and share<more>
+    Using documentation <using_doc>
 
 
 Indices and tables

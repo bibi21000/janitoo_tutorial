@@ -1,0 +1,24 @@
+===================
+Using documentation
+===================
+
+This file will be published on your github account
+
+The header
+==========
+
+All
+
+.. image:: _images/using_doc.png
+    :width: 800px
+    :alt: Using Janitoo documentation
+
+
+A section
+=========
+A text in this section.
+
+Documentation
+=============
+You can browse online documentation here : https://bibi21000.github.io/janitoo_sphinx/.
+
