@@ -2,23 +2,20 @@
 Using documentation
 ===================
 
-This file will be published on your github account
+Some notes on documentation
 
 The header
 ==========
-
-All
 
 .. image:: _images/using_doc.png
     :width: 800px
     :alt: Using Janitoo documentation
 
 
-A section
-=========
-A text in this section.
+From left to right :
 
-Documentation
-=============
-You can browse online documentation here : https://bibi21000.github.io/janitoo_sphinx/.
-
+- janitoo_tutorial jumps you to the index table.
+- Tools let you access to developpents tools reports : Travis, Coversall, Lanscape, Nose, Coverage, ... if available.
+- Reference link you to the code documentation.
+- Janitoo extensions : a list of components, thread, values, ... includes in this package.
+- The last 1 or 2 sections before the search engine allows you to browse the documentation between section of the table of index.
