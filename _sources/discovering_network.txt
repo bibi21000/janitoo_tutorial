@@ -37,20 +37,20 @@ Same if a bus fails.
 
 In the second (https://bibi21000.github.io/janitoo_tutorial/hello_world_v2.html) and
 third (https://bibi21000.github.io/janitoo_tutorial/hello_world_v3.html) tutorials,
-we aggregate 2 buses with python code. We also stay on the same core.
+we aggregate 2 buses with python code. Your code will also stay on the same core.
 
 We don't see it before but you can install many servers on the same rasberry but :
 
 - don't share i2c, spi, ... between servers. You can safely launch one with spi and the other one with i2c
 - you can share gpio as long as you use it on differents pins
-- you must use different server name, log file, ...
+- you must use different configuration file, server name, log file, ...
 
 Each server run in its own processus, so it's much interessant on a multi-core machine.
 If a server crash, the other should not be impacted.
 
 At last, you can create your own docker appliance to deploy your servers at home.
 Docker appliances are a simple way to deploy Janitoo too.
-You simply need to install docker (Linux, Windows, MacOS, ...)
+You need to install docker (Linux, Windows, MacOS, ...)
 and deploy appliance in 3 commands.
 
 A typical docker file for hostsensor and NUT should be like :
@@ -81,8 +81,9 @@ A typical docker file for hostsensor and NUT should be like :
 
     CMD ["/root/auto.sh"]
 
-After this explanations, simply install the NUT appliance docker from here : https://bibi21000.github.io/janitoo_nut/docker.html.
+After this explanations, install the NUT appliance docker from here : https://bibi21000.github.io/janitoo_nut/docker.html.
 If you don't have an UPS, enter erronous informations and you will get a failed UPS.
+Okay, okay, it's not mandatory but ...
 
 
 Broadcast network
@@ -405,6 +406,7 @@ You can also spy the values update and check that the load value is published ev
 ..code:: bash
 
     $ jnt_spy --host 192.168.14.65 --topic /values/#
+
     >>>>>> Subscribe to /values/#
     !!!!!! Connect rc : 0
     !!!!!! Subscribed to None : 1 (0,)

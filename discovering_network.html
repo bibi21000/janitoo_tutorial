@@ -76,6 +76,8 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="preface.html"> What is Janitoo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="preface.html#preface">Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preface.html#about-this-tutorial">About this tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preface.html#notes">Notes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="install.html"> Installation</a><ul>
@@ -219,18 +221,18 @@ If a bus is not fair with resources (cpu, io, ...) the other one will be impacte
 Same if a bus fails.</p>
 <p>In the second (<a class="reference external" href="https://bibi21000.github.io/janitoo_tutorial/hello_world_v2.html">https://bibi21000.github.io/janitoo_tutorial/hello_world_v2.html</a>) and
 third (<a class="reference external" href="https://bibi21000.github.io/janitoo_tutorial/hello_world_v3.html">https://bibi21000.github.io/janitoo_tutorial/hello_world_v3.html</a>) tutorials,
-we aggregate 2 buses with python code. We also stay on the same core.</p>
+we aggregate 2 buses with python code. Your code will also stay on the same core.</p>
 <p>We don&#8217;t see it before but you can install many servers on the same rasberry but :</p>
 <ul class="simple">
 <li>don&#8217;t share i2c, spi, ... between servers. You can safely launch one with spi and the other one with i2c</li>
 <li>you can share gpio as long as you use it on differents pins</li>
-<li>you must use different server name, log file, ...</li>
+<li>you must use different configuration file, server name, log file, ...</li>
 </ul>
 <p>Each server run in its own processus, so it&#8217;s much interessant on a multi-core machine.
 If a server crash, the other should not be impacted.</p>
 <p>At last, you can create your own docker appliance to deploy your servers at home.
 Docker appliances are a simple way to deploy Janitoo too.
-You simply need to install docker (Linux, Windows, MacOS, ...)
+You need to install docker (Linux, Windows, MacOS, ...)
 and deploy appliance in 3 commands.</p>
 <p>A typical docker file for hostsensor and NUT should be like :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>FROM bibi21000/janitoo_docker_appliance
@@ -258,8 +260,9 @@ EXPOSE 22
 CMD [&quot;/root/auto.sh&quot;]
 </pre></div>
 </div>
-<p>After this explanations, simply install the NUT appliance docker from here : <a class="reference external" href="https://bibi21000.github.io/janitoo_nut/docker.html">https://bibi21000.github.io/janitoo_nut/docker.html</a>.
-If you don&#8217;t have an UPS, enter erronous informations and you will get a failed UPS.</p>
+<p>After this explanations, install the NUT appliance docker from here : <a class="reference external" href="https://bibi21000.github.io/janitoo_nut/docker.html">https://bibi21000.github.io/janitoo_nut/docker.html</a>.
+If you don&#8217;t have an UPS, enter erronous informations and you will get a failed UPS.
+Okay, okay, it&#8217;s not mandatory but ...</p>
 </div>
 <div class="section" id="broadcast-network">
 <h2>Broadcast network<a class="headerlink" href="#broadcast-network" title="Permalink to this headline">¶</a></h2>
@@ -545,8 +548,8 @@ load_poll_0 = 10</p>
 <p>You can also spy the values update and check that the load value is published every 10 seconds.</p>
 <p>..code:: bash</p>
 <blockquote>
-<div><p>$ jnt_spy &#8211;host 192.168.14.65 &#8211;topic /values/#
-&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /values/#
+<div><p>$ jnt_spy &#8211;host 192.168.14.65 &#8211;topic /values/#</p>
+<p>&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /values/#
 !!!!!! Connect rc : 0
 !!!!!! Subscribed to None : 1 (0,)
 !!!!!! Type Ctrl+C 2 times to exit !!!!!!

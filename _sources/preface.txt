@@ -30,7 +30,17 @@ You can see Janitoo in action here : https://www.youtube.com/watch?v=S3Gqj32sJ-Q
 
 Look at the time line in description.
 
-Some notes :
+
+About this tutorial
+===================
+
+- it will take 1 or 2 hours for the all tutorial (or maybe less).
+- all code is provided, just look at the specified file to look around.
+- all configuration files are provided, you simply need to copy them the right place.
+
+
+Notes
+=====
 
 - the web manager is 20% functionnal : you can only browse values, no updates. There is a huge memory hole in it (with socketio)
 - the flask socketio server and socketio server are under heavy development after a period of inactivity, so installation problems will occurs
