@@ -419,6 +419,8 @@ You can also spy the values update and check that the load value is published ev
     nsor__load", "uuid": "load", "voice_uuid": null, "min": null, "default": null, "cmd_class": 49, "hadd": "0121/0001", "label": "Load (15 minutes)", "units": nu
     ll, "is_readonly": true, "is_polled": true, "type": 3}}
 
+You can get the documentation about jnt_query here : https://bibi21000.github.io/janitoo/cli.html#jnt-query
+
 More servers
 ============
 
