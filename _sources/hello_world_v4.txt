@@ -234,6 +234,15 @@ We need to specify a host to query as we use a remote one. Query basics values u
     0121/0002  hostsensor__disks         partition                      4    /etc/hostname             None       8     1     49       The partition list
     0121/0003  hostsensor__uptime        uptime                         0    21003.93                  None       3     1     49       Uptime in seconds
 
+.. code:: bash
+
+    $ jnt_query node --hadd 0121/0000 --vuuid request_info_users --host 192.168.14.65
+
+.. code:: bash
+
+    hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+    0121/0004  hostsensor__lmsensor      voltage                        0    None                      V          3     2     49       The voltage from lm-sensors
+    0121/0004  hostsensor__lmsensor      temperature                    0    47.0                      °C         3     2     49       The temperatures from lm-sensors
 
 More servers
 ============

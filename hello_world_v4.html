@@ -367,6 +367,14 @@ hadd       uuid                 name                      location              
 0121/0003  hostsensor__uptime        uptime                         0    21003.93                  None       3     1     49       Uptime in seconds
 </pre></div>
 </div>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0121/0000 --vuuid request_info_users --host 192.168.14.65
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+0121/0004  hostsensor__lmsensor      voltage                        0    None                      V          3     2     49       The voltage from lm-sensors
+0121/0004  hostsensor__lmsensor      temperature                    0    47.0                      °C         3     2     49       The temperatures from lm-sensors
+</pre></div>
+</div>
 </div>
 <div class="section" id="more-servers">
 <h2>More servers<a class="headerlink" href="#more-servers" title="Permalink to this headline">¶</a></h2>

@@ -158,7 +158,7 @@ Open the init script and update the provides, descriptions and NAME:
 
 .. code:: bash
 
-    vim src/scripts/jnt_tutorial.init
+    $ vim src/scripts/jnt_tutorial.init
 
 .. code:: bash
 
