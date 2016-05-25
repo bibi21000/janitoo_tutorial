@@ -3,8 +3,8 @@ HelloWord V2
 ============
 
 
-Explanations
-============
+Goal
+====
 
 For this second example, we will create a more sophisticated server : it will calculate the average temperature and send it.
 

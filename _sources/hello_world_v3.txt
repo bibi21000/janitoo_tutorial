@@ -3,8 +3,8 @@ HelloWord V3
 ============
 
 
-Explanations
-============
+Goal
+====
 
 For this last example, we will create a more sophisticated server : it will
 
