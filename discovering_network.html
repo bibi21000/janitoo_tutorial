@@ -526,12 +526,10 @@ hadd       uuid                           idx  data                      units  
 </pre></div>
 </div>
 <p>You can connect to docker appliance to check the configuration file :</p>
-<p>..code:: bash</p>
-<blockquote>
-<div><a class="reference external" href="mailto:root&#37;&#52;&#48;7de7e4993b13">root<span>&#64;</span>7de7e4993b13</a>:~# cat /opt/janitoo/etc/janitoo_hostsensor.conf</div></blockquote>
-<p>..code:: bash</p>
-<blockquote>
-<div><p>[hostsensor]
+<div class="code bash highlight-python"><div class="highlight"><pre>root@7de7e4993b13:~# cat /opt/janitoo/etc/janitoo_hostsensor.conf
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>[hostsensor]
 auto_start = True
 components.load = hostsensor.load
 components.uptime = hostsensor.uptime
@@ -541,36 +539,36 @@ heartbeat = 60
 name = Docker sensors
 location = My cumputer
 hadd = 0121/0000
-uuid = d6b66de0-21ed-11e6-ae4d-0242ac110002</p>
-<p>...</p>
-<p>[hostsensor__load]
+uuid = d6b66de0-21ed-11e6-ae4d-0242ac110002
+
+...
+
+[hostsensor__load]
 heartbeat = 60
 name = Load
 location = Docker
 hadd = 0121/0001
-load_poll_0 = 10</p>
-</div></blockquote>
+load_poll_0 = 10
+</pre></div>
+</div>
 <p>You can also spy the values update and check that the load value is published every 10 seconds.</p>
-<p>..code:: bash</p>
-<blockquote>
-<div><p>$ jnt_spy &#8211;host 192.168.14.65 &#8211;topic /values/#</p>
-<p>&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /values/#
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_spy --host 192.168.14.65 --topic /values/#
+
+&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /values/#
 !!!!!! Connect rc : 0
 !!!!!! Subscribed to None : 1 (0,)
 !!!!!! Type Ctrl+C 2 times to exit !!!!!!
-/values/basic/0121/0001/load 0 {&#8220;0&#8221;: {&#8220;help&#8221;: &#8220;The load average&#8221;, &#8220;max&#8221;: null, &#8220;reply_hadd&#8221;: null, &#8220;entry_name&#8221;: &#8220;sensor_float&#8221;, &#8220;genre&#8221;: 1, &#8220;poll_delay&#8221;: 10,</p>
-<blockquote>
-<div>&#8220;data&#8221;: 0.31, &#8220;is_writeonly&#8221;: false, &#8220;list_items&#8221;: null, &#8220;index&#8221;: 0, &#8220;node_uuid&#8221;: &#8220;hostsensor__load&#8221;, &#8220;uuid&#8221;: &#8220;load&#8221;, &#8220;voice_uuid&#8221;: null, &#8220;min&#8221;: null, &#8220;defau</div></blockquote>
-<dl class="docutils">
-<dt>lt&#8221;: null, &#8220;cmd_class&#8221;: 49, &#8220;hadd&#8221;: &#8220;0121/0001&#8221;, &#8220;label&#8221;: &#8220;Load (1 minutes)&#8221;, &#8220;units&#8221;: null, &#8220;is_readonly&#8221;: true, &#8220;is_polled&#8221;: true, &#8220;type&#8221;: 3}, &#8220;1&#8221;: {&#8220;help&#8221;:</dt>
-<dd>&#8220;The load average&#8221;, &#8220;max&#8221;: null, &#8220;reply_hadd&#8221;: null, &#8220;entry_name&#8221;: &#8220;sensor_float&#8221;, &#8220;genre&#8221;: 1, &#8220;poll_delay&#8221;: 10, &#8220;data&#8221;: 0.49, &#8220;is_writeonly&#8221;: false, &#8220;list_i</dd>
-</dl>
-<p>tems&#8221;: null, &#8220;index&#8221;: 1, &#8220;node_uuid&#8221;: &#8220;hostsensor__load&#8221;, &#8220;uuid&#8221;: &#8220;load&#8221;, &#8220;voice_uuid&#8221;: null, &#8220;min&#8221;: null, &#8220;default&#8221;: null, &#8220;cmd_class&#8221;: 49, &#8220;hadd&#8221;: &#8220;0121/000
-1&#8221;, &#8220;label&#8221;: &#8220;Load (5 minutes)&#8221;, &#8220;units&#8221;: null, &#8220;is_readonly&#8221;: true, &#8220;is_polled&#8221;: true, &#8220;type&#8221;: 3}, &#8220;2&#8221;: {&#8220;help&#8221;: &#8220;The load average&#8221;, &#8220;max&#8221;: null, &#8220;reply_hadd
-&#8221;: null, &#8220;entry_name&#8221;: &#8220;sensor_float&#8221;, &#8220;genre&#8221;: 1, &#8220;poll_delay&#8221;: 10, &#8220;data&#8221;: 0.59, &#8220;is_writeonly&#8221;: false, &#8220;list_items&#8221;: null, &#8220;index&#8221;: 2, &#8220;node_uuid&#8221;: &#8220;hostse
-nsor__load&#8221;, &#8220;uuid&#8221;: &#8220;load&#8221;, &#8220;voice_uuid&#8221;: null, &#8220;min&#8221;: null, &#8220;default&#8221;: null, &#8220;cmd_class&#8221;: 49, &#8220;hadd&#8221;: &#8220;0121/0001&#8221;, &#8220;label&#8221;: &#8220;Load (15 minutes)&#8221;, &#8220;units&#8221;: nu
-ll, &#8220;is_readonly&#8221;: true, &#8220;is_polled&#8221;: true, &#8220;type&#8221;: 3}}</p>
-</div></blockquote>
+/values/basic/0121/0001/load 0 {&quot;0&quot;: {&quot;help&quot;: &quot;The load average&quot;, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;entry_name&quot;: &quot;sensor_float&quot;, &quot;genre&quot;: 1, &quot;poll_delay&quot;: 10,
+ &quot;data&quot;: 0.31, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 0, &quot;node_uuid&quot;: &quot;hostsensor__load&quot;, &quot;uuid&quot;: &quot;load&quot;, &quot;voice_uuid&quot;: null, &quot;min&quot;: null, &quot;defau
+lt&quot;: null, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0121/0001&quot;, &quot;label&quot;: &quot;Load (1 minutes)&quot;, &quot;units&quot;: null, &quot;is_readonly&quot;: true, &quot;is_polled&quot;: true, &quot;type&quot;: 3}, &quot;1&quot;: {&quot;help&quot;:
+ &quot;The load average&quot;, &quot;max&quot;: null, &quot;reply_hadd&quot;: null, &quot;entry_name&quot;: &quot;sensor_float&quot;, &quot;genre&quot;: 1, &quot;poll_delay&quot;: 10, &quot;data&quot;: 0.49, &quot;is_writeonly&quot;: false, &quot;list_i
+tems&quot;: null, &quot;index&quot;: 1, &quot;node_uuid&quot;: &quot;hostsensor__load&quot;, &quot;uuid&quot;: &quot;load&quot;, &quot;voice_uuid&quot;: null, &quot;min&quot;: null, &quot;default&quot;: null, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0121/000
+1&quot;, &quot;label&quot;: &quot;Load (5 minutes)&quot;, &quot;units&quot;: null, &quot;is_readonly&quot;: true, &quot;is_polled&quot;: true, &quot;type&quot;: 3}, &quot;2&quot;: {&quot;help&quot;: &quot;The load average&quot;, &quot;max&quot;: null, &quot;reply_hadd
+&quot;: null, &quot;entry_name&quot;: &quot;sensor_float&quot;, &quot;genre&quot;: 1, &quot;poll_delay&quot;: 10, &quot;data&quot;: 0.59, &quot;is_writeonly&quot;: false, &quot;list_items&quot;: null, &quot;index&quot;: 2, &quot;node_uuid&quot;: &quot;hostse
+nsor__load&quot;, &quot;uuid&quot;: &quot;load&quot;, &quot;voice_uuid&quot;: null, &quot;min&quot;: null, &quot;default&quot;: null, &quot;cmd_class&quot;: 49, &quot;hadd&quot;: &quot;0121/0001&quot;, &quot;label&quot;: &quot;Load (15 minutes)&quot;, &quot;units&quot;: nu
+ll, &quot;is_readonly&quot;: true, &quot;is_polled&quot;: true, &quot;type&quot;: 3}}
+</pre></div>
+</div>
 <p>You can get the documentation about jnt_query here : <a class="reference external" href="https://bibi21000.github.io/janitoo/cli.html#jnt-query">https://bibi21000.github.io/janitoo/cli.html#jnt-query</a></p>
 </div>
 <div class="section" id="command-class-discovering">
