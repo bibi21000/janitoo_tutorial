@@ -374,11 +374,11 @@ Requery the config values :
 
 You can connect to docker appliance to check the configuration file :
 
-..code:: bash
+.. code:: bash
 
     root@7de7e4993b13:~# cat /opt/janitoo/etc/janitoo_hostsensor.conf
 
-..code:: bash
+.. code:: bash
 
     [hostsensor]
     auto_start = True
@@ -403,7 +403,7 @@ You can connect to docker appliance to check the configuration file :
 
 You can also spy the values update and check that the load value is published every 10 seconds.
 
-..code:: bash
+.. code:: bash
 
     $ jnt_spy --host 192.168.14.65 --topic /values/#
 
