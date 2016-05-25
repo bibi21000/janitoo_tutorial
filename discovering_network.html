@@ -132,8 +132,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href=""> Discovering the network</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#one-more-server">One more server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#broadcast-queries">Broadcast queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#request-queries">Request queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#broadcast-network">Broadcast network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#request-nodes">Request nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#values-querying">Values querying</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#more-servers">More servers</a></li>
 </ul>
 </li>
@@ -199,8 +200,8 @@
 <div class="section" id="one-more-server">
 <h2>One more server<a class="headerlink" href="#one-more-server" title="Permalink to this headline">¶</a></h2>
 <p>We need another server it&#8217;s not mandatory but it&#8217;s also a way to speak about Janitoo deploying.
-For example, we want to monitor our UPS. If you don&#8217;t have an UPS, enter erronous informations and you will get a failed UPS.</p>
-<p>You&#8217;ve got may way to do that :</p>
+For example, we want to monitor our UPS.</p>
+<p>You&#8217;ve got may way to do that.</p>
 <p>In the first tutorial (<a class="reference external" href="https://bibi21000.github.io/janitoo_tutorial/hello_world_v1.html">https://bibi21000.github.io/janitoo_tutorial/hello_world_v1.html</a>), we defined 3 bus in the configuration file.
 We can do the same by adding a bus section in the configuration file of a running server (of course after installing the needed modules) :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">nut</span><span class="p">]</span>
@@ -257,12 +258,13 @@ EXPOSE 22
 CMD [&quot;/root/auto.sh&quot;]
 </pre></div>
 </div>
-<p>After this explanations, simply install the NUT appliance docker from here : <a class="reference external" href="https://bibi21000.github.io/janitoo_nut/docker.html">https://bibi21000.github.io/janitoo_nut/docker.html</a>.</p>
+<p>After this explanations, simply install the NUT appliance docker from here : <a class="reference external" href="https://bibi21000.github.io/janitoo_nut/docker.html">https://bibi21000.github.io/janitoo_nut/docker.html</a>.
+If you don&#8217;t have an UPS, enter erronous informations and you will get a failed UPS.</p>
 </div>
-<div class="section" id="broadcast-queries">
-<h2>Broadcast queries<a class="headerlink" href="#broadcast-queries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="broadcast-network">
+<h2>Broadcast network<a class="headerlink" href="#broadcast-network" title="Permalink to this headline">¶</a></h2>
 <p>Janitoo&#8217;s protocol support broadcast. That mean that you can ask all nodes on ther server to send their configuration, ... and so on.</p>
-<p>That&#8217;s the way we discover the node int the last tutorial :</p>
+<p>That&#8217;s the way we discover the nodes in the last tutorial :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query network --host=192.168.14.65
 </pre></div>
 </div>
@@ -333,9 +335,10 @@ hadd       node_uuid                 uuid                      idx  data        
 When a secondary can&#8217;t contact a primary, it fall in fail mode and use broadcast to update its map.
 On all other case, the map must be build using resolv (asking to the primary node)</p>
 </div>
-<div class="section" id="request-queries">
-<h2>Request queries<a class="headerlink" href="#request-queries" title="Permalink to this headline">¶</a></h2>
-<p>You can also retrieve information by asking directly to a controller one (the one is associated to the bus).</p>
+<div class="section" id="request-nodes">
+<h2>Request nodes<a class="headerlink" href="#request-nodes" title="Permalink to this headline">¶</a></h2>
+<p>You can also retrieve information by asking directly to a controller one (the one is associated to the bus).
+his is the requesting network.</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0121/0000 --host=192.168.14.65 --vuuid=all
 </pre></div>
 </div>
@@ -420,7 +423,146 @@ request_info_commands
 ----------
 </pre></div>
 </div>
-<p>This this the way primary and secondary nodes discover new nodes. When the receive an heartbeat from an unknown node, they &#8220;requesst&#8221; informations.</p>
+<p>This this the way primary and secondary nodes discover new nodes. When the receive an heartbeat from an unknown node, they &#8220;request&#8221; informations.</p>
+</div>
+<div class="section" id="values-querying">
+<h2>Values querying<a class="headerlink" href="#values-querying" title="Permalink to this headline">¶</a></h2>
+<p>You can query a config value (setting or getting it) or a user one (ie setting a dimmer), ...</p>
+<p>For example, we will get the list of configs values :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0121/0000 --vuuid request_info_configs
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+0121/0000  hostsensor                location                       0    Docker                    None       8     3     112      The location of the node
+0121/0000  hostsensor                name                           0    Docker sensors            None       8     3     112      The name of the node
+0121/0001  hostsensor__load          load_config                    1    5 minutes                 None       2     3     112      The load average index (1, 5, and 15m)
+0121/0001  hostsensor__load          load_config                    0    1 minutes                 None       2     3     112      The load average index (1, 5, and 15m)
+0121/0001  hostsensor__load          load_config                    2    15 minutes                None       2     3     112      The load average index (1, 5, and 15m)
+0121/0001  hostsensor__load          location                       0    Docker                    None       8     3     112      The location of the node
+0121/0001  hostsensor__load          load_poll                      0    60                        seconds    4     3     112      The poll delay of the value
+0121/0001  hostsensor__load          name                           0    Load                      None       8     3     112      The name of the node
+0121/0002  hostsensor__disks         partition_poll                 0    1800                      seconds    4     3     112      The poll delay of the value
+0121/0002  hostsensor__disks         free_config                    0    /opt/janitoo/etc          None       8     3     112      The partition path
+0121/0002  hostsensor__disks         partition_config               0    /opt/janitoo/etc          None       8     3     112      The partition path
+0121/0002  hostsensor__disks         name                           0    Disks                     None       8     3     112      The name of the node
+0121/0002  hostsensor__disks         total_poll                     0    900                       seconds    4     3     112      The poll delay of the value
+0121/0002  hostsensor__disks         total_config                   0    /opt/janitoo/etc          None       8     3     112      The partition path
+0121/0002  hostsensor__disks         used_poll                      0    900                       seconds    4     3     112      The poll delay of the value
+0121/0002  hostsensor__disks         free_poll                      0    900                       seconds    4     3     112      The poll delay of the value
+0121/0002  hostsensor__disks         percent_use_config             0    /opt/janitoo/etc          None       8     3     112      The partition path
+0121/0002  hostsensor__disks         used_config                    0    /opt/janitoo/etc          None       8     3     112      The partition path
+0121/0002  hostsensor__disks         location                       0    Docker                    None       8     3     112      The location of the node
+0121/0002  hostsensor__disks         percent_use_poll               0    900                       seconds    4     3     112      The poll delay of the value
+0121/0003  hostsensor__uptime        location                       0    Docker                    None       8     3     112      The location of the node
+0121/0003  hostsensor__uptime        name                           0    Uptime                    None       8     3     112      The name of the node
+0121/0003  hostsensor__uptime        uptime_poll                    0    300                       seconds    4     3     112      The poll delay of the value
+0121/0004  hostsensor__lmsensor      temperature_poll               0    60                        seconds    4     3     112      The poll delay of the value
+0121/0004  hostsensor__lmsensor      name                           0    lm-sensors                None       8     3     112      The name of the node
+0121/0004  hostsensor__lmsensor      voltage_config                 0    None                      None       8     3     112      The name of the lmsensor
+0121/0004  hostsensor__lmsensor      voltage_poll                   0    90                        seconds    4     3     112      The poll delay of the value
+0121/0004  hostsensor__lmsensor      location                       0    Docker                    None       8     3     112      The location of the node
+0121/0004  hostsensor__lmsensor      temperature_config             0    temp1                     None       8     3     112      The name of the lmsensor
+0121/0004  hostsensor__lmsensor      config_filename                0    /etc/sensors3.conf        None       8     3     112      The full path/name of config file to use
+</pre></div>
+</div>
+<p>We&#8217;ll update the location of the controller node :</p>
+<dl class="docutils">
+<dt>30</dt>
+<dd>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+0121/0000  hostsensor                location                       0    Docker                    None       8     3     112      The location of the node</dd>
+</dl>
+<p>Use the previous type, uuid, genre and cmdclass to create the query.
+Set data to what you want. Add &#8211;writeonly True to set the value :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query query --host=192.168.14.65 --hadd 0121/0000 --genre config --uuid location --data &quot;My computer&quot; --cmdclass 112 --type 8 --writeonly True
+
+location
+----------
+hadd       uuid                      idx  data                      units      type  genre cmdclass help
+0121/0000  location                  0    My computer               None       None  3     112      The location of the node
+</pre></div>
+</div>
+<p>You can get a value using &#8211;writeonly True :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query query --host=192.168.14.65 --hadd 0121/0000 --genre config --uuid location --cmdclass 112 --readonly True
+
+location
+----------
+hadd       uuid                      idx  data                      units      type  genre cmdclass help
+0121/0000  location                  0    My computer               None       None  3     112      The location of the node
+</pre></div>
+</div>
+<p>Update the poll delay of the load value :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+0121/0001  hostsensor__load          load_poll                      0    60                        seconds    4     3     112      The poll delay of the value
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query query --host=192.168.14.65 --hadd 0121/0001 --genre config --uuid load_poll --data 10 --cmdclass 112 --type 4 --writeonly True
+
+load_poll
+----------
+hadd       uuid                      idx  data                      units      type  genre cmdclass help
+0121/0001  load_poll                 0    10                        None       None  3     112      The poll delay of the value
+</pre></div>
+</div>
+<p>Requery the config values :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0121/0000 --vuuid request_info_configs --host 192.168.14.65
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>request_info_configs
+----------
+hadd       uuid                           idx  data                      units      type  genre cmdclass help
+...
+0121/0000  location                       0    My computer               None       8     3     112      The location of the node
+...
+0121/0001  load_poll                      0    10                        seconds    4     3     112      The poll delay of the value
+...
+</pre></div>
+</div>
+<p>You can connect to docker appliance to check the configuration file :</p>
+<p>..code:: bash</p>
+<blockquote>
+<div><a class="reference external" href="mailto:root&#37;&#52;&#48;7de7e4993b13">root<span>&#64;</span>7de7e4993b13</a>:~# cat /opt/janitoo/etc/janitoo_hostsensor.conf</div></blockquote>
+<p>..code:: bash</p>
+<blockquote>
+<div><p>[hostsensor]
+auto_start = True
+components.load = hostsensor.load
+components.uptime = hostsensor.uptime
+components.disks = hostsensor.disks
+components.lmsensor = hostsensor.lmsensor
+heartbeat = 60
+name = Docker sensors
+location = My cumputer
+hadd = 0121/0000
+uuid = d6b66de0-21ed-11e6-ae4d-0242ac110002</p>
+<p>...</p>
+<p>[hostsensor__load]
+heartbeat = 60
+name = Load
+location = Docker
+hadd = 0121/0001
+load_poll_0 = 10</p>
+</div></blockquote>
+<p>You can also spy the values update and check that the load value is published every 10 seconds.</p>
+<p>..code:: bash</p>
+<blockquote>
+<div><p>$ jnt_spy &#8211;host 192.168.14.65 &#8211;topic /values/#
+&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /values/#
+!!!!!! Connect rc : 0
+!!!!!! Subscribed to None : 1 (0,)
+!!!!!! Type Ctrl+C 2 times to exit !!!!!!
+/values/basic/0121/0001/load 0 {&#8220;0&#8221;: {&#8220;help&#8221;: &#8220;The load average&#8221;, &#8220;max&#8221;: null, &#8220;reply_hadd&#8221;: null, &#8220;entry_name&#8221;: &#8220;sensor_float&#8221;, &#8220;genre&#8221;: 1, &#8220;poll_delay&#8221;: 10,</p>
+<blockquote>
+<div>&#8220;data&#8221;: 0.31, &#8220;is_writeonly&#8221;: false, &#8220;list_items&#8221;: null, &#8220;index&#8221;: 0, &#8220;node_uuid&#8221;: &#8220;hostsensor__load&#8221;, &#8220;uuid&#8221;: &#8220;load&#8221;, &#8220;voice_uuid&#8221;: null, &#8220;min&#8221;: null, &#8220;defau</div></blockquote>
+<dl class="docutils">
+<dt>lt&#8221;: null, &#8220;cmd_class&#8221;: 49, &#8220;hadd&#8221;: &#8220;0121/0001&#8221;, &#8220;label&#8221;: &#8220;Load (1 minutes)&#8221;, &#8220;units&#8221;: null, &#8220;is_readonly&#8221;: true, &#8220;is_polled&#8221;: true, &#8220;type&#8221;: 3}, &#8220;1&#8221;: {&#8220;help&#8221;:</dt>
+<dd>&#8220;The load average&#8221;, &#8220;max&#8221;: null, &#8220;reply_hadd&#8221;: null, &#8220;entry_name&#8221;: &#8220;sensor_float&#8221;, &#8220;genre&#8221;: 1, &#8220;poll_delay&#8221;: 10, &#8220;data&#8221;: 0.49, &#8220;is_writeonly&#8221;: false, &#8220;list_i</dd>
+</dl>
+<p>tems&#8221;: null, &#8220;index&#8221;: 1, &#8220;node_uuid&#8221;: &#8220;hostsensor__load&#8221;, &#8220;uuid&#8221;: &#8220;load&#8221;, &#8220;voice_uuid&#8221;: null, &#8220;min&#8221;: null, &#8220;default&#8221;: null, &#8220;cmd_class&#8221;: 49, &#8220;hadd&#8221;: &#8220;0121/000
+1&#8221;, &#8220;label&#8221;: &#8220;Load (5 minutes)&#8221;, &#8220;units&#8221;: null, &#8220;is_readonly&#8221;: true, &#8220;is_polled&#8221;: true, &#8220;type&#8221;: 3}, &#8220;2&#8221;: {&#8220;help&#8221;: &#8220;The load average&#8221;, &#8220;max&#8221;: null, &#8220;reply_hadd
+&#8221;: null, &#8220;entry_name&#8221;: &#8220;sensor_float&#8221;, &#8220;genre&#8221;: 1, &#8220;poll_delay&#8221;: 10, &#8220;data&#8221;: 0.59, &#8220;is_writeonly&#8221;: false, &#8220;list_items&#8221;: null, &#8220;index&#8221;: 2, &#8220;node_uuid&#8221;: &#8220;hostse
+nsor__load&#8221;, &#8220;uuid&#8221;: &#8220;load&#8221;, &#8220;voice_uuid&#8221;: null, &#8220;min&#8221;: null, &#8220;default&#8221;: null, &#8220;cmd_class&#8221;: 49, &#8220;hadd&#8221;: &#8220;0121/0001&#8221;, &#8220;label&#8221;: &#8220;Load (15 minutes)&#8221;, &#8220;units&#8221;: nu
+ll, &#8220;is_readonly&#8221;: true, &#8220;is_polled&#8221;: true, &#8220;type&#8221;: 3}}</p>
+</div></blockquote>
 </div>
 <div class="section" id="more-servers">
 <h2>More servers<a class="headerlink" href="#more-servers" title="Permalink to this headline">¶</a></h2>
