@@ -137,6 +137,7 @@
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#broadcast-network">Broadcast network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#request-nodes">Request nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#values-querying">Values querying</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovering_network.html#command-class-discovering">Command class discovering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#more-servers">More servers</a></li>
 </ul>
 </li>
@@ -211,6 +212,8 @@
 <li>primary nodes (and maybe secondary ones) will send heartbeat for nodes in timeout</li>
 <li>a node holds values</li>
 <li>a value holds instances (not fully supported)</li>
+<li>values have genres : &#8216;basic&#8217;, &#8216;user&#8217;, &#8216;config&#8217;, &#8216;system&#8217;, &#8216;command&#8217;</li>
+<li>values implements cmd_class : a capacity (ie switch, dimmer, ... ), a config, ...</li>
 </ul>
 <p>If you&#8217;re famillar with Zwave (<a class="reference external" href="https://github.com/OpenZWave/open-zwave">https://github.com/OpenZWave/open-zwave</a>), Janitoo&#8217;s protocol is a kind of Zwave over mqtt</p>
 <p>The API implements the concepts of thread/bus, components and values :</p>

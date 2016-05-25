@@ -6,7 +6,7 @@ Many servers
 Goal
 ====
 
-In the last parts, you've seen how to create server.
+In the previous parts, you've seen how to create server.
 In this part, we will connect many machines using Janitoo.
 Ideally you need another raspberry :D. But you can also use :
 
@@ -236,6 +236,8 @@ We need to specify a host to query as we use a remote one. Query basics values u
     0121/0002  hostsensor__disks         partition                      5    /etc/hosts                None       8     1     49       The partition list
     0121/0002  hostsensor__disks         partition                      4    /etc/hostname             None       8     1     49       The partition list
     0121/0003  hostsensor__uptime        uptime                         0    21003.93                  None       3     1     49       Uptime in seconds
+
+We need to specify a host to query as we use a remote one. Query users values using :
 
 .. code:: bash
 

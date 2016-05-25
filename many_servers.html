@@ -137,6 +137,7 @@
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#broadcast-network">Broadcast network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#request-nodes">Request nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#values-querying">Values querying</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovering_network.html#command-class-discovering">Command class discovering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#more-servers">More servers</a></li>
 </ul>
 </li>
@@ -201,7 +202,7 @@
 <h1>Many servers<a class="headerlink" href="#many-servers" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="goal">
 <h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
-<p>In the last parts, you&#8217;ve seen how to create server.
+<p>In the previous parts, you&#8217;ve seen how to create server.
 In this part, we will connect many machines using Janitoo.
 Ideally you need another raspberry :D. But you can also use :</p>
 <ul class="simple">
@@ -384,6 +385,7 @@ hadd       uuid                 name                      location              
 0121/0003  hostsensor__uptime        uptime                         0    21003.93                  None       3     1     49       Uptime in seconds
 </pre></div>
 </div>
+<p>We need to specify a host to query as we use a remote one. Query users values using :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0121/0000 --vuuid request_info_users --host 192.168.14.65
 </pre></div>
 </div>

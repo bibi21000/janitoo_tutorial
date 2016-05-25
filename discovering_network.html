@@ -137,6 +137,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#broadcast-network">Broadcast network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#request-nodes">Request nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#values-querying">Values querying</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-class-discovering">Command class discovering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#more-servers">More servers</a></li>
 </ul>
 </li>
@@ -571,6 +572,114 @@ nsor__load&#8221;, &#8220;uuid&#8221;: &#8220;load&#8221;, &#8220;voice_uuid&#82
 ll, &#8220;is_readonly&#8221;: true, &#8220;is_polled&#8221;: true, &#8220;type&#8221;: 3}}</p>
 </div></blockquote>
 <p>You can get the documentation about jnt_query here : <a class="reference external" href="https://bibi21000.github.io/janitoo/cli.html#jnt-query">https://bibi21000.github.io/janitoo/cli.html#jnt-query</a></p>
+</div>
+<div class="section" id="command-class-discovering">
+<h2>Command class discovering<a class="headerlink" href="#command-class-discovering" title="Permalink to this headline">¶</a></h2>
+<p>Requesting and broadcasting informations create a lot of traffic on the network. So It&#8217;s better to not use it on commons nodes.
+It should be reserved to primary or sencondaries nodes.</p>
+<p>But sometimes it&#8217;s necessary. So if you really need it, use the resolv method.</p>
+<p>We spoke many times about primary and secondaries ... but never about their implementation / deployement.</p>
+<p>Typically, a primary is a Dynamic Home Configuration Protocol (DHCP), it will store the configuration of all nodes (using a db or not).
+Actually, it about 20% finish ... so not usuable. And maybe we should do some updates on protocol.
+That&#8217;s why we set the HADD manually in the configuration file ...</p>
+<p>And secondaries ?</p>
+<p>Technically, every thread or server (in Janitoo API) can be a secondary. But a secondary hold a full map of the network (maybe more than 1000 values)
+and it will consume RAM and cpu (to take the map up to date).</p>
+<p>Typically, a user interface ( <a class="reference external" href="https://github.com/bibi21000/janitoo_manager">https://github.com/bibi21000/janitoo_manager</a> ) which needs to list nodes, values, should be a secondary.</p>
+<p>A notifier, which needs to call many nodes (an email notifier, a sms notifier, a tv message, a ring on an raspberry)  may
+be a secondary too.</p>
+<p>Typically, if you want your server become a secondary, you should extend the default network :</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyNetwork</span><span class="p">(</span><span class="n">JNTNetwork</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The network manager for the flask application</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_event</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">JNTNetwork</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_event</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extend_from_entry_points</span><span class="p">(</span><span class="s">&#39;janitoo_tutorial&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">emit_network</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Emit a network state event</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s">&#39;state_str&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_str</span><span class="p">,</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s">&#39;nodes_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_count</span><span class="p">,</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s">&#39;home_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">home_id</span><span class="p">,</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s">&#39;is_failed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_failed</span><span class="p">,</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s">&#39;is_secondary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_secondary</span><span class="p">,</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s">&#39;is_primary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_primary</span><span class="p">,</span>
+
+    <span class="k">def</span> <span class="nf">extend_from_entry_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;&quot;Extend the network with methods found in entrypoints</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">entrypoint</span> <span class="ow">in</span> <span class="n">iter_entry_points</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.network&#39;</span><span class="o">%</span><span class="n">group</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;Extend network with </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">entrypoint</span><span class="o">.</span><span class="n">module_name</span> <span class="p">)</span>
+            <span class="n">extend</span> <span class="o">=</span> <span class="n">entrypoint</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+            <span class="n">extend</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>And you need to start/stop it the right place in your server :
+<a class="reference external" href="https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py">https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py</a></p>
+<p>The network object will do all the requests / broadcast to populate the map : with a working primary (and some code fixes :)),
+it should be up in less than 10 seconds.
+With no primary, it take at least 30 seconds and surely more on large installations.
+Look at the video on youtube or install the janitoo_manager package.</p>
+<p>This example is copy/paste from the dhcp server, which is written with an old release of Janitoo.
+Contact the core team if you need to develop a secondary node.</p>
+<p>Back to the command classes : they are a way to organize nodes/values, it represents a capacity of a node :
+ie a switch implement the cmdclass COMMAND_SWITCH_BINARY.
+For a dimmer, it is COMMAND_SWITCH_MULTILEVEL.</p>
+<div class="section" id="primary-or-secondaries">
+<h3>Primary or secondaries<a class="headerlink" href="#primary-or-secondaries" title="Permalink to this headline">¶</a></h3>
+<p>On a primary or secondary, you can extend the network object to collect command classes :</p>
+<p>..code:: python</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>def find_webcontrollers():</dt>
+<dd><p class="first">&#8220;&#8221;&#8220;Return a dict with the web controller
+&#8220;&#8221;&#8221;
+res = {}
+web_servers = [node for node in self.nodes if COMMAND_WEB_CONTROLLER in self.nodes[node][&#8216;cmd_classes&#8217;]]
+for node in  web_servers :</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>if node in self.basics:</dt>
+<dd><p class="first">res[node] = {}
+for value in self.basics[node]:</p>
+<blockquote class="last">
+<div><p>res[node][value] = {}
+for index in self.basics[node][value]:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>if self.basics[node][value][index][&#8216;cmd_class&#8217;] == COMMAND_WEB_CONTROLLER:</dt>
+<dd><dl class="first last docutils">
+<dt>res[node][value][index] = {</dt>
+<dd>&#8216;value_uuid&#8217;:self.basics[node][value][index][&#8216;uuid&#8217;],
+&#8216;value_index&#8217;:self.basics[node][value][index][&#8216;index&#8217;],
+&#8216;data&#8217;:self.basics[node][value][index][&#8216;data&#8217;],
+&#8216;label&#8217;:self.basics[node][value][index][&#8216;label&#8217;],
+&#8216;help&#8217;:self.basics[node][value][index][&#8216;data&#8217;],</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+<p>This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page.</p>
+<p>Look at documentation here : <a class="reference external" href="https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py">https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py</a>.</p>
+</div>
+<div class="section" id="resolv">
+<h3>Resolv<a class="headerlink" href="#resolv" title="Permalink to this headline">¶</a></h3>
+<p>Not implemented.</p>
+<p>Make a call via uuid to the primary to get a list of nodes implementing the needed command class.</p>
+</div>
 </div>
 <div class="section" id="more-servers">
 <h2>More servers<a class="headerlink" href="#more-servers" title="Permalink to this headline">¶</a></h2>
