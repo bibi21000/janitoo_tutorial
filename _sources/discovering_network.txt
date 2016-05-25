@@ -3,8 +3,8 @@ Discovering network
 ===================
 
 
-Explanations
-============
+Goal
+====
 
 More servers for this parts and more about network too.
 
