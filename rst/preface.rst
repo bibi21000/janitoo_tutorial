@@ -18,6 +18,8 @@ The protocol implements the concepts of network, nodes and values :
 - primary nodes (and maybe secondary ones) will send heartbeat for nodes in timeout
 - a node holds values
 - a value holds instances (not fully supported)
+- values have genres : 'basic', 'user', 'config', 'system', 'command'
+- values implements cmd_class : a capacity (ie switch, dimmer, ... ), a config, ...
 
 If you're famillar with Zwave (https://github.com/OpenZWave/open-zwave), Janitoo's protocol is a kind of Zwave over mqtt
 

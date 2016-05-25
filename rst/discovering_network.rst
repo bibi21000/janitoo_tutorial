@@ -423,6 +423,118 @@ You can also spy the values update and check that the load value is published ev
 
 You can get the documentation about jnt_query here : https://bibi21000.github.io/janitoo/cli.html#jnt-query
 
+
+Command class discovering
+=========================
+
+Requesting and broadcasting informations create a lot of traffic on the network. So It's better to not use it on commons nodes.
+It should be reserved to primary or sencondaries nodes.
+
+But sometimes it's necessary. So if you really need it, use the resolv method.
+
+We spoke many times about primary and secondaries ... but never about their implementation / deployement.
+
+Typically, a primary is a Dynamic Home Configuration Protocol (DHCP), it will store the configuration of all nodes (using a db or not).
+Actually, it about 20% finish ... so not usuable. And maybe we should do some updates on protocol.
+That's why we set the HADD manually in the configuration file ...
+
+And secondaries ?
+
+Technically, every thread or server (in Janitoo API) can be a secondary. But a secondary hold a full map of the network (maybe more than 1000 values)
+and it will consume RAM and cpu (to take the map up to date).
+
+Typically, a user interface ( https://github.com/bibi21000/janitoo_manager ) which needs to list nodes, values, should be a secondary.
+
+A notifier, which needs to call many nodes (an email notifier, a sms notifier, a tv message, a ring on an raspberry)  may
+be a secondary too.
+
+Typically, if you want your server become a secondary, you should extend the default network :
+
+.. code:: python
+
+    class MyNetwork(JNTNetwork):
+        """The network manager for the flask application
+        """
+
+        def __init__(self, stop_event, options, **kwargs):
+            """
+            """
+            JNTNetwork.__init__(self, stop_event, options, **kwargs)
+            self.extend_from_entry_points('janitoo_tutorial')
+
+        def emit_network(self):
+            """Emit a network state event
+            """
+            ret = {}
+            ret['state'] = self.state,
+            ret['state_str'] = self.state_str,
+            ret['nodes_count'] = self.nodes_count,
+            ret['home_id'] = self.home_id,
+            ret['is_failed'] = self.is_failed,
+            ret['is_secondary'] = self.is_secondary,
+            ret['is_primary'] = self.is_primary,
+
+        def extend_from_entry_points(self, group):
+            """"Extend the network with methods found in entrypoints
+            """
+            for entrypoint in iter_entry_points(group = '%s.network'%group):
+                logger.info('Extend network with %s', entrypoint.module_name )
+                extend = entrypoint.load()
+                extend( self )
+
+And you need to start/stop it the right place in your server :
+https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py
+
+The network object will do all the requests / broadcast to populate the map : with a working primary (and some code fixes :)),
+it should be up in less than 10 seconds.
+With no primary, it take at least 30 seconds and surely more on large installations.
+Look at the video on youtube or install the janitoo_manager package.
+
+This example is copy/paste from the dhcp server, which is written with an old release of Janitoo.
+Contact the core team if you need to develop a secondary node.
+
+Back to the command classes : they are a way to organize nodes/values, it represents a capacity of a node :
+ie a switch implement the cmdclass COMMAND_SWITCH_BINARY.
+For a dimmer, it is COMMAND_SWITCH_MULTILEVEL.
+
+Primary or secondaries
+----------------------
+
+On a primary or secondary, you can extend the network object to collect command classes :
+
+..code:: python
+
+   def find_webcontrollers():
+        """Return a dict with the web controller
+        """
+        res = {}
+        web_servers = [node for node in self.nodes if COMMAND_WEB_CONTROLLER in self.nodes[node]['cmd_classes']]
+        for node in  web_servers :
+            if node in self.basics:
+                res[node] = {}
+                for value in self.basics[node]:
+                    res[node][value] = {}
+                    for index in self.basics[node][value]:
+                        if self.basics[node][value][index]['cmd_class'] == COMMAND_WEB_CONTROLLER:
+                            res[node][value][index] = {
+                                'value_uuid':self.basics[node][value][index]['uuid'],
+                                'value_index':self.basics[node][value][index]['index'],
+                                'data':self.basics[node][value][index]['data'],
+                                'label':self.basics[node][value][index]['label'],
+                                'help':self.basics[node][value][index]['data'],
+
+This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page.
+
+Look at documentation here : https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py.
+
+Resolv
+------
+
+Not implemented.
+
+Make a call via uuid to the primary to get a list of nodes implementing the needed command class.
+
+
 More servers
 ============
 
