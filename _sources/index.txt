@@ -6,6 +6,9 @@
 Welcome to documentation!
 =========================
 
+.. jnt-package::
+    :infos: desc, longdesc, keywords
+
 Contents:
 
 .. toctree::

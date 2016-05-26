@@ -474,11 +474,10 @@ request_info_commands
 </pre></div>
 </div>
 <p>We&#8217;ll update the location of the controller node :</p>
-<dl class="docutils">
-<dt>30</dt>
-<dd>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
-0121/0000  hostsensor                location                       0    Docker                    None       8     3     112      The location of the node</dd>
-</dl>
+<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+0121/0000  hostsensor                location                       0    Docker                    None       8     3     112      The location of the node
+</pre></div>
+</div>
 <p>Use the previous type, uuid, genre and cmdclass to create the query.
 Set data to what you want. Add &#8211;writeonly True to set the value :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query query --host=192.168.14.65 --hadd 0121/0000 --genre config --uuid location --data &quot;My computer&quot; --cmdclass 112 --type 8 --writeonly True
@@ -540,9 +539,7 @@ name = Docker sensors
 location = My cumputer
 hadd = 0121/0000
 uuid = d6b66de0-21ed-11e6-ae4d-0242ac110002
-
 ...
-
 [hostsensor__load]
 heartbeat = 60
 name = Load
@@ -640,7 +637,7 @@ For a dimmer, it is COMMAND_SWITCH_MULTILEVEL.</p>
 &#8220;&#8221;&#8221;
 res = {}
 web_servers = [node for node in self.nodes if COMMAND_WEB_CONTROLLER in self.nodes[node][&#8216;cmd_classes&#8217;]]
-for node in  web_servers :</p>
+for node in web_servers:</p>
 <blockquote class="last">
 <div><dl class="docutils">
 <dt>if node in self.basics:</dt>
@@ -652,7 +649,7 @@ for index in self.basics[node][value]:</p>
 <blockquote>
 <div><dl class="docutils">
 <dt>if self.basics[node][value][index][&#8216;cmd_class&#8217;] == COMMAND_WEB_CONTROLLER:</dt>
-<dd><dl class="first last docutils">
+<dd><dl class="first docutils">
 <dt>res[node][value][index] = {</dt>
 <dd>&#8216;value_uuid&#8217;:self.basics[node][value][index][&#8216;uuid&#8217;],
 &#8216;value_index&#8217;:self.basics[node][value][index][&#8216;index&#8217;],
@@ -660,6 +657,7 @@ for index in self.basics[node][value]:</p>
 &#8216;label&#8217;:self.basics[node][value][index][&#8216;label&#8217;],
 &#8216;help&#8217;:self.basics[node][value][index][&#8216;data&#8217;],</dd>
 </dl>
+<p class="last">}</p>
 </dd>
 </dl>
 </div></blockquote>

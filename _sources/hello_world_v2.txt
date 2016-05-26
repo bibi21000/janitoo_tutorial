@@ -270,7 +270,6 @@ And the test for the bus :
 .. code:: python
 
     from janitoo_tutorial.tutorial1 import TutorialBus
-
     class TestTutorialBus(JNTTBus, JNTTBusCommon):
         """Test the Bus
         """
@@ -394,8 +393,6 @@ You can also query a node :
     0225/0002  tutorial1__temperature         Temperature               Onewire              Temperature sensor
     0225/0001  tutorial1__ambiance            Ambiance 1                DHT                  Temperature/humidity sensor
     0225/0003  tutorial1__cpu                 CPU                       Hostsensor           Software component
-
-.. code:: bash
 
 Check the config values :
 

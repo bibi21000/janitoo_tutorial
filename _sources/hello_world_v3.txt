@@ -271,8 +271,6 @@ You can also query a node :
 
     $ jnt_query node --hadd 0225/0000
 
-.. code:: bash
-
 Check the config values :
 
 .. code:: bash
