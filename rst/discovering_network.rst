@@ -311,7 +311,7 @@ For example, we will get the list of configs values :
 We'll update the location of the controller node :
 
 .. code:: bash
-30
+
     hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
     0121/0000  hostsensor                location                       0    Docker                    None       8     3     112      The location of the node
 
@@ -391,9 +391,7 @@ You can connect to docker appliance to check the configuration file :
     location = My cumputer
     hadd = 0121/0000
     uuid = d6b66de0-21ed-11e6-ae4d-0242ac110002
-
     ...
-
     [hostsensor__load]
     heartbeat = 60
     name = Load
@@ -509,7 +507,7 @@ On a primary or secondary, you can extend the network object to collect command 
         """
         res = {}
         web_servers = [node for node in self.nodes if COMMAND_WEB_CONTROLLER in self.nodes[node]['cmd_classes']]
-        for node in  web_servers :
+        for node in web_servers:
             if node in self.basics:
                 res[node] = {}
                 for value in self.basics[node]:
@@ -522,6 +520,7 @@ On a primary or secondary, you can extend the network object to collect command 
                                 'data':self.basics[node][value][index]['data'],
                                 'label':self.basics[node][value][index]['label'],
                                 'help':self.basics[node][value][index]['data'],
+                            }
 
 This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page.
 
