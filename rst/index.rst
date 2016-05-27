@@ -5,8 +5,6 @@ Welcome to Janitoo's tutorial
 .. jnt-package::
     :infos: desc, longdesc
 
-.. jnt-badge::
-
 License
 =======
 
