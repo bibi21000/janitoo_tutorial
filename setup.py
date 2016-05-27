@@ -56,8 +56,8 @@ data_files_config(data_files, 'docs','src/docs/','*')
 
 setup(
     name = 'janitoo_tutorial',
-    description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
-    long_description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
+    description = "The tutorial for Janitoo.",
+    long_description = "With this tutorial you'll see how to create servers for your Raspberry Pi, deploy using Docker and use the network.",
     author='Sébastien GALLET aka bibi2100 <bibi21000@gmail.com>',
     author_email='bibi21000@gmail.com',
     url='http://bibi21000.gallet.info/',
@@ -82,7 +82,7 @@ setup(
     scripts=['src/scripts/jnt_tutorial'],
     packages = find_packages('src', exclude=["scripts", "docs", "config"]),
     package_dir = { '': 'src' },
-    keywords = "raspberry,tutorial",
+    keywords = "core,raspberry,tutorial",
     include_package_data=True,
     data_files = data_files,
     install_requires=[
