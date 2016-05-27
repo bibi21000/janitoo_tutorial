@@ -60,7 +60,10 @@ setup(
     long_description = "With this tutorial you'll see how to create servers for your Raspberry Pi, deploy using Docker and use the network.",
     author='Sébastien GALLET aka bibi2100 <bibi21000@gmail.com>',
     author_email='bibi21000@gmail.com',
-    url='http://bibi21000.gallet.info/',
+    nickname='bibi21000',
+    url='https://github.com/bibi21000/janitoo_tutorial',
+    git_url='https://github.com/bibi21000/janitoo_tutorial',
+    doc_url='https://bibi21000.github.io/janitoo_tutorial',
     license = """
         This file is part of Janitoo.
 

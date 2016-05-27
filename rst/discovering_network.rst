@@ -17,7 +17,7 @@ For example, we want to monitor our UPS.
 
 You've got may way to do that.
 
-In the first tutorial (https://bibi21000.github.io/janitoo_tutorial/hello_world_v1.html), we defined 3 bus in the configuration file.
+In the first tutorial (:doc:`here <hello_world_v1>`), we defined 3 bus in the configuration file.
 We can do the same by adding a bus section in the configuration file of a running server (of course after installing the needed modules) :
 
 .. code:: bash
@@ -35,8 +35,8 @@ Remember that the GIL will surely block your code on a core, so a single core wi
 If a bus is not fair with resources (cpu, io, ...) the other one will be impacted.
 Same if a bus fails.
 
-In the second (https://bibi21000.github.io/janitoo_tutorial/hello_world_v2.html) and
-third (https://bibi21000.github.io/janitoo_tutorial/hello_world_v3.html) tutorials,
+In the second (:doc:`here <hello_world_v2>`) and
+third ((:doc:`here <hello_world_v3>`)) tutorials,
 we aggregate 2 buses with python code. Your code will also stay on the same core.
 
 We don't see it before but you can install many servers on the same rasberry but :
@@ -500,7 +500,7 @@ Primary or secondaries
 
 On a primary or secondary, you can extend the network object to collect command classes :
 
-..code:: python
+.. code:: python
 
    def find_webcontrollers():
         """Return a dict with the web controller
