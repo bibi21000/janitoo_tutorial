@@ -2,8 +2,6 @@
 Developpers Tools
 =================
 
-|
-
 .. jnt-badge::
 
 |
