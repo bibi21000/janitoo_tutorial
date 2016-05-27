@@ -209,7 +209,7 @@
 <p>We need another server it&#8217;s not mandatory but it&#8217;s also a way to speak about Janitoo deploying.
 For example, we want to monitor our UPS.</p>
 <p>You&#8217;ve got may way to do that.</p>
-<p>In the first tutorial (<a class="reference external" href="https://bibi21000.github.io/janitoo_tutorial/hello_world_v1.html">https://bibi21000.github.io/janitoo_tutorial/hello_world_v1.html</a>), we defined 3 bus in the configuration file.
+<p>In the first tutorial (<a class="reference internal" href="hello_world_v1.html"><em>here</em></a>), we defined 3 bus in the configuration file.
 We can do the same by adding a bus section in the configuration file of a running server (of course after installing the needed modules) :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">nut</span><span class="p">]</span>
 <span class="n">auto_start</span> <span class="o">=</span> <span class="bp">True</span>
@@ -224,8 +224,8 @@ We can do the same by adding a bus section in the configuration file of a runnin
 Remember that the GIL will surely block your code on a core, so a single core will hold your 2 appliances.
 If a bus is not fair with resources (cpu, io, ...) the other one will be impacted.
 Same if a bus fails.</p>
-<p>In the second (<a class="reference external" href="https://bibi21000.github.io/janitoo_tutorial/hello_world_v2.html">https://bibi21000.github.io/janitoo_tutorial/hello_world_v2.html</a>) and
-third (<a class="reference external" href="https://bibi21000.github.io/janitoo_tutorial/hello_world_v3.html">https://bibi21000.github.io/janitoo_tutorial/hello_world_v3.html</a>) tutorials,
+<p>In the second (<a class="reference internal" href="hello_world_v2.html"><em>here</em></a>) and
+third ((<a class="reference internal" href="hello_world_v3.html"><em>here</em></a>)) tutorials,
 we aggregate 2 buses with python code. Your code will also stay on the same core.</p>
 <p>We don&#8217;t see it before but you can install many servers on the same rasberry but :</p>
 <ul class="simple">
@@ -629,45 +629,27 @@ For a dimmer, it is COMMAND_SWITCH_MULTILEVEL.</p>
 <div class="section" id="primary-or-secondaries">
 <h3>Primary or secondaries<a class="headerlink" href="#primary-or-secondaries" title="Permalink to this headline">¶</a></h3>
 <p>On a primary or secondary, you can extend the network object to collect command classes :</p>
-<p>..code:: python</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>def find_webcontrollers():</dt>
-<dd><p class="first">&#8220;&#8221;&#8220;Return a dict with the web controller
-&#8220;&#8221;&#8221;
-res = {}
-web_servers = [node for node in self.nodes if COMMAND_WEB_CONTROLLER in self.nodes[node][&#8216;cmd_classes&#8217;]]
-for node in web_servers:</p>
-<blockquote class="last">
-<div><dl class="docutils">
-<dt>if node in self.basics:</dt>
-<dd><p class="first">res[node] = {}
-for value in self.basics[node]:</p>
-<blockquote class="last">
-<div><p>res[node][value] = {}
-for index in self.basics[node][value]:</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>if self.basics[node][value][index][&#8216;cmd_class&#8217;] == COMMAND_WEB_CONTROLLER:</dt>
-<dd><dl class="first docutils">
-<dt>res[node][value][index] = {</dt>
-<dd>&#8216;value_uuid&#8217;:self.basics[node][value][index][&#8216;uuid&#8217;],
-&#8216;value_index&#8217;:self.basics[node][value][index][&#8216;index&#8217;],
-&#8216;data&#8217;:self.basics[node][value][index][&#8216;data&#8217;],
-&#8216;label&#8217;:self.basics[node][value][index][&#8216;label&#8217;],
-&#8216;help&#8217;:self.basics[node][value][index][&#8216;data&#8217;],</dd>
-</dl>
-<p class="last">}</p>
-</dd>
-</dl>
-</div></blockquote>
-</div></blockquote>
-</dd>
-</dl>
-</div></blockquote>
-</dd>
-</dl>
-</div></blockquote>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">find_webcontrollers</span><span class="p">():</span>
+     <span class="sd">&quot;&quot;&quot;Return a dict with the web controller</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+     <span class="n">web_servers</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="n">COMMAND_WEB_CONTROLLER</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s">&#39;cmd_classes&#39;</span><span class="p">]]</span>
+     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">web_servers</span><span class="p">:</span>
+         <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">:</span>
+             <span class="n">res</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+             <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+                 <span class="n">res</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">]:</span>
+                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s">&#39;cmd_class&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">COMMAND_WEB_CONTROLLER</span><span class="p">:</span>
+                         <span class="n">res</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                             <span class="s">&#39;value_uuid&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s">&#39;uuid&#39;</span><span class="p">],</span>
+                             <span class="s">&#39;value_index&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s">&#39;index&#39;</span><span class="p">],</span>
+                             <span class="s">&#39;data&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s">&#39;data&#39;</span><span class="p">],</span>
+                             <span class="s">&#39;label&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s">&#39;label&#39;</span><span class="p">],</span>
+                             <span class="s">&#39;help&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">basics</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">value</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s">&#39;data&#39;</span><span class="p">],</span>
+                         <span class="p">}</span>
+</pre></div>
+</div>
 <p>This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page.</p>
 <p>Look at documentation here : <a class="reference external" href="https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py">https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py</a>.</p>
 </div>

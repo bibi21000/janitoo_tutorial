@@ -40,6 +40,8 @@ About this tutorial
 - all code is provided, just look at the specified file to look around.
 - all configuration files are provided, you simply need to copy them the right place.
 
+For the impatient that don't want to test the API (with a Raspberry Pi), jump :doc:`here <many_servers>`.
+
 
 Notes
 =====
