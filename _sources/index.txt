@@ -2,14 +2,21 @@
    sphinx-quickstart on Sun Nov  1 00:01:54 2015.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
-
-Welcome to documentation!
-=========================
+=============================
+Welcome to Janitoo's tutorial
+=============================
 
 .. jnt-package::
-    :infos: desc, longdesc, keywords
+    :infos: desc, longdesc
 
-Contents:
+License
+=======
+
+.. jnt-package::
+    :infos: license
+
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
@@ -33,3 +40,8 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+Keywords
+========
+
+.. jnt-package::
+    :infos: keywords
