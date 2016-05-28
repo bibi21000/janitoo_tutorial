@@ -141,20 +141,35 @@ class TutorialBus(JNTBus):
         poll_value = self.values[uuid].create_poll_value(default=300)
         self.values[poll_value.uuid] = poll_value
 
-        uuid="{:s}_state".format(OID)
-        self.values[uuid] = self.value_factory['action_fsm'](options=self.options, uuid=uuid,
+        uuid="{:s}_transition".format(OID)
+        self.values[uuid] = self.value_factory['transition_fsm'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
-            list_items=self.states,
+            list_items=[ v['trigger'] for v in self.transitions ],
             fsm_bus=self,
         )
         poll_value = self.values[uuid].create_poll_value()
         self.values[poll_value.uuid] = poll_value
         config_value = self.values[uuid].create_config_value()
         self.values[config_value.uuid] = config_value
-        print self.values
+
+        uuid="{:s}_state".format(OID)
+        self.values[uuid] = self.value_factory['sensor_string'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            help='The state of the fsm.',
+            get_data_cb = self.get_state,
+            label='State',
+        )
+        poll_value = self.values[uuid].create_poll_value(default=60)
+        self.values[poll_value.uuid] = poll_value
+
         self._bus_lock = threading.Lock()
         self.presence_events = {}
         self.state = "sleeping"
+
+    def get_state(self, node_uuid, index):
+        """Get the state of the fsm
+        """
+        return self.state
 
     @property
     def polled_sensors(self):
