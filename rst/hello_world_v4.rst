@@ -97,7 +97,7 @@ It's time to wake-up the state machine. At first, we need to find the right valu
 
 .. code: bash
 
-    jnt_query node --hadd 0225/0000 --vuuid request_info_basics
+    $ jnt_query node --hadd 0225/0000 --vuuid request_info_basics
 
 .. code: bash
 
@@ -111,7 +111,8 @@ It's time to wake-up the state machine. At first, we need to find the right valu
 And change the state to
 .. code: bash
 
- $ jnt_query query --host=192.168.14.65 --hadd 0120/0001 --genre config --uuid load_poll --data 10 --cmdclass 112 --type 4 --writeonly True
+    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --readonly True
+
 You've got may way to do that.
 
 In the first tutorial (), we defined 3 bus in the configuration file.
