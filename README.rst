@@ -24,6 +24,10 @@ Documentation
 =============
 You can browse online documentation here : https://bibi21000.github.io/janitoo_tutorial/.
 
+Tutorial
+========
+You can find a tutorial here : https://bibi21000.github.io/janitoo_tutorial/.
+
 Development status
 ==================
 
