@@ -103,6 +103,8 @@ class TutorialBus(JNTBus):
             'dest': 'ringing',
         },
     ]
+    """The transitions
+    """
 
     def __init__(self, **kwargs):
         """
@@ -306,6 +308,8 @@ class TutorialBus(JNTBus):
             self.buses[bus].start(mqttc, trigger_thread_reload_cb=None)
         JNTBus.start(self, mqttc, trigger_thread_reload_cb)
         self._statemachine = self.create_fsm()
+        #We call it manually as the state machine doesn't trigger it at creation
+        self.on_enter_sleeping()
 
     def create_fsm(self):
         """Create the fsm
