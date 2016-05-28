@@ -187,8 +187,13 @@ class TutorialBus(JNTBus):
         return [
             self.nodeman.find_value('temperature', 'temperature'),
             self.nodeman.find_value('ambiance', 'temperature'),
-            self.nodeman.find_value('cpu', 'temperature'),
             self.nodeman.find_value('ambiance', 'humidity'),
+            self.nodeman.find_value('cpu', 'temperature'),
+            self.nodeman.find_value('cpu', 'voltage'),
+            self.nodeman.find_value('cpu', 'frequency'),
+            self.nodeman.find_value('led', 'switch'),
+            self.nodeman.find_value('led', 'blink'),
+            self.nodeman.find_bus_value('temperature'),
         ]
 
     def on_enter_reporting(self):
