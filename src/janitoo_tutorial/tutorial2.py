@@ -189,19 +189,25 @@ class TutorialBus(JNTBus):
             self.nodeman.find_value('led', 'switch'),
             self.nodeman.find_value('led', 'blink'),
             self.nodeman.find_bus_value('temperature'),
+            self.nodeman.find_bus_value('transition'),
         ]
 
     def start_reporting(self):
         """
         """
-        logger.debug("[%s] - on_enter_reporting", self.__class__.__name__)
+        logger.debug("[%s] - start_reporting", self.__class__.__name__)
         self.bus_acquire()
         res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'heartbeat'
             self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
+            #In sleeping mode, send the state of the fsm every 900 seconds
+            #We update poll_delay directly to not update the value in configfile
+            state = self.nodeman.find_bus_value('state')
+            state.poll_delay = self.nodeman.find_bus_value('state_poll').data
+            self.nodeman.add_polls([state], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in on_enter_reporting", self.__class__.__name__)
+            logger.exception("[%s] - Error in start_reporting", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
@@ -211,15 +217,18 @@ class TutorialBus(JNTBus):
     def start_sleeping(self):
         """
         """
-        logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
+        logger.debug("[%s] - start_sleeping", self.__class__.__name__)
         self.stop_check()
         self.bus_acquire()
         res = True
         try:
             self.nodeman.remove_polls(self.polled_sensors)
             self.nodeman.find_value('led', 'blink').data = 'off'
+            #In sleeping mode, send the state of the fsm every 900 seconds
+            #We update poll_delay directly to nto update the value in config file
+            self.nodeman.find_bus_value('state').poll_delay = 900
         except Exception:
-            logger.exception("[%s] - Error in on_enter_sleeping", self.__class__.__name__)
+            logger.exception("[%s] - Error in start_sleeping", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
@@ -228,13 +237,18 @@ class TutorialBus(JNTBus):
     def start_ringing(self):
         """
         """
-        logger.debug("[%s] - on_enter_ringing", self.__class__.__name__)
+        logger.debug("[%s] - start_ringing", self.__class__.__name__)
         self.bus_acquire()
         res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'warning'
+            #In sleeping mode, send the state of the fsm every 900 seconds
+            #We update poll_delay directly to not update the value in configfile
+            state = self.nodeman.find_bus_value('state')
+            state.poll_delay = self.nodeman.find_bus_value('state_poll').data / 3
+            self.nodeman.add_polls([state], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
+            logger.exception("[%s] - Error in start_ringing", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
@@ -333,17 +347,13 @@ class TutorialBus(JNTBus):
         """Check that the component is 'available'
 
         """
-        res = True
+        res = False
         #~ for bus in self.buses:
             #~ res = res and self.buses[bus].check_heartbeat()
-        try:
-            if self.state == 'booting':
-                res = False
-                #We try to enter in sleeping mode
-                self.sleep()
-        except Exception:
-            logger.debug("[%s] - check_heartbeat", self.__class__.__name__)
-        return res
+        if self.state == 'booting' and None not in self.polled_sensors:
+            #We try to enter in sleeping mode
+            self.sleep()
+        return self.state != 'booting'
 
     def loop(self, stopevent):
         """Retrieve data
