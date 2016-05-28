@@ -78,6 +78,7 @@ class TutorialBus(JNTBus):
     """
 
     states = [
+       'boot',
        'sleeping',
        'reporting',
        'ringing',
@@ -270,6 +271,9 @@ class TutorialBus(JNTBus):
             if self.check_timer is None and self.is_started:
                 self.check_timer = threading.Timer(self.get_bus_value('timer_delay').data)
                 self.check_timer.start()
+            if self.state == 'boot':
+                #We try to enter in sleeping mode
+                self.sleep()
             state = True
             #Check the temperatures
             critical_temp = self.get_bus_value('temperature_critical').data
@@ -308,8 +312,6 @@ class TutorialBus(JNTBus):
             self.buses[bus].start(mqttc, trigger_thread_reload_cb=None)
         JNTBus.start(self, mqttc, trigger_thread_reload_cb)
         self._statemachine = self.create_fsm()
-        #We call it manually as the state machine doesn't trigger it at creation
-        self.on_enter_sleeping()
 
     def create_fsm(self):
         """Create the fsm
@@ -318,7 +320,7 @@ class TutorialBus(JNTBus):
             states=self.states,
             transitions=self.transitions,
             title='Bus',
-            initial='sleeping')
+            initial='boot')
 
     def stop(self):
         """Stop the bus
