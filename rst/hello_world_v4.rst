@@ -6,21 +6,112 @@ HelloWord V4
 Goal
 ====
 
-Back to our server : .
+Back to our Rapsberry pi server : .
 For the impatient that did not use a raspberry, you can jump :doc:`here <more>`
 
 State machine
 =============
 
-Look at the spyer :
+Look at the spyer. At startup, the server publish all its values but after a while it became silently :
 
-.. code::
+.. code:: bash
 
+    /values/user/0225/0003/voltage 0 {"help": "The voltage of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2__cpu", "entry
+    _name": "sensor_voltage", "genre": 2, "poll_delay": 300, "data": 1.35, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "volt
+    age", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0003", "label": "CPUVolt", "units": "V"}
+    /values/user/0225/0002/temperature 0 {"help": "The temperature", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2__temperature", "
+    entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": 85.0, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uui
+    d": "temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0002", "label": "Temp", "units": "\u00b0C"}
+    /dhcp/heartbeat/0225/0002 0 ONLINE
+    /dhcp/heartbeat/0225/0004 0 ONLINE
+    /dhcp/heartbeat/0225/0003 0 ONLINE
+    /dhcp/heartbeat/0225/0001 0 ONLINE
+    /dhcp/heartbeat/0225/0000 0 ONLINE
+    /dhcp/heartbeat/0225/0002 0 ONLINE
+    /dhcp/heartbeat/0225/0004 0 ONLINE
+    /dhcp/heartbeat/0225/0003 0 ONLINE
+    /dhcp/heartbeat/0225/0001 0 ONLINE
+    /dhcp/heartbeat/0225/0000 0 ONLINE
+    /values/user/0225/0000/tutorial2_state 0 {"help": "The state of the fsm.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "sensor_string", "genre": 2, "poll_delay": 900, "data": "sleeping", "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial2_state", "is_readonly": true, "min": null, "default": null, "type": 8, "cmd_class": 49, "hadd": "0225/0000", "label": "State", "units": null}
+    /dhcp/heartbeat/0225/0002 0 ONLINE
+    /dhcp/heartbeat/0225/0004 0 ONLINE
+    /dhcp/heartbeat/0225/0003 0 ONLINE
+    /dhcp/heartbeat/0225/0001 0 ONLINE
+    /dhcp/heartbeat/0225/0000 0 ONLINE
+    /dhcp/heartbeat/0225/0002 0 ONLINE
+    /dhcp/heartbeat/0225/0004 0 ONLINE
+    /dhcp/heartbeat/0225/0003 0 ONLINE
+    /dhcp/heartbeat/0225/0001 0 ONLINE
+    /dhcp/heartbeat/0225/0000 0 ONLINE
 
+That's because we enter in mode sleep. As publish in the last value : "data": "sleeping". And we publish this value every 900seconds : "poll_delay": 900.
 
-We need another server it's not mandatory but it's also a way to speak about Janitoo deploying.
-For example, we want to monitor our UPS.
+That's done in the check_heartbeat method :
 
+.. code:: python
+
+    def check_heartbeat(self):
+        """Check that the component is 'available'
+
+        """
+        res = False
+        #~ for bus in self.buses:
+            #~ res = res and self.buses[bus].check_heartbeat()
+        logger.debug("[%s] - sensors %s", self.__class__.__name__, self.polled_sensors)
+        if self.state == 'booting' and all(v is not None for v in self.polled_sensors):
+            #We try to enter in sleeping mode
+            self.sleep()
+        return self.state != 'booting'
+
+That's not the fastest way to dot it but not the worst. We need to check that all nodes are up before changing of state.
+If the state is not change, the node associated to the bus will send an 'OFFLINE' heartbeat.
+
+.. code:: python
+
+    def start_sleeping(self):
+        """
+        """
+        logger.debug("[%s] - start_sleeping", self.__class__.__name__)
+        self.stop_check()
+        self.bus_acquire()
+        res = True
+        try:
+            self.nodeman.remove_polls(self.polled_sensors)
+            self.nodeman.find_value('led', 'blink').data = 'off'
+            #In sleeping mode, send the state of the fsm every 900 seconds
+            #We update poll_delay directly to nto update the value in config file
+            self.nodeman.find_bus_value('state').poll_delay = 900
+        except Exception:
+            logger.exception("[%s] - Error in start_sleeping", self.__class__.__name__)
+            res = False
+        finally:
+            self.bus_release()
+        return res
+
+We do the same for the other transition conditions.
+
+Wake up baby
+============
+
+It's time to wake-up the state machine. At first, we need to find the right value :
+
+.. code: bash
+
+    jnt_query node --hadd 0225/0000 --vuuid request_info_basics
+
+.. code: bash
+
+    request_info_basics
+    ----------
+    hadd       uuid                           idx  data                      units      type  genre cmdclass help
+    0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
+    0225/0004  blink                          0    off                       None       5     1     12803    Blink
+    0225/0000  tutorial2_transition           0    None                      None       5     1     0        Send a transition to the fsm
+
+And change the state to
+.. code: bash
+
+ $ jnt_query query --host=192.168.14.65 --hadd 0120/0001 --genre config --uuid load_poll --data 10 --cmdclass 112 --type 4 --writeonly True
 You've got may way to do that.
 
 In the first tutorial (), we defined 3 bus in the configuration file.
