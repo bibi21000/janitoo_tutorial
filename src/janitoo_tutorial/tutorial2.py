@@ -90,18 +90,22 @@ class TutorialBus(JNTBus):
         { 'trigger': 'wakeup',
             'source': '*',
             'dest': 'reporting',
+            'conditions': 'start_reporting',
         },
         { 'trigger': 'report',
             'source': '*',
             'dest': 'reporting',
+            'conditions': 'start_reporting',
         },
         { 'trigger': 'sleep',
             'source': '*',
             'dest': 'sleeping',
+            'conditions': 'start_sleeping',
         },
         { 'trigger': 'ring',
             'source': 'reporting',
             'dest': 'ringing',
+            'conditions': 'start_ringing',
         },
     ]
     """The transitions
@@ -187,45 +191,54 @@ class TutorialBus(JNTBus):
             self.nodeman.find_bus_value('temperature'),
         ]
 
-    def on_enter_reporting(self):
+    def start_reporting(self):
         """
         """
         logger.debug("[%s] - on_enter_reporting", self.__class__.__name__)
         self.bus_acquire()
+        res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'heartbeat'
             self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
         except Exception:
             logger.exception("[%s] - Error in on_enter_reporting", self.__class__.__name__)
+            res = False
         finally:
             self.bus_release()
         self.on_check()
+        return res
 
-    def on_enter_sleeping(self):
+    def start_sleeping(self):
         """
         """
         logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
         self.stop_check()
         self.bus_acquire()
+        res = True
         try:
             self.nodeman.remove_polls(self.polled_sensors)
             self.nodeman.find_value('led', 'blink').data = 'off'
         except Exception:
             logger.exception("[%s] - Error in on_enter_sleeping", self.__class__.__name__)
+            res = False
         finally:
             self.bus_release()
+        return res
 
-    def on_enter_ringing(self):
+    def start_ringing(self):
         """
         """
         logger.debug("[%s] - on_enter_ringing", self.__class__.__name__)
         self.bus_acquire()
+        res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'warning'
         except Exception:
             logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
+            res = False
         finally:
             self.bus_release()
+        return res
 
     def bus_acquire(self, blocking=True):
         """Get a lock on the bus"""
@@ -259,9 +272,6 @@ class TutorialBus(JNTBus):
             if self.check_timer is None and self.is_started:
                 self.check_timer = threading.Timer(self.get_bus_value('timer_delay').data)
                 self.check_timer.start()
-            if self.state == 'boot':
-                #We try to enter in sleeping mode
-                self.sleep()
             state = True
             #Check the temperatures
             critical_temp = self.get_bus_value('temperature_critical').data
@@ -326,6 +336,13 @@ class TutorialBus(JNTBus):
         res = True
         #~ for bus in self.buses:
             #~ res = res and self.buses[bus].check_heartbeat()
+        try:
+            if self.state == 'booting':
+                res = False
+                #We try to enter in sleeping mode
+                self.sleep()
+        except Exception:
+            logger.debug("[%s] - check_heartbeat", self.__class__.__name__)
         return res
 
     def loop(self, stopevent):
