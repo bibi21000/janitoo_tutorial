@@ -350,6 +350,7 @@ class TutorialBus(JNTBus):
         res = False
         #~ for bus in self.buses:
             #~ res = res and self.buses[bus].check_heartbeat()
+        logger.debug("[%s] - sensors %s", self.__class__.__name__, self.polled_sensors)
         if self.state == 'booting' and all(v is not None for v in self.polled_sensors):
             #We try to enter in sleeping mode
             self.sleep()

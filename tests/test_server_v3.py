@@ -55,6 +55,12 @@ class TestTutorialServer(JNTTServer, JNTTServerCommon):
         bus = thread.bus
         self.assertNotEqual(bus, None)
         self.waitHeartbeatNodes(hadds=self.hadds)
+        i = 0
+        while i<15 and bus.state == 'booting':
+            time.sleep(1)
+            i += 1
+            print bus.state
+        self.assertNotEqual('booting', bus.state)
         bus.wakeup()
         time.sleep(5)
         bus.sleep()
