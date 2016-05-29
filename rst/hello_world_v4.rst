@@ -63,32 +63,71 @@ That's done in the check_heartbeat method :
             self.sleep()
         return self.state != 'booting'
 
-That's not the fastest way to dot it but not the worst. We need to check that all nodes are up before changing of state.
+That's not the fastest way to do it but not the worst. We need to check that all nodes are up before changing of state.
 If the state is not change, the node associated to the bus will send an 'OFFLINE' heartbeat.
+
+We add a condition for the state machine : values needs to be up to change of state. Of course, no need to check conditions to get into sleeping state.
 
 .. code:: python
 
-    def condition_sleeping(self):
+    def condition_values(self):
         """
         """
-        logger.debug("[%s] - condition_sleeping", self.__class__.__name__)
-        self.stop_check()
-        self.bus_acquire()
-        res = True
-        try:
-            self.nodeman.remove_polls(self.polled_sensors)
-            self.nodeman.find_value('led', 'blink').data = 'off'
-            #In sleeping mode, send the state of the fsm every 900 seconds
-            #We update poll_delay directly to nto update the value in config file
-            self.nodeman.find_bus_value('state').poll_delay = 900
-        except Exception:
-            logger.exception("[%s] - Error in condition_sleeping", self.__class__.__name__)
-            res = False
-        finally:
-            self.bus_release()
-        return res
+        logger.debug("[%s] - condition_values", self.__class__.__name__)
+        return all(v is not None for v in self.polled_sensors)
 
 We do the same for the other transition conditions.
+
+It's time to interact with the Fininsh state machine ... and speak about the value_factory.
+Values are used to interact with nodes : update config, poll, location, get temperature, ...
+To allow developpers to share these interactions, there is the value factory.
+You can collect values in your local installation using :
+
+.. code: bash
+
+    jnt_collect -t janitoo.values
+
+.. code: bash
+    -------------------------------------------------------------------------------
+    Group : janitoo.values
+     action_boolean = janitoo_factory.values.action:make_action_boolean
+     action_byte = janitoo_factory.values.action:make_action_byte
+     action_integer = janitoo_factory.values.action:make_action_integer
+     action_list = janitoo_factory.values.action:make_action_list
+     action_string = janitoo_factory.values.action:make_action_string
+     action_switch_binary = janitoo_factory.values.action:make_action_switch_binary
+     action_switch_multilevel = janitoo_factory.values.action:make_action_switch_multilevel
+     blink = janitoo_factory_exts.values.blink:make_blink
+     config_array = janitoo_factory.values.config:make_config_array
+     config_boolean = janitoo_factory.values.config:make_config_boolean
+     ...
+     sensor_rotation_speed = janitoo_factory.values.sensor:make_sensor_rotation_speed
+     sensor_string = janitoo_factory.values.sensor:make_sensor_string
+     sensor_temperature = janitoo_factory.values.sensor:make_sensor_temperature
+     sensor_voltage = janitoo_factory.values.sensor:make_sensor_voltage
+     transition_fsm = janitoo_factory.values.action:make_transition_fsm
+     updown = janitoo_factory_exts.values.updown:make_updown
+
+For example, the value sensor_temperature is used to send a temperature :D
+It defines the right units, command class, label, ...
+
+We want to interact with the fsm, so transition_fsm is a good choice :
+
+.. code:: python
+
+    uuid="{:s}_transition".format(OID)
+    self.values[uuid] = self.value_factory['transition_fsm'](options=self.options, uuid=uuid,
+        node_uuid=self.uuid,
+        list_items=[ v['trigger'] for v in self.transitions ],
+        fsm_bus=self,
+    )
+    poll_value = self.values[uuid].create_poll_value()
+    self.values[poll_value.uuid] = poll_value
+
+We defined a new value using 'transition_fsm' with a list of valid items populated from the transition state machine and a refrence to the bus itself.
+And that's all. All the job is done automatically : https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/values/action.py#L230
+
+As we want to poll this value, we also add a linked poll value.
 
 Wake up baby
 ============
@@ -163,7 +202,7 @@ It's a better idea to inherit from it.
 Critical temperature
 ====================
 
-We want to notify when a temperature decome to much higher. To do that, we add a threadtimer that will check temperatures.
+We want to notify when a temperature become critical. To do that, we add 2 values and a thread timer that will check temperatures.
 If a temperature is higher than the critical one, we transit in ringing mode.
 
 The on_check timer start/stop is managed entering / exiting the sleeping state :
@@ -246,17 +285,34 @@ It's time to ring :
 
 .. code:: bash
 
-    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --writeonly True --data wakeup
+    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --writeonly True --data ring
 
-And check the result :
+And check that the state is ringing. You can also look at your led, should blink faster :
 
 .. code:: bash
 
-
     $ jnt_query node --host=192.168.14.65 --hadd 0225/0000 --vuuid request_info_basics
+
+.. code:: bash
+
     ----------
     hadd       uuid                           idx  data                      units      type  genre cmdclass help
     0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
     0225/0004  blink                          0    warning                   None       5     1     12803    Blink
     0225/0000  tutorial2_transition           0    ring                      None       5     1     4272     Trigger a transition on the fsm or get the last triggered
     0225/0000  tutorial2_state                0    ringing                   None       8     1     49       The state of the fsm.
+
+After a while, the state returns in reporting state :
+
+.. code:: bash
+
+    $ jnt_query node --host=192.168.14.65 --hadd 0225/0000 --vuuid request_info_basicsrequest_info_basics
+
+.. code:: bash
+
+    ----------
+    hadd       uuid                           idx  data                      units      type  genre cmdclass help
+    0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
+    0225/0004  blink                          0    heartbeat                 None       5     1     12803    Blink
+    0225/0000  tutorial2_transition           0    wakeup                    None       5     1     4272     Trigger a transition on the fsm or get the last triggered
+    0225/0000  tutorial2_state                0    reporting                 None       8     1     49       The state of the fsm.

@@ -162,8 +162,6 @@ class TutorialBus(JNTBus):
         )
         poll_value = self.values[uuid].create_poll_value()
         self.values[poll_value.uuid] = poll_value
-        config_value = self.values[uuid].create_config_value()
-        self.values[config_value.uuid] = config_value
 
         uuid="{:s}_state".format(OID)
         self.values[uuid] = self.value_factory['sensor_string'](options=self.options, uuid=uuid,
