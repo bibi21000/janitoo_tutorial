@@ -108,80 +108,59 @@ It's time to wake-up the state machine. At first, we need to find the right valu
     0225/0004  blink                          0    off                       None       5     1     12803    Blink
     0225/0000  tutorial2_transition           0    None                      None       5     1     0        Send a transition to the fsm
 
-And change the state to
+Get more info on this value :
+
 .. code: bash
 
-    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --readonly True
+    jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --readonly True
 
-You've got may way to do that.
+.. code: bash
 
-In the first tutorial (), we defined 3 bus in the configuration file.
-We can do the same by adding a bus section in the configuration file of a running server (of course after installing the needed modules) :
+    tutorial2_transition
+    ----------
+    hadd       uuid                      idx  data                      units      type  genre cmdclass list_items help
+    0225/0000  tutorial2_transition      0    None                      None       5     1     4272     [u'wakeup', u'report', u'sleep', u'ring'] Trigger a transition on the fsm or get the last triggered
 
-.. code:: bash
+And trigger a transition from [u'wakeup', u'report', u'sleep', u'ring'] :
 
-    [nut]
-    auto_start = True
-    heartbeat = 30
-    config_timeout = 5
-    hadd = 1045/0000
-    components.ups1 = nut.ups
-    components.ups2 = nut.ups
+.. code: bash
 
-Doing this way, both buses will be launched in the same processus.
-Remember that the GIL will surely block your code on a core, so a single core will hold your 2 appliances.
-If a bus is not fair with resources (cpu, io, ...) the other one will be impacted.
-Same if a bus fails.
+    $ $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --writeonly True --data wakeup
 
-In the second (:doc:`here <hello_world_v2>`) and
-third ((:doc:`here <hello_world_v3>`)) tutorials,
-we aggregate 2 buses with python code. Your code will also stay on the same core.
+.. code: bash
 
-We don't see it before but you can install many servers on the same rasberry but :
+    tutorial2_transition
+    ----------
+    hadd       uuid                      idx  data                      units      type  genre cmdclass list_items help
+    0225/0000  tutorial2_transition      0    wakeup                    None       5     1     4272     [u'wakeup', u'report', u'sleep', u'ring'] Trigger a transition on the fsm or get the last triggered
 
-- don't share i2c, spi, ... between servers. You can safely launch one with spi and the other one with i2c
-- you can share gpio as long as you use it on differents pins
-- you must use different configuration file, server name, log file, ...
+Look at spyer :
 
-Each server run in its own processus, so it's much interessant on a multi-core machine.
-If a server crash, the other should not be impacted.
+.. code: bash
 
-At last, you can create your own docker appliance to deploy your servers at home.
-Docker appliances are a simple way to deploy Janitoo too.
-You need to install docker (Linux, Windows, MacOS, ...)
-and deploy appliance in 3 commands.
+    /values/user/0225/0003/frequency 0 {"help": "The frequency of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2__cpu", "entry_name": "sensor_frequency", "genre": 2, "poll_delay": 300, "data": 1000, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "frequency", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0003", "label": "CPUFreq", "units": "MHz"}
+    /values/basic/0225/0004/blink 0 {"help": "Blink", "reply_hadd": null, "entry_name": "blink", "poll_delay": 300, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "blink", "min": null, "delays": {"info": {"on": 0.6, "off": 60}, "off": {"on": 0, "off": 1}, "blink": {"on": 0.6, "off": 2.5}, "warning": {"on": 0.6, "off": 5}, "notify": {"on": 0.6, "off": 10}, "heartbeat": {"on": 0.5, "off": 300}, "alert": {"on": 0.6, "off": 1}}, "cmd_class": 12803, "hadd": "0225/0004", "label": "Blink", "units": null, "type": 5, "max": null, "genre": 1, "data": "heartbeat", "is_polled": true, "node_uuid": "tutorial2__led", "voice_uuid": null, "is_readonly": false, "default": "off"}
+    /values/user/0225/0000/tutorial2_temperature 0 {"help": "The average temperature of tutorial.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": null, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial2_temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0000", "label": "Temp", "units": "\u00b0C"}
+    /values/basic/0225/0000/tutorial2_transition 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial2_transition", "is_readonly": false, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
+    /nodes/0225/0000/request 0 {"reply_hadd": "9999/9990", "uuid": "tutorial2_transition", "is_readonly": true, "genre": 1, "data": null, "cmd_class": 4272, "hadd": "0225/0000", "is_writeonly": false}
+    /nodes/9999/9990/reply 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": "9999/9990", "node_uuid": "tutorial2", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial2_transition", "is_readonly": true, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
+    /values/basic/0225/0000/tutorial2_transition 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": "9999/9990", "node_uuid": "tutorial2", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial2_transition", "is_readonly": true, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
+    /dhcp/heartbeat/0225/0000 0 ONLINE
+    /dhcp/heartbeat/0225/0002 0 ONLINE
+    /dhcp/heartbeat/0225/0004 0 ONLINE
+    /dhcp/heartbeat/0225/0003 0 ONLINE
+    /dhcp/heartbeat/0225/0001 0 ONLINE
+    /dhcp/heartbeat/0225/0000 0 ONLINE
+    /dhcp/heartbeat/0225/0002 0 ONLINE
+    /values/user/0225/0000/tutorial2_state 0 {"help": "The state of the fsm.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "sensor_string", "genre": 2, "poll_delay": 60, "data": "reporting", "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial2_state", "is_readonly": true, "min": null, "default": null, "type": 8, "cmd_class": 49, "hadd": "0225/0000", "label": "State", "units": null}
 
-A typical docker file for hostsensor and NUT should be like :
+The values are published regulary. You should also see your led blinking in heartbeat mode.
 
-.. code:: bash
+Try to ring it now ;)
 
-    FROM bibi21000/janitoo_docker_appliance
 
-    MAINTAINER bibi21000 <bibi21000@gmail.com>
-
-    WORKDIR /opt/janitoo/src
-
-    RUN make clone module=janitoo_nut && \
-        make appliance-deps module=janitoo_nut && \
-        apt-get clean && rm -Rf /tmp/*||true && \
-        [ -d /root/.cache ] && rm -Rf /root/.cache/*
-
-    RUN make clone module=janitoo_hostsensor && \
-        make clone module=janitoo_hostsensor_psutil && \
-        make clone module=janitoo_hostsensor_lmsensor && \
-        make appliance-deps module=janitoo_hostsensor && \
-        apt-get clean && rm -Rf /tmp/*|| true && \
-        [ -d /root/.cache ] && rm -Rf /root/.cache/*
-
-    VOLUME ["/root/.ssh/", "/etc/ssh/", "/opt/janitoo/etc/"]
-
-    EXPOSE 22
-
-    CMD ["/root/auto.sh"]
-
-After this explanations, install the NUT appliance docker from here : https://bibi21000.github.io/janitoo_nut/docker.html.
-If you don't have an UPS, enter erronous informations and you will get a failed UPS.
-Okay, okay, it's not mandatory but ...
+A note ont the state machine. Writing this tutorial, I added a new bus with an integrated state machine : https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/buses/fsm.py.
+It's a better idea to inherited from it.
 
 
 Broadcast network

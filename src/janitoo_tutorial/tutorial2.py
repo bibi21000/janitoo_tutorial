@@ -129,7 +129,7 @@ class TutorialBus(JNTBus):
         )
 
         uuid="{:s}_temperature_critical".format(OID)
-        self.values[uuid] = self.value_factory['config_integer'](options=self.options, uuid=uuid,
+        self.values[uuid] = self.value_factory['config_float'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
             help='The critical temperature. If 2 of the 3 temperature sensors are up to this value, a security notification is sent.',
             label='Critical',
@@ -143,6 +143,15 @@ class TutorialBus(JNTBus):
             label='Temp',
         )
         poll_value = self.values[uuid].create_poll_value(default=300)
+        self.values[poll_value.uuid] = poll_value
+
+        uuid="{:s}_overheat".format(OID)
+        self.values[uuid] = self.value_factory['sensor_boolean'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            help='Temperature overheat.',
+            label='Overheat',
+        )
+        poll_value = self.values[uuid].create_poll_value(default=60)
         self.values[poll_value.uuid] = poll_value
 
         uuid="{:s}_transition".format(OID)
@@ -205,7 +214,10 @@ class TutorialBus(JNTBus):
             #We update poll_delay directly to not update the value in configfile
             state = self.nodeman.find_bus_value('state')
             state.poll_delay = self.nodeman.find_bus_value('state_poll').data
-            self.nodeman.add_polls([state], slow_start=True, overwrite=True)
+            overheat = self.nodeman.find_bus_value('overheat')
+            overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data
+            self.nodeman.publish_value(overheat)
+            self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
             logger.exception("[%s] - Error in start_reporting", self.__class__.__name__)
             res = False
@@ -246,7 +258,10 @@ class TutorialBus(JNTBus):
             #We update poll_delay directly to not update the value in configfile
             state = self.nodeman.find_bus_value('state')
             state.poll_delay = self.nodeman.find_bus_value('state_poll').data / 3
-            self.nodeman.add_polls([state], slow_start=True, overwrite=True)
+            overheat = self.nodeman.find_bus_value('overheat')
+            overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data / 3
+            self.nodeman.publish_value(overheat)
+            self.nodeman.add_polls([state, ouverheat], slow_start=True, overwrite=True)
         except Exception:
             logger.exception("[%s] - Error in start_ringing", self.__class__.__name__)
             res = False
@@ -308,8 +323,14 @@ class TutorialBus(JNTBus):
                     if mini is None or data < mini:
                         mini = data
             if criticals > 1:
+                if self.state != 'ringing':
+                    #We should notify a security problem : fire ?
+                    self.nodeman.find_bus_value('overheat').data = True
+                    self.ring()
+            elif self.state == 'ringing':
                 #We should notify a security problem : fire ?
-                self.ring()
+                self.nodeman.find_bus_value('overheat').data = False
+                self.report()
             if nums != 0:
                 self.get_bus_value('temperature').data = total / nums
         except Exception:
