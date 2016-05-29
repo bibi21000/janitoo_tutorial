@@ -17,6 +17,7 @@ The protocol implements the concepts of network, nodes and values :
 - a secondary node can became primary if the primary fails
 - primary nodes (and maybe secondary ones) will send heartbeat for nodes in timeout
 - a node holds values
+- a node send its state periodically on the network (heartbeat).
 - a value holds instances (not fully supported)
 - values have genres : 'basic', 'user', 'config', 'system', 'command'
 - values implements cmd_class : a capacity (ie switch, dimmer, ... ), a config, ...

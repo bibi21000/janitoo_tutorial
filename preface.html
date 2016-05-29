@@ -140,6 +140,13 @@
 <li class="toctree-l2"><a class="reference internal" href="discovering_network.html#more-servers">More servers</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hello_world_v4.html"> Hello World 4 : interacting with our server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#state-machine">State machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#wake-up-baby">Wake up baby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#critical-temperature">Critical temperature</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="more.html"> Create and share</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="more.html#why">Why</a></li>
 <li class="toctree-l2"><a class="reference internal" href="more.html#how">How</a></li>
@@ -210,6 +217,7 @@
 <li>a secondary node can became primary if the primary fails</li>
 <li>primary nodes (and maybe secondary ones) will send heartbeat for nodes in timeout</li>
 <li>a node holds values</li>
+<li>a node send its state periodically on the network (heartbeat).</li>
 <li>a value holds instances (not fully supported)</li>
 <li>values have genres : &#8216;basic&#8217;, &#8216;user&#8217;, &#8216;config&#8217;, &#8216;system&#8217;, &#8216;command&#8217;</li>
 <li>values implements cmd_class : a capacity (ie switch, dimmer, ... ), a config, ...</li>

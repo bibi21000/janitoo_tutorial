@@ -25,6 +25,7 @@ Contents
     Hello World 3 : a more advanced server<hello_world_v3>
     Many servers<many_servers>
     Discovering the network<discovering_network>
+    Hello World 4 : interacting with our server<hello_world_v4>
     Create and share<more>
     Using documentation <using_doc>
 
