@@ -264,7 +264,7 @@ class TutorialBus(JNTBus):
             overheat = self.nodeman.find_bus_value('overheat')
             overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data / 3
             self.nodeman.publish_value(overheat)
-            self.nodeman.add_polls([state, ouverheat], slow_start=True, overwrite=True)
+            self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
             logger.exception("[%s] - Error in start_ringing", self.__class__.__name__)
             res = False
@@ -302,7 +302,10 @@ class TutorialBus(JNTBus):
         try:
             self.stop_check()
             if self.check_timer is None and self.is_started:
-                self.check_timer = threading.Timer(self.get_bus_value('timer_delay').data, self.on_check)
+                timer_delay = self.get_bus_value('timer_delay').data
+                if self.state == 'ringing':
+                    timer_delay = timer_delay / 2
+                self.check_timer = threading.Timer(timer_delay, self.on_check)
                 self.check_timer.start()
             state = True
             #Check the temperatures
