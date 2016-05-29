@@ -121,11 +121,11 @@ class TutorialBus(JNTBus):
         self._statemachine =  None
         self.check_timer = None
         uuid="{:s}_timer_delay".format(OID)
-        self.values[uuid] = self.value_factory['config_integer'](options=self.options, uuid=uuid,
+        self.values[uuid] = self.value_factory['config_float'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
             help='The delay between 2 checks',
             label='Timer.',
-            default=45,
+            default=30,
         )
 
         uuid="{:s}_temperature_critical".format(OID)
@@ -209,6 +209,7 @@ class TutorialBus(JNTBus):
         """
         logger.debug("[%s] - start_reporting", self.__class__.__name__)
         self.bus_acquire()
+        logger.debug("[%s] - start_reporting bus acquired", self.__class__.__name__)
         res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'heartbeat'
