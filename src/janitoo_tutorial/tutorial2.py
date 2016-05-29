@@ -260,9 +260,9 @@ class TutorialBus(JNTBus):
             #In sleeping mode, send the state of the fsm every 900 seconds
             #We update poll_delay directly to not update the value in configfile
             state = self.nodeman.find_bus_value('state')
-            state.poll_delay = self.nodeman.find_bus_value('state_poll').data / 3
+            state.poll_delay = 1.0 * self.nodeman.find_bus_value('state_poll').data / 3
             overheat = self.nodeman.find_bus_value('overheat')
-            overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data / 3
+            overheat.poll_delay = 1.0 * self.nodeman.find_bus_value('overheat_poll').data / 3
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
@@ -304,7 +304,7 @@ class TutorialBus(JNTBus):
             if self.check_timer is None and self.is_started:
                 timer_delay = self.get_bus_value('timer_delay').data
                 if self.state == 'ringing':
-                    timer_delay = timer_delay / 2
+                    timer_delay = 1.0 * timer_delay / 2
                 self.check_timer = threading.Timer(timer_delay, self.on_check)
                 self.check_timer.start()
             state = True

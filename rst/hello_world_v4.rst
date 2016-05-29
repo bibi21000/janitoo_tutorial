@@ -257,4 +257,19 @@ We also check temperature more frequently :
 
 It's time to ring :
 
+.. code:: bash
+
     $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --writeonly True --data wakeup
+
+And check the result :
+
+.. code:: bash
+
+
+    $ jnt_query node --hadd 0225/0000 --vuuid request_info_basicsrequest_info_basics
+    ----------
+    hadd       uuid                           idx  data                      units      type  genre cmdclass help
+    0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
+    0225/0004  blink                          0    warning                   None       5     1     12803    Blink
+    0225/0000  tutorial2_transition           0    ring                      None       5     1     4272     Trigger a transition on the fsm or get the last triggered
+    0225/0000  tutorial2_state                0    ringing                   None       8     1     49       The state of the fsm.
