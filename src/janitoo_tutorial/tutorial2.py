@@ -88,24 +88,23 @@ class TutorialBus(JNTBus):
 
     transitions = [
         { 'trigger': 'wakeup',
-            'source': '*',
+            'source': 'sleeping',
             'dest': 'reporting',
-            'conditions': 'condition_reporting',
+            'conditions': 'condition_values',
         },
         { 'trigger': 'report',
             'source': '*',
             'dest': 'reporting',
-            'conditions': 'condition_reporting',
+            'conditions': 'condition_values',
         },
         { 'trigger': 'sleep',
             'source': '*',
             'dest': 'sleeping',
-            'conditions': 'condition_sleeping',
         },
         { 'trigger': 'ring',
             'source': 'reporting',
             'dest': 'ringing',
-            'conditions': 'condition_ringing',
+            'conditions': 'condition_values',
         },
     ]
     """The transitions
@@ -204,13 +203,17 @@ class TutorialBus(JNTBus):
             self.nodeman.find_bus_value('overheat'),
         ]
 
-    def condition_reporting(self):
+    def condition_values(self):
         """
         """
-        logger.debug("[%s] - condition_reporting", self.__class__.__name__)
+        logger.debug("[%s] - condition_values", self.__class__.__name__)
+        return all(v is not None for v in self.polled_sensors)
+
+    def on_enter_reporting(self):
+        """
+        """
+        logger.debug("[%s] - on_enter_reporting", self.__class__.__name__)
         self.bus_acquire()
-        logger.debug("[%s] - condition_reporting bus acquired", self.__class__.__name__)
-        res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'heartbeat'
             self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
@@ -223,12 +226,9 @@ class TutorialBus(JNTBus):
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in condition_reporting", self.__class__.__name__)
-            res = False
+            logger.exception("[%s] - Error in on_enter_reporting", self.__class__.__name__)
         finally:
             self.bus_release()
-        self.on_check()
-        return res
 
     def on_enter_sleeping(self):
         """
@@ -236,7 +236,13 @@ class TutorialBus(JNTBus):
         logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
         self.bus_acquire()
         try:
-            self.stop_check()
+            self.nodeman.remove_polls(self.polled_sensors)
+            self.nodeman.find_value('led', 'blink').data = 'off'
+            #In sleeping mode, send the state of the fsm every 900 seconds
+            #We update poll_delay directly to nto update the value in config file
+            self.nodeman.find_bus_value('state').poll_delay = 900
+        except Exception:
+            logger.exception("[%s] - Error in on_enter_sleeping", self.__class__.__name__)
         finally:
             self.bus_release()
 
@@ -246,31 +252,11 @@ class TutorialBus(JNTBus):
         logger.debug("[%s] - on_exit_sleeping", self.__class__.__name__)
         self.on_check()
 
-    def condition_sleeping(self):
+    def on_enter_ringing(self):
         """
         """
-        logger.debug("[%s] - condition_sleeping", self.__class__.__name__)
+        logger.debug("[%s] - on_enter_ringing", self.__class__.__name__)
         self.bus_acquire()
-        res = True
-        try:
-            self.nodeman.remove_polls(self.polled_sensors)
-            self.nodeman.find_value('led', 'blink').data = 'off'
-            #In sleeping mode, send the state of the fsm every 900 seconds
-            #We update poll_delay directly to nto update the value in config file
-            self.nodeman.find_bus_value('state').poll_delay = 900
-        except Exception:
-            logger.exception("[%s] - Error in condition_sleeping", self.__class__.__name__)
-            res = False
-        finally:
-            self.bus_release()
-        return res
-
-    def condition_ringing(self):
-        """
-        """
-        logger.debug("[%s] - condition_ringing", self.__class__.__name__)
-        self.bus_acquire()
-        res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'warning'
             #In sleeping mode, send the state of the fsm every 900 seconds
@@ -282,11 +268,9 @@ class TutorialBus(JNTBus):
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in condition_ringing", self.__class__.__name__)
-            res = False
+            logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
         finally:
             self.bus_release()
-        return res
 
     def bus_acquire(self, blocking=True):
         """Get a lock on the bus"""
