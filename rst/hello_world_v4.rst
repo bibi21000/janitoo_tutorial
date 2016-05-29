@@ -156,15 +156,52 @@ Look at spyer :
 
 The values are published regulary. You should also see your led blinking in heartbeat mode.
 
-Try to ring it now ;)
-
-
 A note ont the state machine. Writing this tutorial, I added a new bus with an integrated state machine : https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/buses/fsm.py.
-It's a better idea to inherited from it.
+It's a better idea to inherit from it.
 
 
-Broadcast network
-=================
+Critical temperature
+====================
+
+We want to notify when a temperature decome to much higher. To do that, we add a threadtimer that will check temperatures.
+If a temperature is higher than the critical one, we transit in ringing mode.
+
+The check timer is started when entering in "reporting" state :
+
+.. code:: python
+
+    def start_reporting(self):
+        """
+        """
+        logger.debug("[%s] - start_reporting", self.__class__.__name__)
+        self.bus_acquire()
+        res = True
+        try:
+            self.nodeman.find_value('led', 'blink').data = 'heartbeat'
+            self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
+            #In sleeping mode, send the state of the fsm every 900 seconds
+            #We update poll_delay directly to not update the value in configfile
+            state = self.nodeman.find_bus_value('state')
+            state.poll_delay = self.nodeman.find_bus_value('state_poll').data
+            overheat = self.nodeman.find_bus_value('overheat')
+            overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data
+            self.nodeman.publish_value(overheat)
+            self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
+        except Exception:
+            logger.exception("[%s] - Error in start_reporting", self.__class__.__name__)
+            res = False
+        finally:
+            self.bus_release()
+        self.on_check()
+        return res
+
+We also publish the overheat value :
+
+.. code:: python
+
+        overheat = self.nodeman.find_bus_value('overheat')
+        overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data
+        self.nodeman.publish_value(overheat)
 
 Janitoo's protocol support broadcast. That mean that you can ask all nodes on ther server to send their configuration, ... and so on.
 

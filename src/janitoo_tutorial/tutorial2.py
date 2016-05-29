@@ -150,6 +150,7 @@ class TutorialBus(JNTBus):
             node_uuid=self.uuid,
             help='Temperature overheat.',
             label='Overheat',
+            defaut = False,
         )
         poll_value = self.values[uuid].create_poll_value(default=60)
         self.values[poll_value.uuid] = poll_value
@@ -168,6 +169,7 @@ class TutorialBus(JNTBus):
         uuid="{:s}_state".format(OID)
         self.values[uuid] = self.value_factory['sensor_string'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
+            genre=0x01,
             help='The state of the fsm.',
             get_data_cb = self.get_state,
             label='State',
@@ -199,6 +201,7 @@ class TutorialBus(JNTBus):
             self.nodeman.find_value('led', 'blink'),
             self.nodeman.find_bus_value('temperature'),
             self.nodeman.find_bus_value('transition'),
+            self.nodeman.find_bus_value('overheat'),
         ]
 
     def start_reporting(self):
@@ -299,7 +302,7 @@ class TutorialBus(JNTBus):
         try:
             self.stop_check()
             if self.check_timer is None and self.is_started:
-                self.check_timer = threading.Timer(self.get_bus_value('timer_delay').data)
+                self.check_timer = threading.Timer(self.get_bus_value('timer_delay').data, self.on_check)
                 self.check_timer.start()
             state = True
             #Check the temperatures
