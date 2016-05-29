@@ -244,11 +244,7 @@ class TutorialBus(JNTBus):
         """
         """
         logger.debug("[%s] - on_exit_sleeping", self.__class__.__name__)
-        self.bus_acquire()
-        try:
-            self.on_check()
-        finally:
-            self.bus_release()
+        self.on_check()
 
     def condition_sleeping(self):
         """
