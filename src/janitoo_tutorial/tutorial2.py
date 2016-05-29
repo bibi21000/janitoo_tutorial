@@ -307,6 +307,9 @@ class TutorialBus(JNTBus):
                     timer_delay = 1.0 * timer_delay / 2
                 self.check_timer = threading.Timer(timer_delay, self.on_check)
                 self.check_timer.start()
+        finally:
+            self.bus_release()
+        try:
             state = True
             #Check the temperatures
             critical_temp = self.get_bus_value('temperature_critical').data
@@ -341,8 +344,6 @@ class TutorialBus(JNTBus):
                 self.get_bus_value('temperature').data = total / nums
         except Exception:
             logger.exception("[%s] - Error in on_check", self.__class__.__name__)
-        finally:
-            self.bus_release()
 
     def start(self, mqttc, trigger_thread_reload_cb=None):
         """Start the bus

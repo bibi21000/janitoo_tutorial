@@ -266,7 +266,7 @@ And check the result :
 .. code:: bash
 
 
-    $ jnt_query node --hadd 0225/0000 --vuuid request_info_basicsrequest_info_basics
+    $ jnt_query node --host=192.168.14.65 --hadd 0225/0000 --vuuid request_info_basics
     ----------
     hadd       uuid                           idx  data                      units      type  genre cmdclass help
     0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
