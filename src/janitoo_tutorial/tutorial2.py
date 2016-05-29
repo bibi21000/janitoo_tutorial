@@ -149,7 +149,7 @@ class TutorialBus(JNTBus):
             node_uuid=self.uuid,
             help='Temperature overheat.',
             label='Overheat',
-            defaut = False,
+            default=False,
         )
         poll_value = self.values[uuid].create_poll_value(default=60)
         self.values[poll_value.uuid] = poll_value
