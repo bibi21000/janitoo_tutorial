@@ -68,10 +68,10 @@ If the state is not change, the node associated to the bus will send an 'OFFLINE
 
 .. code:: python
 
-    def start_sleeping(self):
+    def condition_sleeping(self):
         """
         """
-        logger.debug("[%s] - start_sleeping", self.__class__.__name__)
+        logger.debug("[%s] - condition_sleeping", self.__class__.__name__)
         self.stop_check()
         self.bus_acquire()
         res = True
@@ -82,7 +82,7 @@ If the state is not change, the node associated to the bus will send an 'OFFLINE
             #We update poll_delay directly to nto update the value in config file
             self.nodeman.find_bus_value('state').poll_delay = 900
         except Exception:
-            logger.exception("[%s] - Error in start_sleeping", self.__class__.__name__)
+            logger.exception("[%s] - Error in condition_sleeping", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
@@ -170,10 +170,10 @@ The on_check timer is started when entering in "reporting" state :
 
 .. code:: python
 
-    def start_reporting(self):
+    def condition_reporting(self):
         """
         """
-        logger.debug("[%s] - start_reporting", self.__class__.__name__)
+        logger.debug("[%s] - condition_reporting", self.__class__.__name__)
         self.bus_acquire()
         res = True
         try:
@@ -188,7 +188,7 @@ The on_check timer is started when entering in "reporting" state :
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in start_reporting", self.__class__.__name__)
+            logger.exception("[%s] - Error in condition_reporting", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
@@ -221,10 +221,10 @@ In ringing state, we are more verbose :
 
 .. code:: python
 
-    def start_ringing(self):
+    def condition_ringing(self):
         """
         """
-        logger.debug("[%s] - start_ringing", self.__class__.__name__)
+        logger.debug("[%s] - condition_ringing", self.__class__.__name__)
         self.bus_acquire()
         res = True
         try:
@@ -238,7 +238,7 @@ In ringing state, we are more verbose :
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in start_ringing", self.__class__.__name__)
+            logger.exception("[%s] - Error in condition_ringing", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()

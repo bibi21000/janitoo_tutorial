@@ -90,22 +90,22 @@ class TutorialBus(JNTBus):
         { 'trigger': 'wakeup',
             'source': '*',
             'dest': 'reporting',
-            'conditions': 'start_reporting',
+            'conditions': 'condition_reporting',
         },
         { 'trigger': 'report',
             'source': '*',
             'dest': 'reporting',
-            'conditions': 'start_reporting',
+            'conditions': 'condition_reporting',
         },
         { 'trigger': 'sleep',
             'source': '*',
             'dest': 'sleeping',
-            'conditions': 'start_sleeping',
+            'conditions': 'condition_sleeping',
         },
         { 'trigger': 'ring',
             'source': 'reporting',
             'dest': 'ringing',
-            'conditions': 'start_ringing',
+            'conditions': 'condition_ringing',
         },
     ]
     """The transitions
@@ -204,12 +204,12 @@ class TutorialBus(JNTBus):
             self.nodeman.find_bus_value('overheat'),
         ]
 
-    def start_reporting(self):
+    def condition_reporting(self):
         """
         """
-        logger.debug("[%s] - start_reporting", self.__class__.__name__)
+        logger.debug("[%s] - condition_reporting", self.__class__.__name__)
         self.bus_acquire()
-        logger.debug("[%s] - start_reporting bus acquired", self.__class__.__name__)
+        logger.debug("[%s] - condition_reporting bus acquired", self.__class__.__name__)
         res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'heartbeat'
@@ -223,17 +223,37 @@ class TutorialBus(JNTBus):
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in start_reporting", self.__class__.__name__)
+            logger.exception("[%s] - Error in condition_reporting", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
+        self.on_check()
         return res
 
-    def start_sleeping(self):
+    def on_enter_sleeping(self):
         """
         """
-        logger.debug("[%s] - start_sleeping", self.__class__.__name__)
-        self.stop_check()
+        logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
+        self.bus_acquire()
+        try:
+            self.stop_check()
+        finally:
+            self.bus_release()
+
+    def on_exit_sleeping(self):
+        """
+        """
+        logger.debug("[%s] - on_exit_sleeping", self.__class__.__name__)
+        self.bus_acquire()
+        try:
+            self.on_check()
+        finally:
+            self.bus_release()
+
+    def condition_sleeping(self):
+        """
+        """
+        logger.debug("[%s] - condition_sleeping", self.__class__.__name__)
         self.bus_acquire()
         res = True
         try:
@@ -243,16 +263,16 @@ class TutorialBus(JNTBus):
             #We update poll_delay directly to nto update the value in config file
             self.nodeman.find_bus_value('state').poll_delay = 900
         except Exception:
-            logger.exception("[%s] - Error in start_sleeping", self.__class__.__name__)
+            logger.exception("[%s] - Error in condition_sleeping", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
         return res
 
-    def start_ringing(self):
+    def condition_ringing(self):
         """
         """
-        logger.debug("[%s] - start_ringing", self.__class__.__name__)
+        logger.debug("[%s] - condition_ringing", self.__class__.__name__)
         self.bus_acquire()
         res = True
         try:
@@ -266,7 +286,7 @@ class TutorialBus(JNTBus):
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in start_ringing", self.__class__.__name__)
+            logger.exception("[%s] - Error in condition_ringing", self.__class__.__name__)
             res = False
         finally:
             self.bus_release()
@@ -352,7 +372,6 @@ class TutorialBus(JNTBus):
             self.buses[bus].start(mqttc, trigger_thread_reload_cb=None)
         JNTBus.start(self, mqttc, trigger_thread_reload_cb)
         self._statemachine = self.create_fsm()
-        self.on_check()
 
     def create_fsm(self):
         """Create the fsm
