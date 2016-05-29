@@ -236,6 +236,7 @@ class TutorialBus(JNTBus):
         logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
         self.bus_acquire()
         try:
+            self.stop_check()
             self.nodeman.remove_polls(self.polled_sensors)
             self.nodeman.find_value('led', 'blink').data = 'off'
             #In sleeping mode, send the state of the fsm every 900 seconds

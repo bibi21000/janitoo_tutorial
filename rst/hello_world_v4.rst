@@ -166,42 +166,32 @@ Critical temperature
 We want to notify when a temperature decome to much higher. To do that, we add a threadtimer that will check temperatures.
 If a temperature is higher than the critical one, we transit in ringing mode.
 
-The on_check timer is started when entering in "reporting" state :
+The on_check timer start/stop is managed entering / exiting the sleeping state :
 
 .. code:: python
 
-    def condition_reporting(self):
+    def on_enter_sleeping(self):
         """
         """
-        logger.debug("[%s] - condition_reporting", self.__class__.__name__)
+        logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
         self.bus_acquire()
-        res = True
         try:
-            self.nodeman.find_value('led', 'blink').data = 'heartbeat'
-            self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
+            self.stop_check()
+            self.nodeman.remove_polls(self.polled_sensors)
+            self.nodeman.find_value('led', 'blink').data = 'off'
             #In sleeping mode, send the state of the fsm every 900 seconds
-            #We update poll_delay directly to not update the value in configfile
-            state = self.nodeman.find_bus_value('state')
-            state.poll_delay = self.nodeman.find_bus_value('state_poll').data
-            overheat = self.nodeman.find_bus_value('overheat')
-            overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data
-            self.nodeman.publish_value(overheat)
-            self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
+            #We update poll_delay directly to nto update the value in config file
+            self.nodeman.find_bus_value('state').poll_delay = 900
         except Exception:
-            logger.exception("[%s] - Error in condition_reporting", self.__class__.__name__)
-            res = False
+            logger.exception("[%s] - Error in on_enter_sleeping", self.__class__.__name__)
         finally:
             self.bus_release()
+
+    def on_exit_sleeping(self):
+        """
+        """
+        logger.debug("[%s] - on_exit_sleeping", self.__class__.__name__)
         self.on_check()
-        return res
-
-We also publish the overheat value :
-
-.. code:: python
-
-        overheat = self.nodeman.find_bus_value('overheat')
-        overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data
-        self.nodeman.publish_value(overheat)
 
 The overheat value is updated in the on_check timer :
 
@@ -221,30 +211,27 @@ In ringing state, we are more verbose :
 
 .. code:: python
 
-    def condition_ringing(self):
+    def on_enter_ringing(self):
         """
         """
-        logger.debug("[%s] - condition_ringing", self.__class__.__name__)
+        logger.debug("[%s] - on_enter_ringing", self.__class__.__name__)
         self.bus_acquire()
-        res = True
         try:
             self.nodeman.find_value('led', 'blink').data = 'warning'
             #In sleeping mode, send the state of the fsm every 900 seconds
             #We update poll_delay directly to not update the value in configfile
             state = self.nodeman.find_bus_value('state')
-            state.poll_delay = self.nodeman.find_bus_value('state_poll').data / 3
+            state.poll_delay = 1.0 * self.nodeman.find_bus_value('state_poll').data / 3
             overheat = self.nodeman.find_bus_value('overheat')
-            overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data / 3
+            overheat.poll_delay = 1.0 * self.nodeman.find_bus_value('overheat_poll').data / 3
             self.nodeman.publish_value(overheat)
             self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
         except Exception:
-            logger.exception("[%s] - Error in condition_ringing", self.__class__.__name__)
-            res = False
+            logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
         finally:
             self.bus_release()
-        return res
 
-We also check temperature more frequently :
+We also launch the on_check temperature more frequently :
 
 .. code:: python
 
