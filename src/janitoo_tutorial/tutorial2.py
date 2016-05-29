@@ -227,7 +227,6 @@ class TutorialBus(JNTBus):
             res = False
         finally:
             self.bus_release()
-        self.on_check()
         return res
 
     def start_sleeping(self):
@@ -353,6 +352,7 @@ class TutorialBus(JNTBus):
             self.buses[bus].start(mqttc, trigger_thread_reload_cb=None)
         JNTBus.start(self, mqttc, trigger_thread_reload_cb)
         self._statemachine = self.create_fsm()
+        self.on_check()
 
     def create_fsm(self):
         """Create the fsm
