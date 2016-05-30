@@ -111,9 +111,9 @@ We should now define actions when entering states :
 The finish state machine
 ========================
 
-FSM
+The diagram :
 
-.. image:: images/fsm_bus.png
+.. image:: images/fsm_bus_3.png
 
 
 Create a server
