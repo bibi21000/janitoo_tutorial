@@ -155,7 +155,7 @@ We want to interact with the finish state machine, so transition_fsm is a good c
     self.values[poll_value.uuid] = poll_value
 
 We defined a new value using 'transition_fsm' with a list of valid items populated from the transition state machine and a refrence to the bus itself.
-And that's all. All the job is done automatically : `here <https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/values/action.py#L230>`_
+And that's all. All the job is done automatically (`here <https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/values/action.py#L230>`_).
 
 As we want to poll this value, we also add a linked poll value.
 
@@ -227,7 +227,7 @@ Look at spyer :
 The values are published regulary. You should also see your led blinking in heartbeat mode.
 
 A note ont the state machine.
-Writing this tutorial, I added a new bus with an integrated state machine : `here <https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/buses/fsm.py>`_.
+Writing this tutorial, I added a new bus with an integrated state machine (`here <https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/buses/fsm.py>`_).
 It's a better idea to inherit from it. It use a timer to speed up the boot process.
 
 
