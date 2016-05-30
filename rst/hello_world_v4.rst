@@ -112,11 +112,11 @@ Values are used to interact with nodes : update config, poll, location, get temp
 To allow developpers to share these interactions, there is the value factory.
 You can collect values in your local values factory using :
 
-.. code: bash
+.. code:: bash
 
     jnt_collect -t janitoo.values
 
-.. code: bash
+.. code:: bash
     -------------------------------------------------------------------------------
     Group : janitoo.values
      action_boolean = janitoo_factory.values.action:make_action_boolean
@@ -163,11 +163,11 @@ Wake up baby
 
 It's time to wake-up the state machine. At first, we need to find the right value :
 
-.. code: bash
+.. code:: bash
 
     $ jnt_query node --hadd 0225/0000 --vuuid request_info_basics
 
-.. code: bash
+.. code:: bash
 
     request_info_basics
     ----------
@@ -182,7 +182,7 @@ Get more informations on this value :
 
     $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --readonly True
 
-.. code: bash
+.. code:: bash
 
     tutorial2_transition
     ----------
@@ -191,11 +191,11 @@ Get more informations on this value :
 
 And trigger a transition from [u'wakeup', u'report', u'sleep', u'ring'] :
 
-.. code: bash
+.. code:: bash
 
     $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --writeonly True --data wakeup
 
-.. code: bash
+.. code:: bash
 
     tutorial2_transition
     ----------
@@ -204,7 +204,7 @@ And trigger a transition from [u'wakeup', u'report', u'sleep', u'ring'] :
 
 Look at spyer :
 
-.. code: bash
+.. code:: bash
 
     /values/user/0225/0003/frequency 0 {"help": "The frequency of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2__cpu", "entry_name": "sensor_frequency", "genre": 2, "poll_delay": 300, "data": 1000, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "frequency", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0003", "label": "CPUFreq", "units": "MHz"}
     /values/basic/0225/0004/blink 0 {"help": "Blink", "reply_hadd": null, "entry_name": "blink", "poll_delay": 300, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "blink", "min": null, "delays": {"info": {"on": 0.6, "off": 60}, "off": {"on": 0, "off": 1}, "blink": {"on": 0.6, "off": 2.5}, "warning": {"on": 0.6, "off": 5}, "notify": {"on": 0.6, "off": 10}, "heartbeat": {"on": 0.5, "off": 300}, "alert": {"on": 0.6, "off": 1}}, "cmd_class": 12803, "hadd": "0225/0004", "label": "Blink", "units": null, "type": 5, "max": null, "genre": 1, "data": "heartbeat", "is_polled": true, "node_uuid": "tutorial2__led", "voice_uuid": null, "is_readonly": false, "default": "off"}
