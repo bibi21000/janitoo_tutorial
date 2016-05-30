@@ -208,7 +208,9 @@
 <h1>Janitoo<a class="headerlink" href="#janitoo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
-<p>In short words, Janitoo is a protocol based on mqtt. Its API allows rapid development of appliance server for Raspberry Pi ( mainly but not only).</p>
+<p>In short words, Janitoo is a protocol based on mqtt and an API that allows rapid development for Raspberry Pi (mainly but not only).
+In this tutorial, you&#8217;ll develop a <a class="reference external" href="https://github.com/bibi21000/janitoo_tutorial/blob/master/src/janitoo_tutorial/tutorial1.py">server</a>
+that reports temperature of the CPU, a DHT sensor and a Onewire sensor in less than 100 lines of code.</p>
 <p>The protocol is approximatively 60% developped : fixed addresses, primary nodes are functionnals.</p>
 <p>The protocol implements the concepts of network, nodes and values :</p>
 <ul class="simple">
@@ -225,9 +227,10 @@
 <p>If you&#8217;re famillar with Zwave (<a class="reference external" href="https://github.com/OpenZWave/open-zwave">https://github.com/OpenZWave/open-zwave</a>), Janitoo&#8217;s protocol is a kind of Zwave over mqtt.</p>
 <p>The API implements the concepts of thread/bus, components and values :</p>
 <ul class="simple">
-<li>a bus allows to share resources between its holded components. Each bus run in its own thread. A bus is mapped to a node in the protocol (in a controller node to be more precise)</li>
-<li>a component is mapped to a node</li>
+<li>a bus allows to share resources between its holded components. Each bus run in its own thread.</li>
 </ul>
+<p>A bus is mapped to a node in the protocol (in a controller node to be more precise)
+- a component is mapped to a node</p>
 <p>You can see Janitoo in action here : <a class="reference external" href="https://www.youtube.com/watch?v=S3Gqj32sJ-Q">https://www.youtube.com/watch?v=S3Gqj32sJ-Q</a></p>
 <p>Look at the time line in description.</p>
 </div>
