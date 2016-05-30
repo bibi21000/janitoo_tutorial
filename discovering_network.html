@@ -572,7 +572,7 @@ nsor__load&quot;, &quot;uuid&quot;: &quot;load&quot;, &quot;voice_uuid&quot;: nu
 ll, &quot;is_readonly&quot;: true, &quot;is_polled&quot;: true, &quot;type&quot;: 3}}
 </pre></div>
 </div>
-<p>You can get the documentation about jnt_query here : <a class="reference external" href="https://bibi21000.github.io/janitoo/cli.html#jnt-query">https://bibi21000.github.io/janitoo/cli.html#jnt-query</a></p>
+<p>You can get the documentation about <a class="reference external" href="https://bibi21000.github.io/janitoo/cli.html#jnt-query">jnt_query</a>.</p>
 </div>
 <div class="section" id="command-class-discovering">
 <h2>Command class discovering<a class="headerlink" href="#command-class-discovering" title="Permalink to this headline">¶</a></h2>
@@ -586,7 +586,7 @@ That&#8217;s why we set the HADD manually in the configuration file ...</p>
 <p>And secondaries ?</p>
 <p>Technically, every thread or server (in Janitoo API) can be a secondary. But a secondary hold a full map of the network (maybe more than 1000 values)
 and it will consume RAM and cpu (to take the map up to date).</p>
-<p>Typically, a user interface ( <a class="reference external" href="https://github.com/bibi21000/janitoo_manager">https://github.com/bibi21000/janitoo_manager</a> ) which needs to list nodes, values, should be a secondary.</p>
+<p>Typically, a user interface (<a class="reference external" href="https://github.com/bibi21000/janitoo_manager">janitoo_manager</a>) which needs to list nodes, values, should be a secondary.</p>
 <p>A notifier, which needs to call many nodes (an email notifier, a sms notifier, a tv message, a ring on an raspberry)  may
 be a secondary too.</p>
 <p>Typically, if you want your server become a secondary, you should extend the default network :</p>
@@ -621,8 +621,7 @@ be a secondary too.</p>
             <span class="n">extend</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
 </pre></div>
 </div>
-<p>And you need to start/stop it the right place in your server :
-<a class="reference external" href="https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py">https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py</a></p>
+<p>And you need to start/stop it the right place in your server (janitoo_dhcp <a href="#id1"><span class="problematic" id="id2">`https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py`_</span></a>)</p>
 <p>The network object will do all the requests / broadcast to populate the map : with a working primary (and some code fixes :)),
 it should be up in less than 10 seconds.
 With no primary, it take at least 30 seconds and surely more on large installations.
@@ -656,8 +655,8 @@ For a dimmer, it is COMMAND_SWITCH_MULTILEVEL.</p>
                          <span class="p">}</span>
 </pre></div>
 </div>
-<p>This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page.</p>
-<p>Look at documentation here : <a class="reference external" href="https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py">https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py</a>.</p>
+<p>This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page
+(̀ here &lt;<a class="reference external" href="https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py">https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py</a>&gt;`_).</p>
 </div>
 <div class="section" id="resolv">
 <h3>Resolv<a class="headerlink" href="#resolv" title="Permalink to this headline">¶</a></h3>
@@ -667,11 +666,11 @@ For a dimmer, it is COMMAND_SWITCH_MULTILEVEL.</p>
 </div>
 <div class="section" id="more-servers">
 <h2>More servers<a class="headerlink" href="#more-servers" title="Permalink to this headline">¶</a></h2>
-<p>You can find docker applicance here :</p>
+<p>You can find docker appliance here :</p>
 <ul class="simple">
 <li><a class="reference external" href="https://bibi21000.github.io/janitoo_docker_appliance/directory.html">https://bibi21000.github.io/janitoo_docker_appliance/directory.html</a></li>
 </ul>
-<p>You could find something usefull here :</p>
+<p>You could find other servers here :</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/bibi21000/janitoo_nut">https://github.com/bibi21000/janitoo_nut</a></li>
 <li><a class="reference external" href="https://github.com/bibi21000/janitoo_roomba">https://github.com/bibi21000/janitoo_roomba</a></li>
