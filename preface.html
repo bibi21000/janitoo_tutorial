@@ -227,10 +227,10 @@ that reports temperature of the CPU, a DHT sensor and a Onewire sensor in less t
 <p>If you&#8217;re famillar with Zwave (<a class="reference external" href="https://github.com/OpenZWave/open-zwave">https://github.com/OpenZWave/open-zwave</a>), Janitoo&#8217;s protocol is a kind of Zwave over mqtt.</p>
 <p>The API implements the concepts of thread/bus, components and values :</p>
 <ul class="simple">
-<li>a bus allows to share resources between its holded components. Each bus run in its own thread.</li>
+<li>a bus allows to share resources between its holded components. Each bus run in its own thread.
+A bus is mapped to a node in the protocol (in a controller node to be more precise)</li>
+<li>a component is mapped to a node</li>
 </ul>
-<p>A bus is mapped to a node in the protocol (in a controller node to be more precise)
-- a component is mapped to a node</p>
 <p>You can see Janitoo in action here : <a class="reference external" href="https://www.youtube.com/watch?v=S3Gqj32sJ-Q">https://www.youtube.com/watch?v=S3Gqj32sJ-Q</a></p>
 <p>Look at the time line in description.</p>
 </div>

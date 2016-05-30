@@ -30,7 +30,7 @@ If you're famillar with Zwave (https://github.com/OpenZWave/open-zwave), Janitoo
 The API implements the concepts of thread/bus, components and values :
 
 - a bus allows to share resources between its holded components. Each bus run in its own thread.
-A bus is mapped to a node in the protocol (in a controller node to be more precise)
+  A bus is mapped to a node in the protocol (in a controller node to be more precise)
 - a component is mapped to a node
 
 You can see Janitoo in action here : https://www.youtube.com/watch?v=S3Gqj32sJ-Q
