@@ -178,7 +178,7 @@ It's time to wake-up the state machine. At first, we need to find the right valu
 
 Get more informations on this value :
 
-.. code: bash
+.. code:: bash
 
     $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --readonly True
 
