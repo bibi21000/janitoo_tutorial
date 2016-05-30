@@ -45,20 +45,6 @@ from janitoo_raspberry_1wire.bus_1wire import OnewireBus
 from janitoo_raspberry_1wire.components import DS18B20
 from janitoo_hostsensor_raspberry.component import HardwareCpu
 
-##############################################################
-#Check that we are in sync with the official command classes
-#Must be implemented for non-regression
-from janitoo.classes import COMMAND_DESC
-
-COMMAND_WEB_CONTROLLER = 0x1030
-COMMAND_WEB_RESOURCE = 0x1031
-COMMAND_DOC_RESOURCE = 0x1032
-
-assert(COMMAND_DESC[COMMAND_WEB_CONTROLLER] == 'COMMAND_WEB_CONTROLLER')
-assert(COMMAND_DESC[COMMAND_WEB_RESOURCE] == 'COMMAND_WEB_RESOURCE')
-assert(COMMAND_DESC[COMMAND_DOC_RESOURCE] == 'COMMAND_DOC_RESOURCE')
-##############################################################
-
 OID = 'tutorial2'
 
 def make_ambiance(**kwargs):
