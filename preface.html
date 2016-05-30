@@ -222,7 +222,7 @@
 <li>values have genres : &#8216;basic&#8217;, &#8216;user&#8217;, &#8216;config&#8217;, &#8216;system&#8217;, &#8216;command&#8217;</li>
 <li>values implements cmd_class : a capacity (ie switch, dimmer, ... ), a config, ...</li>
 </ul>
-<p>If you&#8217;re famillar with Zwave (<a class="reference external" href="https://github.com/OpenZWave/open-zwave">https://github.com/OpenZWave/open-zwave</a>), Janitoo&#8217;s protocol is a kind of Zwave over mqtt</p>
+<p>If you&#8217;re famillar with Zwave (<a class="reference external" href="https://github.com/OpenZWave/open-zwave">https://github.com/OpenZWave/open-zwave</a>), Janitoo&#8217;s protocol is a kind of Zwave over mqtt.</p>
 <p>The API implements the concepts of thread/bus, components and values :</p>
 <ul class="simple">
 <li>a bus allows to share resources between its holded components. Each bus run in its own thread. A bus is mapped to a node in the protocol (in a controller node to be more precise)</li>
@@ -243,6 +243,7 @@
 <div class="section" id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li>for geeks only : there is a lot of bugs, so you surely need to get your hands dirty</li>
 <li>the web manager is 20% functionnal : you can only browse values, no updates. There is a huge memory hole in it (with socketio)</li>
 <li>the flask socketio server and socketio server are under heavy development after a period of inactivity, so installation problems will occurs</li>
 <li>maybe we should use websockets instead</li>
