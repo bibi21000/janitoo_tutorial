@@ -18,7 +18,7 @@ The bus
 
 Components and thread are defined the same way we did in the previous tutorial
 
-The bus is now based on a fsm (Look at https://github.com/tyarkoni/transitions for more documentation)
+The bus is now based on a fsm (`official site <https://github.com/tyarkoni/transitions>`_ for more documentation)
 
 At first, we must define state and transitions :
 

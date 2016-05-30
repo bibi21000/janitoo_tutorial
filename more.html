@@ -148,7 +148,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href=""> Create and share</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#why">Why</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how">How</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bus-aggregation-vs-bus-extension">Bus aggregation vs bus extension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#remote-development">Remote development</a></li>
@@ -207,11 +207,11 @@
   <div class="section" id="create-and-share">
 <h1>Create and share<a class="headerlink" href="#create-and-share" title="Permalink to this headline">¶</a></h1>
 <p>With Janitoo you can easely share your components, threads and values.</p>
-<div class="section" id="why">
-<h2>Why<a class="headerlink" href="#why" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Re-use of code</li>
-<li>Tests</li>
+<li>Code quality</li>
 </ul>
 </div>
 <div class="section" id="how">
@@ -228,9 +228,9 @@
 <p>In the previous tutorials, we aggregate many buses in a single one. But sometimes, this way of doing is not sufficient.</p>
 <p>For example, for ic2_pca9865 component, I need to share the pca9865 module between many components (ie to manage 2 DC motors and 1 stepper).
 This can be done by extending the i2c bus to hold the shared mode.
-Look at : <a class="reference external" href="https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685/blob/master/src/janitoo_raspberry_i2c_pca9685/bus_pca9685.py">https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685/blob/master/src/janitoo_raspberry_i2c_pca9685/bus_pca9685.py</a></p>
+Look <a class="reference external" href="https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685/blob/master/src/janitoo_raspberry_i2c_pca9685/bus_pca9685.py">here</a>.</p>
 <p>For the spi bus, extensions allows to use the same bus for hardware and software SPI.
-Look at : <a class="reference external" href="https://github.com/bibi21000/janitoo_raspberry_spi/blob/master/src/janitoo_raspberry_spi/bus_spi.py">https://github.com/bibi21000/janitoo_raspberry_spi/blob/master/src/janitoo_raspberry_spi/bus_spi.py</a></p>
+Look <a class="reference external" href="https://github.com/bibi21000/janitoo_raspberry_spi/blob/master/src/janitoo_raspberry_spi/bus_spi.py">here</a>.</p>
 <p>You need to define an entry-point for your bus extension in your setup.py :</p>
 <div class="code python highlight-python"><div class="highlight"><pre>&quot;rpii2c.extensions&quot;: [
     &quot;pca9865 = janitoo_raspberry_i2c_pca9685.bus_pca9685:extend&quot;,
@@ -331,6 +331,7 @@ You can launch it locally, look at <a class="reference external" href="https://g
 </div>
 <div class="section" id="i-want-more">
 <h2>I want more<a class="headerlink" href="#i-want-more" title="Permalink to this headline">¶</a></h2>
+<p>Janitoo also contains tools ad helpers for database, flask webapps, ...</p>
 <div class="section" id="protocol">
 <h3>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -377,25 +378,6 @@ It is need a lot of ressorces and it should be updated.</p>
 <div class="section" id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <p>Documentation is managed using Sphinx and it is generated automatically. So please update pages in rst directories or in src.</p>
-<p>There is an extension too :</p>
-<div class="section" id="setup-py">
-<h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="type-0">
-<h4>Threads (bus)<a class="headerlink" href="#type-0" title="Permalink to this headline">¶</a></h4>
-<li><strong class="first">tutorial1</strong><span> : </span><em>janitoo_tutorial.thread_tutorial1:make_thread</em></li>
-<li><strong class="first">tutorial2</strong><span> : </span><em>janitoo_tutorial.thread_tutorial2:make_thread</em></li>
-</div>
-<div class="section" id="type-1">
-<h4>Components<a class="headerlink" href="#type-1" title="Permalink to this headline">¶</a></h4>
-<li><strong class="first">tutorial1.ambiance</strong><span> : </span><em>janitoo_tutorial.tutorial1:make_ambiance</em></li>
-<li><strong class="first">tutorial1.cpu</strong><span> : </span><em>janitoo_tutorial.tutorial1:make_cpu</em></li>
-<li><strong class="first">tutorial1.temperature</strong><span> : </span><em>janitoo_tutorial.tutorial1:make_temperature</em></li>
-<li><strong class="first">tutorial2.ambiance</strong><span> : </span><em>janitoo_tutorial.tutorial2:make_ambiance</em></li>
-<li><strong class="first">tutorial2.cpu</strong><span> : </span><em>janitoo_tutorial.tutorial2:make_cpu</em></li>
-<li><strong class="first">tutorial2.led</strong><span> : </span><em>janitoo_tutorial.tutorial2:make_led</em></li>
-<li><strong class="first">tutorial2.temperature</strong><span> : </span><em>janitoo_tutorial.tutorial2:make_temperature</em></li>
-</div>
-</div>
 </div>
 </div>
 
