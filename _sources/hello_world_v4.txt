@@ -117,6 +117,7 @@ You can collect values in your local values factory using :
     jnt_collect -t janitoo.values
 
 .. code:: bash
+
     -------------------------------------------------------------------------------
     Group : janitoo.values
      action_boolean = janitoo_factory.values.action:make_action_boolean

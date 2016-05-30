@@ -303,6 +303,27 @@ You can collect values in your local values factory using :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>jnt_collect -t janitoo.values
 </pre></div>
 </div>
+<div class="code bash highlight-python"><div class="highlight"><pre>-------------------------------------------------------------------------------
+Group : janitoo.values
+ action_boolean = janitoo_factory.values.action:make_action_boolean
+ action_byte = janitoo_factory.values.action:make_action_byte
+ action_integer = janitoo_factory.values.action:make_action_integer
+ action_list = janitoo_factory.values.action:make_action_list
+ action_string = janitoo_factory.values.action:make_action_string
+ action_switch_binary = janitoo_factory.values.action:make_action_switch_binary
+ action_switch_multilevel = janitoo_factory.values.action:make_action_switch_multilevel
+ blink = janitoo_factory_exts.values.blink:make_blink
+ config_array = janitoo_factory.values.config:make_config_array
+ config_boolean = janitoo_factory.values.config:make_config_boolean
+ ...
+ sensor_rotation_speed = janitoo_factory.values.sensor:make_sensor_rotation_speed
+ sensor_string = janitoo_factory.values.sensor:make_sensor_string
+ sensor_temperature = janitoo_factory.values.sensor:make_sensor_temperature
+ sensor_voltage = janitoo_factory.values.sensor:make_sensor_voltage
+ transition_fsm = janitoo_factory.values.action:make_transition_fsm
+ updown = janitoo_factory_exts.values.updown:make_updown
+</pre></div>
+</div>
 <p>For example, the value sensor_temperature is used to send a temperature :D
 It defines the right units, command class, label, ...</p>
 <p>We want to interact with the finish state machine, so transition_fsm is a good choice :</p>
