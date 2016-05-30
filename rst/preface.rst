@@ -22,7 +22,7 @@ The protocol implements the concepts of network, nodes and values :
 - values have genres : 'basic', 'user', 'config', 'system', 'command'
 - values implements cmd_class : a capacity (ie switch, dimmer, ... ), a config, ...
 
-If you're famillar with Zwave (https://github.com/OpenZWave/open-zwave), Janitoo's protocol is a kind of Zwave over mqtt
+If you're famillar with Zwave (https://github.com/OpenZWave/open-zwave), Janitoo's protocol is a kind of Zwave over mqtt.
 
 The API implements the concepts of thread/bus, components and values :
 
@@ -46,7 +46,7 @@ For the impatient that don't want to test the API (with a Raspberry Pi), jump :d
 
 Notes
 =====
-
+- for geeks only : there is a lot of bugs, so you surely need to get your hands dirty
 - the web manager is 20% functionnal : you can only browse values, no updates. There is a huge memory hole in it (with socketio)
 - the flask socketio server and socketio server are under heavy development after a period of inactivity, so installation problems will occurs
 - maybe we should use websockets instead
