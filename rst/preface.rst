@@ -6,7 +6,10 @@ Janitoo
 Preface
 =======
 
-In short words, Janitoo is a protocol based on mqtt. Its API allows rapid development of appliance server for Raspberry Pi ( mainly but not only).
+In short words, Janitoo is a protocol based on mqtt and an API that allows rapid development for Raspberry Pi (mainly but not only).
+In this tutorial, you'll develop a `server <https://github.com/bibi21000/janitoo_tutorial/blob/master/src/janitoo_tutorial/tutorial1.py>`_
+that reports temperature of the CPU, a DHT sensor and a Onewire sensor in less than 100 lines of code.
+
 
 The protocol is approximatively 60% developped : fixed addresses, primary nodes are functionnals.
 
@@ -26,7 +29,8 @@ If you're famillar with Zwave (https://github.com/OpenZWave/open-zwave), Janitoo
 
 The API implements the concepts of thread/bus, components and values :
 
-- a bus allows to share resources between its holded components. Each bus run in its own thread. A bus is mapped to a node in the protocol (in a controller node to be more precise)
+- a bus allows to share resources between its holded components. Each bus run in its own thread.
+A bus is mapped to a node in the protocol (in a controller node to be more precise)
 - a component is mapped to a node
 
 You can see Janitoo in action here : https://www.youtube.com/watch?v=S3Gqj32sJ-Q
