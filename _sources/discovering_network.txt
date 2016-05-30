@@ -36,7 +36,7 @@ If a bus is not fair with resources (cpu, io, ...) the other one will be impacte
 Same if a bus fails.
 
 In the second (:doc:`here <hello_world_v2>`) and
-third ((:doc:`here <hello_world_v3>`)) tutorials,
+third (:doc:`here <hello_world_v3>`) tutorials,
 we aggregate 2 buses with python code. Your code will also stay on the same core.
 
 We don't see it before but you can install many servers on the same rasberry but :
