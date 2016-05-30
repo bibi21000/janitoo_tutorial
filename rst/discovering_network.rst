@@ -419,7 +419,7 @@ You can also spy the values update and check that the load value is published ev
     nsor__load", "uuid": "load", "voice_uuid": null, "min": null, "default": null, "cmd_class": 49, "hadd": "0121/0001", "label": "Load (15 minutes)", "units": nu
     ll, "is_readonly": true, "is_polled": true, "type": 3}}
 
-You can get the documentation about jnt_query here : https://bibi21000.github.io/janitoo/cli.html#jnt-query
+You can get the documentation about `jnt_query <https://bibi21000.github.io/janitoo/cli.html#jnt-query>`_.
 
 
 Command class discovering
@@ -441,7 +441,7 @@ And secondaries ?
 Technically, every thread or server (in Janitoo API) can be a secondary. But a secondary hold a full map of the network (maybe more than 1000 values)
 and it will consume RAM and cpu (to take the map up to date).
 
-Typically, a user interface ( https://github.com/bibi21000/janitoo_manager ) which needs to list nodes, values, should be a secondary.
+Typically, a user interface (`janitoo_manager <https://github.com/bibi21000/janitoo_manager>`_) which needs to list nodes, values, should be a secondary.
 
 A notifier, which needs to call many nodes (an email notifier, a sms notifier, a tv message, a ring on an raspberry)  may
 be a secondary too.
@@ -480,8 +480,7 @@ Typically, if you want your server become a secondary, you should extend the def
                 extend = entrypoint.load()
                 extend( self )
 
-And you need to start/stop it the right place in your server :
-https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py
+And you need to start/stop it the right place in your server (janitoo_dhcp `https://github.com/bibi21000/janitoo_dhcp/blob/master/src/janitoo_dhcp/server.py`_)
 
 The network object will do all the requests / broadcast to populate the map : with a working primary (and some code fixes :)),
 it should be up in less than 10 seconds.
@@ -522,9 +521,8 @@ On a primary or secondary, you can extend the network object to collect command 
                                 'help':self.basics[node][value][index]['data'],
                             }
 
-This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page.
-
-Look at documentation here : https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py.
+This is the way the proxy extension for manager works : it collects all nodes which implements cmdclass COMMAND_WEB_CONTROLLER to show them on the web page
+(̀ here <https://github.com/bibi21000/janitoo_manager_proxy/blob/master/src/janitoo_manager_proxy/network.py>`_).
 
 Resolv
 ------
@@ -537,11 +535,11 @@ Make a call via uuid to the primary to get a list of nodes implementing the need
 More servers
 ============
 
-You can find docker applicance here :
+You can find docker appliance here :
 
 - https://bibi21000.github.io/janitoo_docker_appliance/directory.html
 
-You could find something usefull here :
+You could find other servers here :
 
 - https://github.com/bibi21000/janitoo_nut
 - https://github.com/bibi21000/janitoo_roomba
