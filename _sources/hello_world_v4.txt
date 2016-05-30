@@ -66,7 +66,7 @@ That's done in the check_heartbeat method :
 That's not the fastest way to do it but not the worst. We need to check that all nodes are up before changing of state.
 If the state is not change, the node associated to the bus will send an 'OFFLINE' heartbeat.
 
-We add a condition for the state machine : values needs to be up to change of state. Of course, no need to check conditions to get into sleeping state.
+We add a condition for the state machine : values needs to be up to change the state. Of course, no need to check conditions to get into sleeping state.
 
 .. code:: python
 
@@ -76,12 +76,41 @@ We add a condition for the state machine : values needs to be up to change of st
         logger.debug("[%s] - condition_values", self.__class__.__name__)
         return all(v is not None for v in self.polled_sensors)
 
-We do the same for the other transition conditions.
+And we add on_enter_{state} functions. For example, when entering in reporting mode, we activate the polls  :
 
-It's time to interact with the Fininsh state machine ... and speak about the value_factory.
+.. code:: python
+
+    def on_enter_reporting(self):
+        """
+        """
+        logger.debug("[%s] - on_enter_reporting", self.__class__.__name__)
+        self.bus_acquire()
+        try:
+            self.nodeman.find_value('led', 'blink').data = 'heartbeat'
+            self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
+            #In sleeping mode, send the state of the fsm every 900 seconds
+            #We update poll_delay directly to not update the value in configfile
+            state = self.nodeman.find_bus_value('state')
+            state.poll_delay = self.nodeman.find_bus_value('state_poll').data
+            overheat = self.nodeman.find_bus_value('overheat')
+            overheat.poll_delay = self.nodeman.find_bus_value('overheat_poll').data
+            self.nodeman.publish_value(overheat)
+            self.nodeman.add_polls([state, overheat], slow_start=True, overwrite=True)
+        except Exception:
+            logger.exception("[%s] - Error in on_enter_reporting", self.__class__.__name__)
+        finally:
+            self.bus_release()
+
+We also publish the overheat value immediatly :
+
+.. code:: python
+
+    self.nodeman.publish_value(overheat)
+
+It's time to add some code to interact with the state machine ... and speak about the value_factory.
 Values are used to interact with nodes : update config, poll, location, get temperature, ...
 To allow developpers to share these interactions, there is the value factory.
-You can collect values in your local installation using :
+You can collect values in your local values factory using :
 
 .. code: bash
 
@@ -111,7 +140,7 @@ You can collect values in your local installation using :
 For example, the value sensor_temperature is used to send a temperature :D
 It defines the right units, command class, label, ...
 
-We want to interact with the fsm, so transition_fsm is a good choice :
+We want to interact with the finish state machine, so transition_fsm is a good choice :
 
 .. code:: python
 

@@ -261,7 +261,7 @@ d&quot;: &quot;temperature&quot;, &quot;is_readonly&quot;: true, &quot;min&quot;
 </div>
 <p>That&#8217;s not the fastest way to do it but not the worst. We need to check that all nodes are up before changing of state.
 If the state is not change, the node associated to the bus will send an &#8216;OFFLINE&#8217; heartbeat.</p>
-<p>We add a condition for the state machine : values needs to be up to change of state. Of course, no need to check conditions to get into sleeping state.</p>
+<p>We add a condition for the state machine : values needs to be up to change the state. Of course, no need to check conditions to get into sleeping state.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">condition_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -269,14 +269,40 @@ If the state is not change, the node associated to the bus will send an &#8216;O
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">polled_sensors</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We do the same for the other transition conditions.</p>
-<p>It&#8217;s time to interact with the Fininsh state machine ... and speak about the value_factory.
+<p>And we add on_enter_{state} functions. For example, when entering in reporting mode, we activate the polls  :</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">on_enter_reporting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">bus_acquire</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">&#39;heartbeat&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">add_polls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">polled_sensors</span><span class="p">,</span> <span class="n">slow_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="c">#In sleeping mode, send the state of the fsm every 900 seconds</span>
+        <span class="c">#We update poll_delay directly to not update the value in configfile</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;state&#39;</span><span class="p">)</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">poll_delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;state_poll&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">overheat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat&#39;</span><span class="p">)</span>
+        <span class="n">overheat</span><span class="o">.</span><span class="n">poll_delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat_poll&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">publish_value</span><span class="p">(</span><span class="n">overheat</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">add_polls</span><span class="p">([</span><span class="n">state</span><span class="p">,</span> <span class="n">overheat</span><span class="p">],</span> <span class="n">slow_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - Error in on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bus_release</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We also publish the overheat value immediatly :</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">publish_value</span><span class="p">(</span><span class="n">overheat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It&#8217;s time to add some code to interact with the state machine ... and speak about the value_factory.
 Values are used to interact with nodes : update config, poll, location, get temperature, ...
 To allow developpers to share these interactions, there is the value factory.
-You can collect values in your local installation using :</p>
+You can collect values in your local values factory using :</p>
 <p>For example, the value sensor_temperature is used to send a temperature :D
 It defines the right units, command class, label, ...</p>
-<p>We want to interact with the fsm, so transition_fsm is a good choice :</p>
+<p>We want to interact with the finish state machine, so transition_fsm is a good choice :</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_transition&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;transition_fsm&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
     <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
