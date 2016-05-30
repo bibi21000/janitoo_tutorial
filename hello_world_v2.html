@@ -145,6 +145,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#state-machine">State machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#wake-up-baby">Wake up baby</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#critical-temperature">Critical temperature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello_world_v4.html#fsmbus">FsmBus</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="more.html"> Create and share</a><ul>
@@ -218,11 +219,11 @@
 <div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src/janitoo_tutorial
 </pre></div>
 </div>
-<p>Open the tutorial1 implementation :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/tutorial1.py
+<p>Open the tutorial2 implementation :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/tutorial2.py
 </pre></div>
 </div>
-<p>We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
+<p>We will import all the needed components, and update their oid to match the new bus oid (tutorial2).
 For the DHT component, it&#8217;s looks like :</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">janitoo_raspberry_dht.dht</span> <span class="kn">import</span> <span class="n">DHTComponent</span>
 
@@ -234,7 +235,7 @@ For the DHT component, it&#8217;s looks like :</p>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;tutorial1.ambiance&#39;</span><span class="p">)</span>
+        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;tutorial2.ambiance&#39;</span><span class="p">)</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&quot;Ambiance sensor&quot;</span><span class="p">)</span>
         <span class="n">DHTComponent</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="n">bus</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -273,10 +274,10 @@ Of course, we would add it without problem.</p>
 <div class="section" id="the-thread">
 <h2>The thread<a class="headerlink" href="#the-thread" title="Permalink to this headline">¶</a></h2>
 <p>The thread hold the bus :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/thread_tutorial1.py
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/thread_tutorial2.py
 </pre></div>
 </div>
-<p>We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
+<p>We will import all the needed components, and update their oid to match the new bus oid (tutorial2).
 For the DHT component, it&#8217;s looks like :</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TutorialThread</span><span class="p">(</span><span class="n">JNTBusThread</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The basic thread</span>
@@ -285,7 +286,7 @@ For the DHT component, it&#8217;s looks like :</p>
     <span class="k">def</span> <span class="nf">init_bus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Build the bus</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial1</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
+        <span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial2</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="n">OID</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bus</span> <span class="o">=</span> <span class="n">TutorialBus</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">product_name</span><span class="o">=</span><span class="s">&quot;Raspberry tutorial controller&quot;</span><span class="p">)</span>
 </pre></div>
@@ -296,12 +297,12 @@ For the DHT component, it&#8217;s looks like :</p>
 <p>Janitoo uses entry-points for defining threads (bus) and components :</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">entry_points</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&quot;janitoo.threads&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;tutorial1 = janitoo_tutorial.thread_tutorial1:make_thread&quot;</span><span class="p">,</span>
+        <span class="s">&quot;tutorial2 = janitoo_tutorial.thread_tutorial2:make_thread&quot;</span><span class="p">,</span>
     <span class="p">],</span>
     <span class="s">&quot;janitoo.components&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance&quot;</span><span class="p">,</span>
-        <span class="s">&quot;tutorial1.cpu = janitoo_tutorial.tutorial1:make_cpu&quot;</span><span class="p">,</span>
-        <span class="s">&quot;tutorial1.temperature = janitoo_tutorial.tutorial1:make_temperature&quot;</span><span class="p">,</span>
+        <span class="s">&quot;tutorial2.ambiance = janitoo_tutorial.tutorial2:make_ambiance&quot;</span><span class="p">,</span>
+        <span class="s">&quot;tutorial2.cpu = janitoo_tutorial.tutorial2:make_cpu&quot;</span><span class="p">,</span>
+        <span class="s">&quot;tutorial2.temperature = janitoo_tutorial.tutorial2:make_temperature&quot;</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">},</span>
 </pre></div>
@@ -327,13 +328,13 @@ For the DHT component, it&#8217;s looks like :</p>
 </pre></div>
 </div>
 <p>Like seen in the first tutorial, there is a section for the new bus (thread) :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[tutorial1]
+<div class="code bash highlight-python"><div class="highlight"><pre>[tutorial2]
 auto_start = True
 name = Hello world
 location = Rapsberry
-components.ambiance = tutorial1.ambiance
-components.temperature = tutorial1.temperature
-components.cpu = tutorial1.cpu
+components.ambiance = tutorial2.ambiance
+components.temperature = tutorial2.temperature
+components.cpu = tutorial2.cpu
 hadd = 0225/0000
 </pre></div>
 </div>
@@ -341,7 +342,7 @@ hadd = 0225/0000
 We must define the HADD of the controller node associated to the bus (0225/0000).
 But this bus now holds the 3 components.</p>
 <p>Look at the DHT section, it&#8217;s similar to the one seen in first tutorial :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[tutorial1__ambiance]
+<div class="code bash highlight-python"><div class="highlight"><pre>[tutorial2__ambiance]
 name = Ambiance 1
 location = DHT
 hadd = 0225/0001
@@ -359,7 +360,7 @@ sensor_0 = 11
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestAmbianceComponent</span><span class="p">(</span><span class="n">JNTTComponent</span><span class="p">,</span> <span class="n">JNTTComponentCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the component</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">component_name</span> <span class="o">=</span> <span class="s">&quot;tutorial1.ambiance&quot;</span>
+    <span class="n">component_name</span> <span class="o">=</span> <span class="s">&quot;tutorial2.ambiance&quot;</span>
 </pre></div>
 </div>
 <p>And launch it :</p>
@@ -393,7 +394,7 @@ OK
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestTutorialThread</span><span class="p">(</span><span class="n">JNTTThreadRun</span><span class="p">,</span> <span class="n">JNTTThreadRunCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the thread</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">thread_name</span> <span class="o">=</span> <span class="s">&quot;tutorial1&quot;</span>
+    <span class="n">thread_name</span> <span class="o">=</span> <span class="s">&quot;tutorial2&quot;</span>
     <span class="n">conf_file</span> <span class="o">=</span> <span class="s">&quot;tests/data/janitoo_tutorial2.conf&quot;</span>
 </pre></div>
 </div>
@@ -416,11 +417,11 @@ OK (SKIP=1)
 <div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/tests/test_bus_v2.py
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial1</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial2</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
 <span class="k">class</span> <span class="nc">TestTutorialBus</span><span class="p">(</span><span class="n">JNTTBus</span><span class="p">,</span> <span class="n">JNTTBusCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the Bus</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">oid</span> <span class="o">=</span> <span class="s">&#39;tutorial1&#39;</span>
+    <span class="n">oid</span> <span class="o">=</span> <span class="s">&#39;tutorial2&#39;</span>
     <span class="n">bus</span> <span class="o">=</span> <span class="n">TutorialBus</span>
 </pre></div>
 </div>
@@ -496,10 +497,10 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                 name                      location                  product_type
-0225/0000  tutorial1            Hello world               Rapsberry                 Default product type
-0225/0002  tutorial1__temperature Temperature               Onewire                   Temperature sensor
-0225/0001  tutorial1__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
-0225/0003  tutorial1__cpu       CPU                       Hostsensor                Software component
+0225/0000  tutorial2            Hello world               Rapsberry                 Default product type
+0225/0002  tutorial2__temperature Temperature               Onewire                   Temperature sensor
+0225/0001  tutorial2__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
+0225/0003  tutorial2__cpu       CPU                       Hostsensor                Software component
 </pre></div>
 </div>
 <p>You can also query a node :</p>
@@ -507,10 +508,10 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
-0225/0000  tutorial1                      Hello world               Rapsberry            Default product type
-0225/0002  tutorial1__temperature         Temperature               Onewire              Temperature sensor
-0225/0001  tutorial1__ambiance            Ambiance 1                DHT                  Temperature/humidity sensor
-0225/0003  tutorial1__cpu                 CPU                       Hostsensor           Software component
+0225/0000  tutorial2                      Hello world               Rapsberry            Default product type
+0225/0002  tutorial2__temperature         Temperature               Onewire              Temperature sensor
+0225/0001  tutorial2__ambiance            Ambiance 1                DHT                  Temperature/humidity sensor
+0225/0003  tutorial2__cpu                 CPU                       Hostsensor           Software component
 </pre></div>
 </div>
 <p>Check the config values :</p>
@@ -518,24 +519,24 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
-0225/0001  tutorial1__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0001  tutorial1__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
-0225/0001  tutorial1__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
-0225/0001  tutorial1__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
-0225/0001  tutorial1__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
-0225/0001  tutorial1__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
-0225/0000  tutorial1                 tutorial1_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
-0225/0000  tutorial1                 name                           0    Hello world               None       8     3     112      The name of the node
-0225/0000  tutorial1                 location                       0    Rapsberry                 None       8     3     112      The location of the node
-0225/0003  tutorial1__cpu            frequency_poll                 0    300                       seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial1__cpu            temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial1__cpu            voltage_poll                   0    300                       seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial1__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
-0225/0003  tutorial1__cpu            name                           0    CPU                       None       8     3     112      The name of the node
-0225/0002  tutorial1__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0002  tutorial1__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
-0225/0002  tutorial1__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
-0225/0002  tutorial1__temperature    name                           0    Temperature               None       8     3     112      The name of the node
+0225/0001  tutorial2__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+0225/0001  tutorial2__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
+0225/0001  tutorial2__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
+0225/0001  tutorial2__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
+0225/0001  tutorial2__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
+0225/0001  tutorial2__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
+0225/0000  tutorial2                 tutorial2_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
+0225/0000  tutorial2                 name                           0    Hello world               None       8     3     112      The name of the node
+0225/0000  tutorial2                 location                       0    Rapsberry                 None       8     3     112      The location of the node
+0225/0003  tutorial2__cpu            frequency_poll                 0    300                       seconds    4     3     112      The poll delay of the value
+0225/0003  tutorial2__cpu            temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+0225/0003  tutorial2__cpu            voltage_poll                   0    300                       seconds    4     3     112      The poll delay of the value
+0225/0003  tutorial2__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
+0225/0003  tutorial2__cpu            name                           0    CPU                       None       8     3     112      The name of the node
+0225/0002  tutorial2__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+0225/0002  tutorial2__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
+0225/0002  tutorial2__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
+0225/0002  tutorial2__temperature    name                           0    Temperature               None       8     3     112      The name of the node
 </pre></div>
 </div>
 <p>Get the user values :</p>
@@ -543,13 +544,13 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
-0225/0001  tutorial1__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
-0225/0001  tutorial1__ambiance       humidity                       0    30.0                      %          3     2     49       The humidity
-0225/0000  tutorial1                 tutorial1_temperature          0    25.6                      °C         3     2     49       The average temperature of tutorial. Can be use as a good quality source for a thermostat.
-0225/0003  tutorial1__cpu            frequency                      0    1000                      MHz        3     2     49       The frequency of the CPU
-0225/0003  tutorial1__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
-0225/0003  tutorial1__cpu            temperature                    0    38.5                      °C         3     2     49       The temperature of the CPU
-0225/0002  tutorial1__temperature    temperature                    0    19.2                      °C         3     2     49       The temperature
+0225/0001  tutorial2__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
+0225/0001  tutorial2__ambiance       humidity                       0    30.0                      %          3     2     49       The humidity
+0225/0000  tutorial2                 tutorial2_temperature          0    25.6                      °C         3     2     49       The average temperature of tutorial. Can be use as a good quality source for a thermostat.
+0225/0003  tutorial2__cpu            frequency                      0    1000                      MHz        3     2     49       The frequency of the CPU
+0225/0003  tutorial2__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
+0225/0003  tutorial2__cpu            temperature                    0    38.5                      °C         3     2     49       The temperature of the CPU
+0225/0002  tutorial2__temperature    temperature                    0    19.2                      °C         3     2     49       The temperature
 </pre></div>
 </div>
 </div>

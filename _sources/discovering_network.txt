@@ -108,11 +108,11 @@ That's the way we discover the nodes in the last tutorial :
     0121/0004  hostsensor__lmsensor lm-sensors                Docker                    Software
     0120/0000  nut                  Default bus name controller Default location          Default product type
     0120/0001  nut__ups1            UPS                       Default location          3B1006X72726
-    0225/0000  tutorial2            Hello world               Rapsberry                 Default product type
-    0225/0002  tutorial2__temperature Temperature               Onewire                   Temperature sensor
-    0225/0004  tutorial2__led       Led                       GPIO                      Software
-    0225/0003  tutorial2__cpu       CPU                       Hostsensor                Software component
-    0225/0001  tutorial2__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
+    0225/0000  tutorial3            Hello world               Rapsberry                 Default product type
+    0225/0002  tutorial3__temperature Temperature               Onewire                   Temperature sensor
+    0225/0004  tutorial3__led       Led                       GPIO                      Software
+    0225/0003  tutorial3__cpu       CPU                       Hostsensor                Software component
+    0225/0001  tutorial3__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
 
 But you can also ask for systems values.
 System values are used by the protocol, you should not update or remove them in your code.
@@ -147,21 +147,21 @@ System values are used by the protocol, you should not update or remove them in 
     0121/0004  hostsensor__lmsensor      heartbeat                 0    60                        seconds    4     4     112      The heartbeat delay in seconds
     0121/0004  hostsensor__lmsensor      config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
     0121/0004  hostsensor__lmsensor      hadd                      0    0121/0004                            32    4     112      The Janitoo Home address
-    0225/0004  tutorial2__led            heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
-    0225/0004  tutorial2__led            config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
-    0225/0004  tutorial2__led            hadd                      0    0225/0004                            32    4     112      The Janitoo Home address
-    0225/0001  tutorial2__ambiance       heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
-    0225/0001  tutorial2__ambiance       config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
-    0225/0001  tutorial2__ambiance       hadd                      0    0225/0001                            32    4     112      The Janitoo Home address
-    0225/0000  tutorial2                 heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
-    0225/0000  tutorial2                 config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
-    0225/0000  tutorial2                 hadd                      0    0225/0000                            32    4     112      The Janitoo Home address
-    0225/0003  tutorial2__cpu            heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
-    0225/0003  tutorial2__cpu            config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
-    0225/0003  tutorial2__cpu            hadd                      0    0225/0003                            32    4     112      The Janitoo Home address
-    0225/0002  tutorial2__temperature    heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
-    0225/0002  tutorial2__temperature    config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
-    0225/0002  tutorial2__temperature    hadd                      0    0225/0002                            32    4     112      The Janitoo Home address
+    0225/0004  tutorial3__led            heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
+    0225/0004  tutorial3__led            config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
+    0225/0004  tutorial3__led            hadd                      0    0225/0004                            32    4     112      The Janitoo Home address
+    0225/0001  tutorial3__ambiance       heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
+    0225/0001  tutorial3__ambiance       config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
+    0225/0001  tutorial3__ambiance       hadd                      0    0225/0001                            32    4     112      The Janitoo Home address
+    0225/0000  tutorial3                 heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
+    0225/0000  tutorial3                 config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
+    0225/0000  tutorial3                 hadd                      0    0225/0000                            32    4     112      The Janitoo Home address
+    0225/0003  tutorial3__cpu            heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
+    0225/0003  tutorial3__cpu            config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
+    0225/0003  tutorial3__cpu            hadd                      0    0225/0003                            32    4     112      The Janitoo Home address
+    0225/0002  tutorial3__temperature    heartbeat                 0    30                        seconds    4     4     112      The heartbeat delay in seconds
+    0225/0002  tutorial3__temperature    config_timeout            0    3                         seconds    4     4     112      The config timeout before applying configuration and rebooting
+    0225/0002  tutorial3__temperature    hadd                      0    0225/0002                            32    4     112      The Janitoo Home address
 
 When a primary node start and no other is started, it request all nodes and values of the nerwork by broadcast to create a map.
 When a secondary can't contact a primary, it fall in fail mode and use broadcast to update its map.

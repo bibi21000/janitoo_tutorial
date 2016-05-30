@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>janitoo_tutorial.tutorial4 &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sphinxcontrib-images/LightBox2/lightbox2/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/sphinxcontrib-images/LightBox2/lightbox2/js/lightbox.min.js"></script>
+    <script type="text/javascript" src="../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          janitoo_tutorial</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.7</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../tools/index.html">Tools</a></li>
+                <li><a href="../../api/index.html">Reference</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../preface.html"> What is Janitoo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../preface.html#preface">Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preface.html#about-this-tutorial">About this tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preface.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html"> Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#needed-tools">Needed tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#initial-clone">Initial clone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#update-your-clone">Update your clone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hello_world_v0.html"> Hello World : connect everything</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v0.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v0.html#needed-parts">Needed parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v0.html#fritzing">Fritzing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hello_world_v1.html"> Hello World 1 : a simple server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v1.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v1.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v1.html#test-it">Test it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v1.html#launch-it">Launch it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v1.html#query-it">Query it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v1.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hello_world_v2.html"> Hello World 2 : an advanced server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#the-components">The components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#the-bus">The bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#the-thread">The thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#entry-points">Entry-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#test-it">Test it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#launch-it">Launch it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v2.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hello_world_v3.html"> Hello World 3 : a more advanced server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v3.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v3.html#the-bus">The bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v3.html#the-finish-state-machine">The finish state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v3.html#create-a-server">Create a server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v3.html#spy-it">Spy it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v3.html#start-it-at-boot">Start it at boot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v3.html#performances">Performances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../many_servers.html"> Many servers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../many_servers.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../many_servers.html#mosquitto">Mosquitto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../many_servers.html#the-docker-appliance">The docker appliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../many_servers.html#the-network">The network</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../discovering_network.html"> Discovering the network</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../discovering_network.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../discovering_network.html#one-more-server">One more server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../discovering_network.html#broadcast-network">Broadcast network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../discovering_network.html#request-nodes">Request nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../discovering_network.html#values-querying">Values querying</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../discovering_network.html#command-class-discovering">Command class discovering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../discovering_network.html#more-servers">More servers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hello_world_v4.html"> Hello World 4 : interacting with our server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v4.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v4.html#state-machine">State machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v4.html#wake-up-baby">Wake up baby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v4.html#critical-temperature">Critical temperature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hello_world_v4.html#fsmbus">FsmBus</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../more.html"> Create and share</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#how">How</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#bus-aggregation-vs-bus-extension">Bus aggregation vs bus extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#remote-development">Remote development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#i-want-more">I want more</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#i-want-to-help">I want to help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../more.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_doc.html"> Using documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../using_doc.html#the-header">The header</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for janitoo_tutorial.tutorial4</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;The Raspberry tutorial</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    This file is part of Janitoo.</span>
+
+<span class="s">    Janitoo is free software: you can redistribute it and/or modify</span>
+<span class="s">    it under the terms of the GNU General Public License as published by</span>
+<span class="s">    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="s">    (at your option) any later version.</span>
+
+<span class="s">    Janitoo is distributed in the hope that it will be useful,</span>
+<span class="s">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="s">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="s">    GNU General Public License for more details.</span>
+
+<span class="s">    You should have received a copy of the GNU General Public License</span>
+<span class="s">    along with Janitoo. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Sébastien GALLET aka bibi21000&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s">&#39;bibi21000@gmail.com&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s">&quot;Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">from</span> <span class="nn">janitoo.fsm</span> <span class="kn">import</span> <span class="n">HierarchicalMachine</span> <span class="k">as</span> <span class="n">Machine</span>
+<span class="kn">from</span> <span class="nn">janitoo.thread</span> <span class="kn">import</span> <span class="n">JNTBusThread</span><span class="p">,</span> <span class="n">BaseThread</span>
+<span class="kn">from</span> <span class="nn">janitoo.options</span> <span class="kn">import</span> <span class="n">get_option_autostart</span>
+<span class="kn">from</span> <span class="nn">janitoo.utils</span> <span class="kn">import</span> <span class="n">HADD</span>
+<span class="kn">from</span> <span class="nn">janitoo.node</span> <span class="kn">import</span> <span class="n">JNTNode</span>
+<span class="kn">from</span> <span class="nn">janitoo.value</span> <span class="kn">import</span> <span class="n">JNTValue</span>
+<span class="kn">from</span> <span class="nn">janitoo.component</span> <span class="kn">import</span> <span class="n">JNTComponent</span>
+
+<span class="kn">from</span> <span class="nn">janitoo_factory.buses.fsm</span> <span class="kn">import</span> <span class="n">JNTFsmBus</span>
+
+<span class="kn">from</span> <span class="nn">janitoo_raspberry_dht.dht</span> <span class="kn">import</span> <span class="n">DHTComponent</span>
+<span class="kn">from</span> <span class="nn">janitoo_raspberry_gpio.gpio</span> <span class="kn">import</span> <span class="n">GpioBus</span><span class="p">,</span> <span class="n">OutputComponent</span><span class="p">,</span> <span class="n">PirComponent</span> <span class="k">as</span> <span class="n">GPIOPir</span><span class="p">,</span> <span class="n">LedComponent</span> <span class="k">as</span> <span class="n">GPIOLed</span><span class="p">,</span> <span class="n">SonicComponent</span>
+<span class="kn">from</span> <span class="nn">janitoo_raspberry_1wire.bus_1wire</span> <span class="kn">import</span> <span class="n">OnewireBus</span>
+<span class="kn">from</span> <span class="nn">janitoo_raspberry_1wire.components</span> <span class="kn">import</span> <span class="n">DS18B20</span>
+<span class="kn">from</span> <span class="nn">janitoo_hostsensor_raspberry.component</span> <span class="kn">import</span> <span class="n">HardwareCpu</span>
+
+<span class="n">OID</span> <span class="o">=</span> <span class="s">&#39;tutorial4&#39;</span>
+
+<div class="viewcode-block" id="make_ambiance"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.make_ambiance">[docs]</a><span class="k">def</span> <span class="nf">make_ambiance</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">AmbianceComponent</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="make_led"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.make_led">[docs]</a><span class="k">def</span> <span class="nf">make_led</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">LedComponent</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="make_temperature"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.make_temperature">[docs]</a><span class="k">def</span> <span class="nf">make_temperature</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">TemperatureComponent</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="make_cpu"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.make_cpu">[docs]</a><span class="k">def</span> <span class="nf">make_cpu</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">CpuComponent</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TutorialBus"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus">[docs]</a><span class="k">class</span> <span class="nc">TutorialBus</span><span class="p">(</span><span class="n">JNTFsmBus</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A bus to manage Tutorial</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">states</span> <span class="o">=</span> <span class="p">[</span>
+       <span class="s">&#39;booting&#39;</span><span class="p">,</span>
+       <span class="s">&#39;sleeping&#39;</span><span class="p">,</span>
+       <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
+       <span class="s">&#39;ringing&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;The tutorial states :</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">transitions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;sleep&#39;</span><span class="p">,</span>
+            <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;*&#39;</span><span class="p">,</span>
+            <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;sleeping&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;wakeup&#39;</span><span class="p">,</span>
+            <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;sleeping&#39;</span><span class="p">,</span>
+            <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
+            <span class="s">&#39;conditions&#39;</span><span class="p">:</span> <span class="s">&#39;condition_values&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;report&#39;</span><span class="p">,</span>
+            <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;*&#39;</span><span class="p">,</span>
+            <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
+            <span class="s">&#39;conditions&#39;</span><span class="p">:</span> <span class="s">&#39;condition_values&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;ring&#39;</span><span class="p">,</span>
+            <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
+            <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;ringing&#39;</span><span class="p">,</span>
+            <span class="s">&#39;conditions&#39;</span><span class="p">:</span> <span class="s">&#39;condition_values&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;The transitions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">JNTFsmBus</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buses</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s">&#39;gpiobus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GpioBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s">&#39;1wire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OnewireBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bus_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+        <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_timer_delay&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;config_float&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s">&#39;The delay between 2 checks&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Timer.&#39;</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_temperature_critical&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;config_float&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s">&#39;The critical temperature. If 2 of the 3 temperature sensors are up to this value, a security notification is sent.&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Critical&#39;</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_temperature&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;sensor_temperature&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s">&#39;The average temperature of tutorial.&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Temp&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">poll_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">create_poll_value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">poll_value</span><span class="o">.</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="n">poll_value</span>
+
+        <span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_overheat&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;sensor_boolean&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s">&#39;Temperature overheat.&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&#39;Overheat&#39;</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">poll_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">create_poll_value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">poll_value</span><span class="o">.</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="n">poll_value</span>
+
+<div class="viewcode-block" id="TutorialBus.get_state"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.get_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_uuid</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the state of the fsm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="TutorialBus.polled_sensors"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.polled_sensors">[docs]</a>    <span class="k">def</span> <span class="nf">polled_sensors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;temperature&#39;</span><span class="p">,</span> <span class="s">&#39;temperature&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;ambiance&#39;</span><span class="p">,</span> <span class="s">&#39;temperature&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;ambiance&#39;</span><span class="p">,</span> <span class="s">&#39;humidity&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;cpu&#39;</span><span class="p">,</span> <span class="s">&#39;temperature&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;cpu&#39;</span><span class="p">,</span> <span class="s">&#39;voltage&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;cpu&#39;</span><span class="p">,</span> <span class="s">&#39;frequency&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;switch&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;blink&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;temperature&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;transition&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat&#39;</span><span class="p">),</span>
+        <span class="p">]</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.condition_values"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.condition_values">[docs]</a>    <span class="k">def</span> <span class="nf">condition_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - condition_values&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">polled_sensors</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.on_enter_reporting"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.on_enter_reporting">[docs]</a>    <span class="k">def</span> <span class="nf">on_enter_reporting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bus_acquire</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">&#39;heartbeat&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">add_polls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">polled_sensors</span><span class="p">,</span> <span class="n">slow_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="c">#In sleeping mode, send the state of the fsm every 900 seconds</span>
+            <span class="c">#We update poll_delay directly to not update the value in configfile</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;state&#39;</span><span class="p">)</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">poll_delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;state_poll&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">overheat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat&#39;</span><span class="p">)</span>
+            <span class="n">overheat</span><span class="o">.</span><span class="n">poll_delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat_poll&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">publish_value</span><span class="p">(</span><span class="n">overheat</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">add_polls</span><span class="p">([</span><span class="n">state</span><span class="p">,</span> <span class="n">overheat</span><span class="p">],</span> <span class="n">slow_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - Error in on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bus_release</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.on_enter_sleeping"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.on_enter_sleeping">[docs]</a>    <span class="k">def</span> <span class="nf">on_enter_sleeping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - on_enter_sleeping&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bus_acquire</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stop_check</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">remove_polls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">polled_sensors</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">&#39;off&#39;</span>
+            <span class="c">#In sleeping mode, send the state of the fsm every 900 seconds</span>
+            <span class="c">#We update poll_delay directly to nto update the value in config file</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;state&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">poll_delay</span> <span class="o">=</span> <span class="mi">900</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - Error in on_enter_sleeping&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bus_release</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.on_exit_sleeping"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.on_exit_sleeping">[docs]</a>    <span class="k">def</span> <span class="nf">on_exit_sleeping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - on_exit_sleeping&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_check</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.on_enter_ringing"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.on_enter_ringing">[docs]</a>    <span class="k">def</span> <span class="nf">on_enter_ringing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - on_enter_ringing&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bus_acquire</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">&#39;warning&#39;</span>
+            <span class="c">#In sleeping mode, send the state of the fsm every 900 seconds</span>
+            <span class="c">#We update poll_delay directly to not update the value in configfile</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;state&#39;</span><span class="p">)</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">poll_delay</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;state_poll&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="mi">3</span>
+            <span class="n">overheat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat&#39;</span><span class="p">)</span>
+            <span class="n">overheat</span><span class="o">.</span><span class="n">poll_delay</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat_poll&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="mi">3</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">publish_value</span><span class="p">(</span><span class="n">overheat</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">add_polls</span><span class="p">([</span><span class="n">state</span><span class="p">,</span> <span class="n">overheat</span><span class="p">],</span> <span class="n">slow_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - Error in on_enter_ringing&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bus_release</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.bus_acquire"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.bus_acquire">[docs]</a>    <span class="k">def</span> <span class="nf">bus_acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a lock on the bus&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bus_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="n">blocking</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.bus_release"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.bus_release">[docs]</a>    <span class="k">def</span> <span class="nf">bus_release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Release a lock on the bus&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bus_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.bus_locked"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.bus_locked">[docs]</a>    <span class="k">def</span> <span class="nf">bus_locked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get status of the lock&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bus_lock</span><span class="o">.</span><span class="n">locked</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.stop_check"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.stop_check">[docs]</a>    <span class="k">def</span> <span class="nf">stop_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that the component is &#39;available&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span> <span class="o">=</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.on_check"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.on_check">[docs]</a>    <span class="k">def</span> <span class="nf">on_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make a check using a timer.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bus_acquire</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stop_check</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_started</span><span class="p">:</span>
+                <span class="n">timer_delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bus_value</span><span class="p">(</span><span class="s">&#39;timer_delay&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s">&#39;ringing&#39;</span><span class="p">:</span>
+                    <span class="n">timer_delay</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">timer_delay</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">timer_delay</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_check</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">check_timer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bus_release</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="c">#Check the temperatures</span>
+            <span class="n">critical_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bus_value</span><span class="p">(</span><span class="s">&#39;temperature_critical&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">criticals</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">mini</span> <span class="o">=</span> <span class="n">maxi</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[(</span><span class="s">&#39;temperature&#39;</span><span class="p">,</span> <span class="s">&#39;temperature&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;ambiance&#39;</span><span class="p">,</span> <span class="s">&#39;temperature&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;cpu&#39;</span><span class="p">,</span> <span class="s">&#39;temperature&#39;</span><span class="p">)]:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+                <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="c">#We should notify a sensor problem here.</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">nums</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">total</span> <span class="o">+=</span> <span class="n">data</span>
+                    <span class="k">if</span> <span class="n">data</span> <span class="o">&gt;</span> <span class="n">critical_temp</span><span class="p">:</span>
+                        <span class="n">criticals</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">maxi</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">data</span> <span class="o">&gt;</span> <span class="n">maxi</span><span class="p">:</span>
+                        <span class="n">maxi</span> <span class="o">=</span> <span class="n">data</span>
+                    <span class="k">if</span> <span class="n">mini</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">data</span> <span class="o">&lt;</span> <span class="n">mini</span><span class="p">:</span>
+                        <span class="n">mini</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="k">if</span> <span class="n">criticals</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s">&#39;ringing&#39;</span><span class="p">:</span>
+                    <span class="c">#We should notify a security problem : fire ?</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s">&#39;ringing&#39;</span><span class="p">:</span>
+                <span class="c">#We should notify a security problem : fire ?</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_bus_value</span><span class="p">(</span><span class="s">&#39;overheat&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">nums</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_bus_value</span><span class="p">(</span><span class="s">&#39;temperature&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="n">nums</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - Error in on_check&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.start"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start the bus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="n">bus</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">JNTFsmBus</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.stop"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stop the bus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_check</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="n">bus</span><span class="p">]</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="n">JNTFsmBus</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TutorialBus.loop"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TutorialBus.loop">[docs]</a>    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stopevent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve data</span>
+<span class="sd">        Don&#39;t do long task in loop. Use a separated thread to not perturbate the nodeman</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="n">bus</span><span class="p">]</span><span class="o">.</span><span class="n">loop</span><span class="p">(</span><span class="n">stopevent</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="AmbianceComponent"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.AmbianceComponent">[docs]</a><span class="k">class</span> <span class="nc">AmbianceComponent</span><span class="p">(</span><span class="n">DHTComponent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A component for ambiance &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.ambiance&#39;</span><span class="o">%</span><span class="n">OID</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&quot;Ambiance sensor&quot;</span><span class="p">)</span>
+        <span class="n">DHTComponent</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="n">bus</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - __init__ node uuid:</span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="LedComponent"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.LedComponent">[docs]</a><span class="k">class</span> <span class="nc">LedComponent</span><span class="p">(</span><span class="n">GPIOLed</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A component for a Led (on/off) &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.led&#39;</span><span class="o">%</span><span class="n">OID</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&quot;Led&quot;</span><span class="p">)</span>
+        <span class="n">GPIOLed</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="n">bus</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - __init__ node uuid:</span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TemperatureComponent"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.TemperatureComponent">[docs]</a><span class="k">class</span> <span class="nc">TemperatureComponent</span><span class="p">(</span><span class="n">DS18B20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A water temperature component &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.temperature&#39;</span><span class="o">%</span><span class="n">OID</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&quot;Temperature&quot;</span><span class="p">)</span>
+        <span class="n">DS18B20</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="n">bus</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - __init__ node uuid:</span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CpuComponent"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.tutorial4.CpuComponent">[docs]</a><span class="k">class</span> <span class="nc">CpuComponent</span><span class="p">(</span><span class="n">HardwareCpu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A water temperature component &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.cpu&#39;</span><span class="o">%</span><span class="n">OID</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&quot;CPU&quot;</span><span class="p">)</span>
+        <span class="n">HardwareCpu</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="n">bus</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - __init__ node uuid:</span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

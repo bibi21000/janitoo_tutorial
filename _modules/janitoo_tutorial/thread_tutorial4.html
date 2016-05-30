@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>janitoo_tutorial.thread_tutorial1 &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    <title>janitoo_tutorial.thread_tutorial4 &mdash; janitoo_tutorial 0.0.7 documentation</title>
     
     <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -196,7 +196,7 @@
   <div class="row">
     <div class="col-md-12 content">
       
-  <h1>Source code for janitoo_tutorial.thread_tutorial1</h1><div class="highlight"><pre>
+  <h1>Source code for janitoo_tutorial.thread_tutorial4</h1><div class="highlight"><pre>
 <span class="c"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;The Raspberry rantanplan</span>
 
@@ -247,22 +247,22 @@
 <span class="k">assert</span><span class="p">(</span><span class="n">COMMAND_DESC</span><span class="p">[</span><span class="n">COMMAND_CONTROLLER</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;COMMAND_CONTROLLER&#39;</span><span class="p">)</span>
 <span class="c">##############################################################</span>
 
-<span class="n">OID</span><span class="o">=</span><span class="s">&#39;tutorial1&#39;</span>
+<span class="n">OID</span><span class="o">=</span><span class="s">&#39;tutorial4&#39;</span>
 
-<div class="viewcode-block" id="make_thread"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.thread_tutorial1.make_thread">[docs]</a><span class="k">def</span> <span class="nf">make_thread</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="make_thread"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.thread_tutorial4.make_thread">[docs]</a><span class="k">def</span> <span class="nf">make_thread</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">get_option_autostart</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">OID</span><span class="p">)</span> <span class="ow">or</span> <span class="n">force</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">TutorialThread</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
 </div>
-<div class="viewcode-block" id="TutorialThread"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.thread_tutorial1.TutorialThread">[docs]</a><span class="k">class</span> <span class="nc">TutorialThread</span><span class="p">(</span><span class="n">JNTBusThread</span><span class="p">):</span>
+<div class="viewcode-block" id="TutorialThread"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.thread_tutorial4.TutorialThread">[docs]</a><span class="k">class</span> <span class="nc">TutorialThread</span><span class="p">(</span><span class="n">JNTBusThread</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The basic thread</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="TutorialThread.init_bus"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.thread_tutorial1.TutorialThread.init_bus">[docs]</a>    <span class="k">def</span> <span class="nf">init_bus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TutorialThread.init_bus"><a class="viewcode-back" href="../../api/index.html#janitoo_tutorial.thread_tutorial4.TutorialThread.init_bus">[docs]</a>    <span class="k">def</span> <span class="nf">init_bus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Build the bus</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial1</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
+        <span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial4</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="n">OID</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bus</span> <span class="o">=</span> <span class="n">TutorialBus</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">product_name</span><span class="o">=</span><span class="s">&quot;Raspberry tutorial controller&quot;</span><span class="p">)</span></div></div>
 </pre></div>
