@@ -23,6 +23,9 @@ __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
 __copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000"
 
+import warnings
+warnings.filterwarnings("ignore")
+
 from os import name as os_name
 from setuptools import setup, find_packages
 from platform import system as platform_system
@@ -85,7 +88,7 @@ setup(
     scripts=['src/scripts/jnt_tutorial'],
     packages = find_packages('src', exclude=["scripts", "docs", "config"]),
     package_dir = { '': 'src' },
-    keywords = "core,raspberry,tutorial",
+    keywords = "core,raspberry,tutorial,dht,onewire",
     include_package_data=True,
     data_files = data_files,
     install_requires=[
@@ -114,22 +117,22 @@ setup(
     ],
     entry_points = {
         "janitoo.threads": [
-            "tutorial1 = janitoo_tutorial.thread_tutorial1:make_thread",
             "tutorial2 = janitoo_tutorial.thread_tutorial2:make_thread",
             "tutorial3 = janitoo_tutorial.thread_tutorial3:make_thread",
+            "tutorial4 = janitoo_tutorial.thread_tutorial4:make_thread",
         ],
         "janitoo.components": [
-            "tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance",
-            "tutorial1.cpu = janitoo_tutorial.tutorial1:make_cpu",
-            "tutorial1.temperature = janitoo_tutorial.tutorial1:make_temperature",
             "tutorial2.ambiance = janitoo_tutorial.tutorial2:make_ambiance",
             "tutorial2.cpu = janitoo_tutorial.tutorial2:make_cpu",
             "tutorial2.temperature = janitoo_tutorial.tutorial2:make_temperature",
-            "tutorial2.led = janitoo_tutorial.tutorial2:make_led",
             "tutorial3.ambiance = janitoo_tutorial.tutorial3:make_ambiance",
             "tutorial3.cpu = janitoo_tutorial.tutorial3:make_cpu",
             "tutorial3.temperature = janitoo_tutorial.tutorial3:make_temperature",
             "tutorial3.led = janitoo_tutorial.tutorial3:make_led",
+            "tutorial4.ambiance = janitoo_tutorial.tutorial4:make_ambiance",
+            "tutorial4.cpu = janitoo_tutorial.tutorial4:make_cpu",
+            "tutorial4.temperature = janitoo_tutorial.tutorial4:make_temperature",
+            "tutorial4.led = janitoo_tutorial.tutorial4:make_led",
         ],
     },
 )
