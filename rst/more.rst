@@ -5,11 +5,11 @@ Create and share
 With Janitoo you can easely share your components, threads and values.
 
 
-Why
-===
+Goal
+====
 
 - Re-use of code
-- Tests
+- Code quality
 
 
 How
@@ -29,10 +29,10 @@ In the previous tutorials, we aggregate many buses in a single one. But sometime
 
 For example, for ic2_pca9865 component, I need to share the pca9865 module between many components (ie to manage 2 DC motors and 1 stepper).
 This can be done by extending the i2c bus to hold the shared mode.
-Look at : https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685/blob/master/src/janitoo_raspberry_i2c_pca9685/bus_pca9685.py
+Look `here <https://github.com/bibi21000/janitoo_raspberry_i2c_pca9685/blob/master/src/janitoo_raspberry_i2c_pca9685/bus_pca9685.py>`_.
 
 For the spi bus, extensions allows to use the same bus for hardware and software SPI.
-Look at : https://github.com/bibi21000/janitoo_raspberry_spi/blob/master/src/janitoo_raspberry_spi/bus_spi.py
+Look `here <https://github.com/bibi21000/janitoo_raspberry_spi/blob/master/src/janitoo_raspberry_spi/bus_spi.py>`_.
 
 You need to define an entry-point for your bus extension in your setup.py :
 
@@ -127,7 +127,6 @@ Raspberry : you can launch tests on your raspberry using : sudo make tests-all (
 Examples
 ========
 
-
 Values
 ------
 
@@ -161,6 +160,7 @@ Look at rasperry i2c :
 I want more
 ===========
 
+Janitoo also contains tools ad helpers for database, flask webapps, ...
 
 Protocol
 --------
@@ -212,11 +212,3 @@ Documentation
 =============
 
 Documentation is managed using Sphinx and it is generated automatically. So please update pages in rst directories or in src.
-
-There is an extension too :
-
-
-setup.py
---------
-
-.. jnt-extensions::
