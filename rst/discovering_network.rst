@@ -35,8 +35,7 @@ Remember that the GIL will surely block your code on a core, so a single core wi
 If a bus is not fair with resources (cpu, io, ...) the other one will be impacted.
 Same if a bus fails.
 
-In the second (:doc:`here <hello_world_v2>`) and
-third (:doc:`here <hello_world_v3>`) tutorials,
+In the :doc:`second <hello_world_v2>` and :doc:`third <hello_world_v3>` tutorials,
 we aggregate 2 buses with python code. Your code will also stay on the same core.
 
 We don't see it before but you can install many servers on the same rasberry but :
