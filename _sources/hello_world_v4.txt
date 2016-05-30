@@ -225,7 +225,7 @@ Look at spyer :
 The values are published regulary. You should also see your led blinking in heartbeat mode.
 
 A note ont the state machine. Writing this tutorial, I added a new bus with an integrated state machine : https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/buses/fsm.py.
-It's a better idea to inherit from it.
+It's a better idea to inherit from it. It use a timer to speed up the boot process.
 
 
 Critical temperature
