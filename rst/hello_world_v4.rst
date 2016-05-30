@@ -351,5 +351,6 @@ Writing this tutorial, I added a new bus with an integrated state machine (`here
 It use a timer to speed up the boot process.
 You can look at the tutorial4 code, it use it.
 
+.. image:: images/fsm_bus_4.png
 
 
