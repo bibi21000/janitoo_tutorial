@@ -22,13 +22,13 @@ Change to the tutorial directory :
 
     $ cd /opt/janitoo/src/janitoo_tutorial
 
-Open the tutorial1 implementation :
+Open the tutorial2 implementation :
 
 .. code:: bash
 
-    $ vim src/janitoo_tutorial/tutorial1.py
+    $ vim src/janitoo_tutorial/tutorial2.py
 
-We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
+We will import all the needed components, and update their oid to match the new bus oid (tutorial2).
 For the DHT component, it's looks like :
 
 .. code:: python
@@ -43,7 +43,7 @@ For the DHT component, it's looks like :
         def __init__(self, bus=None, addr=None, **kwargs):
             """
             """
-            oid = kwargs.pop('oid', 'tutorial1.ambiance')
+            oid = kwargs.pop('oid', 'tutorial2.ambiance')
             name = kwargs.pop('name', "Ambiance sensor")
             DHTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
                     **kwargs)
@@ -91,9 +91,9 @@ The thread hold the bus :
 
 .. code:: bash
 
-    $ vim src/janitoo_tutorial/thread_tutorial1.py
+    $ vim src/janitoo_tutorial/thread_tutorial2.py
 
-We will import all the needed components, and update their oid to match the new bus oid (tutorial1).
+We will import all the needed components, and update their oid to match the new bus oid (tutorial2).
 For the DHT component, it's looks like :
 
 .. code:: python
@@ -105,7 +105,7 @@ For the DHT component, it's looks like :
         def init_bus(self):
             """Build the bus
             """
-            from janitoo_tutorial.tutorial1 import TutorialBus
+            from janitoo_tutorial.tutorial2 import TutorialBus
             self.section = OID
             self.bus = TutorialBus(options=self.options, oid=self.section, product_name="Raspberry tutorial controller")
 
@@ -119,12 +119,12 @@ Janitoo uses entry-points for defining threads (bus) and components :
 
     entry_points = {
         "janitoo.threads": [
-            "tutorial1 = janitoo_tutorial.thread_tutorial1:make_thread",
+            "tutorial2 = janitoo_tutorial.thread_tutorial2:make_thread",
         ],
         "janitoo.components": [
-            "tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance",
-            "tutorial1.cpu = janitoo_tutorial.tutorial1:make_cpu",
-            "tutorial1.temperature = janitoo_tutorial.tutorial1:make_temperature",
+            "tutorial2.ambiance = janitoo_tutorial.tutorial2:make_ambiance",
+            "tutorial2.cpu = janitoo_tutorial.tutorial2:make_cpu",
+            "tutorial2.temperature = janitoo_tutorial.tutorial2:make_temperature",
         ],
     },
 
@@ -159,13 +159,13 @@ Like seen in the first tutorial, there is a section for the new bus (thread) :
 
 .. code:: bash
 
-    [tutorial1]
+    [tutorial2]
     auto_start = True
     name = Hello world
     location = Rapsberry
-    components.ambiance = tutorial1.ambiance
-    components.temperature = tutorial1.temperature
-    components.cpu = tutorial1.cpu
+    components.ambiance = tutorial2.ambiance
+    components.temperature = tutorial2.temperature
+    components.cpu = tutorial2.cpu
     hadd = 0225/0000
 
 It defines a new bus with a name and a location.
@@ -176,7 +176,7 @@ Look at the DHT section, it's similar to the one seen in first tutorial :
 
 .. code:: bash
 
-    [tutorial1__ambiance]
+    [tutorial2__ambiance]
     name = Ambiance 1
     location = DHT
     hadd = 0225/0001
@@ -198,7 +198,7 @@ You're ready to test your components. Create a test for each component. For exam
     class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
         """Test the component
         """
-        component_name = "tutorial1.ambiance"
+        component_name = "tutorial2.ambiance"
 
 And launch it :
 
@@ -239,7 +239,7 @@ Test for the tread :
     class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
         """Test the thread
         """
-        thread_name = "tutorial1"
+        thread_name = "tutorial2"
         conf_file = "tests/data/janitoo_tutorial2.conf"
 
 And launch it :
@@ -269,11 +269,11 @@ And the test for the bus :
 
 .. code:: python
 
-    from janitoo_tutorial.tutorial1 import TutorialBus
+    from janitoo_tutorial.tutorial2 import TutorialBus
     class TestTutorialBus(JNTTBus, JNTTBusCommon):
         """Test the Bus
         """
-        oid = 'tutorial1'
+        oid = 'tutorial2'
         bus = TutorialBus
 
 And launch it :
@@ -375,10 +375,10 @@ You should receive the list of nodes availables on your server :
 .. code:: bash
 
     hadd       uuid                 name                      location                  product_type
-    0225/0000  tutorial1            Hello world               Rapsberry                 Default product type
-    0225/0002  tutorial1__temperature Temperature               Onewire                   Temperature sensor
-    0225/0001  tutorial1__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
-    0225/0003  tutorial1__cpu       CPU                       Hostsensor                Software component
+    0225/0000  tutorial2            Hello world               Rapsberry                 Default product type
+    0225/0002  tutorial2__temperature Temperature               Onewire                   Temperature sensor
+    0225/0001  tutorial2__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
+    0225/0003  tutorial2__cpu       CPU                       Hostsensor                Software component
 
 You can also query a node :
 
@@ -389,10 +389,10 @@ You can also query a node :
 .. code:: bash
 
     hadd       uuid                           name                      location             product_type
-    0225/0000  tutorial1                      Hello world               Rapsberry            Default product type
-    0225/0002  tutorial1__temperature         Temperature               Onewire              Temperature sensor
-    0225/0001  tutorial1__ambiance            Ambiance 1                DHT                  Temperature/humidity sensor
-    0225/0003  tutorial1__cpu                 CPU                       Hostsensor           Software component
+    0225/0000  tutorial2                      Hello world               Rapsberry            Default product type
+    0225/0002  tutorial2__temperature         Temperature               Onewire              Temperature sensor
+    0225/0001  tutorial2__ambiance            Ambiance 1                DHT                  Temperature/humidity sensor
+    0225/0003  tutorial2__cpu                 CPU                       Hostsensor           Software component
 
 Check the config values :
 
@@ -403,24 +403,24 @@ Check the config values :
 .. code:: bash
 
     hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
-    0225/0001  tutorial1__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-    0225/0001  tutorial1__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
-    0225/0001  tutorial1__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
-    0225/0001  tutorial1__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
-    0225/0001  tutorial1__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
-    0225/0001  tutorial1__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
-    0225/0000  tutorial1                 tutorial1_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
-    0225/0000  tutorial1                 name                           0    Hello world               None       8     3     112      The name of the node
-    0225/0000  tutorial1                 location                       0    Rapsberry                 None       8     3     112      The location of the node
-    0225/0003  tutorial1__cpu            frequency_poll                 0    300                       seconds    4     3     112      The poll delay of the value
-    0225/0003  tutorial1__cpu            temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-    0225/0003  tutorial1__cpu            voltage_poll                   0    300                       seconds    4     3     112      The poll delay of the value
-    0225/0003  tutorial1__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
-    0225/0003  tutorial1__cpu            name                           0    CPU                       None       8     3     112      The name of the node
-    0225/0002  tutorial1__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-    0225/0002  tutorial1__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
-    0225/0002  tutorial1__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
-    0225/0002  tutorial1__temperature    name                           0    Temperature               None       8     3     112      The name of the node
+    0225/0001  tutorial2__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0001  tutorial2__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
+    0225/0001  tutorial2__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
+    0225/0001  tutorial2__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0001  tutorial2__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
+    0225/0001  tutorial2__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
+    0225/0000  tutorial2                 tutorial2_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0000  tutorial2                 name                           0    Hello world               None       8     3     112      The name of the node
+    0225/0000  tutorial2                 location                       0    Rapsberry                 None       8     3     112      The location of the node
+    0225/0003  tutorial2__cpu            frequency_poll                 0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial2__cpu            temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial2__cpu            voltage_poll                   0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0003  tutorial2__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
+    0225/0003  tutorial2__cpu            name                           0    CPU                       None       8     3     112      The name of the node
+    0225/0002  tutorial2__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
+    0225/0002  tutorial2__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
+    0225/0002  tutorial2__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
+    0225/0002  tutorial2__temperature    name                           0    Temperature               None       8     3     112      The name of the node
 
 Get the user values :
 
@@ -431,13 +431,13 @@ Get the user values :
 .. code:: bash
 
     hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
-    0225/0001  tutorial1__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
-    0225/0001  tutorial1__ambiance       humidity                       0    30.0                      %          3     2     49       The humidity
-    0225/0000  tutorial1                 tutorial1_temperature          0    25.6                      °C         3     2     49       The average temperature of tutorial. Can be use as a good quality source for a thermostat.
-    0225/0003  tutorial1__cpu            frequency                      0    1000                      MHz        3     2     49       The frequency of the CPU
-    0225/0003  tutorial1__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
-    0225/0003  tutorial1__cpu            temperature                    0    38.5                      °C         3     2     49       The temperature of the CPU
-    0225/0002  tutorial1__temperature    temperature                    0    19.2                      °C         3     2     49       The temperature
+    0225/0001  tutorial2__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
+    0225/0001  tutorial2__ambiance       humidity                       0    30.0                      %          3     2     49       The humidity
+    0225/0000  tutorial2                 tutorial2_temperature          0    25.6                      °C         3     2     49       The average temperature of tutorial. Can be use as a good quality source for a thermostat.
+    0225/0003  tutorial2__cpu            frequency                      0    1000                      MHz        3     2     49       The frequency of the CPU
+    0225/0003  tutorial2__cpu            voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
+    0225/0003  tutorial2__cpu            temperature                    0    38.5                      °C         3     2     49       The temperature of the CPU
+    0225/0002  tutorial2__temperature    temperature                    0    19.2                      °C         3     2     49       The temperature
 
 
 Performances

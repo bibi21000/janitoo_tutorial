@@ -116,6 +116,7 @@ setup(
         "janitoo.threads": [
             "tutorial1 = janitoo_tutorial.thread_tutorial1:make_thread",
             "tutorial2 = janitoo_tutorial.thread_tutorial2:make_thread",
+            "tutorial3 = janitoo_tutorial.thread_tutorial3:make_thread",
         ],
         "janitoo.components": [
             "tutorial1.ambiance = janitoo_tutorial.tutorial1:make_ambiance",
@@ -125,6 +126,10 @@ setup(
             "tutorial2.cpu = janitoo_tutorial.tutorial2:make_cpu",
             "tutorial2.temperature = janitoo_tutorial.tutorial2:make_temperature",
             "tutorial2.led = janitoo_tutorial.tutorial2:make_led",
+            "tutorial3.ambiance = janitoo_tutorial.tutorial3:make_ambiance",
+            "tutorial3.cpu = janitoo_tutorial.tutorial3:make_cpu",
+            "tutorial3.temperature = janitoo_tutorial.tutorial3:make_temperature",
+            "tutorial3.led = janitoo_tutorial.tutorial3:make_led",
         ],
     },
 )

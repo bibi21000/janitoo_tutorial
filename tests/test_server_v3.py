@@ -38,7 +38,7 @@ class TestTutorialServer(JNTTServer, JNTTServerCommon):
     """
     server_class = PiServer
     server_conf = "tests/data/helloworldv3.conf"
-    server_section = "tutorial2"
+    server_section = "tutorial3"
 
     hadds = [HADD%(225,0), HADD%(225,1), HADD%(225,2), HADD%(225,3), HADD%(225,4)]
 

@@ -58,7 +58,7 @@ assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
     """Test the thread
     """
-    thread_name = "tutorial2"
+    thread_name = "tutorial3"
     conf_file = "tests/data/helloworldv3.conf"
 
 

@@ -16,10 +16,10 @@ Look at the spyer. At startup, the server publish all its values but after a whi
 
 .. code:: bash
 
-    /values/user/0225/0003/voltage 0 {"help": "The voltage of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2__cpu", "entry
+    /values/user/0225/0003/voltage 0 {"help": "The voltage of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial3__cpu", "entry
     _name": "sensor_voltage", "genre": 2, "poll_delay": 300, "data": 1.35, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "volt
     age", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0003", "label": "CPUVolt", "units": "V"}
-    /values/user/0225/0002/temperature 0 {"help": "The temperature", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2__temperature", "
+    /values/user/0225/0002/temperature 0 {"help": "The temperature", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial3__temperature", "
     entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": 85.0, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uui
     d": "temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0002", "label": "Temp", "units": "\u00b0C"}
     /dhcp/heartbeat/0225/0002 0 ONLINE
@@ -32,7 +32,7 @@ Look at the spyer. At startup, the server publish all its values but after a whi
     /dhcp/heartbeat/0225/0003 0 ONLINE
     /dhcp/heartbeat/0225/0001 0 ONLINE
     /dhcp/heartbeat/0225/0000 0 ONLINE
-    /values/user/0225/0000/tutorial2_state 0 {"help": "The state of the fsm.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "sensor_string", "genre": 2, "poll_delay": 900, "data": "sleeping", "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial2_state", "is_readonly": true, "min": null, "default": null, "type": 8, "cmd_class": 49, "hadd": "0225/0000", "label": "State", "units": null}
+    /values/user/0225/0000/tutorial3_state 0 {"help": "The state of the fsm.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial3", "entry_name": "sensor_string", "genre": 2, "poll_delay": 900, "data": "sleeping", "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial3_state", "is_readonly": true, "min": null, "default": null, "type": 8, "cmd_class": 49, "hadd": "0225/0000", "label": "State", "units": null}
     /dhcp/heartbeat/0225/0002 0 ONLINE
     /dhcp/heartbeat/0225/0004 0 ONLINE
     /dhcp/heartbeat/0225/0003 0 ONLINE
@@ -176,45 +176,45 @@ It's time to wake-up the state machine. At first, we need to find the right valu
     hadd       uuid                           idx  data                      units      type  genre cmdclass help
     0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
     0225/0004  blink                          0    off                       None       5     1     12803    Blink
-    0225/0000  tutorial2_transition           0    None                      None       5     1     0        Send a transition to the fsm
+    0225/0000  tutorial3_transition           0    None                      None       5     1     0        Send a transition to the fsm
 
 Get more informations on this value :
 
 .. code:: bash
 
-    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --readonly True
+    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial3_transition --cmdclass 4272 --type 1 --readonly True
 
 .. code:: bash
 
-    tutorial2_transition
+    tutorial3_transition
     ----------
     hadd       uuid                      idx  data                      units      type  genre cmdclass list_items help
-    0225/0000  tutorial2_transition      0    None                      None       5     1     4272     [u'wakeup', u'report', u'sleep', u'ring'] Trigger a transition on the fsm or get the last triggered
+    0225/0000  tutorial3_transition      0    None                      None       5     1     4272     [u'wakeup', u'report', u'sleep', u'ring'] Trigger a transition on the fsm or get the last triggered
 
 And trigger a transition from [u'wakeup', u'report', u'sleep', u'ring'] :
 
 .. code:: bash
 
-    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --writeonly True --data wakeup
+    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial3_transition --cmdclass 4272 --type 1 --writeonly True --data wakeup
 
 .. code:: bash
 
-    tutorial2_transition
+    tutorial3_transition
     ----------
     hadd       uuid                      idx  data                      units      type  genre cmdclass list_items help
-    0225/0000  tutorial2_transition      0    wakeup                    None       5     1     4272     [u'wakeup', u'report', u'sleep', u'ring'] Trigger a transition on the fsm or get the last triggered
+    0225/0000  tutorial3_transition      0    wakeup                    None       5     1     4272     [u'wakeup', u'report', u'sleep', u'ring'] Trigger a transition on the fsm or get the last triggered
 
 Look at spyer :
 
 .. code:: bash
 
-    /values/user/0225/0003/frequency 0 {"help": "The frequency of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2__cpu", "entry_name": "sensor_frequency", "genre": 2, "poll_delay": 300, "data": 1000, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "frequency", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0003", "label": "CPUFreq", "units": "MHz"}
-    /values/basic/0225/0004/blink 0 {"help": "Blink", "reply_hadd": null, "entry_name": "blink", "poll_delay": 300, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "blink", "min": null, "delays": {"info": {"on": 0.6, "off": 60}, "off": {"on": 0, "off": 1}, "blink": {"on": 0.6, "off": 2.5}, "warning": {"on": 0.6, "off": 5}, "notify": {"on": 0.6, "off": 10}, "heartbeat": {"on": 0.5, "off": 300}, "alert": {"on": 0.6, "off": 1}}, "cmd_class": 12803, "hadd": "0225/0004", "label": "Blink", "units": null, "type": 5, "max": null, "genre": 1, "data": "heartbeat", "is_polled": true, "node_uuid": "tutorial2__led", "voice_uuid": null, "is_readonly": false, "default": "off"}
-    /values/user/0225/0000/tutorial2_temperature 0 {"help": "The average temperature of tutorial.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": null, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial2_temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0000", "label": "Temp", "units": "\u00b0C"}
-    /values/basic/0225/0000/tutorial2_transition 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial2_transition", "is_readonly": false, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
-    /nodes/0225/0000/request 0 {"reply_hadd": "9999/9990", "uuid": "tutorial2_transition", "is_readonly": true, "genre": 1, "data": null, "cmd_class": 4272, "hadd": "0225/0000", "is_writeonly": false}
-    /nodes/9999/9990/reply 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": "9999/9990", "node_uuid": "tutorial2", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial2_transition", "is_readonly": true, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
-    /values/basic/0225/0000/tutorial2_transition 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": "9999/9990", "node_uuid": "tutorial2", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial2_transition", "is_readonly": true, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
+    /values/user/0225/0003/frequency 0 {"help": "The frequency of the CPU", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial3__cpu", "entry_name": "sensor_frequency", "genre": 2, "poll_delay": 300, "data": 1000, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "frequency", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0003", "label": "CPUFreq", "units": "MHz"}
+    /values/basic/0225/0004/blink 0 {"help": "Blink", "reply_hadd": null, "entry_name": "blink", "poll_delay": 300, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "blink", "min": null, "delays": {"info": {"on": 0.6, "off": 60}, "off": {"on": 0, "off": 1}, "blink": {"on": 0.6, "off": 2.5}, "warning": {"on": 0.6, "off": 5}, "notify": {"on": 0.6, "off": 10}, "heartbeat": {"on": 0.5, "off": 300}, "alert": {"on": 0.6, "off": 1}}, "cmd_class": 12803, "hadd": "0225/0004", "label": "Blink", "units": null, "type": 5, "max": null, "genre": 1, "data": "heartbeat", "is_polled": true, "node_uuid": "tutorial3__led", "voice_uuid": null, "is_readonly": false, "default": "off"}
+    /values/user/0225/0000/tutorial3_temperature 0 {"help": "The average temperature of tutorial.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial3", "entry_name": "sensor_temperature", "genre": 2, "poll_delay": 300, "data": null, "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial3_temperature", "is_readonly": true, "min": null, "default": null, "type": 3, "cmd_class": 49, "hadd": "0225/0000", "label": "Temp", "units": "\u00b0C"}
+    /values/basic/0225/0000/tutorial3_transition 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial3", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial3_transition", "is_readonly": false, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
+    /nodes/0225/0000/request 0 {"reply_hadd": "9999/9990", "uuid": "tutorial3_transition", "is_readonly": true, "genre": 1, "data": null, "cmd_class": 4272, "hadd": "0225/0000", "is_writeonly": false}
+    /nodes/9999/9990/reply 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": "9999/9990", "node_uuid": "tutorial3", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial3_transition", "is_readonly": true, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
+    /values/basic/0225/0000/tutorial3_transition 0 {"help": "Trigger a transition on the fsm or get the last triggered", "voice_uuid": null, "max": null, "reply_hadd": "9999/9990", "node_uuid": "tutorial3", "entry_name": "transition_fsm", "genre": 1, "poll_delay": 60, "data": "wakeup", "is_polled": true, "is_writeonly": false, "list_items": ["wakeup", "report", "sleep", "ring"], "index": 0, "uuid": "tutorial3_transition", "is_readonly": true, "min": null, "default": null, "cmd_class": 4272, "hadd": "0225/0000", "label": "Transit", "units": null, "type": 5}
     /dhcp/heartbeat/0225/0000 0 ONLINE
     /dhcp/heartbeat/0225/0002 0 ONLINE
     /dhcp/heartbeat/0225/0004 0 ONLINE
@@ -222,14 +222,9 @@ Look at spyer :
     /dhcp/heartbeat/0225/0001 0 ONLINE
     /dhcp/heartbeat/0225/0000 0 ONLINE
     /dhcp/heartbeat/0225/0002 0 ONLINE
-    /values/user/0225/0000/tutorial2_state 0 {"help": "The state of the fsm.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial2", "entry_name": "sensor_string", "genre": 2, "poll_delay": 60, "data": "reporting", "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial2_state", "is_readonly": true, "min": null, "default": null, "type": 8, "cmd_class": 49, "hadd": "0225/0000", "label": "State", "units": null}
+    /values/user/0225/0000/tutorial3_state 0 {"help": "The state of the fsm.", "voice_uuid": null, "max": null, "reply_hadd": null, "node_uuid": "tutorial3", "entry_name": "sensor_string", "genre": 2, "poll_delay": 60, "data": "reporting", "is_polled": true, "is_writeonly": false, "list_items": null, "index": 0, "uuid": "tutorial3_state", "is_readonly": true, "min": null, "default": null, "type": 8, "cmd_class": 49, "hadd": "0225/0000", "label": "State", "units": null}
 
 The values are published regulary. You should also see your led blinking in heartbeat mode.
-
-A note ont the state machine.
-Writing this tutorial, I added a new bus with an integrated state machine (`here <https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/buses/fsm.py>`_).
-It's a better idea to inherit from it. It use a timer to speed up the boot process.
-
 
 Critical temperature
 ====================
@@ -317,7 +312,7 @@ It's time to ring :
 
 .. code:: bash
 
-    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial2_transition --cmdclass 4272 --type 1 --writeonly True --data ring
+    $ jnt_query query --host=192.168.14.65 --hadd 0225/0000 --genre basic --uuid tutorial3_transition --cmdclass 4272 --type 1 --writeonly True --data ring
 
 And check that the state is ringing. You can also look at your led, should blink faster :
 
@@ -331,8 +326,8 @@ And check that the state is ringing. You can also look at your led, should blink
     hadd       uuid                           idx  data                      units      type  genre cmdclass help
     0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
     0225/0004  blink                          0    warning                   None       5     1     12803    Blink
-    0225/0000  tutorial2_transition           0    ring                      None       5     1     4272     Trigger a transition on the fsm or get the last triggered
-    0225/0000  tutorial2_state                0    ringing                   None       8     1     49       The state of the fsm.
+    0225/0000  tutorial3_transition           0    ring                      None       5     1     4272     Trigger a transition on the fsm or get the last triggered
+    0225/0000  tutorial3_state                0    ringing                   None       8     1     49       The state of the fsm.
 
 After a while, the state returns in reporting state :
 
@@ -346,5 +341,15 @@ After a while, the state returns in reporting state :
     hadd       uuid                           idx  data                      units      type  genre cmdclass help
     0225/0004  switch                         0    off                       None       5     1     37       A switch. Valid values are : ['on', 'off']
     0225/0004  blink                          0    heartbeat                 None       5     1     12803    Blink
-    0225/0000  tutorial2_transition           0    wakeup                    None       5     1     4272     Trigger a transition on the fsm or get the last triggered
-    0225/0000  tutorial2_state                0    reporting                 None       8     1     49       The state of the fsm.
+    0225/0000  tutorial3_transition           0    wakeup                    None       5     1     4272     Trigger a transition on the fsm or get the last triggered
+    0225/0000  tutorial3_state                0    reporting                 None       8     1     49       The state of the fsm.
+
+FsmBus
+======
+A note ont the state machine.
+Writing this tutorial, I added a new bus with an integrated state machine (`here <https://github.com/bibi21000/janitoo_factory/blob/master/src/janitoo_factory/buses/fsm.py>`_).
+It use a timer to speed up the boot process.
+You can look at the tutorial4 code, it use it.
+
+
+

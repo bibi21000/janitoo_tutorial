@@ -57,14 +57,14 @@ assert(COMMAND_DESC[COMMAND_DISCOVERY] == 'COMMAND_DISCOVERY')
 class TestAmbianceComponent(JNTTComponent, JNTTComponentCommon):
     """Test the component
     """
-    component_name = "tutorial1.ambiance"
+    component_name = "tutorial2.ambiance"
 
 class TestTemperatureComponent(JNTTComponent, JNTTComponentCommon):
     """Test the component
     """
-    component_name = "tutorial1.temperature"
+    component_name = "tutorial2.temperature"
 
 class TestCpuComponent(JNTTComponent, JNTTComponentCommon):
     """Test the component
     """
-    component_name = "tutorial1.cpu"
+    component_name = "tutorial2.cpu"
