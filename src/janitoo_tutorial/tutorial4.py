@@ -74,6 +74,11 @@ class TutorialBus(JNTFsmBus):
     """
 
     transitions = [
+        { 'trigger': 'boot',
+            'source': 'booting',
+            'dest': 'sleeping',
+            'conditions': 'condition_values',
+        },
         { 'trigger': 'sleep',
             'source': '*',
             'dest': 'sleeping',

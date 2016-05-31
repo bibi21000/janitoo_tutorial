@@ -25,6 +25,7 @@ At first, we must define state and transitions :
 .. code:: python
 
     states = [
+       'booting',
        'sleeping',
        'reporting',
        'ringing',
@@ -64,7 +65,7 @@ And start / stop the fsm when starting/stopping the bus :
         self._tutorial_statemachine =  Machine(self,
             states=self.states,
             transitions=self.transitions,
-            initial='sleeping')
+            initial='booting')
 
     def stop(self):
         """Stop the bus
