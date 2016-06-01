@@ -83,6 +83,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#needed-tools">Needed tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initial-clone">Initial clone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-client-tools">Install Client tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#update-your-clone">Update your clone</a></li>
 </ul>
 </li>
@@ -272,13 +273,52 @@ $ sudo make module=janitoo develop
 <p>Wait, wait and wait, specially on a raspberry.</p>
 <p>After that, all the depencies are installed. You can jump to the first tutorial.</p>
 </div>
+<div class="section" id="install-client-tools">
+<h2>Install Client tools<a class="headerlink" href="#install-client-tools" title="Permalink to this headline">¶</a></h2>
+<p>Janitoo contains remote client tools that you can install on your local computer (runing Debian or Ubuntu).
+Simply clone the main janitoo package :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo mkdir -p /opt/janitoo/src
+$ cd /opt/janitoo/src &amp;&amp; git clone https://github.com/bibi21000/janitoo.git
+</pre></div>
+</div>
+<p>And install it :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src/janitoo &amp;&amp; sudo make develop
+</pre></div>
+</div>
+<p>Check that the tools are correctly installed :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query --help
+</pre></div>
+</div>
+<div class="code bash highlight-python"><div class="highlight"><pre>usage: jnt_query [-h] [--debug] [--output {txt,raw}]
+                 {query,cmds,genres,types,caps,node,network} ...
+
+Browse and interact with the Janitoo nework.
+
+positional arguments:
+  {query,cmds,genres,types,caps,node,network}
+                        The command to launch
+    query               Query a node value
+    cmds                Show all available command classes for values
+    genres              Show all available genres for values
+    types               Show all available types for values
+    caps                Show all available capabilties for a node
+    node                Request infos from a node
+    network             Request infos from network (broadcast)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --debug               Enable debug mode
+  --output {txt,raw}    Enable debug mode
+</pre></div>
+</div>
+</div>
 <div class="section" id="update-your-clone">
 <h2>Update your clone<a class="headerlink" href="#update-your-clone" title="Permalink to this headline">¶</a></h2>
-<p>You can update all modules using :</p>
+<p>It not need now, but you can update all modules in your clones using :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>$ make pull-all
 </pre></div>
 </div>
-<p>Some packages may have update their entry-point, you need to develop all :</p>
+<p>Some packages may have update their entry-points, you need to develop all :</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>$ sudo make develop-all
 </pre></div>
 </div>

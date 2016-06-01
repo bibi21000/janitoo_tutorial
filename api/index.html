@@ -81,6 +81,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../install.html#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../install.html#needed-tools">Needed tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../install.html#initial-clone">Initial clone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#install-client-tools">Install Client tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../install.html#update-your-clone">Update your clone</a></li>
 </ul>
 </li>
@@ -635,7 +636,7 @@ Don&#8217;t do long task in loop. Use a separated thread to not perturbate the n
 
 <dl class="attribute">
 <dt id="janitoo_tutorial.tutorial4.TutorialBus.transitions">
-<tt class="descname">transitions</tt><em class="property"> = [{'dest': 'sleeping', 'source': '*', 'trigger': 'sleep'}, {'dest': 'reporting', 'source': 'sleeping', 'trigger': 'wakeup', 'conditions': 'condition_values'}, {'dest': 'reporting', 'source': '*', 'trigger': 'report', 'conditions': 'condition_values'}, {'dest': 'ringing', 'source': 'reporting', 'trigger': 'ring', 'conditions': 'condition_values'}]</em><a class="headerlink" href="#janitoo_tutorial.tutorial4.TutorialBus.transitions" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transitions</tt><em class="property"> = [{'dest': 'sleeping', 'source': 'booting', 'trigger': 'boot', 'conditions': 'condition_values'}, {'dest': 'sleeping', 'source': '*', 'trigger': 'sleep'}, {'dest': 'reporting', 'source': 'sleeping', 'trigger': 'wakeup', 'conditions': 'condition_values'}, {'dest': 'reporting', 'source': '*', 'trigger': 'report', 'conditions': 'condition_values'}, {'dest': 'ringing', 'source': 'reporting', 'trigger': 'ring', 'conditions': 'condition_values'}]</em><a class="headerlink" href="#janitoo_tutorial.tutorial4.TutorialBus.transitions" title="Permalink to this definition">¶</a></dt>
 <dd><p>The transitions</p>
 </dd></dl>
 
