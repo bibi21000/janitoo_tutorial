@@ -88,16 +88,62 @@ Wait, wait and wait, specially on a raspberry.
 After that, all the depencies are installed. You can jump to the first tutorial.
 
 
+Install Client tools
+====================
+
+Janitoo contains remote client tools that you can install on your local computer (runing Debian or Ubuntu).
+Simply clone the main janitoo package :
+
+.. code:: bash
+
+    $ sudo mkdir -p /opt/janitoo/src
+    $ cd /opt/janitoo/src && git clone https://github.com/bibi21000/janitoo.git
+
+And install it :
+
+.. code:: bash
+
+    $ cd /opt/janitoo/src/janitoo && sudo make develop
+
+Check that the tools are correctly installed :
+
+.. code:: bash
+
+    $ jnt_query --help
+
+.. code:: bash
+
+    usage: jnt_query [-h] [--debug] [--output {txt,raw}]
+                     {query,cmds,genres,types,caps,node,network} ...
+
+    Browse and interact with the Janitoo nework.
+
+    positional arguments:
+      {query,cmds,genres,types,caps,node,network}
+                            The command to launch
+        query               Query a node value
+        cmds                Show all available command classes for values
+        genres              Show all available genres for values
+        types               Show all available types for values
+        caps                Show all available capabilties for a node
+        node                Request infos from a node
+        network             Request infos from network (broadcast)
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      --debug               Enable debug mode
+      --output {txt,raw}    Enable debug mode
+
 Update your clone
 =================
 
-You can update all modules using :
+It not need now, but you can update all modules in your clones using :
 
 .. code:: bash
 
     $ make pull-all
 
-Some packages may have update their entry-point, you need to develop all :
+Some packages may have update their entry-points, you need to develop all :
 
 .. code:: bash
 

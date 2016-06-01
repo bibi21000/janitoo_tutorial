@@ -75,12 +75,7 @@ class TestTutorialThread(JNTTThreadRun, JNTTThreadRunCommon):
     def test_103_state_machine(self):
         self.wait_for_nodeman()
         time.sleep(5)
-        i = 0
-        while i<15 and self.thread.bus.state == 'booting':
-            time.sleep(1)
-            i += 1
-            print self.thread.bus.state
-        self.assertNotEqual('booting', self.thread.bus.state)
+        self.assertFsmBoot()
         self.thread.bus.wakeup()
         time.sleep(5)
         self.thread.bus.sleep()
