@@ -8,6 +8,7 @@ Goal
 
 In the previous parts, you've seen how to create server.
 In this part, we will connect many machines using Janitoo.
+
 Ideally you need another raspberry :D. But you can also use :
 
 - a computer with Ubuntu or Debian
@@ -137,7 +138,7 @@ Connect to the docker image and update the hostsensor configuration file :
 
 .. code:: bash
 
-    $ ssh root@$127.0.0.1 -p 8882
+    $ ssh root@127.0.0.1 -p 8882
 
 Default password is janitoo.
 
