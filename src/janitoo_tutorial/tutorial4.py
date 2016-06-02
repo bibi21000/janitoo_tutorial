@@ -116,7 +116,7 @@ class TutorialBus(JNTFsmBus):
             node_uuid=self.uuid,
             help='The delay between 2 checks',
             label='Timer.',
-            default=30,
+            default=10,
         )
 
         uuid="{:s}_temperature_critical".format(OID)
