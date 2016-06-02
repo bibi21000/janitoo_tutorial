@@ -12,6 +12,8 @@ For this last example, we will create a more sophisticated server : it will
 - report its state via a led
 - use a finish state machine (fsm)
 
+We'll also see how to start it as a service at boot.
+
 
 The bus
 =======
