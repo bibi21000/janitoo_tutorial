@@ -196,10 +196,10 @@ It is need a lot of ressorces and it should be updated.
 It will be the test server for the new remote values.
 
 
-Tellsitck
+Tellstick
 ---------
 
-Some harwares need to "auto-discover" devices, like the Tellsitck from Telldus.
+Some harwares need to "auto-discover" devices, like the Tellstick from Telldus.
 It holds its devices in a list, so we need to "sync" with it.
 
 - https://github.com/bibi21000/janitoo_layouts
