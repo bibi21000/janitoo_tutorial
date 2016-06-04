@@ -81,7 +81,7 @@ After your server is fully functionnal, you can launch the full test suite :
 
 .. code:: bash
 
-    $ sudo make tests >tests.log 2>&1; sudo coverage report >>tests.log 2>&1
+    $ sudo make tests-report >tests.log 2>&1
 
 On a another screen/terminal, you can take a look at the tests logs :
 
@@ -119,9 +119,14 @@ TravisCI : https://travis-ci.org/search/janitoo
 CircleCI : https://circleci.com/gh/bibi21000
 
 Docker : there is a docker image to launch but it should not be launched on Docker Hub (timeout after 2 hours).
-You can launch it locally, look at https://github.com/bibi21000/janitoo_docker
+You can launch it locally, look at https://github.com/bibi21000/janitoo_docker.
 
-Raspberry : you can launch tests on your raspberry using : sudo make tests-all (from the /opt/janitoo/src direcotry)
+Raspberry : you can launch tests on your raspberry using :
+
+.. code::
+
+ $ cd /opt/janitoo/src
+ $ sudo make tests-all
 
 
 Examples
