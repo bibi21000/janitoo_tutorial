@@ -52,6 +52,7 @@ And load extension in your configuration file :
     heartbeat = 30
     extensions = hardware
 
+Some buses can't be aggregate : they must raise a runtime execution at init.
 
 Remote development
 ==================
