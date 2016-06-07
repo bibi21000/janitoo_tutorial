@@ -247,6 +247,7 @@ heartbeat = 30
 extensions = hardware
 </pre></div>
 </div>
+<p>Some buses can&#8217;t be aggregate : they must raise a runtime execution at init.</p>
 </div>
 <div class="section" id="remote-development">
 <h2>Remote development<a class="headerlink" href="#remote-development" title="Permalink to this headline">¶</a></h2>
@@ -264,7 +265,7 @@ When the protocol will be updated, these tests will be too.</p>
 <p>Ideally, when a new bug is reported, the workflow should be : bug -&gt; test to reproduce the bug -&gt; fix for the bug.</p>
 <p>When starting developping with Janitoo, you&#8217;ll surely find that creating tests is wasting time.</p>
 <p>After your server is fully functionnal, you can launch the full test suite :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo make tests &gt;tests.log 2&gt;&amp;1; sudo coverage report &gt;&gt;tests.log 2&gt;&amp;1
+<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo make tests-report &gt;tests.log 2&gt;&amp;1
 </pre></div>
 </div>
 <p>On a another screen/terminal, you can take a look at the tests logs :</p>
@@ -294,8 +295,12 @@ Tests for janitoo_tutorial finished.
 <p>TravisCI : <a class="reference external" href="https://travis-ci.org/search/janitoo">https://travis-ci.org/search/janitoo</a></p>
 <p>CircleCI : <a class="reference external" href="https://circleci.com/gh/bibi21000">https://circleci.com/gh/bibi21000</a></p>
 <p>Docker : there is a docker image to launch but it should not be launched on Docker Hub (timeout after 2 hours).
-You can launch it locally, look at <a class="reference external" href="https://github.com/bibi21000/janitoo_docker">https://github.com/bibi21000/janitoo_docker</a></p>
-<p>Raspberry : you can launch tests on your raspberry using : sudo make tests-all (from the /opt/janitoo/src direcotry)</p>
+You can launch it locally, look at <a class="reference external" href="https://github.com/bibi21000/janitoo_docker">https://github.com/bibi21000/janitoo_docker</a>.</p>
+<p>Raspberry : you can launch tests on your raspberry using :</p>
+<div class="code highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src
+$ sudo make tests-all
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="examples">
@@ -366,10 +371,10 @@ It is need a lot of ressorces and it should be updated.</p>
 </div>
 <div class="section" id="tellstick">
 <h3>Tellstick<a class="headerlink" href="#tellstick" title="Permalink to this headline">¶</a></h3>
-<p>Some harwares need to &#8220;auto-discover&#8221; devices, like the Tellstick from Telldus.
-It holds its devices in a list, so we need to &#8220;sync&#8221; with it.</p>
+<p>Some hardewares need to &#8220;auto-discover&#8221; devices, like the Tellstick from Telldus.
+It holds its devices in a list, so we need to &#8220;sync&#8221; with it :</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/bibi21000/janitoo_layouts">https://github.com/bibi21000/janitoo_layouts</a></li>
+<li><a class="reference external" href="https://github.com/bibi21000/janitoo_tellstick">https://github.com/bibi21000/janitoo_tellstick</a></li>
 </ul>
 </div>
 </div>
