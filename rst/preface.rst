@@ -10,7 +10,6 @@ In short words, Janitoo is a protocol based on mqtt and an API that allows rapid
 In this tutorial, you'll develop a `server <https://github.com/bibi21000/janitoo_tutorial/blob/master/src/janitoo_tutorial/tutorial1.py>`_
 that reports temperature of the CPU, a DHT sensor and a Onewire sensor in less than 100 lines of code.
 
-
 The protocol is approximatively 60% developped : fixed addresses, primary nodes are functionnals.
 
 The protocol implements the concepts of network, nodes and values :
