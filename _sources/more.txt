@@ -205,7 +205,11 @@ It will be the test server for the new remote values.
 Tellstick
 ---------
 
-Some hardewares need to "auto-discover" devices, like the Tellstick from Telldus.
+The tellstick from Telldus is an usb stick which allwos to communicate with devices at 433Mhz.
+It supports HomeEasy protocol, Chacon/DIO, Ikea, ...
+It also supports some temperature, humidity, ..., sensors.
+For more informations, look at http://www.telldus.se/products/tellstick_duo
+Some hardwares need to "auto-discover" devices, like the Tellstick from Telldus.
 It holds its devices in a list, so we need to "sync" with it :
 
 - https://github.com/bibi21000/janitoo_tellstick
