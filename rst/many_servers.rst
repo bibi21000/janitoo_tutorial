@@ -166,7 +166,14 @@ Exit from ssh :
 
     root@8eafc45f6d09:~# exit
 
-For a complete tutorial about the janitoo_hostsensor docker appliance, loook at https://bibi21000.github.io/janitoo_hostsensor/.
+For a complete tutorial about the janitoo_hostsensor docker appliance, look at https://bibi21000.github.io/janitoo_hostsensor/.
+
+
+Home automation
+===============
+
+Janitoo can be used for developping an home automation system.
+Look at https://bibi21000.github.io/janitoo_tellstick/ for a complete server.
 
 
 The network
