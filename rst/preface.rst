@@ -50,6 +50,7 @@ For the impatient that don't want to test the API (with a Raspberry Pi), jump :d
 Notes
 =====
 - for geeks only : there is a lot of bugs, so you surely need to get your hands dirty
+- the tk UI is 50% functionnal : update are not propagated, ...
 - the web manager is 20% functionnal : you can only browse values, no updates. There is a huge memory hole in it (with socketio)
 - the flask socketio server and socketio server are under heavy development after a period of inactivity, so installation problems will occurs
 - maybe we should use websockets instead
