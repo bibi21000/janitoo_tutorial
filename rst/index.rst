@@ -26,6 +26,7 @@ Contents
     Many servers<many_servers>
     Discovering the network<discovering_network>
     Hello World 4 : interacting with our server<hello_world_v4>
+    Tk user interface<tkinter>
     Create and share<more>
     Using documentation <using_doc>
 
