@@ -2,11 +2,10 @@
 Create and share
 ================
 
-With Janitoo you can easely share your components, threads and values.
-
-
 Goal
 ====
+
+With Janitoo, it's easy to share your components, threads, values, ... between your projects and with others.
 
 - Re-use of code
 - Code quality
