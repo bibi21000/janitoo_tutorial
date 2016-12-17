@@ -341,6 +341,8 @@ class TutorialBus(JNTBus):
     def create_fsm(self):
         """Create the fsm
         """
+        if hasattr(self, "get_graph"):
+            delattr(self, "get_graph")
         return Machine(self,
             states=self.states,
             transitions=self.transitions,
