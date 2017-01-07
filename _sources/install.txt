@@ -5,27 +5,15 @@ Installation for tutorial
 Goal
 ====
 
-Install mosquitto (the messagging system) and clone Janitoo.
+Install janitoo and all needed tools.
 
 
 Needed tools
 ============
 
-Janitoo uses mosquitto as a MQTT server. On Debian or Ubuntu, install it using :
+Janitoo is hosted on github and we need a decent editor :
 
-.. code:: bash
-
-    $ sudo apt-get install mosquitto netcat-openbsd
-
-We install netcat too. So that we can verify that mosquitto is listen on port 1883 on your local interface :
-
-.. code:: bash
-
-    $ netcat -zv 127.0.0.1 1-9999 2>&1|grep succeeded
-
-.. code:: bash
-
-    Connection to 127.0.0.1 1883 port [tcp/*] succeeded!
+    $ sudo apt-get install git vim
 
 
 Initial clone
@@ -37,6 +25,7 @@ It is recommended to use the default one (/opt/janitoo), unless you're ready to 
 .. code:: bash
 
     $ sudo mkdir -p /opt/janitoo/src
+    $ sudo chown -Rf ${USER}:${USER} /opt/janitoo
 
 Janitoo is hosted on github, so you need to clone it into the created directory.
 /opt/janitoo/src is called the janitoo source.
@@ -56,14 +45,26 @@ And use it. Create the needed directories for Janitoo:
 
 .. code:: bash
 
-    $ sudo make directories
+    $ make directories
 
 Install dependencies and develop sources for Python:
 
 .. code:: bash
 
-    $ sudo make module=janitoo deps
-    $ sudo make module=janitoo develop
+    $ make module=janitoo deps
+    $ make module=janitoo develop
+
+
+Install mosquitto
+=================
+
+.. code:: bash
+
+    $ make module=janitoo_mosquitto clone
+
+
+Install modules
+===============
 
 Create the list of packages in /opt/janitoo/src using your favorite editor ... or vim ;) :
 
@@ -85,7 +86,7 @@ You're now ready to clone the needed modules. sudo password may be asked during 
 
 Wait, wait and wait, specially on a raspberry.
 
-After that, all the depencies are installed. You can jump to the first tutorial.
+After that, all the dependencies are installed. You can jump to the first tutorial.
 
 
 Install Client tools
@@ -133,6 +134,7 @@ Check that the tools are correctly installed :
       -h, --help            show this help message and exit
       --debug               Enable debug mode
       --output {txt,raw}    Enable debug mode
+
 
 Update your clone
 =================
