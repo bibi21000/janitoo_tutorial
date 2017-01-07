@@ -13,6 +13,8 @@ Needed tools
 
 Janitoo is hosted on github and we need a decent editor :
 
+.. code:: bash
+
     $ sudo apt-get install git vim
 
 
@@ -52,7 +54,7 @@ Install dependencies and develop sources for Python:
 .. code:: bash
 
     $ make module=janitoo deps
-    $ make module=janitoo develop
+    $ sudo make module=janitoo develop
 
 
 Install mosquitto
