@@ -110,7 +110,6 @@ class TutorialBus(JNTFsmBus):
         self.buses['gpiobus'] = GpioBus(masters=[self], **kwargs)
         self.buses['1wire'] = OnewireBus(masters=[self], **kwargs)
         self.check_timer = None
-        self._bus_lock = threading.Lock()
         uuid="{:s}_timer_delay".format(OID)
         self.values[uuid] = self.value_factory['config_float'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
@@ -238,20 +237,6 @@ class TutorialBus(JNTFsmBus):
             logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
         finally:
             self.bus_release()
-
-    def bus_acquire(self, blocking=True):
-        """Get a lock on the bus"""
-        if self._bus_lock.acquire(blocking):
-            return True
-        return False
-
-    def bus_release(self):
-        """Release a lock on the bus"""
-        self._bus_lock.release()
-
-    def bus_locked(self):
-        """Get status of the lock"""
-        return self._bus_lock.locked()
 
     def stop_check(self):
         """Check that the component is 'available'
