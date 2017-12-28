@@ -59,7 +59,7 @@ class TestTutorialServer(JNTTServer, JNTTServerCommon):
         while i<15 and bus.state == 'booting':
             time.sleep(1)
             i += 1
-            print bus.state
+            print(bus.state)
         self.assertNotEqual('booting', bus.state)
         bus.wakeup()
         time.sleep(5)
