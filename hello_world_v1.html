@@ -5,13 +5,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>HelloWord V1 &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    <title>HelloWord V1 &#8212; janitoo_tutorial 0.0.7 documentation</title>
     
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -19,7 +17,8 @@
         VERSION:     '0.0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -30,9 +29,10 @@
     <script type="text/javascript" src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="HelloWord V2" href="hello_world_v2.html" />
     <link rel="prev" title="HelloWord" href="hello_world_v0.html" />
 <meta charset='utf-8'>
@@ -95,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v0.html#fritzing">Fritzing</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href=""> Hello World 1 : a simple server</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Hello World 1 : a simple server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#test-it">Test it</a></li>
@@ -227,63 +227,63 @@
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>Change to the tutorial directory :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src/janitoo_tutorial
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ cd /opt/janitoo/src/janitoo_tutorial
 </pre></div>
 </div>
 <p>And open the test configuration file in your favorite editor :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/data/helloworldv1.conf
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim tests/data/helloworldv1.conf
 </pre></div>
 </div>
 <div class="section" id="the-dht-component">
 <h3>The DHT component<a class="headerlink" href="#the-dht-component" title="Permalink to this headline">¶</a></h3>
 <p>At first, we will add the DHT component.</p>
 <p>You can see the following section :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[rpibasic]
-auto_start = True
-name = Hello world
-location = DHT
-components.ambiance = rpibasic.dht
-hadd = 0220/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">rpibasic</span><span class="p">]</span>
+<span class="n">auto_start</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Hello</span> <span class="n">world</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">DHT</span>
+<span class="n">components</span><span class="o">.</span><span class="n">ambiance</span> <span class="o">=</span> <span class="n">rpibasic</span><span class="o">.</span><span class="n">dht</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0220</span><span class="o">/</span><span class="mi">0000</span>
 </pre></div>
 </div>
 <p>It defines a new bus with a name and a location.
 We must define the HADD of the controller node associated to the bus (0220/0000).
 This bus hold one component (ambiance) of type rpibasic.dht.</p>
 <p>Look at the following section :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[rpibasic__ambiance]
-name = Ambiance 1
-location = DHT
-hadd = 0220/0001
-pin_0 = 6
-sensor_0 = 11
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">rpibasic__ambiance</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Ambiance</span> <span class="mi">1</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">DHT</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0220</span><span class="o">/</span><span class="mi">0001</span>
+<span class="n">pin_0</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">sensor_0</span> <span class="o">=</span> <span class="mi">11</span>
 </pre></div>
 </div>
 <p>We add the ambiance component of the rpibasic bus ([rpibasic__ambiance]) and define a location and a name.
 Like for the bus, we should set an HADD for the associated node (0220/0001).</p>
 <p>There is 2 other parameters which allows to define the pin used (pin_0) to connect the sensor and its type (sensor_0).</p>
 <p>You can get more informations on config values using jnt_collect :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_collect -c rpibasic.dht
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_collect -c rpibasic.dht
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>-------------------------------------------------------------------------------
-Component : rpibasic.dht
- temperature_poll : Config : Int - The poll delay of the value (None)
- temperature : User : Decimal - The temperature (None)
- pin : Config : Int - The pin number on the board (1)
- humidity_poll : Config : Int - The poll delay of the value (None)
- humidity : User : Decimal - The humidity (None)
- sensor : Config : Int - The sensor type : 11,22,2302 (11)
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Component</span> <span class="p">:</span> <span class="n">rpibasic</span><span class="o">.</span><span class="n">dht</span>
+ <span class="n">temperature_poll</span> <span class="p">:</span> <span class="n">Config</span> <span class="p">:</span> <span class="n">Int</span> <span class="o">-</span> <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+ <span class="n">temperature</span> <span class="p">:</span> <span class="n">User</span> <span class="p">:</span> <span class="n">Decimal</span> <span class="o">-</span> <span class="n">The</span> <span class="n">temperature</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+ <span class="n">pin</span> <span class="p">:</span> <span class="n">Config</span> <span class="p">:</span> <span class="n">Int</span> <span class="o">-</span> <span class="n">The</span> <span class="n">pin</span> <span class="n">number</span> <span class="n">on</span> <span class="n">the</span> <span class="n">board</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+ <span class="n">humidity_poll</span> <span class="p">:</span> <span class="n">Config</span> <span class="p">:</span> <span class="n">Int</span> <span class="o">-</span> <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+ <span class="n">humidity</span> <span class="p">:</span> <span class="n">User</span> <span class="p">:</span> <span class="n">Decimal</span> <span class="o">-</span> <span class="n">The</span> <span class="n">humidity</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+ <span class="n">sensor</span> <span class="p">:</span> <span class="n">Config</span> <span class="p">:</span> <span class="n">Int</span> <span class="o">-</span> <span class="n">The</span> <span class="n">sensor</span> <span class="nb">type</span> <span class="p">:</span> <span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">2302</span> <span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can see that sensor config value can be : 11, 22 or 2302.
 That&#8217;s why there is sensor_0 = 11 in the config values. Of course, update it to your needs.</p>
 <p>Config values in configuration files always ended with a _0. In the future, we will support multi-instances using (_1,_2, ...)</p>
 <p>You can also use jnt_collect to get values from a bus :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_collect -b rpibasic
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_collect -b rpibasic
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>-------------------------------------------------------------------------------
-Bus (thread) : rpibasic
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Bus</span> <span class="p">(</span><span class="n">thread</span><span class="p">)</span> <span class="p">:</span> <span class="n">rpibasic</span>
 </pre></div>
 </div>
 <p>No values for this bus ;)</p>
@@ -292,71 +292,71 @@ Bus (thread) : rpibasic
 <h3>The DS18B20 component<a class="headerlink" href="#the-ds18b20-component" title="Permalink to this headline">¶</a></h3>
 <p>At first, we will add the DS18B20 Onewire component.</p>
 <p>You can see the following section :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[rpi1wire]
-auto_start = True
-name = Hello world
-location = Onewire
-components.temperature = rpi1wire.ds18b20
-hadd = 0221/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">rpi1wire</span><span class="p">]</span>
+<span class="n">auto_start</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Hello</span> <span class="n">world</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">Onewire</span>
+<span class="n">components</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">rpi1wire</span><span class="o">.</span><span class="n">ds18b20</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0221</span><span class="o">/</span><span class="mi">0000</span>
 </pre></div>
 </div>
 <p>It defines a new bus with a name and a location.
 We must define the HADD of the controller node associated to the bus (0221/0000).
 This bus hold one component (temperature) of type rpi1wire.ds18b20.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_collect -b rpi1wire
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_collect -b rpi1wire
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>-------------------------------------------------------------------------------
-Bus (thread) : rpi1wire
- rpi1wire_sensors_dir : Config : String - The sensor directory (/sys/bus/w1/devices/)
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Bus</span> <span class="p">(</span><span class="n">thread</span><span class="p">)</span> <span class="p">:</span> <span class="n">rpi1wire</span>
+ <span class="n">rpi1wire_sensors_dir</span> <span class="p">:</span> <span class="n">Config</span> <span class="p">:</span> <span class="n">String</span> <span class="o">-</span> <span class="n">The</span> <span class="n">sensor</span> <span class="n">directory</span> <span class="p">(</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">bus</span><span class="o">/</span><span class="n">w1</span><span class="o">/</span><span class="n">devices</span><span class="o">/</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Using jnt_collect you can see that there is a config value available for this bus.
 The default value is whown between () : /sys/bus/w1/devices/</p>
 <p>Values for bus always start with the bus oid (for avoiding conflict when aggragating bus).</p>
 <p>If you need to set this config value, add a line like :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ rpi1wire_sensors_dir_0 = /sys/bus/w1/devices/
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ rpi1wire_sensors_dir_0 = /sys/bus/w1/devices/
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>[rpi1wire__temperature]
-name = Temperature
-location = Onewire
-hadd = 0221/0001
-hexadd_0 = 28-00000463b745
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">rpi1wire__temperature</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Temperature</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">Onewire</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0221</span><span class="o">/</span><span class="mi">0001</span>
+<span class="n">hexadd_0</span> <span class="o">=</span> <span class="mi">28</span><span class="o">-</span><span class="mi">00000463</span><span class="n">b745</span>
 </pre></div>
 </div>
 <p>We add the temperature component of the rpi1wire bus ([rpi1wire__temperature]) and define a location and a name.
 Like for the bus, we should set an HADD for the associated node (0221/0001).</p>
 <p>You can get more informations on config values using jnt_collect :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_collect -c rpi1wire.ds18b20
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_collect -c rpi1wire.ds18b20
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>-------------------------------------------------------------------------------
-Component : rpi1wire.ds18b20
- hexadd : Config : String - The hexadecimal address of the DS18B20 (28-000005e2fdc3)
- temperature_poll : Config : Int - The poll delay of the value (None)
- temperature : User : Decimal - The temperature (None)
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Component</span> <span class="p">:</span> <span class="n">rpi1wire</span><span class="o">.</span><span class="n">ds18b20</span>
+ <span class="n">hexadd</span> <span class="p">:</span> <span class="n">Config</span> <span class="p">:</span> <span class="n">String</span> <span class="o">-</span> <span class="n">The</span> <span class="n">hexadecimal</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">DS18B20</span> <span class="p">(</span><span class="mi">28</span><span class="o">-</span><span class="mf">000005e2</span><span class="n">fdc3</span><span class="p">)</span>
+ <span class="n">temperature_poll</span> <span class="p">:</span> <span class="n">Config</span> <span class="p">:</span> <span class="n">Int</span> <span class="o">-</span> <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+ <span class="n">temperature</span> <span class="p">:</span> <span class="n">User</span> <span class="p">:</span> <span class="n">Decimal</span> <span class="o">-</span> <span class="n">The</span> <span class="n">temperature</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can see that hexadd config value is the address of your DS18B20. You can find it using :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ ls /sys/bus/w1/devices/
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ ls /sys/bus/w1/devices/
 </pre></div>
 </div>
 </div>
 <div class="section" id="the-cpu-component">
 <h3>The CPU component<a class="headerlink" href="#the-cpu-component" title="Permalink to this headline">¶</a></h3>
 <p>And finally the configuration for the CPU monitoring :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[hostsensor]
-auto_start = True
-components.picpu = hostsensor.picpu
-name = Hello world
-location = Hostsensor
-hadd = 0222/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">hostsensor</span><span class="p">]</span>
+<span class="n">auto_start</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">components</span><span class="o">.</span><span class="n">picpu</span> <span class="o">=</span> <span class="n">hostsensor</span><span class="o">.</span><span class="n">picpu</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Hello</span> <span class="n">world</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">Hostsensor</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0222</span><span class="o">/</span><span class="mi">0000</span>
 
-[hostsensor__picpu]
-name = CPU
-location = Hostsensor
-hadd = 0222/0001
+<span class="p">[</span><span class="n">hostsensor__picpu</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">CPU</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">Hostsensor</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0222</span><span class="o">/</span><span class="mi">0001</span>
 </pre></div>
 </div>
 </div>
@@ -364,28 +364,28 @@ hadd = 0222/0001
 <div class="section" id="test-it">
 <h2>Test it<a class="headerlink" href="#test-it" title="Permalink to this headline">¶</a></h2>
 <p>You&#8217;re ready to test your server. Janitoo has a lot of built in tests.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/test_server_v1.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim tests/test_server_v1.py
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestTutorialServer</span><span class="p">(</span><span class="n">JNTTServer</span><span class="p">,</span> <span class="n">JNTTServerCommon</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestTutorialServer</span><span class="p">(</span><span class="n">JNTTServer</span><span class="p">,</span> <span class="n">JNTTServerCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the tutorial server</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">server_class</span> <span class="o">=</span> <span class="n">PiServer</span>
-    <span class="n">server_conf</span> <span class="o">=</span> <span class="s">&quot;tests/data/helloworldv1.conf&quot;</span>
+    <span class="n">server_conf</span> <span class="o">=</span> <span class="s2">&quot;tests/data/helloworldv1.conf&quot;</span>
 
     <span class="n">hadds</span> <span class="o">=</span> <span class="p">[</span><span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">221</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">221</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>For the impatient :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests tests/test_server_v1.py -v -m test_040_server_start_no_error_in_log
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo nosetests tests/test_server_v1.py -v -m test_040_server_start_no_error_in_log
 </pre></div>
 </div>
 <p>If everything is ok, the screen output should be something like this :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>test_040_server_start_no_error_in_log (tests.test_server_v1.TestTutorialServer) ... ok
-----------------------------------------------------------------------
-Ran 1 test in 128.712s
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">test_040_server_start_no_error_in_log</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_server_v1</span><span class="o">.</span><span class="n">TestTutorialServer</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">1</span> <span class="n">test</span> <span class="ow">in</span> <span class="mf">128.712</span><span class="n">s</span>
 
-OK
+<span class="n">OK</span>
 </pre></div>
 </div>
 <p>Otherwise you should have a log capture with surely some errors inside.</p>
@@ -393,45 +393,45 @@ OK
 <div class="section" id="launch-it">
 <h2>Launch it<a class="headerlink" href="#launch-it" title="Permalink to this headline">¶</a></h2>
 <p>You can now copy the config file to the config directory:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/etc
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ cd /opt/janitoo/etc
 $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
 </pre></div>
 </div>
 <p>And launch the server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf front
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf front
 </pre></div>
 </div>
 <p>This will launch the server in foreground.</p>
 <p>You can type ctrl + c to stop it.</p>
 <p>If everything is ok, you can launch the server in background :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
 </pre></div>
 </div>
 <p>You can stop it using :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf stop
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf stop
 </pre></div>
 </div>
 <p>Checking its status :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf status
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf status
 </pre></div>
 </div>
 <p>Or killing it if needed :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf kill
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf kill
 </pre></div>
 </div>
 </div>
 <div class="section" id="query-it">
 <h2>Query it<a class="headerlink" href="#query-it" title="Permalink to this headline">¶</a></h2>
 <p>Launch the server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv1.conf start
 </pre></div>
 </div>
 <p>Open a new shell (or screen) and launch the spyer. It will report all activity on mqtt :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_spy
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_spy
 </pre></div>
 </div>
 <p>You can look at the protocol during startup. You&#8217;ll see something like this :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="go">&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /#</span>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;&gt;&gt;&gt; Subscribe to /#</span>
 <span class="go">!!!!!! Connect rc : 0</span>
 <span class="go">!!!!!! Subscribed to None : 1 (0,)</span>
 <span class="go">!!!!!! Type Ctrl+C 2 times to exit !!!!!!</span>
@@ -458,53 +458,53 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
 </pre></div>
 </div>
 <p>You can also look at logs. In a new terminal :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ tail -n 100 -f /opt/janitoo/log/helloworldv1.log
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ tail -n 100 -f /opt/janitoo/log/helloworldv1.log
 </pre></div>
 </div>
 <p>Its time to query ther server. Go to the first terminal and query the network :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query network
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query network
 </pre></div>
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                 name                      location                  product_type
-0222/0001  hostsensor__picpu    CPU                       Hostsensor                Software component
-0222/0000  hostsensor           Hello world               Hostsensor                Default product type
-0220/0000  rpibasic             Hello world               DHT                       Default product type
-0220/0001  rpibasic__ambiance   Ambiance 1                DHT                       Temperature/humidity sensor
-0221/0001  rpi1wire__temperature Temperature               Onewire                   Temperature sensor
-0221/0000  rpi1wire             Hello world               Onewire                   Default product type
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">uuid</span>                 <span class="n">name</span>                      <span class="n">location</span>                  <span class="n">product_type</span>
+<span class="mi">0222</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">hostsensor__picpu</span>    <span class="n">CPU</span>                       <span class="n">Hostsensor</span>                <span class="n">Software</span> <span class="n">component</span>
+<span class="mi">0222</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">hostsensor</span>           <span class="n">Hello</span> <span class="n">world</span>               <span class="n">Hostsensor</span>                <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
+<span class="mi">0220</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">rpibasic</span>             <span class="n">Hello</span> <span class="n">world</span>               <span class="n">DHT</span>                       <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
+<span class="mi">0220</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">rpibasic__ambiance</span>   <span class="n">Ambiance</span> <span class="mi">1</span>                <span class="n">DHT</span>                       <span class="n">Temperature</span><span class="o">/</span><span class="n">humidity</span> <span class="n">sensor</span>
+<span class="mi">0221</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">rpi1wire__temperature</span> <span class="n">Temperature</span>               <span class="n">Onewire</span>                   <span class="n">Temperature</span> <span class="n">sensor</span>
+<span class="mi">0221</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">rpi1wire</span>             <span class="n">Hello</span> <span class="n">world</span>               <span class="n">Onewire</span>                   <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
 </pre></div>
 </div>
 <p>You can also query a node :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0222/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0222/0000
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
-0222/0001  hostsensor__picpu              CPU                       Hostsensor           Software component
-0222/0000  hostsensor                     Hello world               Hostsensor           Default product type
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">uuid</span>                           <span class="n">name</span>                      <span class="n">location</span>             <span class="n">product_type</span>
+<span class="mi">0222</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">hostsensor__picpu</span>              <span class="n">CPU</span>                       <span class="n">Hostsensor</span>           <span class="n">Software</span> <span class="n">component</span>
+<span class="mi">0222</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">hostsensor</span>                     <span class="n">Hello</span> <span class="n">world</span>               <span class="n">Hostsensor</span>           <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0220/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0220/0000
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
-0220/0000  rpibasic                       Hello world               DHT                  Default product type
-0220/0001  rpibasic__ambiance             Ambiance 1                DHT                  Temperature/humidity sensor
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">uuid</span>                           <span class="n">name</span>                      <span class="n">location</span>             <span class="n">product_type</span>
+<span class="mi">0220</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">rpibasic</span>                       <span class="n">Hello</span> <span class="n">world</span>               <span class="n">DHT</span>                  <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
+<span class="mi">0220</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">rpibasic__ambiance</span>             <span class="n">Ambiance</span> <span class="mi">1</span>                <span class="n">DHT</span>                  <span class="n">Temperature</span><span class="o">/</span><span class="n">humidity</span> <span class="n">sensor</span>
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0221/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0221/0000
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
-0221/0001  rpi1wire__temperature          Temperature               Onewire              Temperature sensor
-0221/0000  rpi1wire                       Hello world               Onewire              Default product type
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">uuid</span>                           <span class="n">name</span>                      <span class="n">location</span>             <span class="n">product_type</span>
+<span class="mi">0221</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">rpi1wire__temperature</span>          <span class="n">Temperature</span>               <span class="n">Onewire</span>              <span class="n">Temperature</span> <span class="n">sensor</span>
+<span class="mi">0221</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">rpi1wire</span>                       <span class="n">Hello</span> <span class="n">world</span>               <span class="n">Onewire</span>              <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
 </pre></div>
 </div>
 <p>You can also query a node to request its users values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0222/0000 --vuuid request_info_users
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0222/0000 --vuuid request_info_users
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
 0222/0001  hostsensor__picpu         frequency                      0    999                       MHz        3     2     49       The frequency of the CPU
 0222/0001  hostsensor__picpu         voltage                        0    1.35                      V          3     2     49       The voltage of the CPU
 0222/0001  hostsensor__picpu         temperature                    0    39.5                      °C         3     2     49       The temperature of the CPU
@@ -513,11 +513,11 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
 </div>
 <div class="section" id="performances">
 <h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ nice top
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ nice top
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
-10793 root      20   0  131m  14m 4268 S   5,6  2,9   0:46.98 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/jani
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">PID</span>   <span class="n">USER</span>      <span class="n">PR</span>  <span class="n">NI</span>  <span class="n">VIRT</span>  <span class="n">RES</span>  <span class="n">SHR</span> <span class="n">S</span>  <span class="o">%</span><span class="n">CPU</span> <span class="o">%</span><span class="n">MEM</span>    <span class="n">TIME</span><span class="o">+</span>  <span class="n">COMMAND</span>
+<span class="mi">10793</span> <span class="n">root</span>      <span class="mi">20</span>   <span class="mi">0</span>  <span class="mi">131</span><span class="n">m</span>  <span class="mi">14</span><span class="n">m</span> <span class="mi">4268</span> <span class="n">S</span>   <span class="mi">5</span><span class="p">,</span><span class="mi">6</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">9</span>   <span class="mi">0</span><span class="p">:</span><span class="mf">46.98</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">jnt_tutorial</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">janitoo</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">jani</span>
 </pre></div>
 </div>
 </div>
@@ -536,7 +536,7 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv1.conf .
     </p>
     <p>
         &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.<br/>
     </p>
   </div>
 </footer>

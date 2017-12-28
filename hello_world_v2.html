@@ -5,13 +5,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>HelloWord V2 &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    <title>HelloWord V2 &#8212; janitoo_tutorial 0.0.7 documentation</title>
     
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -19,7 +17,8 @@
         VERSION:     '0.0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -30,9 +29,10 @@
     <script type="text/javascript" src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="HelloWord V3" href="hello_world_v3.html" />
     <link rel="prev" title="HelloWord V1" href="hello_world_v1.html" />
 <meta charset='utf-8'>
@@ -104,7 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v1.html#performances">Performances</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href=""> Hello World 2 : an advanced server</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Hello World 2 : an advanced server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-components">The components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-bus">The bus</a></li>
@@ -229,28 +229,28 @@
 <div class="section" id="the-components">
 <h2>The components<a class="headerlink" href="#the-components" title="Permalink to this headline">¶</a></h2>
 <p>Change to the tutorial directory :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src/janitoo_tutorial
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ cd /opt/janitoo/src/janitoo_tutorial
 </pre></div>
 </div>
 <p>Open the tutorial2 implementation :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/tutorial2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim src/janitoo_tutorial/tutorial2.py
 </pre></div>
 </div>
 <p>We will import all the needed components, and update their oid to match the new bus oid (tutorial2).
 For the DHT component, it&#8217;s looks like :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">janitoo_raspberry_dht.dht</span> <span class="kn">import</span> <span class="n">DHTComponent</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">janitoo_raspberry_dht.dht</span> <span class="k">import</span> <span class="n">DHTComponent</span>
 
 <span class="o">...</span>
 
 <span class="k">class</span> <span class="nc">AmbianceComponent</span><span class="p">(</span><span class="n">DHTComponent</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; A component for ambiance &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;oid&#39;</span><span class="p">,</span> <span class="s">&#39;tutorial2.ambiance&#39;</span><span class="p">)</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&quot;Ambiance sensor&quot;</span><span class="p">)</span>
-        <span class="n">DHTComponent</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="n">bus</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">oid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;oid&#39;</span><span class="p">,</span> <span class="s1">&#39;tutorial2.ambiance&#39;</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;Ambiance sensor&quot;</span><span class="p">)</span>
+        <span class="n">DHTComponent</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="n">bus</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -260,22 +260,22 @@ For the DHT component, it&#8217;s looks like :</p>
 <p>At first, we will aggregate the needed bus.
 We don&#8217;t need to aggregate the rpibasic bus (which hold the dht component) as it holds no special features.
 Of course, we would add it without problem.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">JNTBus</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">JNTBus</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">buses</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s">&#39;gpiobus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GpioBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s">&#39;1wire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OnewireBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s1">&#39;gpiobus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GpioBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="s1">&#39;1wire&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OnewireBus</span><span class="p">(</span><span class="n">masters</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>After, we will a new value to propagate the average tempetature :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">uuid</span><span class="o">=</span><span class="s">&quot;{:s}_temperature&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s">&#39;sensor_temperature&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">uuid</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{:s}</span><span class="s2">_temperature&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OID</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_factory</span><span class="p">[</span><span class="s1">&#39;sensor_temperature&#39;</span><span class="p">](</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
     <span class="n">node_uuid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
     <span class="n">get_data_cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_temperature_cb</span><span class="p">,</span>
-    <span class="n">help</span><span class="o">=</span><span class="s">&#39;The average temperature of tutorial. Can be use as a good quality source for a thermostat.&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s">&#39;Temp&#39;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The average temperature of tutorial. Can be use as a good quality source for a thermostat.&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temp&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">poll_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">create_poll_value</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
@@ -287,49 +287,49 @@ Of course, we would add it without problem.</p>
 <div class="section" id="the-thread">
 <h2>The thread<a class="headerlink" href="#the-thread" title="Permalink to this headline">¶</a></h2>
 <p>The thread hold the bus :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/janitoo_tutorial/thread_tutorial2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim src/janitoo_tutorial/thread_tutorial2.py
 </pre></div>
 </div>
 <p>We will import all the needed components, and update their oid to match the new bus oid (tutorial2).
 For the DHT component, it&#8217;s looks like :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TutorialThread</span><span class="p">(</span><span class="n">JNTBusThread</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TutorialThread</span><span class="p">(</span><span class="n">JNTBusThread</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The basic thread</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">init_bus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Build the bus</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial2</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
+        <span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial2</span> <span class="k">import</span> <span class="n">TutorialBus</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="n">OID</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bus</span> <span class="o">=</span> <span class="n">TutorialBus</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">product_name</span><span class="o">=</span><span class="s">&quot;Raspberry tutorial controller&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bus</span> <span class="o">=</span> <span class="n">TutorialBus</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">oid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">section</span><span class="p">,</span> <span class="n">product_name</span><span class="o">=</span><span class="s2">&quot;Raspberry tutorial controller&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="entry-points">
 <h2>Entry-points<a class="headerlink" href="#entry-points" title="Permalink to this headline">¶</a></h2>
 <p>Janitoo uses entry-points for defining threads (bus) and components :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">entry_points</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&quot;janitoo.threads&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;tutorial2 = janitoo_tutorial.thread_tutorial2:make_thread&quot;</span><span class="p">,</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">entry_points</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;janitoo.threads&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;tutorial2 = janitoo_tutorial.thread_tutorial2:make_thread&quot;</span><span class="p">,</span>
     <span class="p">],</span>
-    <span class="s">&quot;janitoo.components&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;tutorial2.ambiance = janitoo_tutorial.tutorial2:make_ambiance&quot;</span><span class="p">,</span>
-        <span class="s">&quot;tutorial2.cpu = janitoo_tutorial.tutorial2:make_cpu&quot;</span><span class="p">,</span>
-        <span class="s">&quot;tutorial2.temperature = janitoo_tutorial.tutorial2:make_temperature&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;janitoo.components&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;tutorial2.ambiance = janitoo_tutorial.tutorial2:make_ambiance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tutorial2.cpu = janitoo_tutorial.tutorial2:make_cpu&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tutorial2.temperature = janitoo_tutorial.tutorial2:make_temperature&quot;</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">},</span>
 </pre></div>
 </div>
 <p>The entry-point reference a function in the thread :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">make_thread</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">get_option_autostart</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">OID</span><span class="p">)</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">or</span> <span class="n">force</span><span class="p">:</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_thread</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">get_option_autostart</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">OID</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span> <span class="ow">or</span> <span class="n">force</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">TutorialThread</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 </div>
 <p>Or for the component :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">make_ambiance</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_ambiance</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">AmbianceComponent</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -337,226 +337,226 @@ For the DHT component, it&#8217;s looks like :</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>Open the test configuration file in your favorite editor :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/data/helloworldv2.conf
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim tests/data/helloworldv2.conf
 </pre></div>
 </div>
 <p>Like seen in the first tutorial, there is a section for the new bus (thread) :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[tutorial2]
-auto_start = True
-name = Hello world
-location = Rapsberry
-components.ambiance = tutorial2.ambiance
-components.temperature = tutorial2.temperature
-components.cpu = tutorial2.cpu
-hadd = 0225/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tutorial2</span><span class="p">]</span>
+<span class="n">auto_start</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Hello</span> <span class="n">world</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">Rapsberry</span>
+<span class="n">components</span><span class="o">.</span><span class="n">ambiance</span> <span class="o">=</span> <span class="n">tutorial2</span><span class="o">.</span><span class="n">ambiance</span>
+<span class="n">components</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">tutorial2</span><span class="o">.</span><span class="n">temperature</span>
+<span class="n">components</span><span class="o">.</span><span class="n">cpu</span> <span class="o">=</span> <span class="n">tutorial2</span><span class="o">.</span><span class="n">cpu</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>
 </pre></div>
 </div>
 <p>It defines a new bus with a name and a location.
 We must define the HADD of the controller node associated to the bus (0225/0000).
 But this bus now holds the 3 components.</p>
 <p>Look at the DHT section, it&#8217;s similar to the one seen in first tutorial :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[tutorial2__ambiance]
-name = Ambiance 1
-location = DHT
-hadd = 0225/0001
-pin_0 = 6
-sensor_0 = 11
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tutorial2__ambiance</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Ambiance</span> <span class="mi">1</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">DHT</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>
+<span class="n">pin_0</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">sensor_0</span> <span class="o">=</span> <span class="mi">11</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="test-it">
 <h2>Test it<a class="headerlink" href="#test-it" title="Permalink to this headline">¶</a></h2>
 <p>You&#8217;re ready to test your components. Create a test for each component. For example, for the DTH:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/test_components_v2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim tests/test_components_v2.py
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestAmbianceComponent</span><span class="p">(</span><span class="n">JNTTComponent</span><span class="p">,</span> <span class="n">JNTTComponentCommon</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestAmbianceComponent</span><span class="p">(</span><span class="n">JNTTComponent</span><span class="p">,</span> <span class="n">JNTTComponentCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the component</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">component_name</span> <span class="o">=</span> <span class="s">&quot;tutorial2.ambiance&quot;</span>
+    <span class="n">component_name</span> <span class="o">=</span> <span class="s2">&quot;tutorial2.ambiance&quot;</span>
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_components_v2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo nosetests -v tests/test_components_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>test_001_component_entry_point (tests.test_components_v2.TestAmbianceComponent) ... ok
-test_002_component_oid (tests.test_components_v2.TestAmbianceComponent) ... ok
-test_002_component_properties (tests.test_components_v2.TestAmbianceComponent) ... ok
-test_001_component_entry_point (tests.test_components_v2.TestCpuComponent) ... ok
-test_002_component_oid (tests.test_components_v2.TestCpuComponent) ... ok
-test_002_component_properties (tests.test_components_v2.TestCpuComponent) ... ok
-test_001_component_entry_point (tests.test_components_v2.TestLedComponent) ... ok
-test_002_component_oid (tests.test_components_v2.TestLedComponent) ... ok
-test_002_component_properties (tests.test_components_v2.TestLedComponent) ... ok
-test_001_component_entry_point (tests.test_components_v2.TestTemperatureComponent) ... ok
-test_002_component_oid (tests.test_components_v2.TestTemperatureComponent) ... ok
-test_002_component_properties (tests.test_components_v2.TestTemperatureComponent) ... ok
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">test_001_component_entry_point</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestAmbianceComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_oid</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestAmbianceComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_properties</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestAmbianceComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_001_component_entry_point</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestCpuComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_oid</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestCpuComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_properties</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestCpuComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_001_component_entry_point</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestLedComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_oid</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestLedComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_properties</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestLedComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_001_component_entry_point</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestTemperatureComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_oid</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestTemperatureComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_component_properties</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_components_v2</span><span class="o">.</span><span class="n">TestTemperatureComponent</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
 
-----------------------------------------------------------------------
-Ran 12 tests in 6.772s
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">12</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">6.772</span><span class="n">s</span>
 
-OK
+<span class="n">OK</span>
 </pre></div>
 </div>
 <p>Test for the tread :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/tests/test_thread_v2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim tests/tests/test_thread_v2.py
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestTutorialThread</span><span class="p">(</span><span class="n">JNTTThreadRun</span><span class="p">,</span> <span class="n">JNTTThreadRunCommon</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestTutorialThread</span><span class="p">(</span><span class="n">JNTTThreadRun</span><span class="p">,</span> <span class="n">JNTTThreadRunCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the thread</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">thread_name</span> <span class="o">=</span> <span class="s">&quot;tutorial2&quot;</span>
-    <span class="n">conf_file</span> <span class="o">=</span> <span class="s">&quot;tests/data/janitoo_tutorial2.conf&quot;</span>
+    <span class="n">thread_name</span> <span class="o">=</span> <span class="s2">&quot;tutorial2&quot;</span>
+    <span class="n">conf_file</span> <span class="o">=</span> <span class="s2">&quot;tests/data/janitoo_tutorial2.conf&quot;</span>
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_thread_v2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo nosetests -v tests/test_thread_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>test_001_thread_entry_point (tests.test_thread_v2.TestTutorialThread) ... ok
-test_011_thread_start_wait_stop (tests.test_thread_v2.TestTutorialThread) ... ok
-test_031_cron_hourly (tests.test_thread_v2.TestTutorialThread) ... SKIP: Hourly timer not used for this thread
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">test_001_thread_entry_point</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_thread_v2</span><span class="o">.</span><span class="n">TestTutorialThread</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_011_thread_start_wait_stop</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_thread_v2</span><span class="o">.</span><span class="n">TestTutorialThread</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_031_cron_hourly</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_thread_v2</span><span class="o">.</span><span class="n">TestTutorialThread</span><span class="p">)</span> <span class="o">...</span> <span class="n">SKIP</span><span class="p">:</span> <span class="n">Hourly</span> <span class="n">timer</span> <span class="ow">not</span> <span class="n">used</span> <span class="k">for</span> <span class="n">this</span> <span class="n">thread</span>
 
-----------------------------------------------------------------------
-Ran 3 tests in 27.107s
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">3</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">27.107</span><span class="n">s</span>
 
-OK (SKIP=1)
+<span class="n">OK</span> <span class="p">(</span><span class="n">SKIP</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And the test for the bus :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim tests/tests/test_bus_v2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim tests/tests/test_bus_v2.py
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial2</span> <span class="kn">import</span> <span class="n">TutorialBus</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">janitoo_tutorial.tutorial2</span> <span class="k">import</span> <span class="n">TutorialBus</span>
 <span class="k">class</span> <span class="nc">TestTutorialBus</span><span class="p">(</span><span class="n">JNTTBus</span><span class="p">,</span> <span class="n">JNTTBusCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the Bus</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">oid</span> <span class="o">=</span> <span class="s">&#39;tutorial2&#39;</span>
+    <span class="n">oid</span> <span class="o">=</span> <span class="s1">&#39;tutorial2&#39;</span>
     <span class="n">bus</span> <span class="o">=</span> <span class="n">TutorialBus</span>
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_bus_v2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo nosetests -v tests/test_bus_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>test_001_bus_oid (tests.test_bus_v2.TestTutorialBus) ... ok
-test_002_bus_values (tests.test_bus_v2.TestTutorialBus) ... ok
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">test_001_bus_oid</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_bus_v2</span><span class="o">.</span><span class="n">TestTutorialBus</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_002_bus_values</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_bus_v2</span><span class="o">.</span><span class="n">TestTutorialBus</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
 
-----------------------------------------------------------------------
-Ran 2 tests in 0.784s
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">2</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">0.784</span><span class="n">s</span>
 
-OK
+<span class="n">OK</span>
 </pre></div>
 </div>
 <p>And for the server :</p>
-<div class="code python highlight-python"><div class="highlight"><pre>$ vim tests/test_server_v2.py
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>$ vim tests/test_server_v2.py
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestTutorialServer</span><span class="p">(</span><span class="n">JNTTServer</span><span class="p">,</span> <span class="n">JNTTServerCommon</span><span class="p">):</span>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestTutorialServer</span><span class="p">(</span><span class="n">JNTTServer</span><span class="p">,</span> <span class="n">JNTTServerCommon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test the tutorial server</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">server_class</span> <span class="o">=</span> <span class="n">PiServer</span>
-    <span class="n">server_conf</span> <span class="o">=</span> <span class="s">&quot;tests/data/helloworldv2.conf&quot;</span>
+    <span class="n">server_conf</span> <span class="o">=</span> <span class="s2">&quot;tests/data/helloworldv2.conf&quot;</span>
 
     <span class="n">hadds</span> <span class="o">=</span> <span class="p">[</span><span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">HADD</span><span class="o">%</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>And launch it :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo nosetests -v tests/test_server_v2.py
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo nosetests -v tests/test_server_v2.py
 </pre></div>
 </div>
 <p>The result should be :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>test_010_start_heartbeat_stop (tests.test_server_v2.TestTutorialServer) ... ok
-test_011_start_reload_stop (tests.test_server_v2.TestTutorialServer) ... ok
-test_012_start_reload_threads_stop (tests.test_server_v2.TestTutorialServer) ... ok
-test_020_request_broadcast (tests.test_server_v2.TestTutorialServer) ... ok
-test_030_wait_for_all_nodes (tests.test_server_v2.TestTutorialServer) ... ok
-test_040_server_start_no_error_in_log (tests.test_server_v2.TestTutorialServer) ... ok
-----------------------------------------------------------------------
-Ran 6 tests in 828.932s
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">test_010_start_heartbeat_stop</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_server_v2</span><span class="o">.</span><span class="n">TestTutorialServer</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_011_start_reload_stop</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_server_v2</span><span class="o">.</span><span class="n">TestTutorialServer</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_012_start_reload_threads_stop</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_server_v2</span><span class="o">.</span><span class="n">TestTutorialServer</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_020_request_broadcast</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_server_v2</span><span class="o">.</span><span class="n">TestTutorialServer</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_030_wait_for_all_nodes</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_server_v2</span><span class="o">.</span><span class="n">TestTutorialServer</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="n">test_040_server_start_no_error_in_log</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_server_v2</span><span class="o">.</span><span class="n">TestTutorialServer</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">6</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">828.932</span><span class="n">s</span>
 
-OK
+<span class="n">OK</span>
 </pre></div>
 </div>
 <p>Otherwise you should have a log capture with surely some errors inside.</p>
 <p>You can also the whole tests, which whould help you to fix problems :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo make tests
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo make tests
 </pre></div>
 </div>
 </div>
 <div class="section" id="launch-it">
 <h2>Launch it<a class="headerlink" href="#launch-it" title="Permalink to this headline">¶</a></h2>
 <p>You can now copy the config file to the config directory:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/etc
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ cd /opt/janitoo/etc
 $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </pre></div>
 </div>
 <p>Launch the server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo jnt_raspberry -c /opt/janitoo/etc/helloworldv2.conf start
 </pre></div>
 </div>
 <p>You can look at the protocol during startup on the spyer terminal.</p>
 <p>You can also look at logs. In a new terminal :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ tail -n 100 -f /opt/janitoo/log/helloworldv2.log
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ tail -n 100 -f /opt/janitoo/log/helloworldv2.log
 </pre></div>
 </div>
 <p>Its time to query ther server. Go to the first terminal and query the network :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query network
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query network
 </pre></div>
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                 name                      location                  product_type
-0225/0000  tutorial2            Hello world               Rapsberry                 Default product type
-0225/0002  tutorial2__temperature Temperature               Onewire                   Temperature sensor
-0225/0001  tutorial2__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
-0225/0003  tutorial2__cpu       CPU                       Hostsensor                Software component
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">uuid</span>                 <span class="n">name</span>                      <span class="n">location</span>                  <span class="n">product_type</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial2</span>            <span class="n">Hello</span> <span class="n">world</span>               <span class="n">Rapsberry</span>                 <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial2__temperature</span> <span class="n">Temperature</span>               <span class="n">Onewire</span>                   <span class="n">Temperature</span> <span class="n">sensor</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>  <span class="n">Ambiance</span> <span class="mi">1</span>                <span class="n">DHT</span>                       <span class="n">Temperature</span><span class="o">/</span><span class="n">humidity</span> <span class="n">sensor</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial2__cpu</span>       <span class="n">CPU</span>                       <span class="n">Hostsensor</span>                <span class="n">Software</span> <span class="n">component</span>
 </pre></div>
 </div>
 <p>You can also query a node :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0225/0000
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                           name                      location             product_type
-0225/0000  tutorial2                      Hello world               Rapsberry            Default product type
-0225/0002  tutorial2__temperature         Temperature               Onewire              Temperature sensor
-0225/0001  tutorial2__ambiance            Ambiance 1                DHT                  Temperature/humidity sensor
-0225/0003  tutorial2__cpu                 CPU                       Hostsensor           Software component
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">uuid</span>                           <span class="n">name</span>                      <span class="n">location</span>             <span class="n">product_type</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial2</span>                      <span class="n">Hello</span> <span class="n">world</span>               <span class="n">Rapsberry</span>            <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial2__temperature</span>         <span class="n">Temperature</span>               <span class="n">Onewire</span>              <span class="n">Temperature</span> <span class="n">sensor</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>            <span class="n">Ambiance</span> <span class="mi">1</span>                <span class="n">DHT</span>                  <span class="n">Temperature</span><span class="o">/</span><span class="n">humidity</span> <span class="n">sensor</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial2__cpu</span>                 <span class="n">CPU</span>                       <span class="n">Hostsensor</span>           <span class="n">Software</span> <span class="n">component</span>
 </pre></div>
 </div>
 <p>Check the config values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
-0225/0001  tutorial2__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0001  tutorial2__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
-0225/0001  tutorial2__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
-0225/0001  tutorial2__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
-0225/0001  tutorial2__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
-0225/0001  tutorial2__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
-0225/0000  tutorial2                 tutorial2_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
-0225/0000  tutorial2                 name                           0    Hello world               None       8     3     112      The name of the node
-0225/0000  tutorial2                 location                       0    Rapsberry                 None       8     3     112      The location of the node
-0225/0003  tutorial2__cpu            frequency_poll                 0    300                       seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial2__cpu            temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial2__cpu            voltage_poll                   0    300                       seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial2__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
-0225/0003  tutorial2__cpu            name                           0    CPU                       None       8     3     112      The name of the node
-0225/0002  tutorial2__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0002  tutorial2__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
-0225/0002  tutorial2__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
-0225/0002  tutorial2__temperature    name                           0    Temperature               None       8     3     112      The name of the node
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">node_uuid</span>                 <span class="n">uuid</span>                           <span class="n">idx</span>  <span class="n">data</span>                      <span class="n">units</span>      <span class="nb">type</span>  <span class="n">genre</span> <span class="n">cmdclass</span> <span class="n">help</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>       <span class="n">temperature_poll</span>               <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>       <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">Ambiance</span> <span class="mi">1</span>                <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>       <span class="n">pin</span>                            <span class="mi">0</span>    <span class="mi">6</span>                         <span class="kc">None</span>       <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">pin</span> <span class="n">number</span> <span class="n">on</span> <span class="n">the</span> <span class="n">board</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>       <span class="n">humidity_poll</span>                  <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>       <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">DHT</span>                       <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial2__ambiance</span>       <span class="n">sensor</span>                         <span class="mi">0</span>    <span class="mi">11</span>                        <span class="kc">None</span>       <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">sensor</span> <span class="nb">type</span> <span class="p">:</span> <span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">2302</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial2</span>                 <span class="n">tutorial2_temperature_poll</span>     <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial2</span>                 <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">Hello</span> <span class="n">world</span>               <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial2</span>                 <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">Rapsberry</span>                 <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial2__cpu</span>            <span class="n">frequency_poll</span>                 <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial2__cpu</span>            <span class="n">temperature_poll</span>               <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial2__cpu</span>            <span class="n">voltage_poll</span>                   <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial2__cpu</span>            <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">Hostsensor</span>                <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial2__cpu</span>            <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">CPU</span>                       <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial2__temperature</span>    <span class="n">temperature_poll</span>               <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial2__temperature</span>    <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">Onewire</span>                   <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial2__temperature</span>    <span class="n">hexadd</span>                         <span class="mi">0</span>    <span class="mi">28</span><span class="o">-</span><span class="mi">00000463</span><span class="n">b745</span>           <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">hexadecimal</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">DS18B20</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial2__temperature</span>    <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">Temperature</span>               <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
 </pre></div>
 </div>
 <p>Get the user values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_users
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0225/0000 --vuuid request_info_users
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
 0225/0001  tutorial2__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
 0225/0001  tutorial2__ambiance       humidity                       0    30.0                      %          3     2     49       The humidity
 0225/0000  tutorial2                 tutorial2_temperature          0    25.6                      °C         3     2     49       The average temperature of tutorial. Can be use as a good quality source for a thermostat.
@@ -569,11 +569,11 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
 </div>
 <div class="section" id="performances">
 <h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ nice top
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ nice top
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
-3050 root      20   0 59340  13m 4288 S   2,3  2,7   1:30.00 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">PID</span>   <span class="n">USER</span>      <span class="n">PR</span>  <span class="n">NI</span>  <span class="n">VIRT</span>  <span class="n">RES</span>  <span class="n">SHR</span> <span class="n">S</span>  <span class="o">%</span><span class="n">CPU</span> <span class="o">%</span><span class="n">MEM</span>    <span class="n">TIME</span><span class="o">+</span>  <span class="n">COMMAND</span>
+<span class="mi">3050</span> <span class="n">root</span>      <span class="mi">20</span>   <span class="mi">0</span> <span class="mi">59340</span>  <span class="mi">13</span><span class="n">m</span> <span class="mi">4288</span> <span class="n">S</span>   <span class="mi">2</span><span class="p">,</span><span class="mi">3</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">7</span>   <span class="mi">1</span><span class="p">:</span><span class="mf">30.00</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">jnt_tutorial</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">janitoo</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">janitoo_tutorial</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">helloworldv</span>
 </pre></div>
 </div>
 <p>We divide the virtual memory by 2. Reserved memory is also less.</p>
@@ -593,7 +593,7 @@ $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv2.conf .
     </p>
     <p>
         &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.<br/>
     </p>
   </div>
 </footer>

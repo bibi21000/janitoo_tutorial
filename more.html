@@ -5,13 +5,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Create and share &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    <title>Create and share &#8212; janitoo_tutorial 0.0.7 documentation</title>
     
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -19,7 +17,8 @@
         VERSION:     '0.0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -30,9 +29,10 @@
     <script type="text/javascript" src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Using documentation" href="using_doc.html" />
     <link rel="prev" title="TK User Interface" href="tkinter.html" />
 <meta charset='utf-8'>
@@ -161,7 +161,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tkinter.html#future">Future</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href=""> Create and share</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Create and share</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how">How</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bus-aggregation-vs-bus-extension">Bus aggregation vs bus extension</a></li>
@@ -186,11 +186,11 @@
               
                 
   <li>
-    <a href="tkinter.html" title="Previous Chapter: TK User Interface"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; TK User Inter...</span>
+    <a href="tkinter.html" title="Previous Chapter: TK User Interface"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; TK User Interface</span>
     </a>
   </li>
   <li>
-    <a href="using_doc.html" title="Next Chapter: Using documentation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Using documen... &raquo;</span>
+    <a href="using_doc.html" title="Next Chapter: Using documentation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Using documentation &raquo;</span>
     </a>
   </li>
               
@@ -246,17 +246,17 @@ Look <a class="reference external" href="https://github.com/bibi21000/janitoo_ra
 <p>For the spi bus, extensions allows to use the same bus for hardware and software SPI.
 Look <a class="reference external" href="https://github.com/bibi21000/janitoo_raspberry_spi/blob/master/src/janitoo_raspberry_spi/bus_spi.py">here</a>.</p>
 <p>You need to define an entry-point for your bus extension in your setup.py :</p>
-<div class="code python highlight-python"><div class="highlight"><pre>&quot;rpii2c.extensions&quot;: [
-    &quot;pca9865 = janitoo_raspberry_i2c_pca9685.bus_pca9685:extend&quot;,
-],
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;rpii2c.extensions&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;pca9865 = janitoo_raspberry_i2c_pca9685.bus_pca9685:extend&quot;</span><span class="p">,</span>
+<span class="p">],</span>
 </pre></div>
 </div>
 <p>And load extension in your configuration file :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>[rpispi]
-auto_start = True
-hadd = 0159/0000
-heartbeat = 30
-extensions = hardware
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">rpispi</span><span class="p">]</span>
+<span class="n">auto_start</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">hadd</span> <span class="o">=</span> <span class="mi">0159</span><span class="o">/</span><span class="mi">0000</span>
+<span class="n">heartbeat</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="n">hardware</span>
 </pre></div>
 </div>
 <p>Some buses can&#8217;t be aggregate : they must raise a runtime execution at init.</p>
@@ -277,29 +277,29 @@ When the protocol will be updated, these tests will be too.</p>
 <p>Ideally, when a new bug is reported, the workflow should be : bug -&gt; test to reproduce the bug -&gt; fix for the bug.</p>
 <p>When starting developping with Janitoo, you&#8217;ll surely find that creating tests is wasting time.</p>
 <p>After your server is fully functionnal, you can launch the full test suite :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo make tests-report &gt;tests.log 2&gt;&amp;1
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo make tests-report &gt;tests.log 2&gt;&amp;1
 </pre></div>
 </div>
 <p>On a another screen/terminal, you can take a look at the tests logs :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ tail -f tests.log
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ tail -f tests.log
 </pre></div>
 </div>
 <p>You can now safely watch your favorite episode of Game of Thrones :D</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>Name                                Stmts   Miss  Cover   Missing
------------------------------------------------------------------
-janitoo_tutorial                        4      0   100%
-janitoo_tutorial.thread_tutorial1      30      0   100%
-janitoo_tutorial.thread_tutorial2      30      0   100%
-janitoo_tutorial.tutorial1             86      1    99%   126
-janitoo_tutorial.tutorial2            197     20    90%   169, 176-177, 198, 213-214, 225-226, 234, 242, 249-250, 265-266, 275, 281, 283-287
------------------------------------------------------------------
-TOTAL                                 347     21    94%
-----------------------------------------------------------------------
-Ran 54 tests in 3635.988s
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">Name</span>                                <span class="n">Stmts</span>   <span class="n">Miss</span>  <span class="n">Cover</span>   <span class="n">Missing</span>
+<span class="o">-----------------------------------------------------------------</span>
+<span class="n">janitoo_tutorial</span>                        <span class="mi">4</span>      <span class="mi">0</span>   <span class="mi">100</span><span class="o">%</span>
+<span class="n">janitoo_tutorial</span><span class="o">.</span><span class="n">thread_tutorial1</span>      <span class="mi">30</span>      <span class="mi">0</span>   <span class="mi">100</span><span class="o">%</span>
+<span class="n">janitoo_tutorial</span><span class="o">.</span><span class="n">thread_tutorial2</span>      <span class="mi">30</span>      <span class="mi">0</span>   <span class="mi">100</span><span class="o">%</span>
+<span class="n">janitoo_tutorial</span><span class="o">.</span><span class="n">tutorial1</span>             <span class="mi">86</span>      <span class="mi">1</span>    <span class="mi">99</span><span class="o">%</span>   <span class="mi">126</span>
+<span class="n">janitoo_tutorial</span><span class="o">.</span><span class="n">tutorial2</span>            <span class="mi">197</span>     <span class="mi">20</span>    <span class="mi">90</span><span class="o">%</span>   <span class="mi">169</span><span class="p">,</span> <span class="mi">176</span><span class="o">-</span><span class="mi">177</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">213</span><span class="o">-</span><span class="mi">214</span><span class="p">,</span> <span class="mi">225</span><span class="o">-</span><span class="mi">226</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">249</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">265</span><span class="o">-</span><span class="mi">266</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">281</span><span class="p">,</span> <span class="mi">283</span><span class="o">-</span><span class="mi">287</span>
+<span class="o">-----------------------------------------------------------------</span>
+<span class="n">TOTAL</span>                                 <span class="mi">347</span>     <span class="mi">21</span>    <span class="mi">94</span><span class="o">%</span>
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">54</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">3635.988</span><span class="n">s</span>
 
-OK (SKIP=2)
+<span class="n">OK</span> <span class="p">(</span><span class="n">SKIP</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-Tests for janitoo_tutorial finished.
+<span class="n">Tests</span> <span class="k">for</span> <span class="n">janitoo_tutorial</span> <span class="n">finished</span><span class="o">.</span>
 </pre></div>
 </div>
 <div class="section" id="testing-tools">
@@ -309,7 +309,7 @@ Tests for janitoo_tutorial finished.
 <p>Docker : there is a docker image to launch but it should not be launched on Docker Hub (timeout after 2 hours).
 You can launch it locally, look at <a class="reference external" href="https://github.com/bibi21000/janitoo_docker">https://github.com/bibi21000/janitoo_docker</a>.</p>
 <p>Raspberry : you can launch tests on your raspberry using :</p>
-<div class="code highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/src
+<div class="code highlight-default"><div class="highlight"><pre><span></span>$ cd /opt/janitoo/src
 $ sudo make tests-all
 </pre></div>
 </div>
@@ -425,7 +425,7 @@ It holds its devices in a list, so we need to &#8220;sync&#8221; with it :</p>
     </p>
     <p>
         &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.<br/>
     </p>
   </div>
 </footer>

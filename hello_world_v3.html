@@ -5,13 +5,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>HelloWord V3 &mdash; janitoo_tutorial 0.0.7 documentation</title>
+    <title>HelloWord V3 &#8212; janitoo_tutorial 0.0.7 documentation</title>
     
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.3.4/united/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -19,7 +17,8 @@
         VERSION:     '0.0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -30,9 +29,10 @@
     <script type="text/javascript" src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="janitoo_tutorial 0.0.7 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Many servers" href="many_servers.html" />
     <link rel="prev" title="HelloWord V2" href="hello_world_v2.html" />
 <meta charset='utf-8'>
@@ -116,7 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hello_world_v2.html#performances">Performances</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href=""> Hello World 3 : a more advanced server</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Hello World 3 : a more advanced server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-bus">The bus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-finish-state-machine">The finish state machine</a></li>
@@ -235,46 +235,46 @@
 <p>Components and thread are defined the same way we did in the previous tutorial</p>
 <p>The bus is now based on a fsm (<a class="reference external" href="https://github.com/tyarkoni/transitions">official site</a> for more documentation)</p>
 <p>At first, we must define state and transitions :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">states</span> <span class="o">=</span> <span class="p">[</span>
-   <span class="s">&#39;booting&#39;</span><span class="p">,</span>
-   <span class="s">&#39;sleeping&#39;</span><span class="p">,</span>
-   <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
-   <span class="s">&#39;ringing&#39;</span><span class="p">,</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="s1">&#39;booting&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;sleeping&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;reporting&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;ringing&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="sd">&quot;&quot;&quot;The tutorial states :</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">transitions</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;wakeup&#39;</span><span class="p">,</span>
-        <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;*&#39;</span><span class="p">,</span>
-        <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
+    <span class="p">{</span> <span class="s1">&#39;trigger&#39;</span><span class="p">:</span> <span class="s1">&#39;wakeup&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;dest&#39;</span><span class="p">:</span> <span class="s1">&#39;reporting&#39;</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;report&#39;</span><span class="p">,</span>
-        <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;*&#39;</span><span class="p">,</span>
-        <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
+    <span class="p">{</span> <span class="s1">&#39;trigger&#39;</span><span class="p">:</span> <span class="s1">&#39;report&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;dest&#39;</span><span class="p">:</span> <span class="s1">&#39;reporting&#39;</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;sleep&#39;</span><span class="p">,</span>
-        <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;*&#39;</span><span class="p">,</span>
-        <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;sleeping&#39;</span><span class="p">,</span>
+    <span class="p">{</span> <span class="s1">&#39;trigger&#39;</span><span class="p">:</span> <span class="s1">&#39;sleep&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;dest&#39;</span><span class="p">:</span> <span class="s1">&#39;sleeping&#39;</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="p">{</span> <span class="s">&#39;trigger&#39;</span><span class="p">:</span> <span class="s">&#39;ring&#39;</span><span class="p">,</span>
-        <span class="s">&#39;source&#39;</span><span class="p">:</span> <span class="s">&#39;reporting&#39;</span><span class="p">,</span>
-        <span class="s">&#39;dest&#39;</span><span class="p">:</span> <span class="s">&#39;ringing&#39;</span><span class="p">,</span>
+    <span class="p">{</span> <span class="s1">&#39;trigger&#39;</span><span class="p">:</span> <span class="s1">&#39;ring&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="s1">&#39;reporting&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;dest&#39;</span><span class="p">:</span> <span class="s1">&#39;ringing&#39;</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">]</span>
 </pre></div>
 </div>
 <p>And start / stop the fsm when starting/stopping the bus :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Start the bus</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="n">bus</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">buses</span><span class="p">[</span><span class="n">bus</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">JNTBus</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttc</span><span class="p">,</span> <span class="n">trigger_thread_reload_cb</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_tutorial_statemachine</span> <span class="o">=</span>  <span class="n">Machine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
         <span class="n">states</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">,</span>
         <span class="n">transitions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">,</span>
-        <span class="n">initial</span><span class="o">=</span><span class="s">&#39;booting&#39;</span><span class="p">)</span>
+        <span class="n">initial</span><span class="o">=</span><span class="s1">&#39;booting&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Stop the bus</span>
@@ -287,16 +287,16 @@
 </pre></div>
 </div>
 <p>We should now define actions when entering states :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">on_enter_reporting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_enter_reporting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">] - on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">bus_acquire</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">&#39;heartbeat&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">add_polls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">polled_sensors</span><span class="p">,</span> <span class="n">slow_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s1">&#39;led&#39;</span><span class="p">,</span> <span class="s1">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;heartbeat&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">add_polls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">polled_sensors</span><span class="p">,</span> <span class="n">slow_start</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - Error in on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">] - Error in on_enter_reporting&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bus_release</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">on_check</span><span class="p">()</span>
@@ -304,12 +304,12 @@
 <span class="k">def</span> <span class="nf">on_enter_ringing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - on_enter_ringing&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">] - on_enter_ringing&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">bus_acquire</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s">&#39;led&#39;</span><span class="p">,</span> <span class="s">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">&#39;warning&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeman</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s1">&#39;led&#39;</span><span class="p">,</span> <span class="s1">&#39;blink&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;warning&#39;</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">] - Error in on_enter_ringing&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">] - Error in on_enter_ringing&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bus_release</span><span class="p">()</span>
 
@@ -325,21 +325,21 @@
 <div class="section" id="create-a-server">
 <h2>Create a server<a class="headerlink" href="#create-a-server" title="Permalink to this headline">¶</a></h2>
 <p>We will now create a server script, this will allow to start our server on startup:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/scripts/jnt_tutorial
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim src/scripts/jnt_tutorial
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">datetime</span>
-<span class="kn">from</span> <span class="nn">janitoo.runner</span> <span class="kn">import</span> <span class="n">Runner</span><span class="p">,</span> <span class="n">jnt_parse_args</span>
-<span class="kn">from</span> <span class="nn">janitoo_raspberry.server</span> <span class="kn">import</span> <span class="n">PiServer</span>
+<span class="kn">from</span> <span class="nn">janitoo.runner</span> <span class="k">import</span> <span class="n">Runner</span><span class="p">,</span> <span class="n">jnt_parse_args</span>
+<span class="kn">from</span> <span class="nn">janitoo_raspberry.server</span> <span class="k">import</span> <span class="n">PiServer</span>
 
 <span class="k">class</span> <span class="nc">MyPiServer</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">Runner</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="c">#print self.options</span>
+        <span class="n">Runner</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1">#print self.options</span>
 
     <span class="k">def</span> <span class="nf">app_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">PiServer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
@@ -348,55 +348,55 @@
 
     <span class="k">def</span> <span class="nf">app_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="n">daemon_runner</span> <span class="o">=</span> <span class="n">MyPiServer</span><span class="p">()</span>
-<span class="c">#This ensures that the logger file handle does not get closed during daemonization</span>
-<span class="c">#daemon_runner.daemon_context.files_preserve=[handler.stream]</span>
+<span class="c1">#This ensures that the logger file handle does not get closed during daemonization</span>
+<span class="c1">#daemon_runner.daemon_context.files_preserve=[handler.stream]</span>
 <span class="n">daemon_runner</span><span class="o">.</span><span class="n">do_action</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Open the init script and update the provides, descriptions and NAME:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim src/scripts/jnt_tutorial.init
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim src/scripts/jnt_tutorial.init
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre><span class="c">### BEGIN INIT INFO</span>
-<span class="c"># Provides:             jnt_tutorial</span>
-<span class="c"># Required-Start:       $remote_fs $syslog $network</span>
-<span class="c"># Required-Stop:        $remote_fs $syslog $network</span>
-<span class="c"># Default-Start:        2 3 4 5</span>
-<span class="c"># Default-Stop:         0 1 6</span>
-<span class="c"># Short-Description:    Janitoo tutorial</span>
-<span class="c"># Description:          Janitoo tutorial appliance server</span>
-<span class="c">#</span>
-<span class="c">### END INIT INFO</span>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">### BEGIN INIT INFO</span>
+<span class="c1"># Provides:             jnt_tutorial</span>
+<span class="c1"># Required-Start:       $remote_fs $syslog $network</span>
+<span class="c1"># Required-Stop:        $remote_fs $syslog $network</span>
+<span class="c1"># Default-Start:        2 3 4 5</span>
+<span class="c1"># Default-Stop:         0 1 6</span>
+<span class="c1"># Short-Description:    Janitoo tutorial</span>
+<span class="c1"># Description:          Janitoo tutorial appliance server</span>
+<span class="c1">#</span>
+<span class="c1">### END INIT INFO</span>
 
-<span class="n">NAME</span><span class="o">=</span><span class="s">&quot;jnt_tutorial&quot;</span>
+<span class="n">NAME</span><span class="o">=</span><span class="s2">&quot;jnt_tutorial&quot;</span>
 </pre></div>
 </div>
 <p>And copy it to the right directory :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo cp src/scripts/jnt_tutorial.init /etc/init.d/jnt_tutorial
 </pre></div>
 </div>
 </div>
 <div class="section" id="spy-it">
 <h2>Spy it<a class="headerlink" href="#spy-it" title="Permalink to this headline">¶</a></h2>
 <p>Open a new shell and launch</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_spy
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_spy
 </pre></div>
 </div>
 <p>This will launch a spyer for the mqtt protocol</p>
 <p>Go to the first terminal and copy the config file to the config directory.
 The filename must be the same as the one using for the service name (jnt_tutorial) :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ cd /opt/janitoo/etc
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ cd /opt/janitoo/etc
 $ cp /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv3.conf jnt_tutorial.conf
 </pre></div>
 </div>
 <p>Open the configuration file and update the needed parts :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ vim /opt/janitoo/etc/jnt_tutorial.conf
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ vim /opt/janitoo/etc/jnt_tutorial.conf
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>[system]
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>[system]
 service = jnt_tutorial
 log_dir = /opt/janitoo/log
 home_dir = /opt/janitoo/home
@@ -421,69 +421,69 @@ args = (&#39;/opt/janitoo/log/jnt_tutorial.log&#39;, &#39;w&#39;)
 <p>There are many options startup like slow_start (a dedicated options for slow machines to sleep between startup steps).
 Look at source for list :(.</p>
 <p>You can now starts the service :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo service jnt_tutorial start
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo service jnt_tutorial start
 </pre></div>
 </div>
 <p>You can look at the protocol during startup on the spyer terminal.</p>
 <p>You can also look at logs. In a new terminal :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ tail -n 100 -f /opt/janitoo/log/jnt_tutorial.log
 </pre></div>
 </div>
 <p>Its time to query ther server. Go to the first terminal and query the network :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query network
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query network
 </pre></div>
 </div>
 <p>You should receive the list of nodes availables on your server :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       uuid                 name                      location                  product_type
-hadd       uuid                 name                      location                  product_type
-0225/0000  tutorial3            Hello world               Rapsberry                 Default product type
-0225/0002  tutorial3__temperature Temperature               Onewire                   Temperature sensor
-0225/0004  tutorial3__led       Led                       GPIO                      Software
-0225/0003  tutorial3__cpu       CPU                       Hostsensor                Software component
-0225/0001  tutorial3__ambiance  Ambiance 1                DHT                       Temperature/humidity sensor
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">uuid</span>                 <span class="n">name</span>                      <span class="n">location</span>                  <span class="n">product_type</span>
+<span class="n">hadd</span>       <span class="n">uuid</span>                 <span class="n">name</span>                      <span class="n">location</span>                  <span class="n">product_type</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial3</span>            <span class="n">Hello</span> <span class="n">world</span>               <span class="n">Rapsberry</span>                 <span class="n">Default</span> <span class="n">product</span> <span class="nb">type</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial3__temperature</span> <span class="n">Temperature</span>               <span class="n">Onewire</span>                   <span class="n">Temperature</span> <span class="n">sensor</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0004</span>  <span class="n">tutorial3__led</span>       <span class="n">Led</span>                       <span class="n">GPIO</span>                      <span class="n">Software</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial3__cpu</span>       <span class="n">CPU</span>                       <span class="n">Hostsensor</span>                <span class="n">Software</span> <span class="n">component</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial3__ambiance</span>  <span class="n">Ambiance</span> <span class="mi">1</span>                <span class="n">DHT</span>                       <span class="n">Temperature</span><span class="o">/</span><span class="n">humidity</span> <span class="n">sensor</span>
 </pre></div>
 </div>
 <p>You can also query a node :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0225/0000
 </pre></div>
 </div>
 <p>Check the config values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0225/0000 --vuuid request_info_configs
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
-0225/0004  tutorial3__led            switch_poll                    0    300                       seconds    4     3     112      The poll delay of the value
-0225/0004  tutorial3__led            blink_poll                     0    300                       seconds    4     3     112      The poll delay of the value
-0225/0004  tutorial3__led            location                       0    GPIO                      None       8     3     112      The location of the node
-0225/0004  tutorial3__led            pin                            0    1                         None       4     3     112      The pin number on the board
-0225/0004  tutorial3__led            name                           0    Led                       None       8     3     112      The name of the node
-0225/0001  tutorial3__ambiance       temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0001  tutorial3__ambiance       name                           0    Ambiance 1                None       8     3     112      The name of the node
-0225/0001  tutorial3__ambiance       pin                            0    6                         None       4     3     112      The pin number on the board
-0225/0001  tutorial3__ambiance       humidity_poll                  0    300                       seconds    4     3     112      The poll delay of the value
-0225/0001  tutorial3__ambiance       location                       0    DHT                       None       8     3     112      The location of the node
-0225/0001  tutorial3__ambiance       sensor                         0    11                        None       4     3     112      The sensor type : 11,22,2302
-0225/0000  tutorial3                 tutorial3_temperature_poll     0    300                       seconds    4     3     112      The poll delay of the value
-0225/0000  tutorial3                 tutorial3_temperature_critical 0    50                        None       4     3     112      The critical temperature. If 2 of the 3 temperature sensors are up to this value, a security notification is sent.
-0225/0000  tutorial3                 location                       0    Rapsberry                 None       8     3     112      The location of the node
-0225/0000  tutorial3                 name                           0    Hello world               None       8     3     112      The name of the node
-0225/0000  tutorial3                 tutorial3_timer_delay          0    45                        None       4     3     112      The delay between 2 checks
-0225/0003  tutorial3__cpu            frequency_poll                 0    30                        seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial3__cpu            temperature_poll               0    30                        seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial3__cpu            voltage_poll                   0    30                        seconds    4     3     112      The poll delay of the value
-0225/0003  tutorial3__cpu            location                       0    Hostsensor                None       8     3     112      The location of the node
-0225/0003  tutorial3__cpu            name                           0    CPU                       None       8     3     112      The name of the node
-0225/0002  tutorial3__temperature    temperature_poll               0    300                       seconds    4     3     112      The poll delay of the value
-0225/0002  tutorial3__temperature    location                       0    Onewire                   None       8     3     112      The location of the node
-0225/0002  tutorial3__temperature    hexadd                         0    28-00000463b745           None       8     3     112      The hexadecimal address of the DS18B20
-0225/0002  tutorial3__temperature    name                           0    Temperature               None       8     3     112      The name of the node
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">hadd</span>       <span class="n">node_uuid</span>                 <span class="n">uuid</span>                           <span class="n">idx</span>  <span class="n">data</span>                      <span class="n">units</span>      <span class="nb">type</span>  <span class="n">genre</span> <span class="n">cmdclass</span> <span class="n">help</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0004</span>  <span class="n">tutorial3__led</span>            <span class="n">switch_poll</span>                    <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0004</span>  <span class="n">tutorial3__led</span>            <span class="n">blink_poll</span>                     <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0004</span>  <span class="n">tutorial3__led</span>            <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">GPIO</span>                      <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0004</span>  <span class="n">tutorial3__led</span>            <span class="n">pin</span>                            <span class="mi">0</span>    <span class="mi">1</span>                         <span class="kc">None</span>       <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">pin</span> <span class="n">number</span> <span class="n">on</span> <span class="n">the</span> <span class="n">board</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0004</span>  <span class="n">tutorial3__led</span>            <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">Led</span>                       <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial3__ambiance</span>       <span class="n">temperature_poll</span>               <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial3__ambiance</span>       <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">Ambiance</span> <span class="mi">1</span>                <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial3__ambiance</span>       <span class="n">pin</span>                            <span class="mi">0</span>    <span class="mi">6</span>                         <span class="kc">None</span>       <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">pin</span> <span class="n">number</span> <span class="n">on</span> <span class="n">the</span> <span class="n">board</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial3__ambiance</span>       <span class="n">humidity_poll</span>                  <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial3__ambiance</span>       <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">DHT</span>                       <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0001</span>  <span class="n">tutorial3__ambiance</span>       <span class="n">sensor</span>                         <span class="mi">0</span>    <span class="mi">11</span>                        <span class="kc">None</span>       <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">sensor</span> <span class="nb">type</span> <span class="p">:</span> <span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">2302</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial3</span>                 <span class="n">tutorial3_temperature_poll</span>     <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial3</span>                 <span class="n">tutorial3_temperature_critical</span> <span class="mi">0</span>    <span class="mi">50</span>                        <span class="kc">None</span>       <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">critical</span> <span class="n">temperature</span><span class="o">.</span> <span class="n">If</span> <span class="mi">2</span> <span class="n">of</span> <span class="n">the</span> <span class="mi">3</span> <span class="n">temperature</span> <span class="n">sensors</span> <span class="n">are</span> <span class="n">up</span> <span class="n">to</span> <span class="n">this</span> <span class="n">value</span><span class="p">,</span> <span class="n">a</span> <span class="n">security</span> <span class="n">notification</span> <span class="ow">is</span> <span class="n">sent</span><span class="o">.</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial3</span>                 <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">Rapsberry</span>                 <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial3</span>                 <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">Hello</span> <span class="n">world</span>               <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0000</span>  <span class="n">tutorial3</span>                 <span class="n">tutorial3_timer_delay</span>          <span class="mi">0</span>    <span class="mi">45</span>                        <span class="kc">None</span>       <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">delay</span> <span class="n">between</span> <span class="mi">2</span> <span class="n">checks</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial3__cpu</span>            <span class="n">frequency_poll</span>                 <span class="mi">0</span>    <span class="mi">30</span>                        <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial3__cpu</span>            <span class="n">temperature_poll</span>               <span class="mi">0</span>    <span class="mi">30</span>                        <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial3__cpu</span>            <span class="n">voltage_poll</span>                   <span class="mi">0</span>    <span class="mi">30</span>                        <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial3__cpu</span>            <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">Hostsensor</span>                <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0003</span>  <span class="n">tutorial3__cpu</span>            <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">CPU</span>                       <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial3__temperature</span>    <span class="n">temperature_poll</span>               <span class="mi">0</span>    <span class="mi">300</span>                       <span class="n">seconds</span>    <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">poll</span> <span class="n">delay</span> <span class="n">of</span> <span class="n">the</span> <span class="n">value</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial3__temperature</span>    <span class="n">location</span>                       <span class="mi">0</span>    <span class="n">Onewire</span>                   <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">location</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial3__temperature</span>    <span class="n">hexadd</span>                         <span class="mi">0</span>    <span class="mi">28</span><span class="o">-</span><span class="mi">00000463</span><span class="n">b745</span>           <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">hexadecimal</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">DS18B20</span>
+<span class="mi">0225</span><span class="o">/</span><span class="mi">0002</span>  <span class="n">tutorial3__temperature</span>    <span class="n">name</span>                           <span class="mi">0</span>    <span class="n">Temperature</span>               <span class="kc">None</span>       <span class="mi">8</span>     <span class="mi">3</span>     <span class="mi">112</span>      <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">node</span>
 </pre></div>
 </div>
 <p>Get the user values :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ jnt_query node --hadd 0225/0000 --vuuid request_info_users
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ jnt_query node --hadd 0225/0000 --vuuid request_info_users
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>hadd       node_uuid                 uuid                           idx  data                      units      type  genre cmdclass help
 0225/0001  tutorial3__ambiance       temperature                    0    19.0                      °C         3     2     49       The temperature
 0225/0001  tutorial3__ambiance       humidity                       0    24.0                      %          3     2     49       The humidity
 0225/0000  tutorial3                 tutorial3_temperature          0    None                      °C         3     2     49       The average temperature of tutorial.
@@ -499,24 +499,24 @@ hadd       uuid                 name                      location              
 <div class="section" id="start-it-at-boot">
 <h2>Start it at boot<a class="headerlink" href="#start-it-at-boot" title="Permalink to this headline">¶</a></h2>
 <p>To start your server on boot, use :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo update-rc.d jnt_tutorial defaults
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo update-rc.d jnt_tutorial defaults
 </pre></div>
 </div>
 <p>You can also stop, restart, kill, ... your server using :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ sudo service jnt_tutorial
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ sudo service jnt_tutorial
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>Usage: /etc/init.d/jnt_tutorial {start|stop|restart|reload|status|kill}
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">jnt_tutorial</span> <span class="p">{</span><span class="n">start</span><span class="o">|</span><span class="n">stop</span><span class="o">|</span><span class="n">restart</span><span class="o">|</span><span class="n">reload</span><span class="o">|</span><span class="n">status</span><span class="o">|</span><span class="n">kill</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="performances">
 <h2>Performances<a class="headerlink" href="#performances" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ nice top
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ nice top
 </pre></div>
 </div>
-<div class="code bash highlight-python"><div class="highlight"><pre>PID   USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
-24126 root      20   0 59352  13m 4292 S   5,9  2,7   0:38.28 /usr/bin/python /usr/local/bin/jnt_tutorial -c /opt/janitoo/src/janitoo_tutorial/tests/data/helloworldv
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">PID</span>   <span class="n">USER</span>      <span class="n">PR</span>  <span class="n">NI</span>  <span class="n">VIRT</span>  <span class="n">RES</span>  <span class="n">SHR</span> <span class="n">S</span>  <span class="o">%</span><span class="n">CPU</span> <span class="o">%</span><span class="n">MEM</span>    <span class="n">TIME</span><span class="o">+</span>  <span class="n">COMMAND</span>
+<span class="mi">24126</span> <span class="n">root</span>      <span class="mi">20</span>   <span class="mi">0</span> <span class="mi">59352</span>  <span class="mi">13</span><span class="n">m</span> <span class="mi">4292</span> <span class="n">S</span>   <span class="mi">5</span><span class="p">,</span><span class="mi">9</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">7</span>   <span class="mi">0</span><span class="p">:</span><span class="mf">38.28</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">jnt_tutorial</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">janitoo</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">janitoo_tutorial</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">helloworldv</span>
 </pre></div>
 </div>
 </div>
@@ -535,7 +535,7 @@ hadd       uuid                 name                      location              
     </p>
     <p>
         &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.<br/>
     </p>
   </div>
 </footer>
