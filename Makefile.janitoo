@@ -6,8 +6,7 @@ ARCHBASE      = archive
 BUILDDIR      = build
 DISTDIR       = dists
 NOSEOPTS      = --verbosity=2
-PYLINT        = $(shell which pylint)
-PYLINTOPTS    = --max-line-length=140 --max-args=9 --extension-pkg-whitelist=zmq --ignored-classes=zmq --min-public-methods=0
+PYLINTOPTS    = --max-line-length=140 --max-args=9 --min-public-methods=0
 
 ifndef PYTHON_EXEC
 PYTHON_EXEC=python
@@ -28,6 +27,7 @@ ifdef VIRTUAL_ENV
 	python_version_full := $(wordlist 2,4,$(subst ., ,$(shell ${PYTHON_EXEC} --version 2>&1)))
 	PIP_EXEC=${VIRTUAL_ENV}/bin/pip
 	NOSE=${VIRTUAL_ENV}/bin/nosetests
+	PYLINT=${VIRTUAL_ENV}/bin/pylint
 	python_version_major = $(word 1,${python_version_full})
 	python_version_minor = $(word 2,${python_version_full})
 	python_version_patch = $(word 3,${python_version_full})
@@ -37,8 +37,8 @@ else
 		PIP_EXEC=pip3
 	endif
 	NOSE=$(shell which nosetests)
+	PYLINT=$(shell which pylint)
 endif
-
 
 janitoo_version := $(shell ${PYTHON_EXEC} _version.py 2>/dev/null)
 
@@ -81,3 +81,64 @@ env:
 	@echo "Nose ${NOSE}"
 	@echo "Modules ${SUBMODULES}"
 	@echo "Core modules ${COREMODULES}"
+
+clean-doc:
+	-rm -Rf ${BUILDDIR}/docs
+	-rm -Rf ${BUILDDIR}/janidoc
+	-rm -f objects.inv
+	-rm -f generated_doc
+	-rm -f janidoc
+
+janidoc:
+	-ln -s /opt/janitoo/src/janitoo_sphinx janidoc
+
+apidoc:
+	-rm -rf ${BUILDDIR}/janidoc/source/api
+	-mkdir -p ${BUILDDIR}/janidoc/source/api
+	cp -Rf janidoc/* ${BUILDDIR}/janidoc/
+	cd ${BUILDDIR}/janidoc/source/api && sphinx-apidoc --force --no-toc -o . ../../../../src/
+	cd ${BUILDDIR}/janidoc/source/api && mv ${MODULENAME}.rst index.rst
+
+doc: janidoc apidoc
+	- [ -f transitions_graph.py ] && python transitions_graph.py
+	-cp -Rf rst/* ${BUILDDIR}/janidoc/source
+	sed -i -e "s/MODULE_NAME/${MODULENAME}/g" ${BUILDDIR}/janidoc/source/tools/index.rst
+	make -C ${BUILDDIR}/janidoc html
+	cp ${BUILDDIR}/janidoc/source/README.rst README.rst
+	-ln -s $(BUILDDIR)/docs/html generated_doc
+	@echo
+	@echo "Documentation finished."
+
+github.io:
+	git checkout --orphan gh-pages
+	git rm -rf .
+	touch .nojekyll
+	git add .nojekyll
+	git commit -m "Initial import" -a
+	git push origin gh-pages
+	git checkout master
+	@echo
+	@echo "github.io branch initialised."
+
+doc-full: tests pylint doc-commit
+
+doc-commit: doc
+	git checkout gh-pages
+	cp -Rf build/docs/html/* .
+	git add *.html
+	git add *.js
+	git add tools/
+	git add api/
+	-git add _images/
+	-git add _modules/
+	-git add _sources/
+	-git add _static/
+	git commit -m "Auto-commit documentation" -a
+	git push origin gh-pages
+	git checkout master
+	@echo
+	@echo "Documentation published to github.io."
+
+pylint:
+	-mkdir -p ${BUILDDIR}/docs/html/tools/pylint
+	$(PYLINT) --output-format=html $(PYLINTOPTS) src/${MODULENAME} >${BUILDDIR}/docs/html/tools/pylint/index.html
