@@ -64,48 +64,53 @@ class TutorialBus(JNTFsmBus):
     """A bus to manage Tutorial
     """
 
-    states = [
-       'booting',
-       'sleeping',
-       'reporting',
-       'ringing',
-    ]
-    """The tutorial states :
-    """
-
-    transitions = [
-        { 'trigger': 'boot',
-            'source': 'booting',
-            'dest': 'sleeping',
-            'conditions': 'condition_values',
-        },
-        { 'trigger': 'sleep',
-            'source': '*',
-            'dest': 'sleeping',
-        },
-        { 'trigger': 'wakeup',
-            'source': 'sleeping',
-            'dest': 'reporting',
-            'conditions': 'condition_values',
-        },
-        { 'trigger': 'report',
-            'source': '*',
-            'dest': 'reporting',
-            'conditions': 'condition_values',
-        },
-        { 'trigger': 'ring',
-            'source': 'reporting',
-            'dest': 'ringing',
-            'conditions': 'condition_values',
-        },
-    ]
-    """The transitions
-    """
-
     def __init__(self, **kwargs):
         """
         """
         JNTFsmBus.__init__(self, **kwargs)
+        self.states = [
+           'booting',
+           'halted',
+           'sleeping',
+           'reporting',
+           'ringing',
+        ]
+        """The tutorial states :
+        """
+
+        self.transitions = [
+            { 'trigger': 'boot',
+                'source': 'booting',
+                'dest': 'sleeping',
+                'conditions': 'condition_values',
+            },
+            { 'trigger': 'halt',
+                'source': '*',
+                'dest': 'halted',
+            },
+            { 'trigger': 'sleep',
+                'source': '*',
+                'dest': 'sleeping',
+            },
+            { 'trigger': 'wakeup',
+                'source': 'sleeping',
+                'dest': 'reporting',
+                'conditions': 'condition_values',
+            },
+            { 'trigger': 'report',
+                'source': '*',
+                'dest': 'reporting',
+                'conditions': 'condition_values',
+            },
+            { 'trigger': 'ring',
+                'source': 'reporting',
+                'dest': 'ringing',
+                'conditions': 'condition_values',
+            },
+        ]
+        """The transitions
+        """
+
         self.buses = {}
         self.buses['gpiobus'] = GpioBus(masters=[self], **kwargs)
         self.buses['1wire'] = OnewireBus(masters=[self], **kwargs)
@@ -178,7 +183,7 @@ class TutorialBus(JNTFsmBus):
         """
         """
         logger.debug("[%s] - on_enter_reporting", self.__class__.__name__)
-        self.bus_acquire()
+        self.fsm_bus_acquire()
         try:
             self.nodeman.find_value('led', 'blink').data = 'heartbeat'
             self.nodeman.add_polls(self.polled_sensors, slow_start=True, overwrite=False)
@@ -193,13 +198,13 @@ class TutorialBus(JNTFsmBus):
         except Exception:
             logger.exception("[%s] - Error in on_enter_reporting", self.__class__.__name__)
         finally:
-            self.bus_release()
+            self.fsm_bus_release()
 
     def on_enter_sleeping(self):
         """
         """
         logger.debug("[%s] - on_enter_sleeping", self.__class__.__name__)
-        self.bus_acquire()
+        self.fsm_bus_acquire()
         try:
             self.stop_check()
             self.nodeman.remove_polls(self.polled_sensors)
@@ -210,7 +215,7 @@ class TutorialBus(JNTFsmBus):
         except Exception:
             logger.exception("[%s] - Error in on_enter_sleeping", self.__class__.__name__)
         finally:
-            self.bus_release()
+            self.fsm_bus_release()
 
     def on_exit_sleeping(self):
         """
@@ -222,7 +227,7 @@ class TutorialBus(JNTFsmBus):
         """
         """
         logger.debug("[%s] - on_enter_ringing", self.__class__.__name__)
-        self.bus_acquire()
+        self.fsm_bus_acquire()
         try:
             self.nodeman.find_value('led', 'blink').data = 'warning'
             #In sleeping mode, send the state of the fsm every 900 seconds
@@ -236,7 +241,7 @@ class TutorialBus(JNTFsmBus):
         except Exception:
             logger.exception("[%s] - Error in on_enter_ringing", self.__class__.__name__)
         finally:
-            self.bus_release()
+            self.fsm_bus_release()
 
     def stop_check(self):
         """Check that the component is 'available'
@@ -250,7 +255,7 @@ class TutorialBus(JNTFsmBus):
         """Make a check using a timer.
 
         """
-        self.bus_acquire()
+        self.fsm_bus_acquire()
         try:
             self.stop_check()
             if self.check_timer is None and self.is_started:
@@ -260,7 +265,7 @@ class TutorialBus(JNTFsmBus):
                 self.check_timer = threading.Timer(timer_delay, self.on_check)
                 self.check_timer.start()
         finally:
-            self.bus_release()
+            self.fsm_bus_release()
         try:
             state = True
             #Check the temperatures
