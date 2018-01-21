@@ -280,8 +280,7 @@ $ sudo make module=janitoo develop
 <span class="nv">BUILDDIR</span>      <span class="o">=</span> build
 <span class="nv">DISTDIR</span>       <span class="o">=</span> dists
 <span class="nv">NOSEOPTS</span>      <span class="o">=</span> --verbosity<span class="o">=</span><span class="m">2</span>
-<span class="nv">PYLINT</span>        <span class="o">=</span> <span class="k">$(</span>shell which pylint<span class="k">)</span>
-<span class="nv">PYLINTOPTS</span>    <span class="o">=</span> --max-line-length<span class="o">=</span><span class="m">140</span> --max-args<span class="o">=</span><span class="m">9</span> --extension-pkg-whitelist<span class="o">=</span>zmq --ignored-classes<span class="o">=</span>zmq --min-public-methods<span class="o">=</span><span class="m">0</span>
+<span class="nv">PYLINTOPTS</span>    <span class="o">=</span> --max-line-length<span class="o">=</span><span class="m">140</span> --max-args<span class="o">=</span><span class="m">9</span> --min-public-methods<span class="o">=</span><span class="m">0</span>
 
 ifndef PYTHON_EXEC
 <span class="nv">PYTHON_EXEC</span><span class="o">=</span>python
@@ -302,6 +301,7 @@ ifdef VIRTUAL_ENV
 	python_version_full :<span class="o">=</span> <span class="k">$(</span>wordlist <span class="m">2</span>,4,<span class="k">$(</span>subst ., ,<span class="k">$(</span>shell <span class="si">${</span><span class="nv">PYTHON_EXEC</span><span class="si">}</span> --version <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="k">)))</span>
 	<span class="nv">PIP_EXEC</span><span class="o">=</span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span>/bin/pip
 	<span class="nv">NOSE</span><span class="o">=</span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span>/bin/nosetests
+	<span class="nv">PYLINT</span><span class="o">=</span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span>/bin/pylint
 	<span class="nv">python_version_major</span> <span class="o">=</span> <span class="k">$(</span>word <span class="m">1</span>,<span class="si">${</span><span class="nv">python_version_full</span><span class="si">}</span><span class="k">)</span>
 	<span class="nv">python_version_minor</span> <span class="o">=</span> <span class="k">$(</span>word <span class="m">2</span>,<span class="si">${</span><span class="nv">python_version_full</span><span class="si">}</span><span class="k">)</span>
 	<span class="nv">python_version_patch</span> <span class="o">=</span> <span class="k">$(</span>word <span class="m">3</span>,<span class="si">${</span><span class="nv">python_version_full</span><span class="si">}</span><span class="k">)</span>
@@ -311,8 +311,8 @@ ifdef VIRTUAL_ENV
 		<span class="nv">PIP_EXEC</span><span class="o">=</span>pip3
 	endif
 	<span class="nv">NOSE</span><span class="o">=</span><span class="k">$(</span>shell which nosetests<span class="k">)</span>
+	<span class="nv">PYLINT</span><span class="o">=</span><span class="k">$(</span>shell which pylint<span class="k">)</span>
 endif
-
 
 janitoo_version :<span class="o">=</span> <span class="k">$(</span>shell <span class="si">${</span><span class="nv">PYTHON_EXEC</span><span class="si">}</span> _version.py <span class="m">2</span>&gt;/dev/null<span class="k">)</span>
 
@@ -355,6 +355,68 @@ env:
 	@echo <span class="s2">&quot;Nose </span><span class="si">${</span><span class="nv">NOSE</span><span class="si">}</span><span class="s2">&quot;</span>
 	@echo <span class="s2">&quot;Modules </span><span class="si">${</span><span class="nv">SUBMODULES</span><span class="si">}</span><span class="s2">&quot;</span>
 	@echo <span class="s2">&quot;Core modules </span><span class="si">${</span><span class="nv">COREMODULES</span><span class="si">}</span><span class="s2">&quot;</span>
+
+clean-doc:
+	-rm -Rf <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/docs
+	-rm -Rf <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc
+	-rm -f objects.inv
+	-rm -f generated_doc
+	-rm -f janidoc
+
+janidoc:
+	-ln -s /opt/janitoo/src/janitoo_sphinx janidoc
+
+apidoc:
+	-rm -rf <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/source/api
+	-mkdir -p <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/source/api
+	cp -Rf janidoc/* <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/
+	<span class="nb">cd</span> <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/source/api <span class="o">&amp;&amp;</span> sphinx-apidoc --force --no-toc -o . ../../../../src/
+	<span class="nb">cd</span> <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/source/api <span class="o">&amp;&amp;</span> mv <span class="si">${</span><span class="nv">MODULENAME</span><span class="si">}</span>.rst index.rst
+
+doc: janidoc apidoc
+	- <span class="o">[</span> -f transitions_graph.py <span class="o">]</span> <span class="o">&amp;&amp;</span> python transitions_graph.py
+	-git commit -m <span class="s2">&quot;Update bus fsm image&quot;</span> rst/images/fsm_bus.png
+	-cp -Rf rst/* <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/source
+	sed -i -e <span class="s2">&quot;s/MODULE_NAME/</span><span class="si">${</span><span class="nv">MODULENAME</span><span class="si">}</span><span class="s2">/g&quot;</span> <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/source/tools/index.rst
+	make -C <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc html
+	cp <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/janidoc/source/README.rst README.rst
+	-ln -s <span class="k">$(</span>BUILDDIR<span class="k">)</span>/docs/html generated_doc
+	@echo
+	@echo <span class="s2">&quot;Documentation finished.&quot;</span>
+
+github.io:
+	git checkout --orphan gh-pages
+	git rm -rf .
+	touch .nojekyll
+	git add .nojekyll
+	git commit -m <span class="s2">&quot;Initial import&quot;</span> -a
+	git push origin gh-pages
+	git checkout master
+	@echo
+	@echo <span class="s2">&quot;github.io branch initialised.&quot;</span>
+
+doc-full: tests pylint doc-commit
+
+doc-commit: doc
+	git checkout gh-pages
+	cp -Rf build/docs/html/* .
+	git add *.html
+	git add *.js
+	git add tools/
+	git add api/
+	-git add _images/
+	-git add _modules/
+	-git add _sources/
+	-git add _static/
+	git commit -m <span class="s2">&quot;Auto-commit documentation&quot;</span> -a
+	git push origin gh-pages
+	git checkout master
+	@echo
+	@echo <span class="s2">&quot;Documentation published to github.io.&quot;</span>
+
+pylint:
+	-mkdir -p <span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/docs/html/tools/pylint
+	<span class="k">$(</span>PYLINT<span class="k">)</span> --output-format<span class="o">=</span>html <span class="k">$(</span>PYLINTOPTS<span class="k">)</span> src/<span class="si">${</span><span class="nv">MODULENAME</span><span class="si">}</span> &gt;<span class="si">${</span><span class="nv">BUILDDIR</span><span class="si">}</span>/docs/html/tools/pylint/index.html
 </pre></div>
 </div>
 <p>You&#8217;re now ready to clone the needed modules. sudo password may be asked during this phase :</p>

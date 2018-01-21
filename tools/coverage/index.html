@@ -1,105 +1,119 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage report</title>
-    <link rel='stylesheet' href='style.css' type='text/css'>
+    <link rel="stylesheet" href="style.css" type="text/css">
     
-    <script type='text/javascript' src='jquery.min.js'></script>
-    <script type='text/javascript' src='jquery.tablesorter.min.js'></script>
-    <script type='text/javascript' src='jquery.hotkeys.js'></script>
-    <script type='text/javascript' src='coverage_html.js'></script>
-    <script type='text/javascript' charset='utf-8'>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.ba-throttle-debounce.min.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript">
         jQuery(document).ready(coverage.index_ready);
     </script>
 </head>
-<body id='indexfile'>
+<body class="indexfile">
 
-<div id='header'>
-    <div class='content'>
+<div id="header">
+    <div class="content">
         <h1>Coverage report:
-            <span class='pc_cov'>85%</span>
+            <span class="pc_cov">47%</span>
         </h1>
-        <img id='keyboard_icon' src='keybd_closed.png'>
+
+        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+
+        <form id="filter_container">
+            <input id="filter" type="text" value="" placeholder="filter..." />
+        </form>
     </div>
 </div>
 
-<div class='help_panel'>
-    <img id='panel_icon' src='keybd_open.png'>
-    <p class='legend'>Hot-keys on this page</p>
+<div class="help_panel">
+    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <p class="legend">Hot-keys on this page</p>
     <div>
-    <p class='keyhelp'>
-        <span class='key'>n</span>
-        <span class='key'>s</span>
-        <span class='key'>m</span>
-        <span class='key'>x</span>
+    <p class="keyhelp">
+        <span class="key">n</span>
+        <span class="key">s</span>
+        <span class="key">m</span>
+        <span class="key">x</span>
         
-        <span class='key'>c</span> &nbsp; change column sorting
+        <span class="key">c</span> &nbsp; change column sorting
     </p>
     </div>
 </div>
 
-<div id='index'>
-    <table class='index'>
+<div id="index">
+    <table class="index">
         <thead>
             
-            <tr class='tablehead' title='Click to sort'>
-                <th class='name left headerSortDown shortkey_n'>Module</th>
-                <th class='shortkey_s'>statements</th>
-                <th class='shortkey_m'>missing</th>
-                <th class='shortkey_x'>excluded</th>
+            <tr class="tablehead" title="Click to sort">
+                <th class="name left headerSortDown shortkey_n">Module</th>
+                <th class="shortkey_s">statements</th>
+                <th class="shortkey_m">missing</th>
+                <th class="shortkey_x">excluded</th>
                 
-                <th class='right shortkey_c'>coverage</th>
+                <th class="right shortkey_c">coverage</th>
             </tr>
         </thead>
         
         <tfoot>
-            <tr class='total'>
-                <td class='name left'>Total</td>
-                <td>287</td>
-                <td>43</td>
+            <tr class="total">
+                <td class="name left">Total</td>
+                <td>299</td>
+                <td>157</td>
                 <td>5</td>
                 
-                <td class='right'>85%</td>
+                <td class="right" data-ratio="142 299">47%</td>
             </tr>
         </tfoot>
         <tbody>
             
-            <tr class='file'>
-                <td class='name left'><a href='janitoo_tutorial.html'>janitoo_tutorial</a></td>
+            <tr class="file">
+                <td class="name left"><a href="janitoo_tutorial___init___py.html">janitoo_tutorial/__init__.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>5</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="4 4">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='janitoo_tutorial_tutorial1.html'>janitoo_tutorial.tutorial1</a></td>
-                <td>86</td>
-                <td>1</td>
+            <tr class="file">
+                <td class="name left"><a href="janitoo_tutorial_tutorial2_py.html">janitoo_tutorial/tutorial2.py</a></td>
+                <td>79</td>
+                <td>30</td>
                 <td>0</td>
                 
-                <td class='right'>99%</td>
+                <td class="right" data-ratio="49 79">62%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='janitoo_tutorial_tutorial2.html'>janitoo_tutorial.tutorial2</a></td>
-                <td>197</td>
-                <td>42</td>
+            <tr class="file">
+                <td class="name left"><a href="janitoo_tutorial_tutorial3_py.html">janitoo_tutorial/tutorial3.py</a></td>
+                <td>216</td>
+                <td>127</td>
                 <td>0</td>
                 
-                <td class='right'>79%</td>
+                <td class="right" data-ratio="89 216">41%</td>
             </tr>
             
         </tbody>
     </table>
+
+    <p id="no_rows">
+        No items found using the specified filter.
+    </p>
 </div>
 
-<div id='footer'>
-    <div class='content'>
+<div id="footer">
+    <div class="content">
         <p>
-            <a class='nav' href='http://nedbatchelder.com/code/coverage'>coverage.py v3.7.1</a>
+            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.4.2</a>,
+            created at 2018-01-17 20:08
         </p>
     </div>
 </div>
